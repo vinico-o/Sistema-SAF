@@ -70,139 +70,164 @@ Obs: não sei se misturei isso com o 2.4
 ## 3.1 Requisitos Funcionais
 
 - **[RF] Autenticação de Usuário**  
-O sistema deve permitir autenticação de usuários por meio de login e senha.
+O sistema deve permitir autenticação de usuários por meio de login e senha. (E)
 
 - **[RF] Cadastro de Clubes**  
-O sistema deve permitir cadastrar um ou mais clubes de futebol.
+O sistema deve permitir cadastrar um ou mais clubes de futebol. (E)
 
 - **[RF] Alterações em Clubes**  
-O sistema deve permitir editar as informações de um clube já cadastrado no sistema.
+O sistema deve permitir editar as informações de um clube já cadastrado no sistema. (E)
 
 - **[RF] Exclusão de Clubes**  
-O sistema deve permitir excluir o cadastro de um clube, desvinculando-o do sistema. 
+O sistema deve permitir excluir o cadastro de um clube, desvinculando-o do sistema. (E)
     - **[RF.1] Exclusão de dados de clubes**  
-        O sistema deve excluir os dados referentes a um clube que foi excluído do sistema.
+        O sistema deve excluir os dados referentes a um clube que foi excluído do sistema. (O)
+
+- **[RF] Cadastro de Usuários** 
+O sistema deve permitir cadastro de um ou mais usuários. (E)
+    - **[RF.1] Niveis diferentes de Usuário**  
+    O sistema deve permitir a criação de usuários com diferentes permissão. (E)
+        - **[RF.1.1] Hierarquia de Níveis** 
+        O sistema deve permitir apenas a criação de um usuário com o nível inferior ao do uuário atual. (O) ??????
+
+- **[RF] Alterações em Usuários**  
+O sistema deve permitir editar as informações de um usuário já cadastrado no sistema. (E)
+
+- **[RF] Exclusão de Usuários**  
+O sistema deve permitir excluir o cadastro de um usuário, desvinculando-o do sistema. (E)
+    - **[RF.1] Exclusão de dados de usuário**  
+        O sistema deve excluir os dados referentes a um usuário que foi excluído do sistema. (O)
 
 - **[RF] Compras de jogador**  
-O sistema deve permitir comprar jogadores.
+O sistema deve permitir comprar jogadores. (E)
     - **[RF.1] Registro de Compra**  
-    O sistema deve registrar o valor, data e informações do jogador a ser comprado.
+    O sistema deve registrar o valor, data e informações do jogador a ser comprado. (E) ????
 
 - **[RF] Vendas de jogador**  
-O sistema deve permitir vender jogadores.
+O sistema deve permitir vender jogadores. (E)
     - **[RF.1] Registro de Venda**  
-    O sistema deve registrar o valor, data, informações do jogador a ser vendido e clube de destino.
+    O sistema deve registrar o valor, data, informações do jogador a ser vendido e clube de destino. (E) ????
 
 - **[RF] Empréstimo de jogador**  
-O sistema deve permitir o empréstimo de jogadores a outros clubes.
+O sistema deve permitir o empréstimo de jogadores a outros clubes. (E)
     - **[RF.1] Registro de Empréstimo**  
-    O sistema deve registrar o valor, data do empréstimo, tempo de empréstimo, informações do jogador a ser emprestado e clube de destino.
+    O sistema deve registrar o valor, data do empréstimo, tempo de empréstimo, informações do jogador a ser emprestado e clube de destino. (E)????
 
 - **[RF] Empréstimo de jogador com opção/obrigação de compra (Alterar o nome?)**  
-O sistema deve permitir o empréstimo de jogadores ao(s) próprio(s) clube(s).
+O sistema deve permitir o empréstimo de jogadores ao(s) próprio(s) clube(s). (E)
 
 - **[RF.1] Registro de Empréstimo**  
-O sistema deve registrar o valor, data do empréstimo, tempo de empréstimo, informações do jogador que virá ao clube por empréstimo.
+O sistema deve registrar o valor, data do empréstimo, tempo de empréstimo, informações do jogador que virá ao clube por empréstimo. (E) ????
 
 - **[RF] Registro de Despesas**  
-O sistema deve permitir o registro de despesas que não estão relacionadas com jogadores.
+O sistema deve permitir o registro de despesas que não estão relacionadas com jogadores. (E)
     - **[RF.1] Registro de Despesas com Gramados**  
-    O sistema deve permitir o registro de gastos com gramados, considerando gramados do CT e do Estádio.
+    O sistema deve permitir o registro de gastos com gramados, considerando gramados do CT e do Estádio. (E)
     - **[RF.2] Registro de Despesas com Uniformes**  
-    O sistema deve permitir o registro de gastos com uniformes, considerando os uniformes de jogos, treino e goleiro. (Alterar?????)
+    O sistema deve permitir o registro de gastos com uniformes, considerando os uniformes de jogos, treino e goleiro. (Alterar?????) (E)
     - **[RF.3] Registro de Despesas com Saúde**  
-    O sistema deve permitir o registro de gastos na área da saúde (COMPLETAR????).
+    O sistema deve permitir o registro de gastos na área da saúde (COMPLETAR????). (E)
 
 - **[RF] Edição de Despesas**  
-O sistema deve permitir a alteração de alguma(s) informações sobre qualquer despesa registrada.
+O sistema deve permitir a alteração de alguma(s) informações sobre qualquer despesa registrada. (E)
 
 - **[RF] Exclusão de Despesas**  
-O sistema deve permitir a exclusão de qualquer despesa registrada.
+O sistema deve permitir a exclusão de qualquer despesa registrada. (E)
     - **[RF] Recalcular Despesas**  
-    O sistema deve refazer o cálculo do saldo após a exclusão de alguma despesa.
+    O sistema deve refazer o cálculo do saldo após a exclusão de alguma despesa. (O)
 
 - **[RF] Histórico de Despesas**  
-O sistema deve permitir a visualização de todas as despesas registradas.
+O sistema deve permitir a visualização de todas as despesas registradas. (E) (estender com os relatorios)
 
 - **[RF] Validação de Despesas**  
-O sistema deve validar se as informações sobre as informações de [RF08] e [RF] estão corretas. ((VALOR TEM Q SER POSITIVO POR EXEMPLO).
+O sistema deve validar se as informações sobre as informações de [RF08] e [RF] estão corretas. ((VALOR TEM Q SER POSITIVO POR EXEMPLO). (E)
 
 - **[RF] Registro de Receitas**  (deixar especificas para cada situacao???)
-O sistema deve permitir o registro de receitas que não estão relacionadas com jogadores.
+O sistema deve permitir o registro de receitas que não estão relacionadas com jogadores. (E)
     - **[RF.1] Registro de Receitas com Bilheteria (*** acho q dá pra tirar esse pq a receita da bilheteria está envolvida com o registro de partidas**)**  
-    O sistema deve permitir o registro de receita vindas de jogos de futebol.
+    O sistema deve permitir o registro de receita vindas de jogos de futebol. (E)
     - **[RF.2] Registro de Receitas com Patrocínio**  
-    O sistema deve permitir o registro de receitas vindas de patrocínios (MAIS DE UM PATROCINIO?) ligadas ao time.
+    O sistema deve permitir o registro de receitas vindas de patrocínios (MAIS DE UM PATROCINIO?) ligadas ao time. (E)
     - **[RF.3] Registro de Receitas com Vendas de Uniforme.**  
-    O sistema deve permitir o registro de receitas vindas de vendas de uniforme.
+    O sistema deve permitir o registro de receitas vindas de vendas de uniforme. (E)
     - **[RF.4] Registro de Receitas com Planos Sócio-Torcedor (TALVEZ COLOCAR ISSO?)**  
-    O sistema deve permitir a receita vinda do plano sócio-torcedor (AO FIM DO MÊS?).
+    O sistema deve permitir a receita vinda do plano sócio-torcedor (AO FIM DO MÊS?). (E)
     - **[RF.5] Registro de Receitas com Títulos de Competições (TALVEZ COLOCAR ISSO?)**  
-    O sistema deve permitir a receita vindo de algum título de competição, registrando o nome da competição e valor recebido.
+    O sistema deve permitir a receita vindo de algum título de competição, registrando o nome da competição e valor recebido. (E)
 
 - **[RF] Edição de Receitas**  
-O sistema deve permitir a alteração de alguma(s) informações sobre qualquer receita registrada.
+O sistema deve permitir a alteração de alguma(s) informações sobre qualquer receita registrada. (E)
 
 - **[RF] Exclusão de Receitas**  
-O sistema deve permitir a exclusão de qualquer receita registrada. (-> TEM Q RECALCULAR O SALDO FINAL DO MÊS SE FIZER ISSO)
+O sistema deve permitir a exclusão de qualquer receita registrada. (E)
+    - **[RF] Exclusão de dados de Receitas**    
+    O sistema deve apagar os dados referentes às receitas excluidas. (O)
 
 - **[RF] Histórico de Receitas**  
-O sistema deve permitir a visualização de todas as receitas registradas.
+O sistema deve permitir a visualização de todas as receitas registradas. (E)
 
 - **[RF] Validação de Receitas**  
-O sistema deve validar se as informações sobre as informações de [RF13] e [RF14] estão corretas. ((VALOR TEM Q SER POSITIVO POR EXEMPLO)
+O sistema deve validar se as informações sobre as informações de [RF13] e [RF14] estão corretas. ((VALOR TEM Q SER POSITIVO POR EXEMPLO) (O)
 
 - **[RF] Registro de Partidas de Futebol**  
-O sistema deve permitir registrar informações das partidas jogadas.
+O sistema deve permitir registrar informações das partidas jogadas. (E)
 
 - **[RF.1] Registro de Partidas**  
-O sistema deve permitir registrar data, público total e bilheteria do jogo. (???? Ficou redundante publico total e bilheteria)
+O sistema deve permitir registrar data, público total. (E)
+    - **[RF.1] Registro de Valor de Ingresso**
+    O sistema deve permitir registrar o valor do ingresso da partida. (E)
+        - **[RF.1.1] Cálculo de Bilheteria**    
+        O sistema deve calcular o valor de bilheteria baseado no valor de ingresso e no público total. (O) (se puder, colocar a equacao com o calculo)
 
 - **[RF] Edição de Partidas**  
-O sistema deve permitir a alteração de alguma(s) informações sobre qualquer partida registrada.
+O sistema deve permitir a alteração de alguma(s) informações sobre qualquer partida registrada. (E)
 
-- **[R0] Exclusão de Partidas**  
-O sistema deve permitir a exclusão de qualquer partida registrada. (-> TEM Q RECALCULAR O SALDO FINAL DO MÊS SE FIZER ISSO)
+- **[RF] Exclusão de Partidas**  
+O sistema deve permitir a exclusão de qualquer partida registrada. (E)
+    - **[RF] Exclusão de dados de Partida**  
+    O sistema deve apagar os dados referentes às partidas excluidas. (O)
+    - **[RF] Recálculo (????) de Saldo de Partidas**
+    O sistema deve recalcular o saldo atual após a exclusão de uma partida do sistema. (O)
 
 - **[RF] Histórico de Partidas**  
-O sistema deve permitir a visualização de todas as partidas registradas.
+O sistema deve permitir a visualização de todas as partidas registradas. (E)
 
 - **[RF] Validação de Partidas**  
-O sistema deve validar se as informações sobre as informações de [RF18] e [RF19] estão corretas e sem interferências. ((VALOR TEM Q SER POSITIVO POR EXEMPLO)
+O sistema deve validar se as informações sobre as informações de [RF18] e [RF19] estão corretas e sem interferências. (O) (VALOR TEM Q SER POSITIVO POR EXEMPLO)
     - **[RF.1] Impedir Conflitos de Horário**  
-    O sistema deve impedir que o registro de partidas [RF18.2] e edição de partidas [RF19] marquem os jogos para o mesmo dia.
+    O sistema deve impedir que o registro de partidas [RF18.2] e edição de partidas [RF19] marquem os jogos para o mesmo dia. (O)
 
 - **[RF] Cálculo de Saldo**  
-O sistema deve calcular o saldo do clube a cada interação com o sistema automaticamente.
+O sistema deve calcular o saldo do clube a cada interação com o sistema automaticamente. (O)
 
 - **[RF.1] Atualização de Saldo**  
-O sistema atualiza o saldo do clube a cada Cálculo de Saldo [RF23] automaticamente.
+O sistema atualiza o saldo do clube a cada Cálculo de Saldo [RF23] automaticamente. (O)
 
 - **[RF] Relatórios de Receita**  
-O sistema deve gerar relatórios (com gráficos) de receitas.
+O sistema deve gerar relatórios (com gráficos) de receitas. (E)
 
 - **[RF] Relatórios de Despesas**  
-O sistema deve gerar relatórios (com gráficos) de despesas.
+O sistema deve gerar relatórios (com gráficos) de despesas. (E)
 
 - **[RF] Relatórios Financeiros Geral**  
-O sistema deve gerar relatórios (com gráficos) de saldo.
+O sistema deve gerar relatórios (com gráficos) de saldo. (E)
 
 - **[RF] Relatórios de Partidas**  
-O sistema deve gerar relatórios (com gráficos) de partidas.
+O sistema deve gerar relatórios (com gráficos) de partidas. (E)
 
 - **[RF] Busca de Receitas**  
-O sistema deve permitir a busca por receita específica. (PENSEI EM RF16 (listagem) e o user busca a receita pelo ID).
+O sistema deve permitir a busca por receita específica. (PENSEI EM RF16 (listagem) e o user busca a receita pelo ID). (E)
 
 - **[RF] Busca de Despesas**  
-O sistema deve permitir a busca por despesa específica. (SEGUE O DE CIMA)
+O sistema deve permitir a busca por despesa específica (E)(SEGUE O DE CIMA)
 
 - **[RF] Busca de Partidas**  
-O sistema deve permitir a busca por partida específica. (SEGUE O DE CIMA)
+O sistema deve permitir a busca por partida específica. (E)(SEGUE O DE CIMA)
 
 (ACHEI INTERESSANTE BOTAR ESSES HISTÓRICOS ABAIXO – requisitos de auditoria que já vimos em aula)
 
 - **[RF] Histórico de Registros**  
-O sistema deve registrar o histórico de registros feitos pelo usuário, quanto a [RF04.1], [RF05.1], [RF06.1], [RF07.1], [RF08], [RF13], [RF18].
+O sistema deve registrar o histórico de registros feitos pelo usuário, quanto a [RF04.1], [RF05.1], [RF06.1], [RF07.1], [RF08], [RF13], [RF18]. 
     - **[RF.1] Registro de Histórico de Registro**  
     O sistema deve registrar o tipo de registro (Compra, Venda, Empréstimo pra fora, Empréstimo pro clube, Despesa, Receita , Partida // ID do tipo de registro // User – apagar dps isso) e quem fez isso.
 
@@ -211,8 +236,8 @@ O sistema deve registrar o histórico de alterações feitos pelo usuário, quan
     - **[RF.1] Registro de Histórico de Alteração**  
     O sistema deve registrar o tipo de alteração (Compra, Venda, Empréstimo pra fora, Empréstimo pro clube, Despesa, Receita , Partida // ID do tipo de registro // User - apagar dps isso) e quem fez isso.
 
-- **[RF] Exportação de Informações ((( SERIALIZABLE)**  
+- **[RF] Exportação de Informações ( SERIALIZABLE)**  
 O sistema deve exportar e armazenar o Histórico de Despesas, Histórico de Receitas, Histórico de Partidas, Histórico de Registros e Histórico de Alterações do sistema. (ARQUIVO?)
 
-- **[RF] Carregar Informações ((( SERIALIZABLE)**  
+- **[RF] Carregar Informações ( SERIALIZABLE)**  
 O sistema deve importar e carregar o Histórico de Despesas, Histórico de Receitas, Histórico de Partidas, Histórico de Registros e Histórico de Alterações do sistema. (ARQUIVO?)
