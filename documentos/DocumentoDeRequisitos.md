@@ -38,6 +38,7 @@ As principais definições, abreviações e acrônimos utilizadas neste document
 | **Saldo** | Diferença entre o total de receitas e o total de despesas registradas no sistema. |
 
 ## 1.4 Referências
+
 (nehuma ainda)
 
 ## 1.5 Visão do Restante do Documento
