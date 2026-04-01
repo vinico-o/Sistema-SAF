@@ -251,6 +251,42 @@
 | **Descrição**: | O Administrador deseja ter uma visão de todos os jogadores registrados no sistema. Ele inicia a listagem e o sistema exibe todos os registros de jogadores e suas informações gerais. Essa visualização permite ao Administrador gerenciar e acompanhar o quadro de jogadores.|
 
 
+| **Campo** | **Conteúdo** |
+| :-- | :-- |
+| **Caso de Uso**: |**Cadastrar Partida** |
+| **Atores**: |Administrador, Operador|
+| **Tipo**: |Primário|
+| **Descrição**: |O usuário deseja registrar uma partida realiza. Ele inicia o cadastro, preenche as informações da partida e confirma a operação. O sistema registra a partida no clube, soma o valor dos ganhos nas finanças do clube e armazena a ação no Histórico de Auditoria de Registro. |
+
+| **Campo** | **Conteúdo** |
+| :-- | :-- |
+| **Caso de Uso**: |**Buscar Partida** |
+| **Atores**: |Administrador, Operador|
+| **Tipo**: |Secundário|
+| **Descrição**: |O usuário precisa localizar uma partida específica registrada no sistema. Ele informa os dados que conhece sobre a partida e aciona a consulta. O sistema retorna os registros correspondentes ou, caso não encontre, o sistema apresenta uma mensagem indicando que nenhum resultado foi encontrado.|
+
+| **Campo** | **Conteúdo** |
+| :-- | :-- |
+| **Caso de Uso**: |**Alterar Informações de Partida** |
+| **Atores**: |Administrador, Operador|
+| **Tipo**: |Secundário |
+| **Descrição**: |O usuário identifica a necessidade de atualizar os dados de uma partida cadastrada. Ele localiza a partida, faz alterações necessárias e confirma a operação. O sistema salva as novas informações e registra a ação no Histórico de Auditoria de Alteração.|
+
+| **Campo** | **Conteúdo** |
+| :-- | :-- |
+| **Caso de Uso**: |**Apagar Partida** |
+| **Atores**: |Administrador, Operador|
+| **Tipo**: |Primário|
+| **Descrição**: |O usuário deseja a saída apagar uma partida cadastrada. Ele localiza a partida, informa os dados e confirma a operação. O sistema remove a partida do sistema, subtrai o valor dos ganhos das finanças do clube e armazena a ação no Histórico de Auditoria de Registro. |
+
+| **Campo** | **Conteúdo** |
+| :-- | :-- |
+| **Caso de Uso**: |**Listagem de Partidas** |
+| **Atores**: |Administrador, Operador|
+| **Tipo**: |Secundário |
+| **Descrição**: | O Administrador deseja ter uma visão de todas as partidas registradas no sistema. Ele inicia a listagem e o sistema exibe todos os registros de partidas e suas informações gerais. Essa visualização permite ao Administrador gerenciar e acompanhar o quadro futebolistico do clube.|
+
+
 
 
 **AUDITORIA**
