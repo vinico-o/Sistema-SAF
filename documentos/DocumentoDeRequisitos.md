@@ -218,13 +218,7 @@ O sistema depende da disponibilidade de um ambiente computacional capaz de execu
 
 - **RF12.3 – Informações de cadastro:** o sistema deve conter as seguintes informações de clube: (E)  
     
-  - Nome completo;  
-  - Data de nascimento  
-  - Nacionalidade;  
-  - Posição em campo;  
-  - Número de camisa;  
-  - Salário;  
-  - Tempo de Contrato.
+  - 
 
 **RF13 – Alterar jogador:** o sistema deve permitir editar as informações de um jogador cadastrado, aplicando as mesmas validações do cadastro. (E)
 
