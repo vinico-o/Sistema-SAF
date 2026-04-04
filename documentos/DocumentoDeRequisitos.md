@@ -191,7 +191,7 @@ O sistema depende da disponibilidade de um ambiente computacional capaz de execu
   - Ano de fundação do clube;  
   - País;
 
-**RF09 – Alterar clube:** o sistema deve permitir editar as informações de um clube já cadastrado. (E)
+**RF09 – Editar clube:** o sistema deve permitir editar as informações de um clube já cadastrado. (E)
 
 - **RF09.1 – Restringir alteração de clube:** somente o Adm pode editar informações de clubes; GF e Op não visualizam essa opção no sistema. (O)
 
@@ -220,7 +220,7 @@ O sistema depende da disponibilidade de um ambiente computacional capaz de execu
     
   - 
 
-**RF13 – Alterar jogador:** o sistema deve permitir editar as informações de um jogador cadastrado, aplicando as mesmas validações do cadastro. (E)
+**RF13 – Editar jogador:** o sistema deve permitir editar as informações de um jogador cadastrado, aplicando as mesmas validações do cadastro. (E)
 
 - **RF13.1 – Restringir alteração de jogador a Adm e GF:** somente Adm e GF podem editar informações de jogadores; Op não visualiza essa opção. (O)
 
@@ -231,6 +231,8 @@ O sistema depende da disponibilidade de um ambiente computacional capaz de execu
 **RF15 – Listar jogadores:** o sistema deve exibir todos os jogadores vinculados a um clube, apresentando as informações deles. (E)
 
 - **RF15.1 – Restringir listagem de jogadores a Adm e GF:** somente Adm e GF podem visualizar a lista de jogadores; Op não tem acesso a essa tela. (O)
+
+- **RF15.2 - Buscar jogador:** o sistema deve permitir localizar um jogador específico na listagem através do nome do usuário. (E)
 
 #### Transações Financeiras com Jogadores
 
@@ -318,7 +320,7 @@ O sistema depende da disponibilidade de um ambiente computacional capaz de execu
   - Valor;  
   - Descrição.
 
-**RF21 – Alterar despesa:** o sistema deve permitir editar qualquer campo de uma despesa já registrada. (E)
+**RF21 – Editar despesa:** o sistema deve permitir editar qualquer campo de uma despesa já registrada. (E)
 
 - **RF21.1 – Restringir alteração de despesas a Adm e GF:** somente Adm e GF podem editar despesas; Op não visualiza essa opção. (O)  
     
@@ -376,7 +378,7 @@ O sistema depende da disponibilidade de um ambiente computacional capaz de execu
   - Valor;  
   - Descrição.
 
-**RF26 – Alterar receita:** o sistema deve permitir editar qualquer campo de uma receita já registrada. (E)
+**RF26 – Editar receita:** o sistema deve permitir editar qualquer campo de uma receita já registrada. (E)
 
 - **RF26.1 – Restringir alteração de receitas a Adm e GF:** somente Adm e GF podem editar receitas; Op não visualiza essa opção. (O)  
     
@@ -450,7 +452,7 @@ $$ \\text{Saldo} \= \\sum \\text{Receitas} \- \\sum \\text{Despesas} $$
   - Premiação;  
   - Placar.
 
-**RF32 – Alterar partida:** o sistema deve permitir editar qualquer informação de uma partida já registrada. (E)
+**RF32 – Editar partida:** o sistema deve permitir editar qualquer informação de uma partida já registrada. (E)
 
 - **RF32.1 – Restringir alteração de partidas a Adm e Op:** somente Adm e Op podem editar partidas; GF não visualiza essa opção. (O)  
     
