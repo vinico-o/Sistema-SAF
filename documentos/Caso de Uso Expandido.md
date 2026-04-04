@@ -123,7 +123,7 @@
 | **Finalidade**: | Disponibiliza ações que envolvem as partidas do sistema, desde cadastro, busca, alteração de informações, listagem e exclusão de partidas |
 | **Tipo**: |Primário|
 | **Descrição**: | As funções disponibilizadas são: Cadastro de Partida, Buscar Partida, Alteração de Informações de Partida, Listagem de Partida e Exclusão de Partida. As funções de Cadastro e Exclusão de partida são registradas no Histórico de Auditoria de Registro. A alteração de informações é registrada no Histórico de Auditoria de Alteração. |
-| **Referências cruzadas**: | Requisitos: RF31, RF31.1, RF31.2, RF31.3, RF31.4, RF31.5, RF31.5.1, RF31.6, RF31.6.1, RF31.7, RF30, RF30.1, RF32, RF32.1, RF32.2, RF32.3, RF33, RF31.1, RF33.2, RF33.3, RF33.4, RF34, RF34.1, RF35, RF35.1, RF40, RF40.1, RF40.2, RF41, RF41.1, RF41.2 |
+| **Referências cruzadas**: | Requisitos: RF30, RF30.1, RF31, RF31.1, RF31.2, RF31.3, RF31.4, RF31.5, RF31.5.1, RF31.6, RF31.6.1, RF31.7, RF32, RF32.1, RF32.2, RF32.3, RF33, RF31.1, RF33.2, RF33.3, RF33.4, RF34, RF34.1, RF35, RF35.1, RF40, RF40.1, RF40.2, RF41, RF41.1, RF41.2 |
 
 
 
