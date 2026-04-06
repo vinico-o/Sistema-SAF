@@ -54,6 +54,12 @@ Linha 6: Nome de usuário já cadastrado no sistema. Indica erro de cadastro.
 | 5. O Administrador confirma a exclusão. | 6. O sistema remove o usuário permanentemente e registra no Histórico de Auditoria. |
 | | 7. O sistema exibe uma mensagem de sucesso e confirma a operação. |
 
+### Subcaso: Buscar Usuário
+
+| Ação do Ator | Resposta do Sistema |
+|---|---|
+| 1. O Administrador  acessa a listagem de usuários e utiliza o campo de busca. | 2. O sistema exibe os usuários de acordo com a informação dada no campo. |
+
 ### Sequências alternativas:
 
 Linha 3: O Administrador seleciona o próprio usuário. Indica erro de autoexclusão.
@@ -534,41 +540,20 @@ Linha 3: o ator cancela a exclusão da partida. O sistema não exclui a partida.
 **AUDITORIA**
 | **Campo** | **Conteúdo** |
 | :-- | :-- |
-| **Caso de Uso**: |**Listagem de Registros** |
+| **Caso de Uso**: |**Listagem de Auditoria** |
 | **Atores**: |Administrador|
-| **Finalidade**: | Listar todos registros feitos no sistema |
+| **Finalidade**: | Listar todas ações (registros e alterações) feitas no sistema |
 | **Tipo**: |Secundário|
-| **Descrição**: | O Administrador deseja visualizar todas as operações de cadastro realizadas no sistema. Ele inicia a listagem de registros de auditoria e o sistema exibe todas as ações de registro efetuadas.|
+| **Descrição**: | O Administrador deseja visualizar todos os registros e alterações realizados no sistema. A listagem de auditoria têm os filtros possíveis: Listagem de Registros, Listagem de Alterações, Listagem de Auditoria (ambos).  |
 | **Referências cruzadas**: | Requisitos: RF40, RF40.1, RF40.2 |
 
 ## Sequência Típica de Eventos
 
 | Ação do Ator | Resposta do Sistema |
 |---|---|
-| 1. O Administrador acessa a tela de Histórico de Auditoria e seleciona a listagem de registros. | 2. O sistema exibe todas as ações de registro ocorridas, mostrando: tipo da operação, identificador do dado, data e hora e usuário responsável. |
+| 1. O Administrador acessa a tela de Histórico de Auditoria e seleciona a listagem de registros. | 2. O sistema inclui os filtros possíveis: Registros, Alterações ou Ambos. |
+| 3. O ator coloca o filtro desejado e solicita listagem. | 4. O sistema lista em tabela todas as ações ocorridas, considerando o filtro, mostrando: tipo da operação, identificador do dado, data e hora e usuário responsável. |
 
 ### Sequências alternativa:
 
-Linha 2: O sistema mostra uma mensagem indicando que não há registros salvos.
-
-
-
-
-| **Campo** | **Conteúdo** |
-| :-- | :-- |
-| **Caso de Uso**: |**Listagem de Alterações** |
-| **Atores**: |Administrador|
-| **Finalidade**: | Listar todas alterações feitas no sistema |
-| **Tipo**: |Secundário |
-| **Descrição**: |O Administrador deseja visualizar todas as modificações realizadas no sistema. Ele inicia a listagem de alterações de auditoria e o sistema exibe todas as ações de mudanças efetuadas.|
-| **Referências cruzadas**: | Requisitos: RF41, RF41.1, RF41.2 |
-
-## Sequência Típica de Eventos
-
-| Ação do Ator | Resposta do Sistema |
-|---|---|
-| 1. O Administrador acessa a tela de Histórico de Auditoria e seleciona a listagem de alterações. | 2. O sistema exibe todas as ações de alteração ocorridas, mostrando: tipo da operação, identificador do dado, data e hora e usuário responsável. |
-
-### Sequências alternativa:
-
-Linha 2: O sistema mostra uma mensagem indicando que não há alterações salvas.
+Linha 2: O sistema mostra uma mensagem indicando que não há registros salvos com o tipo de operação (filtro).
