@@ -2,7 +2,7 @@
 | **Campo** | **Conteúdo** |
 | :-- | :-- |
 | **Caso de Uso**: | **Gerenciar Usuários** |
-| **Atores**: | Administrador |
+| **Atores**: | Administrador, Gestor Financeiro, Operador |
 | **Tipo**: | Primário |
 | **Descrição**: | As funções disponibilizadas são: Cadastro de Usuário, Edição de informações de Usuário, Listagem Usuários, Buscar Usuário e Exclusão de Usuário. As funções de Cadastro e Exclusão de Usuário são registradas no Histórico de Auditoria. |
 
@@ -26,13 +26,6 @@
 | **Atores**: | Administrador, Gestor de Finanças, Operador |
 | **Tipo**: | Secundário |
 | **Descrição**: | O usuário decide encerrar a sessão, então o sistema finaliza o acesso. Caso o usuário queira continuar utilizando o sistema, é necessário se autenticar novamente. |
-
-| **Campo** | **Conteúdo** |
-| :-- | :-- |
-| **Caso de Uso**: | **Alterar Informações de Usuário** |
-| **Atores**: | Administrador, Gestor de Finanças, Operador |
-| **Tipo**: | Secundário |
-| **Descrição**: | O usuário acessa as configurações da própria conta e deseja atualizar seus dados. Ele altera as informações que deseja e confirma a operação. O sistema salva as novas informações e registra a ação no Histórico de Auditoria. |
 
 **CLUBE**
 | **Campo** | **Conteúdo** |
@@ -70,7 +63,7 @@
 | **Campo** | **Conteúdo** |
 | :-- | :-- |
 | **Caso de Uso**: | **Gerenciar Jogadores** |
-| **Atores**: | Administrador, Gestor Financeiro, Operador |
+| **Atores**: | Administrador, Gestor Financeiro |
 | **Tipo**: | Primário |
 | **Descrição**: | As funções disponibilizadas são: Compra de Jogador, Buscar Jogador, Alteração de Informações de Jogador, Listagem de Jogador e Exclusão de Jogador. As funções de Compra, Venda e Alteração de Informações de Jogador são registradas no Histórico de Auditoria. |
 
@@ -87,4 +80,4 @@
 | **Caso de Uso**: |**Listagem de Auditoria** |
 | **Atores**: |Administrador|
 | **Tipo**: |Secundário|
-| **Descrição**: | O Administrador deseja visualizar todos os registros e alterações realizados no sistema. A listagem de auditoria têm os filtros possíveis: Listagem de Registros, Listagem de Alterações, Listagem de Auditoria (ambos).  |
+| **Descrição**: | O Administrador deseja visualizar todos os registros, exclusões e alterações realizados no sistema. A listagem de auditoria têm os filtros possíveis: Listagem de Registros, Listagem de Exclusões, Listagem de Alterações, Listagem de Auditoria (ambos).  |

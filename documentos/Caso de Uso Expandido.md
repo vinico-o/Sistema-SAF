@@ -30,7 +30,7 @@ Linha 6: Nome de usuário já cadastrado no sistema. Indica erro de cadastro.
 
 | Ação do Ator | Resposta do Sistema |
 | :-- | :-- |
-| 1. O usuário acessa o campo de edição de informações de usuário. | 2. O sistema exibe a tela de edição de usuário. |
+| 1. O Administrador, Gestor Financeiro ou Operador  acessa o campo de edição de informações de usuário. | 2. O sistema exibe a tela de edição de usuário. |
 | | 3. O sistema indica os campos passíveis de edição. |
 | 4. O usuário preenche os campos que serão editados. |  |
 | 5. O usuário confirma a edição.  | 6. O sistema valida as informações preenchidas. |
@@ -54,6 +54,10 @@ Linha 6: Nome de usuário já cadastrado no sistema. Indica erro de cadastro.
 | 5. O Administrador confirma a exclusão. | 6. O sistema remove o usuário permanentemente e registra no Histórico de Auditoria. |
 | | 7. O sistema exibe uma mensagem de sucesso e confirma a operação. |
 
+Linha 3: O Administrador seleciona o próprio usuário. Indica erro de autoexclusão.
+
+Linha 5: O Administrador cancela a operação de exclusão. O sistema fecha o diálogo sem realizar nenhuma alteração.
+
 ### Subcaso: Buscar Usuário
 
 | Ação do Ator | Resposta do Sistema |
@@ -62,9 +66,16 @@ Linha 6: Nome de usuário já cadastrado no sistema. Indica erro de cadastro.
 
 ### Sequências alternativas:
 
-Linha 3: O Administrador seleciona o próprio usuário. Indica erro de autoexclusão.
+Linha 2: Usuário não encontrado. O sistema exibe uma mensagem indicando que o usuário não existe.
 
-Linha 5: O Administrador cancela a operação de exclusão. O sistema fecha o diálogo sem realizar nenhuma alteração.
+
+### Subcaso: Listagem de Usuários
+
+| Ação do Ator | Resposta do Sistema |
+|---|---|
+| 1. O Administrador  acessa a listagem de usuários e inicia a listagem em formato de tabela. | 2. O sistema exibe todos usuários cadastrados do sistema. |
+
+
 
 | **Campo** | **Conteúdo** |
 | :-- | :-- |
@@ -125,7 +136,7 @@ Linha 6: Credenciais inválidas. Indica login ou senha incorretos.
 
 | Ação do Ator | Resposta do Sistema |
 | :-- | :-- |
-| 1. O usuário aciona a opção de encerras a sessão. | 2. O sistema exibe uma mensagem de confirmação para encerrar a sessão. |
+| 1. O usuário aciona a opção de encerrar sessão. | 2. O sistema exibe uma mensagem de confirmação para encerrar a sessão. |
 | 3. O usuário confirma o encerramento de sessão. | 4. O sistema finaliza a sessão. |
 |  | 5. O sistema retorna à tela de login. |
 
@@ -149,7 +160,7 @@ Linha 3: O usuário cancela a operação de encerrar sessão. o sistema mantém 
 | Ação do Ator | Resposta do Sistema |
 | :-- | :-- |
 | 1. O Administrador acessa o campo de cadastro de clube do sistema. | 2. O sistema exibe a tela de cadastro de clube. |
-| | 3. O sistema indica visualmente os campos de preenchimento origatório. |
+| | 3. O sistema indica visualmente os campos de preenchimento obrigatório. |
 | 4. O Administrador preenche os campos de nome do clube, ano de fundação e país. |  |
 | 5. O Administrador confirma o cadastro.  | 6. O sistema valida as informações preenchidas. |
 | | 7. O sistema cria o clube e registra no Histórico de Auditoria. |
@@ -171,7 +182,7 @@ Linha 6: Clube já cadastrado no sistema. Indica erro de cadastro.
 | | 3. O sistema carrega as informações cadastradas nos campos. |
 | 4. O Administrador altera os campos que serão editados. |  |
 | 5. O Administrador confirma a edição.  | 6. O sistema valida as informações alteradas. |
-| | 7. O sistema altera as informações do clueb e registra no Histórico de Auditoria. |
+| | 7. O sistema altera as informações do clube e registra no Histórico de Auditoria. |
 | | 8. O sistema exibe uma mensagem de sucesso e confirma a operação. |
 
 ### Sequências alternativas:
@@ -224,7 +235,7 @@ Linha 5: Não há despesas que se enquadram nos filtros. O sistema exibe uma men
 |---|---|
 | 1. O Administrador ou Gestor de Finanças acessa a geração do Relatório de Receitas. | 2. O sistema inclui os filtros possíveis: período e categoria. |
 | 3. O ator coloca os filtros desejados e solicita a geração. | 4. O sistema processa as informações e exibe indicador de progresso (se necessário). |
-|  | 5. O sistema exibe o relatório com o total gasto por categoria e por período, acompanhado de representação gráfica (como gráficos de barras ou de pizza) e listagem detalhada de cada receita. |
+|  | 5. O sistema exibe o relatório com o total arrecadado por categoria e por período, acompanhado de representação gráfica (como gráficos de barras ou de pizza) e listagem detalhada de cada receita. |
 
 ### Sequência alternativa:
 
@@ -329,7 +340,7 @@ Linha 3: O ator cancela a exclusão. O sistema não exclui a receita.
 | **Finalidade**: | Disponibiliza ações que envolvem as despesas do sistema, desde criação, busca, alteração de informações, listagem e exclusão |
 | **Tipo**: |Primário |
 | **Descrição**: | As funções disponibilizadas são: Cadastro de Despesa, Buscar Despesa, Alteração de Informações de Despesa, Listagem de Despesas e Exclusão de Despesa. As funções de Cadastro, Exclusão e Alteração de Informações de Despesa são registradas no Histórico de Auditoria. |
-| **Referências cruzadas**: | Requisitos: RF20, RF20.1, RF20.2, RF20.2.1, RF20.2.2, RF20.2.3, RF20.2.4, RF20.2.5, RF20.2.6, RF20.3, RF20.3.1, RF20.4, RF21, RF21.1, RF21.2, RF21.2.1, RF21.3, RF22, RF22.2, RF22.3, RF23, RF23.1, RF24, RF24.1, RF30, RF30.1, RF30.2, RF40, RF40.1, RF40.2, RF41, RF41.1, RF41.2, RF42, RF42.1, RF42.2 |
+| **Referências cruzadas**: | Requisitos: RF20, RF20.1, RF20.2, RF20.2.1, RF20.2.2, RF20.2.3, RF20.2.4, RF20.2.5, RF20.2.6, RF20.3, RF20.3.1, RF20.4, RF21, RF21.1, RF21.2, RF21.2.1, RF21.3, RF22, RF22.1, RF22.2, RF22.3, RF23, RF23.1, RF24, RF24.1, RF30, RF30.1, RF30.2, RF40, RF40.1, RF40.2, RF41, RF41.1, RF41.2, RF42, RF42.1, RF42.2 |
 
 
 ## Sequência Típica de Eventos
@@ -395,7 +406,7 @@ Linha 3: O ator cancela a exclusão. O sistema não exclui a despesa.
 | **Campo** | **Conteúdo** |
 | :-- | :-- |
 | **Caso de Uso**: |**Gerenciar Jogadores** |
-| **Atores**: | Administrador, Gestor Financeiro, Operador |
+| **Atores**: | Administrador, Gestor Financeiro |
 | **Finalidade**: | Disponibiliza ações que envolvem os jogadores do sistema, desde compra, busca, alteração de informações, listagem e venda de jogadores |
 | **Tipo**: |Primário|
 | **Descrição**: | As funções disponibilizadas são: Compra de Jogador, Buscar Jogador, Alteração de Informações de Jogador, Listagem de Jogador e Exclusão de Jogador. As funções de Compra, Venda e Alteração de Informações de Jogador são registradas no Histórico de Auditoria.|
@@ -406,7 +417,7 @@ Linha 3: O ator cancela a exclusão. O sistema não exclui a despesa.
 
 | Ação do Ator | Resposta do Sistema |
 |---|---|
-| 1. O Administrador ou Operador acessa a opção de registrar compra de jogador. | 2. O sistema exibe o formulário de compra com os campos: jogador comprado e valor de compra, além das informações básicas do jogador para cadastro. |
+| 1. O Administrador ou Gestor Financeiro acessa a opção de registrar compra de jogador. | 2. O sistema exibe o formulário de compra com os campos: jogador comprado e valor de compra, além das informações básicas do jogador para cadastro. |
 | 3. O ator preenche os dados do jogador e da compra e confirma. | 4. O sistema valida as informações informadas. |
 |  | 5. O sistema cadastra o jogador, o valor é guardado como despesa, atualiza o saldo do clube, registra a ação no Histórico de Auditoria e exibe mensagem de sucesso. |
 
@@ -431,7 +442,7 @@ Linha 2: Nenhum jogador encontrado. O sistema exibe que não há jogadores com e
 
 | Ação do Ator | Resposta do Sistema |
 |---|---|
-| 1. O Administrador ou Operador seleciona um jogador e inicia a edição. |  2. O sistema exibe o formulário com as informações do jogador. |
+| 1. O Administrador ou Gestor Financeiro seleciona um jogador e inicia a edição. |  2. O sistema exibe o formulário com as informações do jogador. |
 | 3. O ator altera os campos e confirma. | 4. O sistema valida os dados alterados. |
 | | 5. O sistema salva as alterações, registra a ação no Histórico de Auditoria e exibe mensagem de sucesso. |
 
@@ -451,13 +462,14 @@ Linha 4: Os dados são inconsistentes ou inválidos. O sistema indica os campos 
 Linha 2: Não há jogadores registrados. O sistema exibe uma mensagem indicando a ausência de jogadores.
 
 
-### Subcaso: Venda de Jogador
+### Subcaso: Exclusão de Jogador
 
 | Ação do Ator | Resposta do Sistema |
 |---|---|
-| 1. O Administrador ou Operador acessa a opção de vender jogador. | 2. O sistema exibe o formulário com os campos: jogador vendido e valor de venda. |
+| 1. O Administrador ou Gestor Financeiro acessa a opção de vender jogador. | 2. O sistema exibe o formulário com os campos: jogador vendido e valor de venda. |
 | 3. O ator preenche os dados e confirma. | 4. O sistema valida as informações. |
-| | 5. O sistema registra a venda, registra a venda como receita financeira, atualizando o saldo do clube, registrando a ação no Histórico de Auditoria e exibindo uma mensagem de sucesso. |
+| | 5. O sistema registra a venda como receita financeira, atualizando o saldo do clube, registrando a ação no Histórico de Auditoria e exibindo uma mensagem de sucesso. |
+| | 6. Todos os dados do jogador são apagados. |
 
 ### Sequência alternativa:
 
@@ -542,16 +554,16 @@ Linha 3: o ator cancela a exclusão da partida. O sistema não exclui a partida.
 | :-- | :-- |
 | **Caso de Uso**: |**Listagem de Auditoria** |
 | **Atores**: |Administrador|
-| **Finalidade**: | Listar todas ações (registros e alterações) feitas no sistema |
+| **Finalidade**: | Listar todas ações (registros, alterações e exclusões) feitas no sistema |
 | **Tipo**: |Secundário|
-| **Descrição**: | O Administrador deseja visualizar todos os registros e alterações realizados no sistema. A listagem de auditoria têm os filtros possíveis: Listagem de Registros, Listagem de Alterações, Listagem de Auditoria (ambos).  |
-| **Referências cruzadas**: | Requisitos: RF40, RF40.1, RF40.2 |
+| **Descrição**: | O Administrador deseja visualizar todos os registros, exclusões e/ou alterações  realizados no sistema. A listagem de auditoria têm os filtros possíveis: Listagem de Registros, Listagem de Exclusões, Listagem de Alterações, Listagem de Auditoria (ambos).  |
+| **Referências cruzadas**: | Requisitos: RF40, RF40.1, RF40.2, RF41, RF41.1, RF41.2, RF42, RF42.1, RF42.2 |
 
 ## Sequência Típica de Eventos
 
 | Ação do Ator | Resposta do Sistema |
 |---|---|
-| 1. O Administrador acessa a tela de Histórico de Auditoria e seleciona a listagem de registros. | 2. O sistema inclui os filtros possíveis: Registros, Alterações ou Ambos. |
+| 1. O Administrador acessa a tela de Histórico de Auditoria e seleciona a listagem de registros. | 2. O sistema inclui os filtros possíveis: Registros, Exclusões, Alterações ou Ambos. |
 | 3. O ator coloca o filtro desejado e solicita listagem. | 4. O sistema lista em tabela todas as ações ocorridas, considerando o filtro, mostrando: tipo da operação, identificador do dado, data e hora e usuário responsável. |
 
 ### Sequências alternativa:

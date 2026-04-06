@@ -214,7 +214,8 @@ O sistema depende da disponibilidade de um ambiente computacional capaz de execu
   - **RF12.2.1 – Exibir mensagem de erro de jogador duplicado:** o sistema deve recusar o cadastro e exibir mensagem de erro em caso de duplicidade do cadastro. (O)
 
 
-- **RF12.3 – Informações de cadastro:** o sistema deve conter as seguintes informações de clube: (E)  
+- **RF12.3 – Informações de cadastro:** o sistema deve conter as seguintes informações de jogador: (E)  
+
     - Nome completo;
     - Data de nascimento;
     - Nacionalidade;
@@ -454,6 +455,7 @@ $$ \\text{Saldo} \= \\sum \\text{Receitas} \- \\sum \\text{Despesas} $$
   - Valor do ingresso;  
   - Premiação;  
   - Placar.
+  - Local.
 
 **RF32 – Editar partida:** o sistema deve permitir editar qualquer informação de uma partida já registrada. (E)
 
@@ -689,7 +691,7 @@ O sistema adota um modelo de controle de acesso baseado em três perfis hierárq
 | :---- | :---- | :---- | :---- |
 | Autenticação e Sessão | sim | sim | sim |
 | Gerenciamento de Usuários | sim | sim | sim |
-| Gerenciamento de Clubes | sim | não | sim |
+| Gerenciamento de Clubes | sim | não | não |
 | Gerenciamento de Jogadores | sim | sim | não |
 | Transações Financeiras com Jogadores | sim | sim | não |
 | Gerenciamento de Despesas | sim | sim | não |
