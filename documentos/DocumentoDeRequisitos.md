@@ -454,7 +454,7 @@ $$ \\text{Saldo} \= \\sum \\text{Receitas} \- \\sum \\text{Despesas} $$
   - Público total;  
   - Valor do ingresso;  
   - Premiação;  
-  - Placar.
+  - Placar;
   - Local.
 
 **RF32 – Editar partida:** o sistema deve permitir editar qualquer informação de uma partida já registrada. (E)

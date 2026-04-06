@@ -407,9 +407,9 @@ Linha 3: O ator cancela a exclusão. O sistema não exclui a despesa.
 | :-- | :-- |
 | **Caso de Uso**: |**Gerenciar Jogadores** |
 | **Atores**: | Administrador, Gestor Financeiro |
-| **Finalidade**: | Disponibiliza ações que envolvem os jogadores do sistema, desde compra, busca, alteração de informações, listagem e venda de jogadores |
+| **Finalidade**: | Disponibiliza ações que envolvem os jogadores do sistema, desde compra, busca, alteração de informações, listagem e exclusão de jogadores |
 | **Tipo**: |Primário|
-| **Descrição**: | As funções disponibilizadas são: Compra de Jogador, Buscar Jogador, Alteração de Informações de Jogador, Listagem de Jogador e Exclusão de Jogador. As funções de Compra, Venda e Alteração de Informações de Jogador são registradas no Histórico de Auditoria.|
+| **Descrição**: | As funções disponibilizadas são: Compra de Jogador, Buscar Jogador, Alteração de Informações de Jogador, Listagem de Jogador e Exclusão (Venda) de Jogador. As funções de Compra, Venda e Alteração de Informações de Jogador são registradas no Histórico de Auditoria.|
 | **Referências cruzadas**: | Requisitos: RF12, RF12.1, RF12.2, RF12.2.1, RF12.3, RF13, RF13.1, RF14, RF14.1, RF15, RF15.1 RF15.2, RF16, RF16.1, RF16.2, RF16.3, RF16.3.1, RF16.4, RF16.5, RF17, RF17.1, RF17.2, RF17.3, RF17.3.1, RF17.4, RF18, RF18.1, RF18.2, RF18.3, RF19, RF19.1, RF19.2, RF19.2.1, RF30, RF30.1, RF40, RF40.1, RF40.2, RF41, RF41.1, RF41.2, RF42, RF42.1, RF42.2 |
 
 ## Sequência Típica de Eventos
@@ -431,7 +431,7 @@ Linha 4: O jogador já está cadastrado no clube. O sistema impede que o recadas
 
 | Ação do Ator | Resposta do Sistema |
 |---|---|
-| 1. O Administrador ou Operador acessa a listagem de jogadores e informa o nome no campo. | 2. O sistema exibe o(s) jogador(es) correspondente(s) com o mesmo nome informado. |
+| 1. O Administrador ou Gestor de Finanças acessa a listagem de jogadores e informa o nome no campo. | 2. O sistema exibe o(s) jogador(es) correspondente(s) com o mesmo nome informado. |
 
 ### Sequências alternativa:
 
@@ -455,7 +455,7 @@ Linha 4: Os dados são inconsistentes ou inválidos. O sistema indica os campos 
 
 | Ação do Ator | Resposta do Sistema |
 |---|---|
-| 1. O Administrador ou Operador acessa a listagem de jogadores. | 2. O sistema exibe todos os jogadores registrados no clube com suas informações em tabela. |
+| 1. O Administrador ou Gestor de Finanças acessa a listagem de jogadores. | 2. O sistema exibe todos os jogadores registrados no clube com suas informações em tabela. |
 
 ### Sequência alternativa:
 
@@ -482,7 +482,7 @@ Linha 4: Dados inconsistentes. O sistema exibe mensagem de erro.
 | **Finalidade**: | Disponibiliza ações que envolvem as partidas do sistema, desde cadastro, busca, alteração de informações, listagem e exclusão de partidas |
 | **Tipo**: |Primário|
 | **Descrição**: | As funções disponibilizadas são: Cadastro de Partida, Buscar Partida, Alteração de Informações de Partida, Listagem de Partida e Exclusão de Partida. As funções de Cadastro, Exclusão e Alteração de Informações de Partida são registradas no Histórico de Auditoria.|
-| **Referências cruzadas**: | Requisitos: RF30, RF30.1, RF31, RF31.1, RF31.2, RF31.3, RF31.4, RF31.5, RF31.5.1, RF31.6, RF31.6.1, RF31.7, RF32, RF32.1, RF32.2, RF32.3, RF33, RF31.1, RF33.2, RF33.3, RF33.4, RF34, RF34.1, RF35, RF35.1, RF40, RF40.1, RF40.2, RF41, RF41.1, RF41.2, RF42, RF42.1, RF42.2 |
+| **Referências cruzadas**: | Requisitos: RF30, RF30.1, RF31, RF31.1, RF31.2, RF31.3, RF31.4, RF31.5, RF31.5.1, RF31.6, RF31.6.1, RF31.7, RF32, RF32.1, RF32.2, RF32.3, RF33, RF33.2, RF33.3, RF33.4, RF34, RF34.1, RF35, RF35.1, RF40, RF40.1, RF40.2, RF41, RF41.1, RF41.2, RF42, RF42.1, RF42.2 |
 
 ## Sequência Típica de Eventos
 ### Subcaso: Cadastro de Partida

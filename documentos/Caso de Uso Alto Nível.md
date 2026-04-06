@@ -4,7 +4,7 @@
 | **Caso de Uso**: | **Gerenciar Usuários** |
 | **Atores**: | Administrador, Gestor Financeiro, Operador |
 | **Tipo**: | Primário |
-| **Descrição**: | As funções disponibilizadas são: Cadastro de Usuário, Edição de informações de Usuário, Listagem Usuários, Buscar Usuário e Exclusão de Usuário. As funções de Cadastro e Exclusão de Usuário são registradas no Histórico de Auditoria. |
+| **Descrição**: | As funções disponibilizadas são: Cadastro de Usuário, Edição de informações de Usuário, Listagem Usuários, Buscar Usuário e Exclusão de Usuário, sendo o cadastro, exclusão listagem, busca e exclusão funções exclusívas do Administrador. As funções de Cadastro e Exclusão de Usuário são registradas no Histórico de Auditoria. |
 
 | **Campo** | **Conteúdo** |
 | :-- | :-- |
