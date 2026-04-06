@@ -154,11 +154,9 @@ O sistema depende da disponibilidade de um ambiente computacional capaz de execu
   - Nível de usuário;  
   - Clube no qual o usuário opera.
 
-**RF05 – Alterar usuário:** o sistema deve permitir editar as informações de um usuário já cadastrado. (E)
+**RF05 – Editar informações de usuário:** o sistema deve permitir editar as informações de um usuário já cadastrado. (E)
 
-- **RF05.1 – Restringir alteração de usuário ao Adm:** o sistema deve permitir somente o Adm editar informações de outros usuários; GF e Op não visualizam essa opção no sistema. (O)  
-    
-- **RF05.2 – Alterar a própria senha:** o sistema deve permitir que qualquer usuário autenticado altere sua própria senha. (E)
+- **RF05.1 – Restringir alteração de usuário:** o sistema deve permitir somente o próprio usuário autenticado editar suas próprias informações de usuário. (O)  
 
 **RF06 – Excluir usuário:** o sistema deve permitir ao Adm excluir o cadastro de um usuário, desvinculando-o permanentemente do sistema após confirmação da operação. (E)
 
@@ -509,7 +507,7 @@ $$ \\text{Saldo} \= \\sum \\text{Receitas} \- \\sum \\text{Despesas} $$
 
 **RF39 – Gerar relatório de partidas:** o sistema deve gerar relatório de desempenho esportivo com total de partidas, vitórias, empates, derrotas, gols marcados, gols sofridos e aproveitamento percentual do clube. (E)
 
-- **RF39.1 – Restringir relatório de partidas a Adm, GF e Op:** Adm, GF e Op podem gerar e visualizar relatórios de partidas; é o único tipo de relatório acessível ao Op. (O)  
+- **RF39.1 – Restringir relatório de partidas:** Somente Adm e Op podem gerar e visualizar relatórios de partidas; GF não visualiza essa opção. (O)  
     
 - **RF39.2 – Filtrar relatório de partidas por competição:** o sistema deve permitir selecionar uma competição específica para o relatório, exibindo apenas resultados daquela competição. (E)  
     
@@ -521,15 +519,21 @@ $$ \\text{Saldo} \= \\sum \\text{Receitas} \- \\sum \\text{Despesas} $$
 
 **RF40 – Registrar histórico de inserções:** o sistema deve registrar automaticamente um log de cada novo dado inserido, contendo tipo da operação, identificador do dado, data e hora e usuário responsável. (O)
 
-- **RF40.1 – Restringir visualização do histórico de inserções ao Adm:** somente o Adm pode acessar e visualizar o histórico completo de inserções realizadas no sistema. (O)  
+- **RF40.1 – Restringir visualização do histórico de inserções:** somente o Adm pode acessar e visualizar o histórico completo de inserções realizadas no sistema. (O)  
     
 - **RF40.2 – Armazenar tipo e identificador do dado registrado:** o sistema deve armazenar o tipo do dado, o identificador único do registro e o nome de usuário que realizou a operação. (O)
 
 **RF41 – Registrar histórico de alterações:** o sistema deve registrar automaticamente um log de cada novo dado editado, contendo tipo da operação, identificador do dado, data e hora e usuário responsável. (O)
 
-- **RF41.1 – Restringir visualização do histórico de alterações ao Adm:** somente o Adm pode acessar e visualizar o histórico completo de alterações realizadas no sistema. (O)  
+- **RF41.1 – Restringir visualização do histórico de alterações:** somente o Adm pode acessar e visualizar o histórico completo de alterações realizadas no sistema. (O)  
     
 - **RF41.2 – Armazenar tipo, identificador e usuário da alteração:** o sistema deve armazenar o tipo do dado alterado, o identificador do registro e o nome de usuário do responsável pela alteração. (O)
+
+**RF42 – Registrar histórico de exclusões:** o sistema deve registrar automaticamente um log de cada exclusão, contendo tipo da operação, identificador do dado, data e hora e usuário responsável. (O)
+
+  - **RF42.1 – Restringir visualização do histórico de exclusões:** somente o Adm pode acessar e visualizar o histórico completo de exclusões realizadas no sistema. (O)  
+    
+  - **RF42.2 – Armazenar tipo, identificador e usuário da exclusão:** o sistema deve armazenar o tipo do dado excluído, o identificador do registro e o nome de usuário do responsável pela exclusão. (O)
 
 ### 3.2 Requisitos Não Funcionais
 
@@ -684,16 +688,16 @@ O sistema adota um modelo de controle de acesso baseado em três perfis hierárq
 | Módulo | Adm | GF | Op |
 | :---- | :---- | :---- | :---- |
 | Autenticação e Sessão | sim | sim | sim |
-| Gerenciamento de Usuários | sim | não | não |
-| Gerenciamento de Clubes | sim | não | não |
+| Gerenciamento de Usuários | sim | sim | sim |
+| Gerenciamento de Clubes | sim | não | sim |
 | Gerenciamento de Jogadores | sim | sim | não |
 | Transações Financeiras com Jogadores | sim | sim | não |
 | Gerenciamento de Despesas | sim | sim | não |
 | Gerenciamento de Receitas | sim | sim | não |
-| Gerenciamento de Partidas | sim | sim | sim |
+| Gerenciamento de Partidas | sim | não | sim |
 | Saldo Financeiro | sim | sim | não |
 | Relatórios Financeiros | sim | sim | não |
-| Relatório de Partidas | sim | sim | sim |
+| Relatório de Partidas | sim | não | sim |
 | Histórico de Auditoria | sim | não | não |
 
 Os campos preenchidos com "sim" indicam que o usuário tem acesso àquela funcionalidade, enquanto "não" o usuário não tem acesso.

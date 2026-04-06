@@ -4,7 +4,7 @@
 | **Caso de Uso**: | **Gerenciar Usuários** |
 | **Atores**: | Administrador |
 | **Tipo**: | Primário |
-| **Descrição**: | As funções disponibilizadas são: Cadastro de Usuário, Buscar Usuário e Exclusão de Usuário. As funções de Cadastro e Exclusão de Usuário são registradas no Histórico de Auditoria. |
+| **Descrição**: | As funções disponibilizadas são: Cadastro de Usuário, Edição de informações de Usuário, Listagem Usuários, Buscar Usuário e Exclusão de Usuário. As funções de Cadastro e Exclusão de Usuário são registradas no Histórico de Auditoria. |
 
 | **Campo** | **Conteúdo** |
 | :-- | :-- |
@@ -70,7 +70,7 @@
 | **Campo** | **Conteúdo** |
 | :-- | :-- |
 | **Caso de Uso**: | **Gerenciar Jogadores** |
-| **Atores**: | Administrador, Operador |
+| **Atores**: | Administrador, Gestor Financeiro, Operador |
 | **Tipo**: | Primário |
 | **Descrição**: | As funções disponibilizadas são: Compra de Jogador, Buscar Jogador, Alteração de Informações de Jogador, Listagem de Jogador e Exclusão de Jogador. As funções de Compra, Venda e Alteração de Informações de Jogador são registradas no Histórico de Auditoria. |
 
