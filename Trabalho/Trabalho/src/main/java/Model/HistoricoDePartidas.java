@@ -47,4 +47,30 @@ public class HistoricoDePartidas {
         return p;
     }
     
+    public void atualizarDados(int idPartida, Date data, String clubeAdversario, int golsMarcados, int golsSofridos, String competicao, float premiacao, int publico, float valorDoIngresso, String local) {
+
+    }
+
+    public Partida buscarIDPartida(int idPartida) {
+
+        return null;
+    }
+
+    public Boolean validarInformacoes(Date data, int golsMarcados, int golsSofridos, float premiacao, int publico, float valorDoIngresso) {
+
+        return null;
+    }
+
+    public void cadastrarPartida(Date data, String clubeAdversario, int golsMarcados, int golsSofridos, String competicao, float premiacao, int publico, float valorDoIngresso, String local) {
+
+    }
+
+    public void listarPartidas() {
+
+    }
+
+    public void excluirPartida(int idPartida) {
+
+    }
+    
 }

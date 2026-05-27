@@ -24,4 +24,19 @@ public class ControladorPartida {
         return p;
     }
     
+    public void exibirPartidas(ArrayList<Partida> partidas) {
+
+    }
+
+    public void iniciarAlteracaoDeInformacoesDeJogador() {
+
+    }
+
+    public void editarInformacoes(int idPartida, Date data, String clubeAdversario, int golsMarcados, int golsSofridos, String competicao, float premiacao, int publico, float valorDoIngresso, String local) {
+
+    }
+
+    public void selecionarPartida(int idPartida) {
+
+    }
 }
