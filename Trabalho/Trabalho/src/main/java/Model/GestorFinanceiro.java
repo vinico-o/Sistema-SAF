@@ -9,21 +9,12 @@ package Model;
  * @author Vinícius Mardegan
  */
 public class GestorFinanceiro extends Usuario {
-    private int nivel_usuario;
 
     public GestorFinanceiro() {
     }
 
-    public GestorFinanceiro(int id_usuario, String nome_usuario, String senha) {
-        super(id_usuario, nome_usuario, senha);
-    }
-
-    public int getNivel_usuario() {
-        return nivel_usuario;
-    }
-
-    public void setNivel_usuario(int nivel_usuario) {
-        this.nivel_usuario = nivel_usuario;
+    public GestorFinanceiro(int id_usuario, String nome_usuario, String senha, int nivel_usuario) {
+        super(id_usuario, nome_usuario, senha, nivel_usuario);
     }
     
 }

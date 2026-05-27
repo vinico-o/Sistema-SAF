@@ -13,8 +13,8 @@ public class Administrador extends Usuario{
     public Administrador() {
     }
 
-    public Administrador(int id_usuario, String nome_usuario, String senha) {
-        super(id_usuario, nome_usuario, senha);
+    public Administrador(int id_usuario, String nome_usuario, String senha, int nivel_usuario) {
+        super(id_usuario, nome_usuario, senha, nivel_usuario);
     }
     
 }
