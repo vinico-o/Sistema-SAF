@@ -1,0 +1,39 @@
+package JDBC;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ConnectionFactory {
+
+    // 1. Configurações de conexão do banco de dados
+    private static final String URL = "jdbc:mysql://localhost:3306/SistemaSAF";
+    private static final String USER = "root"; // substitua pelo seu usuário
+    private static final String PASSWORD = "Vini2606@"; // substitua pela sua senha
+
+    public static void main(String[] args) {
+
+        String sql = "CREATE TABLE IF NOT EXISTS usuario ("
+           + "id_usuario INT AUTO_INCREMENT PRIMARY KEY, "
+           + "nome_usuario VARCHAR(50) NOT NULL UNIQUE, "
+           + "senha VARCHAR(255) NOT NULL, "
+           + "nivel_usuario INT NOT NULL"
+           + ");";
+
+        // 3. Abrindo a conexão e executando o comando
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             Statement stmt = conn.createStatement()) {
+
+            System.out.println("Conexão com o banco de dados estabelecida com sucesso!");
+
+            // Executa o comando SQL de criação
+            stmt.execute(sql);
+            System.out.println("Tabela 'aluno' criada (ou já existente) com sucesso!");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao conectar ou executar comando no banco de dados!");
+            e.printStackTrace();
+        }
+    }
+}
