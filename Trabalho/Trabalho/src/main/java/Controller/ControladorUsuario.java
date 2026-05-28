@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import DataAcessObject.UsuarioDAO;
+import Model.HistoricoDeUsuario;
 import Model.Usuario;
 
 /**
@@ -20,8 +22,18 @@ public class ControladorUsuario {
         
     }
 
-    public void cadastrarADM(String nome_usuario, String senha) {
+    public Boolean cadastrarADM(String nome_usuario, String senha) {
+        HistoricoDeUsuario historicoDeUsuario = new HistoricoDeUsuario();
         
+        boolean validacao = historicoDeUsuario.validarInformacoes(nome_usuario, senha);
+        
+        if (!(validacao == false)) {
+            Usuario usuario = historicoDeUsuario.cadastrarUsuario(nome_usuario, senha, 0);
+            UsuarioDAO.createUsuario(usuario);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void cadastrarUsuario(String nome_usuario, String senha, int nivel_usuario) {

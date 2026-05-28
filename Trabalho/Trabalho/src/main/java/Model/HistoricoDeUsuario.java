@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class HistoricoDeUsuario {
     
-    private ArrayList<Usuario> usuarios;
+    private static ArrayList<Usuario> usuarios = new ArrayList<>();
     int contador = 0;
 
     public HistoricoDeUsuario() {
@@ -52,11 +52,37 @@ public class HistoricoDeUsuario {
     }
 
     public Boolean validarInformacoes(String nome_usuario, String senha) {
-        return null;
+        // verifica se eh nulo
+        if (nome_usuario == null || senha == null) {
+            return false;
+        }
+        
+        //verifica se eh vazio
+        if (nome_usuario.isEmpty() || senha.isEmpty()) {
+            return false;
+        }
+        
+         return true;
     }
 
-    public Usuario criar(String nome_usuario, String senha, int nivel_usuario) {
-        return null;
+    public Usuario cadastrarUsuario(String nome_usuario, String senha, int nivel_usuario) {
+        // verifica qual tipo de usuario sera criado
+        Usuario usuario = null;
+        switch (nivel_usuario) {
+            case 0:
+                usuario = new Administrador(nome_usuario, senha, nivel_usuario);
+                break;
+            case 1:
+                usuario = new GestorFinanceiro(nome_usuario, senha, nivel_usuario);
+                break;
+            case 2:
+                usuario = new Operador(nome_usuario, senha, nivel_usuario);
+                break;
+        }
+        
+        usuarios.add(usuario);
+        
+        return usuario;
     }
 
     public void listarUsuarios() {

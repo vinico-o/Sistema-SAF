@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.ControladorUsuario;
+
 /**
  *
  * @author Vinícius Mardegan
@@ -16,7 +18,30 @@ public class TelaCadastroADM extends javax.swing.JPanel {
     public TelaCadastroADM() {
         initComponents();
     }
-
+    
+    public void cadastrarAdministrador() {
+        String nome_usuario;
+        String senha;
+        ControladorUsuario controladorUsuario = new ControladorUsuario();
+        
+        nome_usuario = campoNomeUsuario.getText();
+        senha = campoSenha.getText();
+        
+        boolean operacaoConcluida = controladorUsuario.cadastrarADM(nome_usuario, senha);
+        if (operacaoConcluida == false) {
+            exibirMensagemInvalido();
+        }
+    }
+    
+    public void exibirMensagemInvalido() {
+            javax.swing.JOptionPane.showMessageDialog(
+                null,
+                "Nome de usuário ou senha inválidos.",
+                "Erro de autenticação",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,7 +142,18 @@ public class TelaCadastroADM extends javax.swing.JPanel {
     }//GEN-LAST:event_campoNomeUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        cadastrarAdministrador();
+    
+        // Descobre qual é o JFrame que está segurando este JPanel
+        javax.swing.JFrame framePai = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
+        if (framePai instanceof TelaPrincipal) {
+            TelaPrincipal telaPrincipal = (TelaPrincipal) framePai;
+
+            // Cria uma nova instância limpa da TelaPrincipal para resetar o layout original
+            framePai.dispose(); // Fecha a janela atual
+            new TelaPrincipal().setVisible(true); // Abre uma nova, que agora vai cair no "existeUsuarioCadastrado() == true"
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

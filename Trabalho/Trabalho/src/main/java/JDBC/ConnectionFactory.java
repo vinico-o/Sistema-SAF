@@ -9,10 +9,10 @@ public class ConnectionFactory {
 
     // 1. Configurações de conexão do banco de dados
     private static final String URL = "jdbc:mysql://localhost:3306/SistemaSAF";
-    private static final String USER = "root"; // substitua pelo seu usuário
-    private static final String PASSWORD = "Vini2606@"; // substitua pela sua senha
+    private static final String USER = "root";
+    private static final String PASSWORD = "Vini2606@";
 
-    public static void main(String[] args) {
+    public static void iniciarTabelaUsuario() {
 
         String sql = "CREATE TABLE IF NOT EXISTS usuario ("
            + "id_usuario INT AUTO_INCREMENT PRIMARY KEY, "

@@ -4,18 +4,23 @@
  */
 package View;
 
+import DataAcessObject.UsuarioDAO;
+import JDBC.ConnectionFactory;
+
 /**
  *
  * @author Vinícius Mardegan
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,7 +103,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                TelaPrincipal tela = new TelaPrincipal();
+                ConnectionFactory.iniciarTabelaUsuario();
+                // se nao existir usuario cadastrado no banco de dados, abre a telka de primeiro cadastro (de ADM)
+                if (UsuarioDAO.existeUsuarioCadastrado()) {
+                    tela.setContentPane(new TelaAutenticacaoUsuario());
+                } else {
+                    tela.setContentPane(new TelaCadastroADM());
+                }
+                
+                tela.revalidate(); // recalcula o layout da tela, usado depois de alteracoes
+                tela.repaint(); // redesenha a tela
+
+                tela.setVisible(true);
+                
             }
         });
     }
