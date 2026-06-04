@@ -4,6 +4,7 @@
  */
 package Model;
 
+import DataAcessObject.ClubeDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -13,14 +14,12 @@ import javax.swing.JOptionPane;
  */
 public class HistoricoDeClubes {
     int contador = 0;
-    private ArrayList<Clube> clubes;
+    private ArrayList<Clube> clubes = null;
 
     public HistoricoDeClubes() {
+        clubes = new ArrayList<>();
     }
 
-    public HistoricoDeClubes(ArrayList<Clube> clubes) {
-        this.clubes = clubes;
-    }
 
     public ArrayList<Clube> getClubes() {
         return clubes;
@@ -30,21 +29,14 @@ public class HistoricoDeClubes {
         this.clubes = clubes;
     }
     
-    public void cadastrarClube(String nomeClube, int anoFundacao, String pais){
-        
-        boolean retorno = validarUnicidadeDeClube(nomeClube, anoFundacao, pais);
-        
-        if (retorno == true){
-            contador++; 
-            
-            Clube c = new Clube(contador, nomeClube, anoFundacao, pais, 0);
-        
-            clubes.add(c);
-        }
-        else {
-            exibirMensagemInvalido();
-        }
-        
+    public Clube cadastrarClube(String nomeClube, int anoFundacao, String pais) {
+
+        Clube c = new Clube(0, nomeClube, anoFundacao, pais, 0f);
+
+        clubes.add(c);
+
+        return c;
+
     }
     
     public void exibirMensagemInvalido(){
@@ -53,6 +45,8 @@ public class HistoricoDeClubes {
     
     
     public boolean validarUnicidadeDeClube(String nomeClube, int anoFundacao, String pais){
+        this.clubes = ClubeDAO.listClube();
+        
         for (int i = 0; i < clubes.size(); i++){
             
             if (clubes.get(i).getNome().equals(nomeClube)){
@@ -67,21 +61,12 @@ public class HistoricoDeClubes {
     }
     
     public void editarClube (int idClube, String nomeClube, int anoFundacao, String pais){
-        
         boolean retorno = validarUnicidadeDeClube(nomeClube, anoFundacao, pais);
         
+        Clube c = new Clube(idClube, nomeClube, anoFundacao, pais, 0f);
+        
         if (retorno == true){
-            for (int i = 0; i < clubes.size(); i++){
-            
-            if (clubes.get(i).getIdClube() == idClube){
-             
-                clubes.get(i).setNome(nomeClube);
-                clubes.get(i).setAnoDeFundacao(anoFundacao);
-                clubes.get(i).setPais(pais);
-                
-                break;
-            }
-        }
+            ClubeDAO.atualizarClube(idClube, c);
         }
         else{
             exibirMensagemInvalido();
@@ -89,19 +74,25 @@ public class HistoricoDeClubes {
         
     }
     
-    public void apagarClube(int idClube){
+    public Clube buscarClube (int idClube){
+        this.clubes = ClubeDAO.listClube();
+        
         for (int i = 0; i < clubes.size(); i++){
-            
             if (clubes.get(i).getIdClube() == idClube){
-             
-                clubes.remove(i);
-                
-                break;
+                return clubes.get(i);
             }
         }
+        
+        return null;
+    }
+    
+    public void apagarClube(int idClube){
+        ClubeDAO.ExcluirCliente(idClube);
     }
     
     public ArrayList<Clube> listarClubes(){
+        this.clubes = ClubeDAO.listClube();
+        
         return clubes;
     }
     
