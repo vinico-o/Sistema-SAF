@@ -25,9 +25,9 @@ public class TelaCadastroADM extends javax.swing.JPanel {
         ControladorUsuario controladorUsuario = new ControladorUsuario();
         
         nome_usuario = campoNomeUsuario.getText();
-        senha = campoSenha.getText();
+        senha = new String(campoSenha.getPassword());
         
-        boolean operacaoConcluida = controladorUsuario.cadastrarADM(nome_usuario, senha);
+        boolean operacaoConcluida = controladorUsuario.cadastrarUsuario(nome_usuario, senha, 0);
         if (operacaoConcluida == false) {
             exibirMensagemInvalido();
         }
@@ -56,8 +56,8 @@ public class TelaCadastroADM extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         campoNomeUsuario = new javax.swing.JTextField();
         labelSenha = new javax.swing.JLabel();
-        campoSenha = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        campoSenha = new javax.swing.JPasswordField();
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 220));
 
@@ -78,15 +78,14 @@ public class TelaCadastroADM extends javax.swing.JPanel {
         labelSenha.setText("Senha");
         labelSenha.setToolTipText("");
 
-        campoSenha.setBackground(new java.awt.Color(200, 200, 200));
-        campoSenha.setForeground(new java.awt.Color(0, 0, 0));
-
         jButton1.setText("Cadastrar ADM");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        campoSenha.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,8 +102,8 @@ public class TelaCadastroADM extends javax.swing.JPanel {
                             .addComponent(jLabel2)
                             .addComponent(campoNomeUsuario)
                             .addComponent(labelSenha)
-                            .addComponent(campoSenha)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(campoSenha))))
                 .addContainerGap(308, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,7 +158,7 @@ public class TelaCadastroADM extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoNomeUsuario;
-    private javax.swing.JTextField campoSenha;
+    private javax.swing.JPasswordField campoSenha;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

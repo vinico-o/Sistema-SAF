@@ -52,6 +52,21 @@ public class UsuarioDAO {
         
    }
    
+      public static boolean existeNomeUsuario(String nome_usuario) {
+        String sql = "SELECT 1 FROM usuario WHERE nome_usuario = ?";
+        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setString(1, nome_usuario);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next(); // Retorna true se achou alguém
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+   
    public static void createUsuario(Usuario usuario) {
         // String de conexão SQL
         String sql = "INSERT INTO usuario (nome_usuario, senha, nivel_usuario) VALUES (?, ?, ?)";

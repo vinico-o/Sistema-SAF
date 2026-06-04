@@ -22,23 +22,26 @@ public class ControladorUsuario {
         
     }
 
-    public Boolean cadastrarADM(String nome_usuario, String senha) {
-        HistoricoDeUsuario historicoDeUsuario = new HistoricoDeUsuario();
+    public Boolean cadastrarUsuario(String nome_usuario, String senha, int nivel_usuario) {
+    HistoricoDeUsuario historicoDeUsuario = new HistoricoDeUsuario();
+    
+    boolean validacao = historicoDeUsuario.validarInformacoes(nome_usuario, senha);
+    
+    if (validacao) { 
         
-        boolean validacao = historicoDeUsuario.validarInformacoes(nome_usuario, senha);
-        
-        if (!(validacao == false)) {
-            Usuario usuario = historicoDeUsuario.cadastrarUsuario(nome_usuario, senha, 0);
-            UsuarioDAO.createUsuario(usuario);
-            return true;
-        } else {
-            return false;
+        // Verifica no banco se o nome de usuário já existe
+        if (UsuarioDAO.existeNomeUsuario(nome_usuario)) {
+            return false; 
         }
-    }
-
-    public void cadastrarUsuario(String nome_usuario, String senha, int nivel_usuario) {
         
+        Usuario usuario = historicoDeUsuario.cadastrarUsuario(nome_usuario, senha, nivel_usuario);
+        UsuarioDAO.createUsuario(usuario);
+        return true;
+        
+    } else {
+        return false;
     }
+}
 
     public void selecionarUsuario(Usuario usuario) {
         
