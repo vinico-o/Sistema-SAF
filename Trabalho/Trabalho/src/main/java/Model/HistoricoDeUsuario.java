@@ -85,8 +85,10 @@ public class HistoricoDeUsuario {
         return usuario;
     }
 
-    public void listarUsuarios() {
+    public ArrayList<Usuario> listarUsuarios() {
+        this.usuarios = DataAcessObject.UsuarioDAO.listarUsuarios();
         
+        return usuarios;
     }
 
     public void excluirUsuario(int id_usuario) {

@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,6 +53,21 @@ public class UsuarioDAO {
         
    }
    
+   public static boolean existeNomeUsuario(String nomeUsuario) {
+    String sql = "SELECT 1 FROM usuario WHERE nome_usuario = ?";
+    try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+         PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        
+        stmt.setString(1, nomeUsuario);
+        try (ResultSet rs = stmt.executeQuery()) {
+            return rs.next(); // Retorna true se achou
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+   
    public static void createUsuario(Usuario usuario) {
         // String de conexão SQL
         String sql = "INSERT INTO usuario (nome_usuario, senha, nivel_usuario) VALUES (?, ?, ?)";
@@ -73,6 +89,33 @@ public class UsuarioDAO {
             // Exibe a mensagem de erro caso algo falhe (ex: driver faltando, banco offline)
             JOptionPane.showMessageDialog(null, "ERRO ao salvar no banco: " + e.getMessage());
         }
+    }
+   
+   
+    public static ArrayList<Usuario> listarUsuarios() {
+        String sql = "select * from usuario";
+        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");    
+            PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+                ArrayList<Usuario> usuarios = new ArrayList<>();
+            
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    Usuario obj = new Usuario();
+
+                    obj.setId_usuario(rs.getInt("id_usuario"));
+                    obj.setNome_usuario(rs.getString("nome_usuario"));
+                    obj.setNivel_usuario(rs.getInt("nivel_usuario"));
+
+                    usuarios.add(obj);
+                }
+                return usuarios;
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e);
+                return null;
+            }
     }
     
 }

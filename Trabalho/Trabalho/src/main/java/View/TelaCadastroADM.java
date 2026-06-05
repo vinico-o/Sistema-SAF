@@ -27,7 +27,7 @@ public class TelaCadastroADM extends javax.swing.JPanel {
         nome_usuario = campoNomeUsuario.getText();
         senha = campoSenha.getText();
         
-        boolean operacaoConcluida = controladorUsuario.cadastrarADM(nome_usuario, senha);
+        boolean operacaoConcluida = controladorUsuario.cadastrarUsuario(nome_usuario, senha, 0);
         if (operacaoConcluida == false) {
             exibirMensagemInvalido();
         }
