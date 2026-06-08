@@ -15,8 +15,9 @@ import java.util.ArrayList;
  */
 public class ControladorUsuario {
 
-    public void editarInformacoes(String nome_usuario, String senha) {
-        
+    public void editarInformacoes(String nome_usuario, String senha, int nivel_usuario, int id_usuario) {
+        HistoricoDeUsuario historicoDeClubes = new HistoricoDeUsuario();
+        historicoDeClubes.atualizarDados(nome_usuario, senha, nivel_usuario, id_usuario);
     }
 
     public void autenticarUsuario(String nome_usuario, String senha) {

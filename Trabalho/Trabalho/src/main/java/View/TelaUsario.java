@@ -7,6 +7,7 @@ package View;
 import Controller.ControladorUsuario;
 import Model.Usuario;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -176,7 +177,27 @@ public class TelaUsario extends javax.swing.JPanel {
     }//GEN-LAST:event_botaoListarUsuáriosActionPerformed
 
     private void botaoEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarUsuarioActionPerformed
-       
+        int linhaSelecionada = tabelaUsuarios.getSelectedRow();
+
+        if (linhaSelecionada != -1){
+            try {
+                String nome = tabelaUsuarios.getValueAt(linhaSelecionada, 1).toString();
+                Usuario usuario = DataAcessObject.UsuarioDAO.buscarUsuario(nome);
+                
+                java.awt.Frame framePai = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        
+                TelaEditarUsuario telaEditarUsuario = new TelaEditarUsuario(framePai, true, usuario.getId_usuario(), usuario.getNome_usuario(), usuario.getSenha(), usuario.getNivel_usuario());
+                
+                telaEditarUsuario.setVisible(true); 
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha");
+        }
+        
     }//GEN-LAST:event_botaoEditarUsuarioActionPerformed
 
 

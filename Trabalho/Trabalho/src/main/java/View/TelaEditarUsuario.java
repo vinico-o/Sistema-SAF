@@ -4,20 +4,35 @@
  */
 package View;
 
+import Controller.ControladorUsuario;
+import JDBC.ConnectionFactory;
+import java.awt.Frame;
+
 /**
  *
  * @author mardegan
  */
 public class TelaEditarUsuario extends javax.swing.JDialog {
-    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaEditarUsuario.class.getName());
 
     /**
      * Creates new form TelaEditarUsuario
      */
-    public TelaEditarUsuario(java.awt.Frame parent, boolean modal) {
+    
+    public TelaEditarUsuario(Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public TelaEditarUsuario(Frame parent, boolean modal, int id_usuario, String nome, String senha, int nivel) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        campoNomeUsuario.setText(nome);
+        campoSenha.setText(senha);
+        campoNivel.setSelectedIndex(nivel);
+        campoIdUsuario.setText(Integer.toString(id_usuario));
     }
 
     /**
@@ -32,6 +47,14 @@ public class TelaEditarUsuario extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        campoNomeUsuario = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        campoNivel = new javax.swing.JComboBox<>();
+        botaoConfirmarEdicao = new javax.swing.JToggleButton();
+        campoSenha = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        campoIdUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -41,30 +64,93 @@ public class TelaEditarUsuario extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Editar Usuário");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Nome de Usuário");
+
+        campoNomeUsuario.setBackground(new java.awt.Color(200, 200, 200));
+        campoNomeUsuario.addActionListener(this::campoNomeUsuarioActionPerformed);
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Senha");
+
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Nivel de Usuário");
+
+        campoNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador (ADM)", "Gestor Financeiro (GF)", "Operador (Op)" }));
+        campoNivel.addActionListener(this::campoNivelActionPerformed);
+
+        botaoConfirmarEdicao.setText("Confirmar");
+        botaoConfirmarEdicao.addActionListener(this::botaoConfirmarEdicaoActionPerformed);
+
+        campoSenha.setBackground(new java.awt.Color(200, 200, 200));
+
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("ID");
+
+        campoIdUsuario.setEditable(false);
+        campoIdUsuario.setBackground(new java.awt.Color(200, 200, 200));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(146, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(botaoConfirmarEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(149, 149, 149))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel2)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(campoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(campoIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(66, 66, 66))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(botaoConfirmarEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -80,6 +166,30 @@ public class TelaEditarUsuario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void campoNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomeUsuarioActionPerformed
+
+    private void campoNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNivelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNivelActionPerformed
+
+    private void botaoConfirmarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarEdicaoActionPerformed
+        
+        ControladorUsuario controladorUsuario = new ControladorUsuario();
+        ConnectionFactory.iniciarTabelaUsuario();
+        
+        
+        String nome_usuario = campoNomeUsuario.getText();
+        String senha = new String(campoSenha.getPassword());
+        int nivel_usuario = campoNivel.getSelectedIndex();
+        int id_usuario = Integer.parseInt(campoIdUsuario.getText());
+        
+        controladorUsuario.editarInformacoes(nome_usuario, senha, nivel_usuario, id_usuario);
+        
+        this.dispose();
+    }//GEN-LAST:event_botaoConfirmarEdicaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,8 +229,16 @@ public class TelaEditarUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton botaoConfirmarEdicao;
+    private javax.swing.JTextField campoIdUsuario;
+    private javax.swing.JComboBox<String> campoNivel;
+    private javax.swing.JTextField campoNomeUsuario;
+    private javax.swing.JPasswordField campoSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

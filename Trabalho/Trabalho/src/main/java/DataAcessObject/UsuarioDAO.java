@@ -118,4 +118,57 @@ public class UsuarioDAO {
             }
     }
     
+    public static Usuario buscarUsuario(String nome_usuario) {
+        String sql = "select * from usuario where nome_usuario = ?";
+        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+            PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+           stmt.setString(1, nome_usuario);
+           ResultSet rs = stmt.executeQuery();
+           
+           if(rs.next()) {
+                Usuario obj = new Usuario();
+
+                obj.setId_usuario(rs.getInt("id_usuario"));
+                obj.setNome_usuario(rs.getString("nome_usuario"));
+                obj.setNivel_usuario(rs.getInt("nivel_usuario"));
+                obj.setSenha(rs.getString("senha"));
+                
+                return obj;
+
+           } else {
+               return null;
+           }
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public static void atualizarUsuario(Usuario usuario, int id_usuario) {
+        
+        String sql = "update usuario set nome_usuario = ?, senha = ?, nivel_usuario = ? where id_usuario = ?";
+        
+        // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
+        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            // Vincula os parâmetros usando os getters do objeto clube
+            stmt.setString(1, usuario.getNome_usuario());
+            stmt.setString(2, usuario.getSenha());
+            stmt.setInt(3, usuario.getNivel_usuario());
+            
+            stmt.setInt(4, id_usuario);
+
+            // Executa a inserção no banco de dados
+            stmt.execute();
+            stmt.close();
+
+            
+            JOptionPane.showMessageDialog(null, "Usuário atualizado!");
+        } catch (Exception e) {
+            // Exibe a mensagem de erro caso algo falhe (ex: driver faltando, banco offline)
+            JOptionPane.showMessageDialog(null, "ERRO ao salvar no banco: " + e.getMessage());
+        }
+    }
+    
 }
