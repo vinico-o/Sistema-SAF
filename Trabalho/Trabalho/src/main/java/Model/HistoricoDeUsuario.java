@@ -5,6 +5,7 @@
 package Model;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,8 +44,15 @@ public class HistoricoDeUsuario {
         return null;
     }
 
-    public void atualizarDados(String nome_usuario, String senha) {
+    public void atualizarDados(String nome_usuario, String senha, int nivel_usuario, int id_usuario) {
+        boolean existe = DataAcessObject.UsuarioDAO.existeNomeUsuario(nome_usuario);
         
+        if(existe == true) {
+            JOptionPane.showMessageDialog(null, "Nome de Usuário já existente!");
+        } else {
+            Usuario usuario = new Usuario(nome_usuario, senha, nivel_usuario);
+            DataAcessObject.UsuarioDAO.atualizarUsuario(usuario, id_usuario);
+        }
     }
 
     public Boolean validarSenha(String senha) {
@@ -85,8 +93,10 @@ public class HistoricoDeUsuario {
         return usuario;
     }
 
-    public void listarUsuarios() {
+    public ArrayList<Usuario> listarUsuarios() {
+        this.usuarios = DataAcessObject.UsuarioDAO.listarUsuarios();
         
+        return usuarios;
     }
 
     public void excluirUsuario(int id_usuario) {
