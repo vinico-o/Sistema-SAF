@@ -112,6 +112,7 @@
                 <Column editable="false" title="pa&#xed;s" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="selectionMode" type="int" value="0"/>
           </Properties>
         </Component>
       </SubComponents>

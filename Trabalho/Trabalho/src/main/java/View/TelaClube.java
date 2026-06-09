@@ -116,6 +116,7 @@ public class TelaClube extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tabelaClubes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabelaClubes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
