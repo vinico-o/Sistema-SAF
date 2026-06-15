@@ -4,6 +4,7 @@
  */
 package Model;
 
+import DataAcessObject.UsuarioDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -100,6 +101,6 @@ public class HistoricoDeUsuario {
     }
 
     public void excluirUsuario(int id_usuario) {
-        
+        UsuarioDAO.excluirUsuario(id_usuario);
     }
 }

@@ -55,5 +55,11 @@ public class ControladorUsuario {
         return historicoDeUsuario.listarUsuarios();
         
     }
+    
+    public void excluirUsuario(int id_usuario) {
+        HistoricoDeUsuario historicoDeUsuario = new HistoricoDeUsuario();
+        
+        historicoDeUsuario.excluirUsuario(id_usuario);
+    }
 
 }

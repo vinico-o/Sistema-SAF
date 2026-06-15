@@ -5,6 +5,7 @@
 package View;
 
 import Controller.ControladorUsuario;
+import JDBC.ConnectionFactory;
 import Model.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -74,6 +75,7 @@ public class TelaUsario extends javax.swing.JPanel {
         botaoCadastrar = new javax.swing.JButton();
         botaoListarUsuários = new javax.swing.JButton();
         botaoEditarUsuario = new javax.swing.JButton();
+        botaoExcluirUsuario = new javax.swing.JToggleButton();
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 220));
 
@@ -99,6 +101,9 @@ public class TelaUsario extends javax.swing.JPanel {
         botaoEditarUsuario.setText("Editar");
         botaoEditarUsuario.addActionListener(this::botaoEditarUsuarioActionPerformed);
 
+        botaoExcluirUsuario.setText("Excluir");
+        botaoExcluirUsuario.addActionListener(this::botaoExcluirUsuarioActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,6 +118,8 @@ public class TelaUsario extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botaoCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoExcluirUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoEditarUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoListarUsuários)
@@ -125,9 +132,11 @@ public class TelaUsario extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoListarUsuários, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoEditarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoExcluirUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botaoListarUsuários, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                        .addComponent(botaoCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoEditarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -200,10 +209,36 @@ public class TelaUsario extends javax.swing.JPanel {
         
     }//GEN-LAST:event_botaoEditarUsuarioActionPerformed
 
+    private void botaoExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirUsuarioActionPerformed
+            
+        int linhaSelecionada = tabelaUsuarios.getSelectedRow();
+
+        if (linhaSelecionada != -1){
+            try {
+                Object valorId = tabelaUsuarios.getValueAt(linhaSelecionada, 0);
+        
+                int id = Integer.parseInt(tabelaUsuarios.getValueAt(linhaSelecionada, 0).toString());
+                
+                ControladorUsuario controladorUsuario = new ControladorUsuario();
+            
+                ConnectionFactory.iniciarTabelaUsuario();
+                
+                controladorUsuario.excluirUsuario(id);
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha");
+        }
+    }//GEN-LAST:event_botaoExcluirUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastrar;
     private javax.swing.JButton botaoEditarUsuario;
+    private javax.swing.JToggleButton botaoExcluirUsuario;
     private javax.swing.JButton botaoListarUsuários;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
