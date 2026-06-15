@@ -47,6 +47,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="botaoCadastrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="botaoBuscarUsuario" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="botaoExcluirUsuario" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="botaoEditarUsuario" min="-2" max="-2" attributes="0"/>
@@ -65,8 +67,9 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="33" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="botaoExcluirUsuario" pref="40" max="32767" attributes="0"/>
+                      <Component id="botaoBuscarUsuario" pref="40" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="botaoExcluirUsuario" max="32767" attributes="0"/>
                           <Component id="botaoListarUsuários" pref="40" max="32767" attributes="0"/>
                           <Component id="botaoCadastrar" max="32767" attributes="0"/>
                           <Component id="botaoEditarUsuario" alignment="0" max="32767" attributes="0"/>
@@ -137,6 +140,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirUsuarioActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JToggleButton" name="botaoBuscarUsuario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Buscar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoBuscarUsuarioActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

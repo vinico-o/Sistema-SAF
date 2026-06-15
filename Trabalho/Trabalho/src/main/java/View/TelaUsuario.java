@@ -15,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mardegan
  */
-public class TelaUsario extends javax.swing.JPanel {
+public class TelaUsuario extends javax.swing.JPanel {
 
     /**
      * Creates new form TelaUsario
      */
-    public TelaUsario() {
+    public TelaUsuario() {
         initComponents();
     }
     
@@ -37,7 +37,7 @@ public class TelaUsario extends javax.swing.JPanel {
                 }
             }
         } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(TelaUsario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Cria e exibe o JFrame que conterá o painel da tabela */
@@ -47,7 +47,7 @@ public class TelaUsario extends javax.swing.JPanel {
                 frameTeste.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
                 
                 // Instancia o seu painel de listagem
-                TelaUsario painelUsuarios = new TelaUsario();
+                TelaUsuario painelUsuarios = new TelaUsuario();
                 
                 frameTeste.setContentPane(painelUsuarios);
                 
@@ -56,6 +56,19 @@ public class TelaUsario extends javax.swing.JPanel {
                 frameTeste.setLocationRelativeTo(null);
                 frameTeste.setVisible(true);
             }
+        });
+    }
+    
+    public void atualizarTabela(Usuario usuario) {
+
+        DefaultTableModel modelo = (DefaultTableModel) tabelaUsuarios.getModel();
+
+        modelo.setNumRows(0);
+
+        modelo.addRow(new Object[]{
+            usuario.getId_usuario(),
+            usuario.getNome_usuario(),
+            usuario.getNivel_usuario()
         });
     }
 
@@ -76,6 +89,7 @@ public class TelaUsario extends javax.swing.JPanel {
         botaoListarUsuários = new javax.swing.JButton();
         botaoEditarUsuario = new javax.swing.JButton();
         botaoExcluirUsuario = new javax.swing.JToggleButton();
+        botaoBuscarUsuario = new javax.swing.JToggleButton();
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 220));
 
@@ -104,6 +118,9 @@ public class TelaUsario extends javax.swing.JPanel {
         botaoExcluirUsuario.setText("Excluir");
         botaoExcluirUsuario.addActionListener(this::botaoExcluirUsuarioActionPerformed);
 
+        botaoBuscarUsuario.setText("Buscar");
+        botaoBuscarUsuario.addActionListener(this::botaoBuscarUsuarioActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -118,6 +135,8 @@ public class TelaUsario extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botaoCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoBuscarUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoExcluirUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoEditarUsuario)
@@ -132,8 +151,9 @@ public class TelaUsario extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoExcluirUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(botaoBuscarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botaoExcluirUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoListarUsuários, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                         .addComponent(botaoCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoEditarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -153,6 +173,7 @@ public class TelaUsario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
         java.awt.Frame framePai = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
     
@@ -234,8 +255,16 @@ public class TelaUsario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_botaoExcluirUsuarioActionPerformed
 
+    private void botaoBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarUsuarioActionPerformed
+       java.awt.Frame framePai = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+    
+       TelaBuscarUsuario telaBusca = new TelaBuscarUsuario(framePai, true, this);
+       telaBusca.setVisible(true);
+    }//GEN-LAST:event_botaoBuscarUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton botaoBuscarUsuario;
     private javax.swing.JButton botaoCadastrar;
     private javax.swing.JButton botaoEditarUsuario;
     private javax.swing.JToggleButton botaoExcluirUsuario;

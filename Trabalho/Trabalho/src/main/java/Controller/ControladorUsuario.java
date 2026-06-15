@@ -61,5 +61,13 @@ public class ControladorUsuario {
         
         historicoDeUsuario.excluirUsuario(id_usuario);
     }
+    
+    public Usuario buscarUsuario(String nome_usuario) {
+        HistoricoDeUsuario historicoDeUsuario = new HistoricoDeUsuario();
+        
+        Usuario usuario = historicoDeUsuario.buscarNomeUsuario(nome_usuario);
+        
+        return usuario;
+    }
 
 }

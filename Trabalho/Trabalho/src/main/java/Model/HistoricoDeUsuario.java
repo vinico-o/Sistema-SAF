@@ -42,7 +42,11 @@ public class HistoricoDeUsuario {
     }
     
     public Usuario buscarNomeUsuario(String nome_usuario) {
-        return null;
+        Usuario usuario = new Usuario();
+        
+        usuario = DataAcessObject.UsuarioDAO.buscarUsuario(nome_usuario);
+        
+        return usuario;
     }
 
     public void atualizarDados(String nome_usuario, String senha, int nivel_usuario, int id_usuario) {
