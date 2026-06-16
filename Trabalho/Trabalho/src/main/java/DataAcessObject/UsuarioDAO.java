@@ -171,4 +171,25 @@ public class UsuarioDAO {
         }
     }
     
+    public static void excluirUsuario(int id_usuario) {
+        
+        String sql = "delete from usuario where id_usuario = ?";
+        
+        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");    
+            PreparedStatement stmt = conexao.prepareStatement(sql))
+        {
+            
+
+            stmt.setInt(1, id_usuario);
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Usuário excluído com SUCESSO");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e);
+        }
+    }
+    
 }

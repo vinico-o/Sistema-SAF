@@ -4,6 +4,7 @@
  */
 package Model;
 
+import DataAcessObject.UsuarioDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -41,7 +42,11 @@ public class HistoricoDeUsuario {
     }
     
     public Usuario buscarNomeUsuario(String nome_usuario) {
-        return null;
+        Usuario usuario = new Usuario();
+        
+        usuario = DataAcessObject.UsuarioDAO.buscarUsuario(nome_usuario);
+        
+        return usuario;
     }
 
     public void atualizarDados(String nome_usuario, String senha, int nivel_usuario, int id_usuario) {
@@ -55,8 +60,8 @@ public class HistoricoDeUsuario {
         }
     }
 
-    public Boolean validarSenha(String senha) {
-        return null;
+    public Boolean validarSenha(Usuario usuario, String senha) {
+        return usuario.getSenha().equals(senha);
     }
 
     public Boolean validarInformacoes(String nome_usuario, String senha) {
@@ -100,6 +105,6 @@ public class HistoricoDeUsuario {
     }
 
     public void excluirUsuario(int id_usuario) {
-        
+        UsuarioDAO.excluirUsuario(id_usuario);
     }
 }
