@@ -40,7 +40,7 @@ public class HistoricoDeClubes {
     }
     
     public void exibirMensagemInvalido(){
-        JOptionPane.showMessageDialog(null, "Clube não é único -> cancelamento do cadastro de clube");
+        JOptionPane.showMessageDialog(null, "Clube não é único -> Cancelamento do cadastro de clube");
     }
     
     
@@ -52,6 +52,7 @@ public class HistoricoDeClubes {
             if (clubes.get(i).getNome().equals(nomeClube)){
                 if (clubes.get(i).getAnoDeFundacao() == anoFundacao){
                     if (clubes.get(i).getPais().equals(pais)){
+                        exibirMensagemInvalido();
                         return false;
                     }
                 }
@@ -87,7 +88,7 @@ public class HistoricoDeClubes {
     }
     
     public void apagarClube(int idClube){
-        ClubeDAO.ExcluirCliente(idClube);
+        ClubeDAO.ExcluirClube(idClube);
     }
     
     public ArrayList<Clube> listarClubes(){

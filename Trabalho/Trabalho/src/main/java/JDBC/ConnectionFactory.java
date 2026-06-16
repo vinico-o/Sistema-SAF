@@ -62,4 +62,32 @@ public class ConnectionFactory {
             e.printStackTrace();
         }
     }
+    
+    
+    public static void iniciarTabelaTransacao() {
+
+        String sql = "CREATE TABLE IF NOT EXISTS transacao ("
+           + "id_transacao INT AUTO_INCREMENT PRIMARY KEY, "
+           + "valor float NOT NULL, "
+           + "categoria VARCHAR(50) NOT NULL, "
+           + "descricao VARCHAR(50) NOT NULL, "
+           + "data date NOT NULL, "
+           + "tipo VARCHAR(50) NOT NULL"
+           + ");";
+
+        // 3. Abrindo a conexão e executando o comando
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+             Statement stmt = conn.createStatement()) {
+
+            System.out.println("Conexão com o banco de dados estabelecida com sucesso!");
+
+            // Executa o comando SQL de criação
+            stmt.execute(sql);
+            System.out.println("Tabela 'transacao' criada (ou já existente) com sucesso!");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao conectar ou executar comando no banco de dados!");
+            e.printStackTrace();
+        }
+    }
 }

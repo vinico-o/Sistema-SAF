@@ -16,4 +16,7 @@ public class Despesa extends TransacaoFinanceira{
         super(idTransacao, valor, categoria, descricao, data, tipo);
     }
     
+    public Despesa(){
+        
+    }
 }

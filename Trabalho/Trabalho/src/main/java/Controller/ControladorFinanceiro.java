@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DataAcessObject.TransacaoDAO;
 import Model.Despesa;
 import Model.HistoricoDeAuditoria;
 import Model.HistoricoDeClubes;
@@ -48,28 +49,54 @@ public class ControladorFinanceiro {
     }
     
     
-    public Despesa iniciarBuscaDeDespesas(int idTransacaoFinanceira){
+    public TransacaoFinanceira iniciarBuscaDeDespesas(int idTransacaoFinanceira){
                 
-        Despesa ret = historicoDeTransacoes.buscarDespesa(idTransacaoFinanceira);
+        TransacaoFinanceira ret = historicoDeTransacoes.buscarDespesa(idTransacaoFinanceira);
 
         return ret;
     }
     
-    public void iniciarCadastroDeDespesas(String categoria, float valor, String descricao, String tipo){
+    public boolean iniciarCadastroDeDespesas(String categoria, float valor, String descricao, String tipo){
         
-        historicoDeTransacoes.cadastrarDespesa(categoria, valor, descricao, "Despesa");
+        HistoricoDeTransacoes historicoDeTransacoes = new HistoricoDeTransacoes();
         
-        // controladorClube.DiminuirSaldoPorDespesa(idClube, valor);
+        boolean validacao = historicoDeTransacoes.validarInformacoes(valor);
         
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "despesa", "INSERÇÃO", idDespesa);
+        if (!(validacao == false)) {
+            Despesa despesa = historicoDeTransacoes.cadastrarDespesa(categoria, valor, descricao, tipo);
+            TransacaoDAO.createDespesa(despesa);
+            
+            return true;
+        } else {
+            return false;
+        }
+        
+        // controladorClube.AumentarSaldoPorReceita(idClube, valor);
+        
+        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "receita", "INSERÇÃO", idReceita);
     }
     
     
-    public void iniciarEdicaoDeDespesas(int idTransacaoFinanceira, int idClube, String categoria, float valor, String descricao, String tipo){
+    public boolean iniciarEdicaoDeDespesa(int idTransacaoFinanceira, int idClube, String categoria, float valor, String descricao, String tipo){
+        
+        HistoricoDeTransacoes historicoDeTransacoes = new HistoricoDeTransacoes();
+        
+        boolean validacao = historicoDeTransacoes.validarInformacoes(valor);
+        
         
         float valorAnterior = historicoDeTransacoes.atualizarDespesa(idTransacaoFinanceira, categoria, valor, descricao, "Despesa");
+            
         
-        // controladorClube.AlterarSaldoPorAtualizacaoDeDespesa(idClube, valorAnterior, valor);
+        if (!(validacao == false)) {
+            Despesa d = new Despesa (idTransacaoFinanceira, valor, categoria, descricao, new Date(), tipo);
+            TransacaoDAO.updateDespesa(idTransacaoFinanceira, d);
+            
+            return true;
+        } else {
+            return false;
+        }
+        
+        // controladorClube.AlterarSaldoPorAtualizacaoDeReceita(idClube, valorAnterior, valor);
         
         // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "despesa", "EDIÇÃO", idDespesa); -> acho q da para colocar um simplesmente pegar o valor na interface
 
@@ -80,35 +107,65 @@ public class ControladorFinanceiro {
         
         float valorApagado = historicoDeTransacoes.excluirDespesa(idTransacaoFinanceira);
         
-        // controladorClube.recalcularSaldoPorExclusaoDeDespesa(idClube, valorApagado);
+        // controladorClube.recalcularSaldoPorExclusaoDeReceita(idClube, valorApagado);
 
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "despesa", "EXCLUSÃO", idTransacaoFinanceira);
+        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "receita", "EXCLUSÃO", idTransacaoFinanceira);
 
     }
     
-    public ArrayList<Despesa> iniciarListagemDeDespesas(){
+    public ArrayList<TransacaoFinanceira> iniciarListagemDeDespesas(){
         return historicoDeTransacoes.listarDespesas();
     }
     
-    public Receita iniciarBuscaDeReceitas(int idTransacaoFinanceira) {
+    public TransacaoFinanceira iniciarBuscaDeReceitas(int idTransacaoFinanceira) {
 
-        Receita ret = historicoDeTransacoes.buscarReceita(idTransacaoFinanceira);
+        TransacaoFinanceira ret = historicoDeTransacoes.buscarReceita(idTransacaoFinanceira);
 
         return ret;
     }
     
-    public void iniciarCadastroDeReceitas(String categoria, float valor, String descricao, String tipo){
+    public boolean iniciarCadastroDeReceitas(String categoria, float valor, String descricao, String tipo){
         
-        historicoDeTransacoes.cadastrarReceita(categoria, valor, descricao, "Receita");
+        HistoricoDeTransacoes historicoDeTransacoes = new HistoricoDeTransacoes();
+        
+        boolean validacao = historicoDeTransacoes.validarInformacoes(valor);
+        
+        if (!(validacao == false)) {
+            Receita receita = historicoDeTransacoes.cadastrarReceita(categoria, valor, descricao, tipo);
+            TransacaoDAO.createReceita(receita);
+            
+            return true;
+        } else {
+            return false;
+        }
         
         // controladorClube.AumentarSaldoPorReceita(idClube, valor);
         
         // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "receita", "INSERÇÃO", idReceita);
     }
     
-    public void iniciarEdicaoDeReceitas(int idTransacaoFinanceira, int idClube, String categoria, float valor, String descricao, String tipo){
+    public boolean iniciarEdicaoDeReceitas(int idTransacaoFinanceira, int idClube, String categoria, float valor, String descricao, String tipo){
+        
+        HistoricoDeTransacoes historicoDeTransacoes = new HistoricoDeTransacoes();
+        
+        boolean validacao = historicoDeTransacoes.validarInformacoes(valor);
+        
         
         float valorAnterior = historicoDeTransacoes.atualizarReceita(idTransacaoFinanceira, categoria, valor, descricao, "Receita");
+            
+        
+        if (!(validacao == false)) {
+            Receita r = new Receita (idTransacaoFinanceira, valor, categoria, descricao, new Date(), tipo);
+            TransacaoDAO.updateReceita(idTransacaoFinanceira, r);
+            
+            return true;
+        } else {
+            return false;
+        }
+        
+        
+        
+        
         
         // controladorClube.AlterarSaldoPorAtualizacaoDeReceita(idClube, valorAnterior, valor);
         
@@ -126,7 +183,7 @@ public class ControladorFinanceiro {
 
     }
     
-    public ArrayList<Receita> iniciarListagemDeReceitas(){
+    public ArrayList<TransacaoFinanceira> iniciarListagemDeReceitas(){
         return historicoDeTransacoes.listarReceitas();
     }
     

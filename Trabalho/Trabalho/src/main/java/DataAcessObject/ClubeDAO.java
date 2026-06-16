@@ -81,7 +81,7 @@ public class ClubeDAO {
     }
         
 
-    public static void ExcluirCliente(int id) 
+    public static void ExcluirClube(int id) 
     {
         String sql = "delete from clube where id_clube = ?";
         

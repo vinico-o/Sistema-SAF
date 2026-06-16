@@ -31,10 +31,10 @@ public class TelaClube extends javax.swing.JPanel {
                 frameTeste.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
                 // Instancia o seu painel
-                TelaClube painelCadastro = new TelaClube();
+                TelaClube painelClube = new TelaClube();
 
                 // Coloca o painel dentro do JFrame de teste
-                frameTeste.setContentPane(painelCadastro);
+                frameTeste.setContentPane(painelClube);
 
                 // Ajusta o tamanho da janela e centraliza na tela
                 frameTeste.pack();
@@ -248,7 +248,7 @@ public class TelaClube extends javax.swing.JPanel {
 
             modelo.addRow(linha);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Clube não encontrado!");
+            JOptionPane.showMessageDialog(null, "Clube não encontrado ou Operação cancelada");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
