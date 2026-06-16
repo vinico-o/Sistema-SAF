@@ -60,8 +60,8 @@ public class HistoricoDeUsuario {
         }
     }
 
-    public Boolean validarSenha(String senha) {
-        return null;
+    public Boolean validarSenha(Usuario usuario, String senha) {
+        return usuario.getSenha().equals(senha);
     }
 
     public Boolean validarInformacoes(String nome_usuario, String senha) {

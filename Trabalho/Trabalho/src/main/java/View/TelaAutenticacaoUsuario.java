@@ -4,6 +4,11 @@
  */
 package View;
 
+import Controller.ControladorUsuario;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Vinícius Mardegan
@@ -117,7 +122,22 @@ public class TelaAutenticacaoUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_CampoSenhaActionPerformed
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
-        // TODO add your handling code here:
+        String nome_usuario = campoNomeUsuario.getText();
+        String senha = new String (CampoSenha.getPassword());
+        
+        ControladorUsuario controladorUsuario = new ControladorUsuario();
+        
+        boolean validacao = controladorUsuario.autenticarUsuario(nome_usuario, senha);
+        if(validacao == false) {
+            JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            JOptionPane.showMessageDialog(this, "Login feito com sucesso!", "Sucesso", JOptionPane.ERROR_MESSAGE);
+            TelaPrincipal tela = new TelaPrincipal();
+            tela.setVisible(true);
+
+            frame.dispose();
+        }
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
 
