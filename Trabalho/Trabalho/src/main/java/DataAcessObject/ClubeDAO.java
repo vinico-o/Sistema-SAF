@@ -5,9 +5,7 @@
 package DataAcessObject;
 
 import Model.Clube;
-import Model.Usuario;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class ClubeDAO {
         String sql = "INSERT INTO clube (nome_clube, ano_de_fundacao, pais, saldo_atual) VALUES (?, ?, ?, ?)";
 
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             // Vincula os parâmetros usando os getters do objeto clube
@@ -49,7 +47,7 @@ public class ClubeDAO {
        public static ArrayList<Clube> listClube() {
            
         String sql = "select * from clube";
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");    
+        try (Connection conexao = JDBC.ConnectionFactory.conectar(); 
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             ArrayList<Clube> clubes = new ArrayList<>();
@@ -85,7 +83,7 @@ public class ClubeDAO {
     {
         String sql = "delete from clube where id_clube = ?";
         
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");    
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();  
             PreparedStatement stmt = conexao.prepareStatement(sql))
         {
             
@@ -107,7 +105,7 @@ public class ClubeDAO {
         String sql = "update clube set nome_clube = ?, ano_de_fundacao = ?, pais = ? where id_clube = ?";
         
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             // Vincula os parâmetros usando os getters do objeto clube

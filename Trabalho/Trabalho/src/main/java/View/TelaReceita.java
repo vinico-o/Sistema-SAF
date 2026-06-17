@@ -162,7 +162,8 @@ public class TelaReceita extends javax.swing.JPanel {
         modelo.setNumRows(0);
 
         ArrayList<TransacaoFinanceira> receitas = controladorFinanceiro.iniciarListagemDeReceitas();
-
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
         for (TransacaoFinanceira r : receitas) {
 
             Object[] linha = {
@@ -170,7 +171,7 @@ public class TelaReceita extends javax.swing.JPanel {
                 r.getDescricao(),
                 r.getCategoria(),
                 r.getValor(),
-                r.getData()
+                sdf.format(r.getData())
             };
 
             modelo.addRow(linha);

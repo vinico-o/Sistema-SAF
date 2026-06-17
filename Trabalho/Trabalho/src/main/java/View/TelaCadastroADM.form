@@ -123,7 +123,9 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="campoSenha">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c8" green="c8" red="c8" type="rgb"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

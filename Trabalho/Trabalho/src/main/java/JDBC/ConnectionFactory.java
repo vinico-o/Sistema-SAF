@@ -7,86 +7,74 @@ import java.sql.Statement;
 
 public class ConnectionFactory {
 
-    // 1. Configurações de conexão do banco de dados
-    private static final String URL = "jdbc:mysql://localhost:3306/SistemaSAF";
-    private static final String USER = "root";
-    private static final String PASSWORD = "Vini2606@";
+    private static final String URL = "jdbc:sqlite:SistemaSAF.db";
+
+    public static Connection conectar() throws SQLException {
+        return DriverManager.getConnection(URL);
+    }
 
     public static void iniciarTabelaUsuario() {
 
         String sql = "CREATE TABLE IF NOT EXISTS usuario ("
-           + "id_usuario INT AUTO_INCREMENT PRIMARY KEY, "
-           + "nome_usuario VARCHAR(50) NOT NULL UNIQUE, "
-           + "senha VARCHAR(255) NOT NULL, "
-           + "nivel_usuario INT NOT NULL"
-           + ");";
+                + "id_usuario INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "nome_usuario TEXT NOT NULL UNIQUE, "
+                + "senha TEXT NOT NULL, "
+                + "nivel_usuario INTEGER NOT NULL"
+                + ");";
 
-        // 3. Abrindo a conexão e executando o comando
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = conectar();
              Statement stmt = conn.createStatement()) {
 
-            System.out.println("Conexão com o banco de dados estabelecida com sucesso!");
-
-            // Executa o comando SQL de criação
             stmt.execute(sql);
-            System.out.println("Tabela 'aluno' criada (ou já existente) com sucesso!");
+            System.out.println("Tabela 'usuario' criada com sucesso!");
 
         } catch (SQLException e) {
-            System.err.println("Erro ao conectar ou executar comando no banco de dados!");
+            System.err.println("Erro ao criar tabela usuario!");
             e.printStackTrace();
         }
     }
-    
+
     public static void iniciarTabelaClube() {
 
         String sql = "CREATE TABLE IF NOT EXISTS clube ("
-           + "id_clube INT AUTO_INCREMENT PRIMARY KEY, "
-           + "nome_clube VARCHAR(50) NOT NULL UNIQUE, "
-           + "ano_de_fundacao int NOT NULL, "
-           + "pais VARCHAR(50) NOT NULL, "
-           + "saldo_atual float NOT NULL"
-           + ");";
+                + "id_clube INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "nome_clube TEXT NOT NULL UNIQUE, "
+                + "ano_de_fundacao INTEGER NOT NULL, "
+                + "pais TEXT NOT NULL, "
+                + "saldo_atual REAL NOT NULL"
+                + ");";
 
-        // 3. Abrindo a conexão e executando o comando
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+        try (Connection conn = conectar();
              Statement stmt = conn.createStatement()) {
 
-            System.out.println("Conexão com o banco de dados estabelecida com sucesso!");
-
-            // Executa o comando SQL de criação
             stmt.execute(sql);
-            System.out.println("Tabela 'clube' criada (ou já existente) com sucesso!");
+            System.out.println("Tabela 'clube' criada com sucesso!");
 
         } catch (SQLException e) {
-            System.err.println("Erro ao conectar ou executar comando no banco de dados!");
+            System.err.println("Erro ao criar tabela clube!");
             e.printStackTrace();
         }
     }
-    
-    
+
     public static void iniciarTabelaTransacao() {
 
         String sql = "CREATE TABLE IF NOT EXISTS transacao ("
-           + "id_transacao INT AUTO_INCREMENT PRIMARY KEY, "
-           + "valor float NOT NULL, "
-           + "categoria VARCHAR(50) NOT NULL, "
-           + "descricao VARCHAR(50) NOT NULL, "
-           + "data date NOT NULL, "
-           + "tipo VARCHAR(50) NOT NULL"
-           + ");";
+                + "id_transacao INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "valor REAL NOT NULL, "
+                + "categoria TEXT NOT NULL, "
+                + "descricao TEXT NOT NULL, "
+                + "data TEXT NOT NULL, "
+                + "tipo TEXT NOT NULL"
+                + ");";
 
-        // 3. Abrindo a conexão e executando o comando
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+        try (Connection conn = conectar();
              Statement stmt = conn.createStatement()) {
 
-            System.out.println("Conexão com o banco de dados estabelecida com sucesso!");
-
-            // Executa o comando SQL de criação
             stmt.execute(sql);
-            System.out.println("Tabela 'transacao' criada (ou já existente) com sucesso!");
+            System.out.println("Tabela 'transacao' criada com sucesso!");
 
         } catch (SQLException e) {
-            System.err.println("Erro ao conectar ou executar comando no banco de dados!");
+            System.err.println("Erro ao criar tabela transacao!");
             e.printStackTrace();
         }
     }

@@ -4,10 +4,8 @@
  */
 package DataAcessObject;
 
-import JDBC.ConnectionFactory;
 import Model.Usuario;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +27,7 @@ public class UsuarioDAO {
     
 
         // 3. Execução usando Try-with-resources (fecha tudo automaticamente no final)
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -55,7 +53,7 @@ public class UsuarioDAO {
    
    public static boolean existeNomeUsuario(String nomeUsuario) {
     String sql = "SELECT 1 FROM usuario WHERE nome_usuario = ?";
-    try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+    try (Connection conexao = JDBC.ConnectionFactory.conectar();
          PreparedStatement stmt = conexao.prepareStatement(sql)) {
         
         stmt.setString(1, nomeUsuario);
@@ -73,7 +71,7 @@ public class UsuarioDAO {
         String sql = "INSERT INTO usuario (nome_usuario, senha, nivel_usuario) VALUES (?, ?, ?)";
 
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             // Vincula os parâmetros usando os getters do objeto usuario
@@ -94,7 +92,7 @@ public class UsuarioDAO {
    
     public static ArrayList<Usuario> listarUsuarios() {
         String sql = "select * from usuario";
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");    
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();   
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
                 ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -120,7 +118,7 @@ public class UsuarioDAO {
     
     public static Usuario buscarUsuario(String nome_usuario) {
         String sql = "select * from usuario where nome_usuario = ?";
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
            stmt.setString(1, nome_usuario);
@@ -149,7 +147,7 @@ public class UsuarioDAO {
         String sql = "update usuario set nome_usuario = ?, senha = ?, nivel_usuario = ? where id_usuario = ?";
         
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             // Vincula os parâmetros usando os getters do objeto clube
@@ -175,7 +173,7 @@ public class UsuarioDAO {
         
         String sql = "delete from usuario where id_usuario = ?";
         
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "Vini2606@");    
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();   
             PreparedStatement stmt = conexao.prepareStatement(sql))
         {
             

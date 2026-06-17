@@ -85,7 +85,7 @@ public class TelaCadastroADM extends javax.swing.JPanel {
             }
         });
 
-        campoSenha.setText("jPasswordField1");
+        campoSenha.setBackground(new java.awt.Color(200, 200, 200));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

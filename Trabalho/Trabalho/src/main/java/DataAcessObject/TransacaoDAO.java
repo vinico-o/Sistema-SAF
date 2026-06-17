@@ -9,7 +9,6 @@ import Model.Despesa;
 import Model.Receita;
 import Model.TransacaoFinanceira;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class TransacaoDAO {
         String sql = "INSERT INTO transacao (valor, categoria, descricao, data, tipo) VALUES (?, ?, ?, ?, ?)";
 
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             // Vincula os parâmetros usando os getters do objeto usuario
@@ -50,8 +49,8 @@ public class TransacaoDAO {
     
     public static ArrayList<TransacaoFinanceira> listReceita() {
            
-        String sql = "select * from transacao where tipo = ?";
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");    
+        String sql = "SELECT * from transacao where tipo = ?";
+        try (Connection conexao = JDBC.ConnectionFactory.conectar(); 
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             ArrayList<TransacaoFinanceira> receitas = new ArrayList<>();
@@ -69,7 +68,7 @@ public class TransacaoDAO {
                 obj.setValor(rs.getFloat("valor"));
                 obj.setCategoria(rs.getString("categoria"));
                 obj.setDescricao(rs.getString("descricao"));
-                obj.setData(rs.getDate("data"));
+                obj.setData(new java.util.Date(rs.getLong("data")));
                 obj.setTipo(rs.getString("tipo"));
 
 
@@ -91,7 +90,7 @@ public class TransacaoDAO {
         String sql = "update transacao set valor = ?, categoria = ?, descricao = ?, data = ?, tipo = ? where id_transacao = ?";
         
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             // Vincula os parâmetros usando os getters do objeto usuario
@@ -119,7 +118,7 @@ public class TransacaoDAO {
     {
         String sql = "delete from transacao where id_transacao = ?";
         
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");    
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();  
             PreparedStatement stmt = conexao.prepareStatement(sql))
         {
             stmt.setInt(1, id);
@@ -139,7 +138,7 @@ public class TransacaoDAO {
         String sql = "INSERT INTO transacao (valor, categoria, descricao, data, tipo) VALUES (?, ?, ?, ?, ?)";
 
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             // Vincula os parâmetros usando os getters do objeto usuario
@@ -163,8 +162,8 @@ public class TransacaoDAO {
     
     public static ArrayList<TransacaoFinanceira> listDespesa() {
            
-        String sql = "select * from transacao where tipo = ?";
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");    
+        String sql = "SELECT * FROM transacao WHERE tipo = ?";
+        try (Connection conexao = JDBC.ConnectionFactory.conectar(); 
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             ArrayList<TransacaoFinanceira> receitas = new ArrayList<>();
@@ -182,7 +181,7 @@ public class TransacaoDAO {
                 obj.setValor(rs.getFloat("valor"));
                 obj.setCategoria(rs.getString("categoria"));
                 obj.setDescricao(rs.getString("descricao"));
-                obj.setData(rs.getDate("data"));
+                obj.setData(new java.util.Date(rs.getLong("data")));
                 obj.setTipo(rs.getString("tipo"));
 
 
@@ -204,7 +203,7 @@ public class TransacaoDAO {
         String sql = "update transacao set valor = ?, categoria = ?, descricao = ?, data = ?, tipo = ? where id_transacao = ?";
         
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             // Vincula os parâmetros usando os getters do objeto usuario
@@ -232,7 +231,7 @@ public class TransacaoDAO {
     {
         String sql = "delete from transacao where id_transacao = ?";
         
-        try (Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaSAF", "root", "root");    
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();   
             PreparedStatement stmt = conexao.prepareStatement(sql))
         {
             stmt.setInt(1, id);

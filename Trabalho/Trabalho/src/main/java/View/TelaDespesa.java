@@ -7,6 +7,7 @@ package View;
 import Controller.ControladorFinanceiro;
 import JDBC.ConnectionFactory;
 import Model.TransacaoFinanceira;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -210,7 +211,7 @@ public class TelaDespesa extends javax.swing.JPanel {
             TransacaoFinanceira r = controladorFinanceiro.iniciarBuscaDeDespesas(idReceita);
 
             DefaultTableModel modelo = (DefaultTableModel) tabelaDespesas.getModel();
-
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             modelo.setNumRows(0);
 
             Object[] linha = {
@@ -218,7 +219,7 @@ public class TelaDespesa extends javax.swing.JPanel {
                 r.getDescricao(),
                 r.getCategoria(),
                 r.getValor(),
-                r.getData()
+                sdf.format(r.getData())
             };
 
             modelo.addRow(linha);
