@@ -103,13 +103,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                JDBC.ConnectionFactory.iniciarTabelaClube();
+                JDBC.ConnectionFactory.iniciarTabelaTransacao();
+                JDBC.ConnectionFactory.iniciarTabelaUsuario();
+                
                 TelaPrincipal tela = new TelaPrincipal();
-                ConnectionFactory.iniciarTabelaUsuario();
                 // se nao existir usuario cadastrado no banco de dados, abre a telka de primeiro cadastro (de ADM)
                 if (UsuarioDAO.existeUsuarioCadastrado()) {
                     tela.setContentPane(new TelaAutenticacaoUsuario());
                 } else {
                     tela.setContentPane(new TelaCadastroADM());
+                    tela.revalidate();
+                    tela.repaint();
+                    
+                    tela.setVisible(true);
+                    
+                    TelaCadastroClube dialogClube = new TelaCadastroClube(tela, true);
+                    dialogClube.setLocationRelativeTo(tela); // Centraliza o diálogo em cima da tela principal
+                    dialogClube.setVisible(true); // Abre o diálogo travando a tela de trás (modal)
                 }
                 
                 tela.revalidate(); // recalcula o layout da tela, usado depois de alteracoes

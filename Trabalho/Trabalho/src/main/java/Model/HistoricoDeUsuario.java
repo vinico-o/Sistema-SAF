@@ -42,7 +42,7 @@ public class HistoricoDeUsuario {
     }
     
     public Usuario buscarNomeUsuario(String nome_usuario) {
-        Usuario usuario = new Usuario();
+        Usuario usuario = null;
         
         usuario = DataAcessObject.UsuarioDAO.buscarUsuario(nome_usuario);
         
@@ -55,8 +55,13 @@ public class HistoricoDeUsuario {
         if(existe == true) {
             JOptionPane.showMessageDialog(null, "Nome de Usuário já existente!");
         } else {
-            Usuario usuario = new Usuario(nome_usuario, senha, nivel_usuario);
-            DataAcessObject.UsuarioDAO.atualizarUsuario(usuario, id_usuario);
+            if(nivel_usuario == 0) {
+                Usuario usuario = new Usuario(nome_usuario, senha, nivel_usuario, 0);
+                DataAcessObject.UsuarioDAO.atualizarUsuario(usuario, id_usuario);
+            } else {
+                Usuario usuario = new Usuario(nome_usuario, senha, nivel_usuario, Sessao.getUsuarioLogado().getIdClube());
+                DataAcessObject.UsuarioDAO.atualizarUsuario(usuario, id_usuario);
+            }
         }
     }
 
@@ -83,13 +88,13 @@ public class HistoricoDeUsuario {
         Usuario usuario = null;
         switch (nivel_usuario) {
             case 0:
-                usuario = new Administrador(nome_usuario, senha, nivel_usuario);
+                usuario = new Administrador(nome_usuario, senha, nivel_usuario, 0);
                 break;
             case 1:
-                usuario = new GestorFinanceiro(nome_usuario, senha, nivel_usuario);
+                usuario = new GestorFinanceiro(nome_usuario, senha, nivel_usuario, Sessao.getUsuarioLogado().getIdClube());
                 break;
             case 2:
-                usuario = new Operador(nome_usuario, senha, nivel_usuario);
+                usuario = new Operador(nome_usuario, senha, nivel_usuario, Sessao.getUsuarioLogado().getIdClube());
                 break;
         }
         

@@ -13,8 +13,8 @@ public class Operador extends Usuario {
     public Operador() {
     }
 
-    public Operador(String nome_usuario, String senha, int nivel_usuario) {
-        super(nome_usuario, senha, nivel_usuario);
+    public Operador(String nome_usuario, String senha, int nivel_usuario, int idClube) {
+        super(nome_usuario, senha, nivel_usuario, idClube);
     }
     
 }

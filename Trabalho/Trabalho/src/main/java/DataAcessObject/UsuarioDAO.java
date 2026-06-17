@@ -4,6 +4,7 @@
  */
 package DataAcessObject;
 
+import Model.Sessao;
 import Model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,11 +53,12 @@ public class UsuarioDAO {
    }
    
    public static boolean existeNomeUsuario(String nomeUsuario) {
-    String sql = "SELECT 1 FROM usuario WHERE nome_usuario = ?";
+    String sql = "SELECT 1 FROM usuario WHERE nome_usuario = ? and idClube = ?";
     try (Connection conexao = JDBC.ConnectionFactory.conectar();
          PreparedStatement stmt = conexao.prepareStatement(sql)) {
         
         stmt.setString(1, nomeUsuario);
+        stmt.setInt(2, Sessao.getIdClubeAtual());
         try (ResultSet rs = stmt.executeQuery()) {
             return rs.next(); // Retorna true se achou
         }
@@ -68,7 +70,7 @@ public class UsuarioDAO {
    
    public static void createUsuario(Usuario usuario) {
         // String de conexão SQL
-        String sql = "INSERT INTO usuario (nome_usuario, senha, nivel_usuario) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO usuario (nome_usuario, senha, nivel_usuario, idClube) VALUES (?, ?, ?, ?)";
 
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
@@ -78,6 +80,7 @@ public class UsuarioDAO {
             stmt.setString(1, usuario.getNome_usuario());
             stmt.setString(2, usuario.getSenha());
             stmt.setInt(3, usuario.getNivel_usuario());
+            stmt.setInt(4, usuario.getIdClube());
 
             // Executa a inserção no banco de dados
             stmt.execute();
@@ -91,9 +94,11 @@ public class UsuarioDAO {
    
    
     public static ArrayList<Usuario> listarUsuarios() {
-        String sql = "select * from usuario";
+        String sql = "select * from usuario WHERE idClube = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();   
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            
+                stmt.setInt(1, Sessao.getUsuarioLogado().getIdClube());
 
                 ArrayList<Usuario> usuarios = new ArrayList<>();
             
@@ -117,11 +122,12 @@ public class UsuarioDAO {
     }
     
     public static Usuario buscarUsuario(String nome_usuario) {
-        String sql = "select * from usuario where nome_usuario = ?";
+        String sql = "select * from usuario where nome_usuario = ? and idClube = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
            stmt.setString(1, nome_usuario);
+           stmt.setInt(2, Sessao.getIdClubeAtual());
            ResultSet rs = stmt.executeQuery();
            
            if(rs.next()) {

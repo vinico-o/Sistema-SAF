@@ -4,7 +4,6 @@
  */
 package Model;
 
-import Controller.Sistema;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -25,7 +24,7 @@ public class Elenco {
     public void atualizarJogador(int idJogador, String nome, Date data_de_nascimento, String nacionalidade, String posicao, 
             int numero_da_camisa, float salario, int tempo_de_contrato){
         
-        boolean ret = validarInformacoes(salario);
+        boolean ret = validarInformacoes(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato);
         
         if (ret == true){
             for (int i = 0; i < jogadores.size(); i++){
@@ -48,13 +47,43 @@ public class Elenco {
         }
     }
     
-    public boolean validarInformacoes (float salario){
-        if (salario >= 0){
-            return true;
-        }
-        else{
+    public boolean validarInformacoes(String nome, java.util.Date data_nascimento, String nacionalidade, String posicao, int numero_da_camisa, float salario, int tempo_de_contrato) {
+        if (nome == null || nome.trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(null, "O nome do jogador não pode estar vazio.");
             return false;
         }
+
+        if (data_nascimento == null) {
+            javax.swing.JOptionPane.showMessageDialog(null, "A data de nascimento é obrigatória ou inválida.");
+            return false;
+        }
+
+        if (nacionalidade == null || nacionalidade.trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(null, "A nacionalidade do jogador não pode estar vazia.");
+            return false;
+        }
+
+        if (posicao == null || posicao.trim().isEmpty() || posicao.equals("Selecione")) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Por favor, selecione uma posição válida para o jogador.");
+            return false;
+        }
+
+        if (numero_da_camisa <= 0 || numero_da_camisa > 99) {
+            javax.swing.JOptionPane.showMessageDialog(null, "O número da camisa deve estar entre 1 e 99.");
+            return false;
+        }
+
+        if (salario < 0) {
+            javax.swing.JOptionPane.showMessageDialog(null, "O salário do jogador não pode ser um valor negativo.");
+            return false;
+        }
+
+        if (tempo_de_contrato <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(null, "O tempo de contrato deve ser de pelo menos 1 mês.");
+            return false;
+        }
+
+        return true;
     }
     
     public void exibirMensagemInvalido(){
@@ -77,13 +106,14 @@ public class Elenco {
     public void cadastrarJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao, int numero_da_camisa,
             float salario, int tempo_de_contrato){
         
-        boolean ret = validarInformacoes(salario);
+        boolean ret = validarInformacoes(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato);
 
         if (ret == true){
             contador++;
-            Jogador j = new Jogador(contador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato, Sistema.idClube);
+            Jogador j = new Jogador(contador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato);
         
             jogadores.add(j);
+            DataAcessObject.JogadorDAO.createJogador(j);
         }else{
             exibirMensagemInvalido();
         }

@@ -24,7 +24,7 @@ public class Jogador {
     public Jogador() {
     }
 
-    public Jogador(int idJogador, String nome, Date data_de_nascimento, String nacionalidade, String posicao, int numero_da_camisa, float salario, int tempo_de_contrato, int idClube) {
+    public Jogador(int idJogador, String nome, Date data_de_nascimento, String nacionalidade, String posicao, int numero_da_camisa, float salario, int tempo_de_contrato) {
         this.idJogador = idJogador;
         this.nome = nome;
         this.data_de_nascimento = data_de_nascimento;
@@ -33,7 +33,7 @@ public class Jogador {
         this.numero_da_camisa = numero_da_camisa;
         this.salario = salario;
         this.tempo_de_contrato = tempo_de_contrato;
-        this.idClube = idClube;
+        this.idClube = Sessao.getUsuarioLogado().getIdClube();
     }
 
     public int getIdJogador() {
@@ -100,13 +100,6 @@ public class Jogador {
         this.tempo_de_contrato = tempo_de_contrato;
     }
 
-    public int getIdClube() {
-        return idClube;
-    }
-
-    public void setIdClube(int idClube) {
-        this.idClube = idClube;
-    }
 
         
     

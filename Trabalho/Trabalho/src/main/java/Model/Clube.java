@@ -66,5 +66,9 @@ public class Clube {
         this.saldoAtual = saldoAtual;
     }
     
-    
+    @Override
+    public String toString() {
+        return this.nome;
+    }
 }
+

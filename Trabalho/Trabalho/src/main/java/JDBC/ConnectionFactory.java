@@ -10,6 +10,7 @@ public class ConnectionFactory {
     private static final String URL = "jdbc:sqlite:SistemaSAF.db";
 
     public static Connection conectar() throws SQLException {
+        System.out.println("Banco aberto em: " + URL);
         return DriverManager.getConnection(URL);
     }
 
@@ -19,7 +20,9 @@ public class ConnectionFactory {
                 + "id_usuario INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "nome_usuario TEXT NOT NULL UNIQUE, "
                 + "senha TEXT NOT NULL, "
-                + "nivel_usuario INTEGER NOT NULL"
+                + "nivel_usuario INTEGER NOT NULL, "
+                + "idClube INTEGER, "
+                + "FOREIGN KEY (idClube) REFERENCES clube(id_clube) "
                 + ");";
 
         try (Connection conn = conectar();
@@ -64,7 +67,9 @@ public class ConnectionFactory {
                 + "categoria TEXT NOT NULL, "
                 + "descricao TEXT NOT NULL, "
                 + "data TEXT NOT NULL, "
-                + "tipo TEXT NOT NULL"
+                + "tipo TEXT NOT NULL, "
+                + "idClube INTEGER, "
+                + "FOREIGN KEY (idClube) REFERENCES clube(id_clube)"
                 + ");";
 
         try (Connection conn = conectar();

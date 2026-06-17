@@ -21,6 +21,7 @@ public class Partida {
     private int publico;
     private float valorDoIngresso;
     private String local;
+    private int idClube;
 
     public Partida() {
     }
@@ -36,6 +37,7 @@ public class Partida {
         this.publico = publico;
         this.valorDoIngresso = valorDoIngresso;
         this.local = local;
+        this.idClube = Sessao.getUsuarioLogado().getIdClube();
     }
 
     public int getIdPartida() {

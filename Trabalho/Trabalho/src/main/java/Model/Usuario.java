@@ -13,14 +13,16 @@ public class Usuario {
     private String nome_usuario;
     private String senha;
     private int nivel_usuario;
+    private int idClube;
 
     public Usuario() {
     }
     
-    public Usuario(String nome_usuario, String senha, int nivel_usuario) {
+    public Usuario(String nome_usuario, String senha, int nivel_usuario, int idClube) {
         this.nome_usuario = nome_usuario;
         this.senha = senha;
         this.nivel_usuario = nivel_usuario;
+        this.idClube = idClube;
     }
 
     public int getId_usuario() {
@@ -53,6 +55,14 @@ public class Usuario {
 
     public void setNivel_usuario(int nivel_usuario) {
         this.nivel_usuario = nivel_usuario;
+    }
+    
+    public void setIdClube(int idClube) {
+        this.idClube = idClube;
+    }
+    
+    public int getIdClube() {
+        return idClube;
     }
     
 }

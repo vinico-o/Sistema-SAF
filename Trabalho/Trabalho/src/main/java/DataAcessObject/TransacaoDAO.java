@@ -7,6 +7,7 @@ package DataAcessObject;
 
 import Model.Despesa;
 import Model.Receita;
+import Model.Sessao;
 import Model.TransacaoFinanceira;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class TransacaoDAO {
     
     public static void createReceita(Receita receita) {
         // String de conexão SQL
-        String sql = "INSERT INTO transacao (valor, categoria, descricao, data, tipo) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO transacao (valor, categoria, descricao, data, tipo, idClube) VALUES (?, ?, ?, ?, ?, ?)";
 
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
@@ -34,6 +35,7 @@ public class TransacaoDAO {
             stmt.setString(3, receita.getDescricao());
             stmt.setDate(4, new java.sql.Date(receita.getData().getTime()));
             stmt.setString(5, receita.getTipo());
+            stmt.setInt(6, Sessao.getIdClubeAtual());
 
             // Executa a inserção no banco de dados
             stmt.execute();
@@ -49,13 +51,14 @@ public class TransacaoDAO {
     
     public static ArrayList<TransacaoFinanceira> listReceita() {
            
-        String sql = "SELECT * from transacao where tipo = ?";
+        String sql = "SELECT * from transacao where tipo = ? and idClube = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar(); 
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             ArrayList<TransacaoFinanceira> receitas = new ArrayList<>();
             
             stmt.setString(1, "Receita");
+            stmt.setInt(2, Sessao.getIdClubeAtual());
             
             ResultSet rs = stmt.executeQuery();
 
@@ -135,7 +138,7 @@ public class TransacaoDAO {
     
     public static void createDespesa(Despesa despesa) {
         // String de conexão SQL
-        String sql = "INSERT INTO transacao (valor, categoria, descricao, data, tipo) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO transacao (valor, categoria, descricao, data, tipo, idClube) VALUES (?, ?, ?, ?, ?, ?)";
 
         // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
@@ -147,6 +150,7 @@ public class TransacaoDAO {
             stmt.setString(3, despesa.getDescricao());
             stmt.setDate(4, new java.sql.Date(despesa.getData().getTime()));
             stmt.setString(5, despesa.getTipo());
+            stmt.setInt(6, Sessao.getIdClubeAtual());
 
             // Executa a inserção no banco de dados
             stmt.execute();
@@ -162,13 +166,14 @@ public class TransacaoDAO {
     
     public static ArrayList<TransacaoFinanceira> listDespesa() {
            
-        String sql = "SELECT * FROM transacao WHERE tipo = ?";
+        String sql = "SELECT * FROM transacao WHERE tipo = ? and idClube = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar(); 
             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             ArrayList<TransacaoFinanceira> receitas = new ArrayList<>();
             
             stmt.setString(1, "Despesa");
+            stmt.setInt(2, Sessao.getIdClubeAtual());
             
             ResultSet rs = stmt.executeQuery();
 

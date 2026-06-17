@@ -13,8 +13,8 @@ public class GestorFinanceiro extends Usuario {
     public GestorFinanceiro() {
     }
 
-    public GestorFinanceiro(String nome_usuario, String senha, int nivel_usuario) {
-        super(nome_usuario, senha, nivel_usuario);
+    public GestorFinanceiro(String nome_usuario, String senha, int nivel_usuario, int idClube) {
+        super(nome_usuario, senha, nivel_usuario, idClube);
     }
     
 }

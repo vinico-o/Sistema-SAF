@@ -17,6 +17,7 @@ public class TransacaoFinanceira {
     private String descricao;
     private Date data;
     private String tipo;
+    private int idClube;
 
     public TransacaoFinanceira() {
     }
@@ -30,6 +31,7 @@ public class TransacaoFinanceira {
         this.descricao = descricao;
         this.data = data;
         this.tipo = tipo;
+        this.idClube = Sessao.getUsuarioLogado().getIdClube();
     }
 
     public int getIdTransacao() {
@@ -78,6 +80,14 @@ public class TransacaoFinanceira {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    
+    public void setIdClube(int idClube) {
+        this.idClube = idClube;
+    }
+    
+    public int getIdClube() {
+        return idClube;
     }
     
     

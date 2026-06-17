@@ -5,6 +5,7 @@
 package View;
 
 import Controller.ControladorUsuario;
+import Model.Sessao;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -134,6 +135,10 @@ public class TelaAutenticacaoUsuario extends javax.swing.JPanel {
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             JOptionPane.showMessageDialog(this, "Login feito com sucesso!", "Sucesso", JOptionPane.ERROR_MESSAGE);
             TelaPrincipal tela = new TelaPrincipal();
+            if(Sessao.getUsuarioLogado().getNivel_usuario() == 0){
+                TelaEscolherClube telaEscolherClube = new TelaEscolherClube(tela, true);
+                telaEscolherClube.setVisible(true);
+            }
             tela.setVisible(true);
 
             frame.dispose();

@@ -37,7 +37,7 @@ public class ControladorUsuario {
             return false;
         }
         
-        Sessao.iniciarSessao(usuario);
+        Sessao.setUsuarioLogado(usuario);
         return true;
         
     }
@@ -49,11 +49,13 @@ public class ControladorUsuario {
         boolean validacao = historicoDeUsuario.validarInformacoes(nome_usuario, senha);
 
         if (validacao) { 
-
-            if (UsuarioDAO.existeNomeUsuario(nome_usuario)) {
-                return false; 
+            
+            if(UsuarioDAO.existeUsuarioCadastrado()) {
+                if (UsuarioDAO.existeNomeUsuario(nome_usuario)) {
+                    return false; 
+                }
             }
-
+            
             Usuario usuario = historicoDeUsuario.cadastrarUsuario(nome_usuario, senha, nivel_usuario);
             UsuarioDAO.createUsuario(usuario);
             return true;
