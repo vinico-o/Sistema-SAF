@@ -30,6 +30,7 @@ public class ControladorClube {
             
             return true;
         } else {
+            historicoDeClubes.exibirMensagemInvalido();
             return false;
         }
     }
@@ -77,6 +78,21 @@ public class ControladorClube {
     public void AumentarSaldoPorReceita(int idClube, float valor){
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
         historicoDeClubes.BuscarEAumentarSaldoPorInsercaoDeReceita(idClube, valor);
+    }
+
+    public void DiminuirSaldoPorDespesa(int idClubeAtual, float valor) {
+        HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
+        historicoDeClubes.BuscarEDiminuirSaldoPorInsercaoDeDespesa(idClubeAtual, valor);
+    }
+
+    void recalcularSaldoPorExclusaoDeReceita(int idClubeAtual, float valorApagado) {
+       HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
+       historicoDeClubes.BuscarEDiminuirSaldoPorExclusaoDeReceita(idClubeAtual, valorApagado);
+    }
+
+    void AlterarSaldoPorAtualizacaoDeReceita(int idClube, float valorAnterior, float valor) {
+        HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
+        historicoDeClubes.BuscarEAlterarSaldoPorAtualizacaoDeReceita(idClube, valorAnterior, valor);
     }
     
 

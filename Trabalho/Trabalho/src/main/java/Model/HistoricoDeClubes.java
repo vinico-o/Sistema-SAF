@@ -40,7 +40,7 @@ public class HistoricoDeClubes {
     }
     
     public void exibirMensagemInvalido(){
-        JOptionPane.showMessageDialog(null, "Clube não é único -> Cancelamento do cadastro de clube");
+        JOptionPane.showMessageDialog(null, "Clube já cadastrado!");
     }
     
     
@@ -50,12 +50,7 @@ public class HistoricoDeClubes {
         for (int i = 0; i < clubes.size(); i++){
             
             if (clubes.get(i).getNome().equals(nomeClube)){
-                if (clubes.get(i).getAnoDeFundacao() == anoFundacao){
-                    if (clubes.get(i).getPais().equals(pais)){
-                        exibirMensagemInvalido();
-                        return false;
-                    }
-                }
+                return false;
             }
         }
     return true;
@@ -98,69 +93,93 @@ public class HistoricoDeClubes {
     }
     
     public void BuscarEDiminuirSaldoPorInsercaoDeDespesa(int idClube, float valor) {
+        this.clubes = ClubeDAO.listClube();
         
         for (int i = 0; i < clubes.size(); i++){
             
             if (clubes.get(i).getIdClube() == idClube){
              
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() - valor);
+                
+                ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
+                
                 break;
             }
         }
     }
 
     public void BuscarEAlterarSaldoPorAtualizacaoDeDespesa(int idClube, float valorAnterior, float valorNovo) {
+        this.clubes = ClubeDAO.listClube();
+        
         for (int i = 0; i < clubes.size(); i++){
             
             if (clubes.get(i).getIdClube() == idClube){
              
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() + valorAnterior);
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() - valorNovo);
+                
+                ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
         }
     }
 
     public void BuscarEAumentarSaldoPorExclusaoDeDespesa(int idClube, float valorApagado) {
+        this.clubes = ClubeDAO.listClube();
+        
         for (int i = 0; i < clubes.size(); i++){
             
             if (clubes.get(i).getIdClube() == idClube){
              
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() + valorApagado);
+                
+                ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
         }
     }
 
     public void BuscarEAumentarSaldoPorInsercaoDeReceita(int idClube, float valor) {
+        this.clubes = ClubeDAO.listClube();
+        
         for (int i = 0; i < clubes.size(); i++){
             
             if (clubes.get(i).getIdClube() == idClube){
              
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() + valor);
+                
+                ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
         }
     }
 
     public void BuscarEAlterarSaldoPorAtualizacaoDeReceita(int idClube, float valorAnterior, float valorNovo) {
+        this.clubes = ClubeDAO.listClube();
+        
         for (int i = 0; i < clubes.size(); i++){
             
             if (clubes.get(i).getIdClube() == idClube){
              
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() - valorAnterior);
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() + valorNovo);
+                
+                ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
         }
     }
 
     public void BuscarEDiminuirSaldoPorExclusaoDeReceita(int idClube, float valorApagado) {
+        this.clubes = ClubeDAO.listClube();
+        
         for (int i = 0; i < clubes.size(); i++){
             
             if (clubes.get(i).getIdClube() == idClube){
              
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() - valorApagado);
+                
+                ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
         }
