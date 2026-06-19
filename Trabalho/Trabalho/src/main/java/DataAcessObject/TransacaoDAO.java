@@ -251,4 +251,22 @@ public class TransacaoDAO {
         }
     }
     
+    public static void excluirTodasTransacoesDeClube(int idClube){
+        String sql = "delete from transacao where idClube = ?";
+        
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();   
+            PreparedStatement stmt = conexao.prepareStatement(sql))
+        {
+            stmt.setInt(1, idClube);
+
+            stmt.execute();
+            stmt.close();
+
+            
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e);
+        }
+    }
+    
 }

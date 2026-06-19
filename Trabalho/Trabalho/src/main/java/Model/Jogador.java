@@ -24,7 +24,8 @@ public class Jogador {
     public Jogador() {
     }
 
-    public Jogador(int idJogador, String nome, Date data_de_nascimento, String nacionalidade, String posicao, int numero_da_camisa, float salario, int tempo_de_contrato) {
+    public Jogador(int idJogador, String nome, Date data_de_nascimento, String nacionalidade, String posicao,
+            int numero_da_camisa, float salario, int tempo_de_contrato) {
         this.idJogador = idJogador;
         this.nome = nome;
         this.data_de_nascimento = data_de_nascimento;
@@ -100,7 +101,4 @@ public class Jogador {
         this.tempo_de_contrato = tempo_de_contrato;
     }
 
-
-        
-    
 }

@@ -9,7 +9,9 @@ import Model.Despesa;
 import Model.HistoricoDeAuditoria;
 import Model.HistoricoDeClubes;
 import Model.HistoricoDeTransacoes;
+import Controller.ControladorClube;
 import Model.Receita;
+import Model.Sessao;
 import Model.TransacaoFinanceira;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,12 +68,13 @@ public class ControladorFinanceiro {
             Despesa despesa = historicoDeTransacoes.cadastrarDespesa(categoria, valor, descricao, tipo);
             TransacaoDAO.createDespesa(despesa);
             
+            ControladorClube controladorClube = new ControladorClube();
+            controladorClube.DiminuirSaldoPorDespesa(Sessao.getIdClubeAtual(), valor);
+            
             return true;
         } else {
             return false;
         }
-        
-        // controladorClube.AumentarSaldoPorReceita(idClube, valor);
         
         // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "receita", "INSERÇÃO", idReceita);
     }
@@ -91,14 +94,16 @@ public class ControladorFinanceiro {
             Despesa d = new Despesa (idTransacaoFinanceira, valor, categoria, descricao, new Date(), tipo);
             TransacaoDAO.updateDespesa(idTransacaoFinanceira, d);
             
+            ControladorClube controladorClube = new ControladorClube();
+            controladorClube.AlterarSaldoPorAtualizacaoDeDespesa(idClube, valorAnterior, valor);
+            
+            // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "despesa", "EDIÇÃO", idDespesa); -> acho q da para colocar um simplesmente pegar o valor na interface
+
             return true;
         } else {
             return false;
         }
         
-        // controladorClube.AlterarSaldoPorAtualizacaoDeReceita(idClube, valorAnterior, valor);
-        
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "despesa", "EDIÇÃO", idDespesa); -> acho q da para colocar um simplesmente pegar o valor na interface
 
     }
     
@@ -107,7 +112,9 @@ public class ControladorFinanceiro {
         
         float valorApagado = historicoDeTransacoes.excluirDespesa(idTransacaoFinanceira);
         
-        // controladorClube.recalcularSaldoPorExclusaoDeReceita(idClube, valorApagado);
+        ControladorClube controladorClube = new ControladorClube();
+        
+        controladorClube.recalcularSaldoPorExclusaoDeDespesa(idClube, valorApagado);
 
         // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "receita", "EXCLUSÃO", idTransacaoFinanceira);
 
@@ -134,14 +141,17 @@ public class ControladorFinanceiro {
             Receita receita = historicoDeTransacoes.cadastrarReceita(categoria, valor, descricao, tipo);
             TransacaoDAO.createReceita(receita);
             
+            ControladorClube controladorClube = new ControladorClube();
+            controladorClube.AumentarSaldoPorReceita(Sessao.getIdClubeAtual(), valor);
+        
+            // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "receita", "INSERÇÃO", idReceita);
+            
             return true;
         } else {
             return false;
         }
         
-        // controladorClube.AumentarSaldoPorReceita(idClube, valor);
         
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "receita", "INSERÇÃO", idReceita);
     }
     
     public boolean iniciarEdicaoDeReceitas(int idTransacaoFinanceira, int idClube, String categoria, float valor, String descricao, String tipo){
@@ -150,7 +160,6 @@ public class ControladorFinanceiro {
         
         boolean validacao = historicoDeTransacoes.validarInformacoes(valor);
         
-        
         float valorAnterior = historicoDeTransacoes.atualizarReceita(idTransacaoFinanceira, categoria, valor, descricao, "Receita");
             
         
@@ -158,26 +167,25 @@ public class ControladorFinanceiro {
             Receita r = new Receita (idTransacaoFinanceira, valor, categoria, descricao, new Date(), tipo);
             TransacaoDAO.updateReceita(idTransacaoFinanceira, r);
             
+            ControladorClube controladorClube = new ControladorClube();
+            controladorClube.AlterarSaldoPorAtualizacaoDeReceita(idClube, valorAnterior, valor);
+        
+            // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "despesa", "EDIÇÃO", idDespesa); -> acho q da para colocar um simplesmente pegar o valor na interface
+
+            
             return true;
         } else {
             return false;
         }
         
         
-        
-        
-        
-        // controladorClube.AlterarSaldoPorAtualizacaoDeReceita(idClube, valorAnterior, valor);
-        
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "despesa", "EDIÇÃO", idDespesa); -> acho q da para colocar um simplesmente pegar o valor na interface
-
     }
     
     public void iniciarExclusaoDeReceita(int idTransacaoFinanceira, int idClube){
         
         float valorApagado = historicoDeTransacoes.excluirReceita(idTransacaoFinanceira);
         
-        // controladorClube.recalcularSaldoPorExclusaoDeReceita(idClube, valorApagado);
+        controladorClube.recalcularSaldoPorExclusaoDeReceita(idClube, valorApagado);
 
         // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "receita", "EXCLUSÃO", idTransacaoFinanceira);
 

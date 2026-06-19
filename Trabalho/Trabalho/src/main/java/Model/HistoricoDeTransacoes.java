@@ -153,11 +153,6 @@ public class HistoricoDeTransacoes {
         {
             if (receitas.get(i).getTipo().equals("Despesa") && receitas.get(i).getIdTransacao() == idTransacaoFinanceira)
             {
-                receitas.get(i).setCategoria(categoria);
-                receitas.get(i).setDescricao(descricao);
-                receitas.get(i).setValor(valor);
-                receitas.get(i).setDescricao(descricao);
-            
                 valorAnterior = receitas.get(i).getValor();
                 
                 break;
@@ -177,8 +172,6 @@ public class HistoricoDeTransacoes {
             if (despesas.get(i).getIdTransacao() == idTransacaoFinanceira && despesas.get(i).getTipo().equals("Despesa"))
             {
                 valorApagado = despesas.get(i).getValor();
-                
-                despesas.remove(i);
                 
                 break;
             }
@@ -220,10 +213,6 @@ public class HistoricoDeTransacoes {
         {
             if (receitas.get(i).getTipo().equals("Receita") && receitas.get(i).getIdTransacao() == idTransacaoFinanceira)
             {
-                receitas.get(i).setCategoria(categoria);
-                receitas.get(i).setDescricao(descricao);
-                receitas.get(i).setValor(valor);
-                receitas.get(i).setDescricao(descricao);
             
                 valorAnterior = receitas.get(i).getValor();
                 

@@ -99,17 +99,17 @@ public class TelaClube extends javax.swing.JPanel {
 
         tabelaClubes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "nome", "ano de fundação", "país"
+                "id", "Nome", "Ano de fundação", "País", "Saldo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -184,7 +184,8 @@ public class TelaClube extends javax.swing.JPanel {
                 clube.getIdClube(),
                 clube.getNome(),
                 clube.getAnoDeFundacao(),
-                clube.getPais()
+                clube.getPais(),
+                clube.getSaldoAtual()
             };
             
             
@@ -242,7 +243,8 @@ public class TelaClube extends javax.swing.JPanel {
                     c.getIdClube(),
                     c.getNome(),
                     c.getAnoDeFundacao(),
-                    c.getPais()
+                    c.getPais(),
+                    c.getSaldoAtual()
                 };
 
 

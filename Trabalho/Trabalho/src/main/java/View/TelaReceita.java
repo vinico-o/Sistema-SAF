@@ -7,6 +7,7 @@ package View;
 import Controller.ControladorFinanceiro;
 import JDBC.ConnectionFactory;
 import Model.Receita;
+import Model.Sessao;
 import Model.TransacaoFinanceira;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -221,6 +222,8 @@ public class TelaReceita extends javax.swing.JPanel {
 
             DefaultTableModel modelo = (DefaultTableModel) tabelaReceitas.getModel();
 
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            
             modelo.setNumRows(0);
 
             Object[] linha = {
@@ -228,7 +231,7 @@ public class TelaReceita extends javax.swing.JPanel {
                 r.getDescricao(),
                 r.getCategoria(),
                 r.getValor(),
-                r.getData()
+                sdf.format(r.getData())
             };
 
             modelo.addRow(linha);
@@ -267,8 +270,8 @@ public class TelaReceita extends javax.swing.JPanel {
 
                     ConnectionFactory.iniciarTabelaTransacao();
                     
-                    // ALTERAR ISSO AQUI QUANDO DER
-                    int idClube = 0;
+                    
+                    int idClube = Sessao.getIdClubeAtual();
 
                     controladorFinanceiro.iniciarExclusaoDeReceita(idTransacao, idClube);
                 }

@@ -6,6 +6,7 @@ package View;
 
 import Controller.ControladorFinanceiro;
 import JDBC.ConnectionFactory;
+import Model.Sessao;
 import Model.TransacaoFinanceira;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -156,6 +157,8 @@ public class TelaDespesa extends javax.swing.JPanel {
 
         ArrayList<TransacaoFinanceira> despesas = controladorFinanceiro.iniciarListagemDeDespesas();
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
         for (TransacaoFinanceira d : despesas) {
 
             Object[] linha = {
@@ -163,7 +166,7 @@ public class TelaDespesa extends javax.swing.JPanel {
                 d.getDescricao(),
                 d.getCategoria(),
                 d.getValor(),
-                d.getData()
+                sdf.format(d.getData())
             };
 
             modelo.addRow(linha);
@@ -254,8 +257,8 @@ public class TelaDespesa extends javax.swing.JPanel {
 
                     ConnectionFactory.iniciarTabelaTransacao();
 
-                    // ALTERAR ISSO AQUI QUANDO DER
-                    int idClube = 0;
+                    
+                    int idClube = Sessao.getIdClubeAtual();
 
                     controladorFinanceiro.iniciarExclusaoDeDespesa(idTransacao, idClube);
                 }

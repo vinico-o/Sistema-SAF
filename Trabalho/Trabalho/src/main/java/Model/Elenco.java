@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Elenco {
     
-    private ArrayList<Jogador> jogadores;
+    private ArrayList<Jogador> jogadores = new ArrayList<>();
     int contador = 0;
     
     public ArrayList<Jogador> listarJogadores(){

@@ -93,8 +93,10 @@ public class ClubeDAO {
             stmt.execute();
             stmt.close();
 
+            TransacaoDAO.excluirTodasTransacoesDeClube(id);
+            
             JOptionPane.showMessageDialog(null, "Clube excluído com SUCESSO");
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERRO: " + e);
         }
@@ -126,6 +128,33 @@ public class ClubeDAO {
             JOptionPane.showMessageDialog(null, "ERRO ao salvar no banco: " + e.getMessage());
         }
     }
+    
+    
+    public static void atualizarSaldo(int idClube, float saldo){
+        
+        String sql = "update clube set saldo_atual = ? where id_clube = ?";
+        
+        // O try-with-resources abre e FECHA automaticamente a conexão e o stmt
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            // Vincula os parâmetros usando os getters do objeto clube
+            stmt.setFloat(1, saldo);
+            
+            stmt.setInt(2, idClube);
+
+            // Executa a inserção no banco de dados
+            stmt.execute();
+            stmt.close();
+
+            
+            JOptionPane.showMessageDialog(null, "Saldo do clube foi atualizado!");
+        } catch (Exception e) {
+            // Exibe a mensagem de erro caso algo falhe (ex: driver faltando, banco offline)
+            JOptionPane.showMessageDialog(null, "ERRO ao salvar no banco: " + e.getMessage());
+        }
+    }
+    
 }
     
 

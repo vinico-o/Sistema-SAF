@@ -6,6 +6,7 @@ package View;
 
 import Controller.ControladorFinanceiro;
 import JDBC.ConnectionFactory;
+import Model.Sessao;
 import java.util.Date;
 
 /**
@@ -144,8 +145,8 @@ public class TelaAlterarReceita extends javax.swing.JDialog {
         float valor = Float.parseFloat(valorEntradaReceita.getText());
         String descricao = descricaoEntradaReceita.getText();
 
-        // ALTERAR ISSO AQUI QUANDO DER
-        int idClube = 0;
+        
+        int idClube = Sessao.getIdClubeAtual();
         controladorFinanceiro.iniciarEdicaoDeReceitas(idReceita, idClube, categoria, valor, descricao, "Receita");
 
         this.dispose();

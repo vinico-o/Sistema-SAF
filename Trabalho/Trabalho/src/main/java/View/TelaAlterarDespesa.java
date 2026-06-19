@@ -6,6 +6,7 @@ package View;
 
 import Controller.ControladorFinanceiro;
 import JDBC.ConnectionFactory;
+import Model.Sessao;
 
 /**
  *
@@ -50,7 +51,7 @@ public class TelaAlterarDespesa extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descricaoEntradaDespesa = new javax.swing.JTextArea();
-        jButton1EditarReceita = new javax.swing.JButton();
+        jButton1EditarDespesa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,10 +76,10 @@ public class TelaAlterarDespesa extends javax.swing.JDialog {
         descricaoEntradaDespesa.setRows(5);
         jScrollPane1.setViewportView(descricaoEntradaDespesa);
 
-        jButton1EditarReceita.setText("Editar");
-        jButton1EditarReceita.addActionListener(new java.awt.event.ActionListener() {
+        jButton1EditarDespesa.setText("Editar");
+        jButton1EditarDespesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1EditarReceitaActionPerformed(evt);
+                jButton1EditarDespesaActionPerformed(evt);
             }
         });
 
@@ -102,7 +103,7 @@ public class TelaAlterarDespesa extends javax.swing.JDialog {
                 .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1EditarReceita)
+                .addComponent(jButton1EditarDespesa)
                 .addGap(179, 179, 179))
         );
         layout.setVerticalGroup(
@@ -125,7 +126,7 @@ public class TelaAlterarDespesa extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
-                .addComponent(jButton1EditarReceita)
+                .addComponent(jButton1EditarDespesa)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -136,22 +137,22 @@ public class TelaAlterarDespesa extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_idDespesaEditarActionPerformed
 
-    private void jButton1EditarReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1EditarReceitaActionPerformed
+    private void jButton1EditarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1EditarDespesaActionPerformed
         ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
 
         ConnectionFactory.iniciarTabelaTransacao();
 
-        int idReceita = Integer.parseInt(idDespesaEditar.getText());
+        int idDespesa = Integer.parseInt(idDespesaEditar.getText());
         String categoria = (String) jComboBox1Categoria.getSelectedItem();
         float valor = Float.parseFloat(valorEntradaDespesa.getText());
         String descricao = descricaoEntradaDespesa.getText();
 
-        // ALTERAR ISSO AQUI QUANDO DER
-        int idClube = 0;
-        controladorFinanceiro.iniciarEdicaoDeDespesa(idReceita, idClube, categoria, valor, descricao, "Despesa");
+        
+        int idClube = Sessao.getIdClubeAtual();
+        controladorFinanceiro.iniciarEdicaoDeDespesa(idDespesa, idClube, categoria, valor, descricao, "Despesa");
 
         this.dispose();
-    }//GEN-LAST:event_jButton1EditarReceitaActionPerformed
+    }//GEN-LAST:event_jButton1EditarDespesaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +162,7 @@ public class TelaAlterarDespesa extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea descricaoEntradaDespesa;
     private javax.swing.JTextField idDespesaEditar;
-    private javax.swing.JButton jButton1EditarReceita;
+    private javax.swing.JButton jButton1EditarDespesa;
     private javax.swing.JComboBox<String> jComboBox1Categoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
