@@ -71,6 +71,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
         chkSaude = new javax.swing.JCheckBox();
         chkSalarios = new javax.swing.JCheckBox();
         chkViagens = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
 
         jComboBox1Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Geral", "Receita", "Despesa" }));
 
@@ -106,6 +107,8 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("jButton1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,7 +121,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
                     .addComponent(chkPatrocinio)
                     .addComponent(chkPremiacoes)
                     .addComponent(chkBilheteria))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chkInfraestrutura)
                     .addComponent(chkProducao)
@@ -127,12 +130,17 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
                     .addComponent(chkViagens))
                 .addGap(90, 90, 90))
             .addGroup(layout.createSequentialGroup()
-                .addGap(211, 211, 211)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(chkOutras)))
+                        .addGap(211, 211, 211)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(chkOutras))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -164,7 +172,9 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
                         .addComponent(chkPremiacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
                 .addComponent(chkOutras)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jButton1)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -220,6 +230,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkSaude;
     private javax.swing.JCheckBox chkSocio;
     private javax.swing.JCheckBox chkViagens;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1Tipo;
     // End of variables declaration//GEN-END:variables
 }
