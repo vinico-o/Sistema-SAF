@@ -187,6 +187,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JDBC.ConnectionFactory.iniciarTabelaClube();
                 JDBC.ConnectionFactory.iniciarTabelaTransacao();
                 JDBC.ConnectionFactory.iniciarTabelaUsuario();
+                JDBC.ConnectionFactory.iniciarTabelaJogador();
 
                 TelaPrincipal tela = new TelaPrincipal();
                 // se nao existir usuario cadastrado no banco de dados, abre a telka de primeiro
@@ -199,10 +200,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     tela.repaint();
 
                     tela.setVisible(true);
-
-                    TelaCadastroClube dialogClube = new TelaCadastroClube(tela, true);
-                    dialogClube.setLocationRelativeTo(tela); // Centraliza o diálogo em cima da tela principal
-                    dialogClube.setVisible(true); // Abre o diálogo travando a tela de trás (modal)
                 }
 
                 tela.revalidate(); // recalcula o layout da tela, usado depois de alteracoes

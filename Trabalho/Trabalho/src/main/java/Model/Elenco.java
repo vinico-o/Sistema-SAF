@@ -13,41 +13,49 @@ import javax.swing.JOptionPane;
  * @author Cauan
  */
 public class Elenco {
-    
+
     private ArrayList<Jogador> jogadores = new ArrayList<>();
     int contador = 0;
-    
-    public ArrayList<Jogador> listarJogadores(){
+
+    public ArrayList<Jogador> listarJogadores() {
+        this.jogadores = DataAcessObject.JogadorDAO.listarJogadores();
+
         return jogadores;
     }
-    
-    public void atualizarJogador(int idJogador, String nome, Date data_de_nascimento, String nacionalidade, String posicao, 
-            int numero_da_camisa, float salario, int tempo_de_contrato){
-        
-        boolean ret = validarInformacoes(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato);
-        
-        if (ret == true){
-            for (int i = 0; i < jogadores.size(); i++){
-            
-            if (jogadores.get(i).getIdJogador() == idJogador){
-                
-                jogadores.get(i).setNome(nome);
-                jogadores.get(i).setData_de_nascimento(data_de_nascimento);
-                jogadores.get(i).setNacionalidade(nacionalidade);
-                jogadores.get(i).setPosicao(posicao);
-                jogadores.get(i).setNumero_da_camisa(numero_da_camisa);
-                jogadores.get(i).setSalario(salario);
-                jogadores.get(i).setTempo_de_contrato(tempo_de_contrato);
-                
-                break;
+
+    public void atualizarJogador(int idJogador, String nome, Date data_de_nascimento, String nacionalidade,
+            String posicao,
+            int numero_da_camisa, float salario, int tempo_de_contrato, float valor) {
+
+        boolean ret = validarInformacoes(idJogador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa,
+                salario,
+                tempo_de_contrato, valor);
+
+        if (ret == true) {
+            for (int i = 0; i < jogadores.size(); i++) {
+
+                if (jogadores.get(i).getIdJogador() == idJogador) {
+
+                    jogadores.get(i).setNome(nome);
+                    jogadores.get(i).setData_de_nascimento(data_de_nascimento);
+                    jogadores.get(i).setNacionalidade(nacionalidade);
+                    jogadores.get(i).setPosicao(posicao);
+                    jogadores.get(i).setNumero_da_camisa(numero_da_camisa);
+                    jogadores.get(i).setSalario(salario);
+                    jogadores.get(i).setTempo_de_contrato(tempo_de_contrato);
+                    jogadores.get(i).setValor(valor);
+
+                    break;
+                }
             }
-        }
-        }else{
+        } else {
             exibirMensagemInvalido();
         }
     }
-    
-    public boolean validarInformacoes(String nome, java.util.Date data_nascimento, String nacionalidade, String posicao, int numero_da_camisa, float salario, int tempo_de_contrato) {
+
+    public boolean validarInformacoes(int idJogador, String nome, java.util.Date data_nascimento, String nacionalidade,
+            String posicao,
+            int numero_da_camisa, float salario, int tempo_de_contrato, float valor) {
         if (nome == null || nome.trim().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(null, "O nome do jogador não pode estar vazio.");
             return false;
@@ -68,8 +76,14 @@ public class Elenco {
             return false;
         }
 
-        if (numero_da_camisa <= 0 || numero_da_camisa > 99) {
+        if ((numero_da_camisa <= 0 || numero_da_camisa > 99)) {
             javax.swing.JOptionPane.showMessageDialog(null, "O número da camisa deve estar entre 1 e 99.");
+            return false;
+        }
+
+        if (DataAcessObject.JogadorDAO.verificarCamisaEmUso(numero_da_camisa, Sessao.getIdClubeAtual(), idJogador)) {
+            javax.swing.JOptionPane.showMessageDialog(null,
+                    "O número da camisa " + numero_da_camisa + " já está em uso por outro jogador neste clube.");
             return false;
         }
 
@@ -83,54 +97,58 @@ public class Elenco {
             return false;
         }
 
+        if (valor <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(null, "O valor do jogador deve ser maior que 0.");
+            return false;
+        }
+
         return true;
     }
-    
-    public void exibirMensagemInvalido(){
+
+    public void exibirMensagemInvalido() {
         JOptionPane.showMessageDialog(null, "Valor inválido");
     }
-    
-    
-    public Jogador buscarJogador (String nome){
-        
-        for (int i = 0; i < jogadores.size(); i++){
-            
-            if (jogadores.get(i).getNome().equals(nome)){
+
+    public Jogador buscarJogador(String nome) {
+
+        for (int i = 0; i < jogadores.size(); i++) {
+
+            if (jogadores.get(i).getNome().equals(nome)) {
                 return jogadores.get(i);
             }
         }
-        
+
         return null;
     }
-    
-    public void cadastrarJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao, int numero_da_camisa,
-            float salario, int tempo_de_contrato){
-        
-        boolean ret = validarInformacoes(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato);
 
-        if (ret == true){
+    public void cadastrarJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao,
+            int numero_da_camisa,
+            float salario, int tempo_de_contrato, float valor) {
+
+        boolean ret = validarInformacoes(-1, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa,
+                salario,
+                tempo_de_contrato, valor);
+
+        if (ret == true) {
             contador++;
-            Jogador j = new Jogador(contador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato);
-        
+            Jogador j = new Jogador(contador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa,
+                    salario, tempo_de_contrato, valor);
+
             jogadores.add(j);
             DataAcessObject.JogadorDAO.createJogador(j);
-        }else{
+        } else {
             exibirMensagemInvalido();
         }
-        
-        
+
     }
-    
-    public void apagarJogador (int idJogador){
-        for (int i = 0; i < jogadores.size(); i++){
-            if (jogadores.get(i).getIdJogador() == idJogador){
+
+    public void apagarJogador(int idJogador) {
+        for (int i = 0; i < jogadores.size(); i++) {
+            if (jogadores.get(i).getIdJogador() == idJogador) {
                 jogadores.remove(i);
                 break;
             }
         }
     }
-    
-    
-    
-    
+
 }

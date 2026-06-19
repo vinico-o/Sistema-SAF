@@ -11,62 +11,62 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Cauan
  */
 public class ControladorJogador {
-    
+
     Elenco elenco = new Elenco();
     ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
-    
-    
-    public void iniciarAlteracaoDeInformacoesDeJogador(int idJogador, String nome, Date data_de_nascimento, String nacionalidade, String posicao, 
-            int numero_da_camisa, float salario, int tempo_de_contrato){
-        
-        elenco.atualizarJogador(idJogador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato);
-        
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "EDIÇÃO", idJogador);
+
+    public void iniciarAlteracaoDeInformacoesDeJogador(int idJogador, String nome, Date data_de_nascimento,
+            String nacionalidade, String posicao,
+            int numero_da_camisa, float salario, int tempo_de_contrato, float valor) {
+
+        elenco.atualizarJogador(idJogador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario,
+                tempo_de_contrato, valor);
+
+        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "EDIÇÃO",
+        // idJogador);
 
     }
-    
-    public Jogador iniciarBuscaDeJogador(String nome){
-        
+
+    public Jogador iniciarBuscaDeJogador(String nome) {
+
         Jogador ret = elenco.buscarJogador(nome);
 
         return ret;
     }
-    
-    public void iniciarCompraDeJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao, int numero_da_camisa,
-            float salario, int tempo_de_contrato){
-        
-        elenco.cadastrarJogador(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato);
 
-        
+    public void iniciarCompraDeJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao,
+            int numero_da_camisa, float salario, int tempo_de_contrato, float valor) {
+
+        elenco.cadastrarJogador(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario,
+                tempo_de_contrato, valor);
+
         // controladorFinanceiro.iniciarCadastroDeDespesas();
-        
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "INSERÇÃO", idJogador);
 
+        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "INSERÇÃO",
+        // idJogador);
 
     }
-    
-    public void iniciarVendaDeJogador(int idJogador){
-        
+
+    public void iniciarVendaDeJogador(int idJogador) {
+
         elenco.apagarJogador(idJogador);
-        
+
         // controladorFinanceiro.iniciarCadastroDeReceitas();
-        
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "EXCLUSÃO", idJogador);
 
+        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "EXCLUSÃO",
+        // idJogador);
 
     }
-    
-    public ArrayList<Jogador> iniciarListagemDeJogador(int idJogador){
-        
-        ArrayList<Jogador> j = elenco.listarJogadores();
-        
-        return j;
+
+    public ArrayList<Jogador> iniciarListagemDeJogador() {
+        Elenco hsitoricoJogador = new Elenco();
+
+        return hsitoricoJogador.listarJogadores();
     }
-    
+
 }

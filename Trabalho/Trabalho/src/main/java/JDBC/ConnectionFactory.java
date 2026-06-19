@@ -26,7 +26,7 @@ public class ConnectionFactory {
                 + ");";
 
         try (Connection conn = conectar();
-             Statement stmt = conn.createStatement()) {
+                Statement stmt = conn.createStatement()) {
 
             stmt.execute(sql);
             System.out.println("Tabela 'usuario' criada com sucesso!");
@@ -48,7 +48,7 @@ public class ConnectionFactory {
                 + ");";
 
         try (Connection conn = conectar();
-             Statement stmt = conn.createStatement()) {
+                Statement stmt = conn.createStatement()) {
 
             stmt.execute(sql);
             System.out.println("Tabela 'clube' criada com sucesso!");
@@ -73,13 +73,41 @@ public class ConnectionFactory {
                 + ");";
 
         try (Connection conn = conectar();
-             Statement stmt = conn.createStatement()) {
+                Statement stmt = conn.createStatement()) {
 
             stmt.execute(sql);
             System.out.println("Tabela 'transacao' criada com sucesso!");
 
         } catch (SQLException e) {
             System.err.println("Erro ao criar tabela transacao!");
+            e.printStackTrace();
+        }
+    }
+
+    public static void iniciarTabelaJogador() {
+
+        String sql = "CREATE TABLE IF NOT EXISTS jogador ("
+                + "id_jogador INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "nome TEXT NOT NULL, "
+                + "data_de_nascimento TEXT NOT NULL, "
+                + "nacionalidade TEXT NOT NULL, "
+                + "posicao TEXT NOT NULL, "
+                + "numero_da_camisa INTEGER NOT NULL UNIQUE, "
+                + "salario REAL NOT NULL, "
+                + "tempo_de_contrato INTEGER NOT NULL, "
+                + "valor REAL NOT NULL, "
+                + "idClube INTEGER, "
+                + "FOREIGN KEY (idClube) REFERENCES clube(id_clube)"
+                + ");";
+
+        try (Connection conn = conectar();
+                Statement stmt = conn.createStatement()) {
+
+            stmt.execute(sql);
+            System.out.println("Tabela 'jogador' criada com sucesso!");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao criar tabela jogador!");
             e.printStackTrace();
         }
     }

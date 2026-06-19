@@ -19,7 +19,7 @@ public class TelaCadastroADM extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void cadastrarAdministrador() {
+    public boolean cadastrarAdministrador() {
         String nome_usuario;
         String senha;
         ControladorUsuario controladorUsuario = new ControladorUsuario();
@@ -30,7 +30,9 @@ public class TelaCadastroADM extends javax.swing.JPanel {
         boolean operacaoConcluida = controladorUsuario.cadastrarUsuario(nome_usuario, senha, 0);
         if (operacaoConcluida == false) {
             exibirMensagemInvalido();
+            return false;
         }
+        return true;
     }
     
     public void exibirMensagemInvalido() {
@@ -141,17 +143,22 @@ public class TelaCadastroADM extends javax.swing.JPanel {
     }//GEN-LAST:event_campoNomeUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cadastrarAdministrador();
-    
-        // Descobre qual é o JFrame que está segurando este JPanel
-        javax.swing.JFrame framePai = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (cadastrarAdministrador()) {
+            // Descobre qual é o JFrame que está segurando este JPanel
+            javax.swing.JFrame framePai = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 
-        if (framePai instanceof TelaPrincipal) {
-            TelaPrincipal telaPrincipal = (TelaPrincipal) framePai;
+            if (framePai instanceof TelaPrincipal) {
+                TelaPrincipal telaPrincipal = (TelaPrincipal) framePai;
+                
+                // Abre o dialog do clube logo após cadastrar ADM
+                TelaCadastroClube dialogClube = new TelaCadastroClube(telaPrincipal, true);
+                dialogClube.setLocationRelativeTo(telaPrincipal);
+                dialogClube.setVisible(true);
 
-            // Cria uma nova instância limpa da TelaPrincipal para resetar o layout original
-            framePai.dispose(); // Fecha a janela atual
-            new TelaPrincipal().setVisible(true); // Abre uma nova, que agora vai cair no "existeUsuarioCadastrado() == true"
+                // Cria uma nova instância limpa da TelaPrincipal para resetar o layout original
+                framePai.dispose(); // Fecha a janela atual
+                new TelaPrincipal().setVisible(true); // Abre uma nova, que agora vai cair no "existeUsuarioCadastrado() == true"
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
