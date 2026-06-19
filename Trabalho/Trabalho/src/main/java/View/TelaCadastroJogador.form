@@ -159,7 +159,7 @@
             <Property name="text" type="java.lang.String" value="Comprar Jogador"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botaoConfirmar">
+        <Component class="javax.swing.JButton" name="botaoConfirmar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar"/>
           </Properties>

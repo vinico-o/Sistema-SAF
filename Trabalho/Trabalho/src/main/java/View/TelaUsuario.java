@@ -88,8 +88,8 @@ public class TelaUsuario extends javax.swing.JPanel {
         botaoCadastrar = new javax.swing.JButton();
         botaoListarUsuários = new javax.swing.JButton();
         botaoEditarUsuario = new javax.swing.JButton();
-        botaoExcluirUsuario = new javax.swing.JToggleButton();
-        botaoBuscarUsuario = new javax.swing.JToggleButton();
+        botaoExcluirUsuario = new javax.swing.JButton();
+        botaoBuscarUsuario = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 220));
 
@@ -264,10 +264,10 @@ public class TelaUsuario extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton botaoBuscarUsuario;
+    private javax.swing.JButton botaoBuscarUsuario;
     private javax.swing.JButton botaoCadastrar;
     private javax.swing.JButton botaoEditarUsuario;
-    private javax.swing.JToggleButton botaoExcluirUsuario;
+    private javax.swing.JButton botaoExcluirUsuario;
     private javax.swing.JButton botaoListarUsuários;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

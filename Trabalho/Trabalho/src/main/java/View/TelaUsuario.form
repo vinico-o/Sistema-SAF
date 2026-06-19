@@ -134,7 +134,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEditarUsuarioActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botaoExcluirUsuario">
+        <Component class="javax.swing.JButton" name="botaoExcluirUsuario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
@@ -142,7 +142,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirUsuarioActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botaoBuscarUsuario">
+        <Component class="javax.swing.JButton" name="botaoBuscarUsuario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>

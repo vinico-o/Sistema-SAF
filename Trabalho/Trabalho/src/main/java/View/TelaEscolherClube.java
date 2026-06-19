@@ -41,7 +41,7 @@ public class TelaEscolherClube extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         campoClube = new javax.swing.JComboBox<>();
-        botaoEntrar = new javax.swing.JToggleButton();
+        botaoEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -152,7 +152,7 @@ public class TelaEscolherClube extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton botaoEntrar;
+    private javax.swing.JButton botaoEntrar;
     private javax.swing.JComboBox<Clube> campoClube;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

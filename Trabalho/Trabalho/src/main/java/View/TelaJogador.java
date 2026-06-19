@@ -61,12 +61,12 @@ public class TelaJogador extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaJogadores = new javax.swing.JTable();
-        botaoComprar = new javax.swing.JToggleButton();
-        botaoVender = new javax.swing.JToggleButton();
-        botarVerDetalhes = new javax.swing.JToggleButton();
-        botaoListar = new javax.swing.JToggleButton();
-        botaoEditar = new javax.swing.JToggleButton();
-        botaoBuscar = new javax.swing.JToggleButton();
+        botaoComprar = new javax.swing.JButton();
+        botaoVender = new javax.swing.JButton();
+        botarVerDetalhes = new javax.swing.JButton();
+        botaoListar = new javax.swing.JButton();
+        botaoEditar = new javax.swing.JButton();
+        botaoBuscar = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(200, 200, 200));
 
@@ -159,12 +159,12 @@ public class TelaJogador extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton botaoBuscar;
-    private javax.swing.JToggleButton botaoComprar;
-    private javax.swing.JToggleButton botaoEditar;
-    private javax.swing.JToggleButton botaoListar;
-    private javax.swing.JToggleButton botaoVender;
-    private javax.swing.JToggleButton botarVerDetalhes;
+    private javax.swing.JButton botaoBuscar;
+    private javax.swing.JButton botaoComprar;
+    private javax.swing.JButton botaoEditar;
+    private javax.swing.JButton botaoListar;
+    private javax.swing.JButton botaoVender;
+    private javax.swing.JButton botarVerDetalhes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaJogadores;

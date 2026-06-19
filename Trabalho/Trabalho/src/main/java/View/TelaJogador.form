@@ -95,7 +95,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JToggleButton" name="botaoComprar">
+        <Component class="javax.swing.JButton" name="botaoComprar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Comprar"/>
           </Properties>
@@ -103,7 +103,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoComprarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botaoVender">
+        <Component class="javax.swing.JButton" name="botaoVender">
           <Properties>
             <Property name="text" type="java.lang.String" value="Vender"/>
           </Properties>
@@ -111,7 +111,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoVenderActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botarVerDetalhes">
+        <Component class="javax.swing.JButton" name="botarVerDetalhes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver Detalhes"/>
           </Properties>
@@ -119,17 +119,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botarVerDetalhesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botaoListar">
+        <Component class="javax.swing.JButton" name="botaoListar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Listar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botaoEditar">
+        <Component class="javax.swing.JButton" name="botaoEditar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botaoBuscar">
+        <Component class="javax.swing.JButton" name="botaoBuscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>

@@ -35,7 +35,7 @@ public class TelaCadastroJogador extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        botaoConfirmar = new javax.swing.JToggleButton();
+        botaoConfirmar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         campoNome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -289,7 +289,7 @@ public class TelaCadastroJogador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton botaoConfirmar;
+    private javax.swing.JButton botaoConfirmar;
     private javax.swing.JFormattedTextField campoDataNascimento;
     private javax.swing.JTextField campoNacionalidade;
     private javax.swing.JTextField campoNome;

@@ -46,7 +46,7 @@ public class TelaBuscarUsuario extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         campoNomeUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        botaoBuscarUsuario = new javax.swing.JToggleButton();
+        botaoBuscarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -167,7 +167,7 @@ public class TelaBuscarUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton botaoBuscarUsuario;
+    private javax.swing.JButton botaoBuscarUsuario;
     private javax.swing.JTextField campoNomeUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

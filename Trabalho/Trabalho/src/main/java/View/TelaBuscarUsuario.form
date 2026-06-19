@@ -111,7 +111,7 @@
             <Property name="text" type="java.lang.String" value="Buscar Usu&#xe1;rio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="botaoBuscarUsuario">
+        <Component class="javax.swing.JButton" name="botaoBuscarUsuario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>

@@ -51,7 +51,7 @@ public class TelaEditarUsuario extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         campoNivel = new javax.swing.JComboBox<>();
-        botaoConfirmarEdicao = new javax.swing.JToggleButton();
+        botaoConfirmarEdicao = new javax.swing.JButton();
         campoSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         campoIdUsuario = new javax.swing.JTextField();
@@ -229,7 +229,7 @@ public class TelaEditarUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton botaoConfirmarEdicao;
+    private javax.swing.JButton botaoConfirmarEdicao;
     private javax.swing.JTextField campoIdUsuario;
     private javax.swing.JComboBox<String> campoNivel;
     private javax.swing.JTextField campoNomeUsuario;
