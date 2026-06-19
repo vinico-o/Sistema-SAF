@@ -46,12 +46,12 @@ public class JogadorDAO {
     public static boolean verificarCamisaEmUso(int numero_da_camisa, int idClube, int idIgnorar) {
         String sql = "SELECT id_jogador FROM jogador WHERE numero_da_camisa = ? AND idClube = ? AND id_jogador != ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
-             PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
             stmt.setInt(1, numero_da_camisa);
             stmt.setInt(2, idClube);
             stmt.setInt(3, idIgnorar);
-            
+
             ResultSet rs = stmt.executeQuery();
             return rs.next(); // Se retornar algo, a camisa já está em uso
         } catch (Exception e) {
@@ -76,7 +76,7 @@ public class JogadorDAO {
 
                 obj.setIdJogador(rs.getInt("id_jogador"));
                 obj.setNome(rs.getString("nome"));
-                obj.setData_de_nascimento(rs.getDate("data_de_nascimento"));
+                obj.setData_de_nascimento(new java.util.Date(rs.getLong("data_de_nascimento")));
                 obj.setNacionalidade(rs.getString("nacionalidade"));
                 obj.setPosicao(rs.getString("posicao"));
                 obj.setNumero_da_camisa(rs.getInt("numero_da_camisa"));
@@ -89,8 +89,8 @@ public class JogadorDAO {
             return jogadores;
 
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            return null;
+            javax.swing.JOptionPane.showMessageDialog(null, "Erro ao listar jogadores: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 }

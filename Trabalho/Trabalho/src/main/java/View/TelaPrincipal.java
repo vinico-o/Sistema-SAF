@@ -298,21 +298,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 TelaPrincipal tela = new TelaPrincipal();
                 // se nao existir usuario cadastrado no banco de dados, abre a telka de primeiro
                 // cadastro (de ADM)
-                if (UsuarioDAO.existeUsuarioCadastrado()) {
-                    tela.setContentPane(new TelaAutenticacaoUsuario());
-                } else {
+                if (UsuarioDAO.existeUsuarioCadastrado() == false) {
                     tela.setContentPane(new TelaCadastroADM());
-                    tela.revalidate();
-                    tela.repaint();
-
-                    tela.setVisible(true);
+                } else {
+                    tela.setContentPane(new TelaAutenticacaoUsuario());
                 }
 
-                tela.revalidate(); // recalcula o layout da tela, usado depois de alteracoes
-                tela.repaint(); // redesenha a tela
-
+                tela.revalidate();
+                tela.repaint();
                 tela.setVisible(true);
-
             }
         });
     }
