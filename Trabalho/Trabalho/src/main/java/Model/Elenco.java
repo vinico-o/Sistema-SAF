@@ -143,12 +143,7 @@ public class Elenco {
     }
 
     public void apagarJogador(int idJogador) {
-        for (int i = 0; i < jogadores.size(); i++) {
-            if (jogadores.get(i).getIdJogador() == idJogador) {
-                jogadores.remove(i);
-                break;
-            }
-        }
+        DataAcessObject.JogadorDAO.apagarJogador(idJogador);
     }
 
 }

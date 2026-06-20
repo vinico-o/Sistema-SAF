@@ -47,7 +47,7 @@
                   <EmptySpace pref="259" max="32767" attributes="0"/>
                   <Component id="botaoBuscar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="botarVerDetalhes" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoVerDetalhes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="botaoListar" min="-2" pref="69" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -61,7 +61,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="botaoComprar" pref="51" max="32767" attributes="0"/>
                       <Component id="botaoVender" max="32767" attributes="0"/>
-                      <Component id="botarVerDetalhes" max="32767" attributes="0"/>
+                      <Component id="botaoVerDetalhes" max="32767" attributes="0"/>
                       <Component id="botaoListar" max="32767" attributes="0"/>
                       <Component id="botaoEditar" max="32767" attributes="0"/>
                       <Component id="botaoBuscar" max="32767" attributes="0"/>
@@ -111,12 +111,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoVenderActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botarVerDetalhes">
+        <Component class="javax.swing.JButton" name="botaoVerDetalhes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver Detalhes"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botarVerDetalhesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoVerDetalhesActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botaoListar">

@@ -5,9 +5,15 @@
 package View;
 
 import Controller.ControladorJogador;
+import Controller.ControladorUsuario;
+import DataAcessObject.JogadorDAO;
+import JDBC.ConnectionFactory;
 import Model.Jogador;
+import Model.Usuario;
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,6 +68,7 @@ public class TelaJogador extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -70,7 +77,7 @@ public class TelaJogador extends javax.swing.JPanel {
         tabelaJogadores = new javax.swing.JTable();
         botaoComprar = new javax.swing.JButton();
         botaoVender = new javax.swing.JButton();
-        botarVerDetalhes = new javax.swing.JButton();
+        botaoVerDetalhes = new javax.swing.JButton();
         botaoListar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         botaoBuscar = new javax.swing.JButton();
@@ -92,8 +99,8 @@ public class TelaJogador extends javax.swing.JPanel {
         botaoVender.setText("Vender");
         botaoVender.addActionListener(this::botaoVenderActionPerformed);
 
-        botarVerDetalhes.setText("Ver Detalhes");
-        botarVerDetalhes.addActionListener(this::botarVerDetalhesActionPerformed);
+        botaoVerDetalhes.setText("Ver Detalhes");
+        botaoVerDetalhes.addActionListener(this::botaoVerDetalhesActionPerformed);
 
         botaoListar.setText("Listar");
         botaoListar.addActionListener(this::botaoListarActionPerformed);
@@ -118,7 +125,7 @@ public class TelaJogador extends javax.swing.JPanel {
                                         Short.MAX_VALUE)
                                 .addComponent(botaoBuscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botarVerDetalhes)
+                                .addComponent(botaoVerDetalhes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botaoListar, javax.swing.GroupLayout.PREFERRED_SIZE, 69,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,7 +140,7 @@ public class TelaJogador extends javax.swing.JPanel {
                                                 Short.MAX_VALUE)
                                         .addComponent(botaoVender, javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botarVerDetalhes, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        .addComponent(botaoVerDetalhes, javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(botaoListar, javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,12 +165,45 @@ public class TelaJogador extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoVenderActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoVenderActionPerformed
-        // TODO add your handling code here:
+        int linhaSelecionada = tabelaJogadores.getSelectedRow();
+
+        if (linhaSelecionada != -1) {
+            try {
+
+                int id = Integer.parseInt(tabelaJogadores.getValueAt(linhaSelecionada, 0).toString());
+
+                ControladorJogador controladorJogador = new ControladorJogador();
+
+                ConnectionFactory.iniciarTabelaJogador();
+
+                controladorJogador.iniciarVendaDeJogador(id);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha");
+        }
     }// GEN-LAST:event_botaoVenderActionPerformed
 
-    private void botarVerDetalhesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botarVerDetalhesActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_botarVerDetalhesActionPerformed
+    private void botaoVerDetalhesActionPerformed(java.awt.event.ActionEvent evt) {
+        int linhaSelecionada = tabelaJogadores.getSelectedRow();
+
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um jogador.");
+            return;
+        }
+
+        int idJogador = (int) tabelaJogadores.getValueAt(linhaSelecionada, 0);
+
+        Jogador jogador = JogadorDAO.buscarJogadorPorId(idJogador);
+
+        if (jogador != null) {
+            TelaDetalhesJogador telaDetalhes = new TelaDetalhesJogador(null, true);
+            telaDetalhes.preencherDados(jogador);
+            telaDetalhes.setVisible(true);
+        }
+    }
 
     private void botaoComprarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoComprarActionPerformed
         java.awt.Frame framePai = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
@@ -203,7 +243,7 @@ public class TelaJogador extends javax.swing.JPanel {
     private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoListar;
     private javax.swing.JButton botaoVender;
-    private javax.swing.JButton botarVerDetalhes;
+    private javax.swing.JButton botaoVerDetalhes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaJogadores;

@@ -243,7 +243,6 @@ public class TelaUsuario extends javax.swing.JPanel {
 
         if (linhaSelecionada != -1) {
             try {
-                Object valorId = tabelaUsuarios.getValueAt(linhaSelecionada, 0);
 
                 int id = Integer.parseInt(tabelaUsuarios.getValueAt(linhaSelecionada, 0).toString());
 

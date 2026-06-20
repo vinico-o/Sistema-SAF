@@ -54,12 +54,9 @@ public class ControladorJogador {
 
     public void iniciarVendaDeJogador(int idJogador) {
 
+        Elenco elenco = new Elenco();
+
         elenco.apagarJogador(idJogador);
-
-        // controladorFinanceiro.iniciarCadastroDeReceitas();
-
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "EXCLUSÃO",
-        // idJogador);
 
     }
 
