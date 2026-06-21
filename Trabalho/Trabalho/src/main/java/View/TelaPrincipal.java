@@ -39,7 +39,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         painelConteudo = new javax.swing.JPanel();
@@ -48,9 +48,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         botaoJogadores = new javax.swing.JButton();
         botaoClubes = new javax.swing.JButton();
-        botaoDespesas = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         botaoReceitas = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        botaoDashboard = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        botaoDespesa1 = new javax.swing.JButton();
+        botaoRelatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,19 +67,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         javax.swing.GroupLayout painelConteudoLayout = new javax.swing.GroupLayout(painelConteudo);
         painelConteudo.setLayout(painelConteudoLayout);
         painelConteudoLayout.setHorizontalGroup(
-                painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(painelConteudoLayout.createSequentialGroup()
-                                .addGap(314, 314, 314)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(386, Short.MAX_VALUE)));
+            painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelConteudoLayout.createSequentialGroup()
+                .addGap(314, 314, 314)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(386, Short.MAX_VALUE))
+        );
         painelConteudoLayout.setVerticalGroup(
-                painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(painelConteudoLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelConteudoLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jPanel2.setBackground(new java.awt.Color(120, 120, 120));
 
@@ -115,23 +119,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        botaoDespesas.setBackground(new java.awt.Color(120, 120, 120));
-        botaoDespesas.setText("Despesas");
-        botaoDespesas.setAlignmentY(0.0F);
-        botaoDespesas.setBorderPainted(false);
-        botaoDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botaoDespesas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        botaoDespesas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botaoDespesasMouseEntered(evt);
-            }
-        });
-        botaoDespesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoDespesasActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("ADMINISTRAÇÃO");
 
         botaoReceitas.setBackground(new java.awt.Color(120, 120, 120));
@@ -151,67 +138,155 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("GERAL");
+
+        botaoDashboard.setBackground(new java.awt.Color(120, 120, 120));
+        botaoDashboard.setText("Dashboard");
+        botaoDashboard.setAlignmentY(0.0F);
+        botaoDashboard.setBorderPainted(false);
+        botaoDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoDashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoDashboardMouseEntered(evt);
+            }
+        });
+        botaoDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDashboardActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("ANÁLISE");
+
+        botaoDespesa1.setBackground(new java.awt.Color(120, 120, 120));
+        botaoDespesa1.setText("Despesas");
+        botaoDespesa1.setAlignmentY(0.0F);
+        botaoDespesa1.setBorderPainted(false);
+        botaoDespesa1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoDespesa1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoDespesa1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoDespesa1MouseEntered(evt);
+            }
+        });
+        botaoDespesa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDespesa1ActionPerformed(evt);
+            }
+        });
+
+        botaoRelatorio.setBackground(new java.awt.Color(120, 120, 120));
+        botaoRelatorio.setText("Relatório Financeiro");
+        botaoRelatorio.setAlignmentY(0.0F);
+        botaoRelatorio.setBorderPainted(false);
+        botaoRelatorio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoRelatorio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoRelatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botaoRelatorioMouseEntered(evt);
+            }
+        });
+        botaoRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRelatorioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(botaoJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 200,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(botaoDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2)
-                                        .addComponent(botaoClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 200,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3)
-                                        .addComponent(botaoReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 200,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(78, Short.MAX_VALUE)));
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(botaoClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(botaoDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(botaoDespesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
         jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botaoClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botaoJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botaoReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botaoDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoDespesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(painelConteudo, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(140, 140, 140)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelConteudo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botaoDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoDashboardMouseEntered
+        botaoDashboard.setBackground(new java.awt.Color(80, 80, 80));
+    }//GEN-LAST:event_botaoDashboardMouseEntered
+
+    private void botaoDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDashboardActionPerformed
+        View.TelaDashboard telaDashboard = new View.TelaDashboard();
+
+        telaDashboard.atualizarConteudo();
+        mostrarTela(telaDashboard);
+    }//GEN-LAST:event_botaoDashboardActionPerformed
+
+    private void botaoDespesa1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoDespesa1MouseEntered
+        botaoDespesa1.setBackground(new java.awt.Color(80, 80, 80));
+    }//GEN-LAST:event_botaoDespesa1MouseEntered
+
+    private void botaoDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDespesa1ActionPerformed
+        View.TelaDespesa telaDespesa = new View.TelaDespesa();
+        mostrarTela(telaDespesa);
+    }//GEN-LAST:event_botaoDespesa1ActionPerformed
+
+    private void botaoRelatorioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRelatorioMouseEntered
+        botaoRelatorio.setBackground(new java.awt.Color(80, 80, 80));
+    }//GEN-LAST:event_botaoRelatorioMouseEntered
+
+    private void botaoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRelatorioActionPerformed
+        View.TelaRelatorioFinanceiro telaRelatorioFinanceiro = new View.TelaRelatorioFinanceiro();
+        mostrarTela(telaRelatorioFinanceiro);
+    }//GEN-LAST:event_botaoRelatorioActionPerformed
+
+    
     private void botaoJogadoresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoJogadoresActionPerformed
         View.TelaJogador telaJogador = new View.TelaJogador();
 
@@ -231,16 +306,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         mostrarTela(telaClube);
     }// GEN-LAST:event_botaoClubesActionPerformed
-
-    private void botaoDespesasMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_botaoDespesasMouseEntered
-        botaoDespesas.setBackground(new java.awt.Color(80, 80, 80));
-    }// GEN-LAST:event_botaoDespesasMouseEntered
-
-    private void botaoDespesasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoDespesasActionPerformed
-        View.TelaDespesa telaDespesa = new View.TelaDespesa();
-
-        mostrarTela(telaDespesa);
-    }// GEN-LAST:event_botaoDespesasActionPerformed
 
     private void botaoReceitasMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_botaoReceitasMouseEntered
         botaoReceitas.setBackground(new java.awt.Color(80, 80, 80));
@@ -313,12 +378,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoClubes;
-    private javax.swing.JButton botaoDespesas;
+    private javax.swing.JButton botaoDashboard;
+    private javax.swing.JButton botaoDespesa1;
     private javax.swing.JButton botaoJogadores;
     private javax.swing.JButton botaoReceitas;
+    private javax.swing.JButton botaoRelatorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel painelConteudo;
     // End of variables declaration//GEN-END:variables

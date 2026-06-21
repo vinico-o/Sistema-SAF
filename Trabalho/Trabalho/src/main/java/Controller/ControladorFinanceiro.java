@@ -27,18 +27,18 @@ public class ControladorFinanceiro {
     HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
     HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
     
-    public ArrayList<Despesa> buscarDespesasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo)
+    public ArrayList<TransacaoFinanceira> buscarDespesasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo)
     {
         
-        ArrayList<Despesa> despesas = historicoDeTransacoes.buscarDespesasRelatorio(periodoInicial, periodoFinal, categorias, "Despesa");
+        ArrayList<TransacaoFinanceira> despesas = historicoDeTransacoes.buscarDespesasRelatorio(periodoInicial, periodoFinal, categorias, "Despesa");
         
         return despesas;
     }
     
-    public ArrayList<Receita> buscarReceitasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo)
+    public ArrayList<TransacaoFinanceira> buscarReceitasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo)
     {
         
-        ArrayList<Receita> receitas = historicoDeTransacoes.buscarReceitasRelatorio(periodoInicial, periodoFinal, categorias, "Receita");
+        ArrayList<TransacaoFinanceira> receitas = historicoDeTransacoes.buscarReceitasRelatorio(periodoInicial, periodoFinal, categorias, "Receita");
         
         return receitas;
     }
