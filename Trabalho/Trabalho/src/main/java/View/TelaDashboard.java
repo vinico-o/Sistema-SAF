@@ -170,7 +170,10 @@ public class TelaDashboard extends javax.swing.JPanel {
         
         ArrayList<TransacaoFinanceira> receitas = controladorFinanceiro.iniciarListagemDeReceitas();
         ArrayList<TransacaoFinanceira> despesas = controladorFinanceiro.iniciarListagemDeDespesas();
-        ArrayList<Jogador> jogadores = controladorJogador.iniciarListagemDeJogador();
+        
+        // alterar quando Partida estiver implementado!
+        ArrayList<Jogador> jogadores = null;
+        //ArrayList<Jogador> jogadores = controladorJogador.iniciarListagemDeJogador();
         
         // alterar quando Partida estiver implementado!
         ArrayList<Partida> partidas = null;
@@ -190,7 +193,9 @@ public class TelaDashboard extends javax.swing.JPanel {
         textReceitasTotais.setText(Float.toString(valorTotalReceita));
         textDespesasTotais.setText(Float.toString(valorTotalDespesa));
         textSaldoAtual.setText(Float.toString(valorTotalReceita - valorTotalDespesa));
-        textJogadoresElenco.setText(Integer.toString(jogadores.size()));
+        
+        // TROCAR AQUI
+        textJogadoresElenco.setText(Integer.toString(0));
         
         // TROCAR AQUI
         textPartidasJogadas.setText(Integer.toString(0));
@@ -198,13 +203,13 @@ public class TelaDashboard extends javax.swing.JPanel {
         
         receitas.sort(Comparator.comparing(TransacaoFinanceira::getData).reversed());
         despesas.sort(Comparator.comparing(TransacaoFinanceira::getData).reversed());
-        jogadores.reversed();
+        //jogadores.reversed();
         //partidas.reversed();
         
         
         TransacaoFinanceira ultimaReceita = !receitas.isEmpty() ? receitas.get(0) : null;
         TransacaoFinanceira ultimaDespesa = !despesas.isEmpty() ? despesas.get(0) : null;
-        Jogador ultimoJogador = !jogadores.isEmpty() ? jogadores.get(0) : null;
+        //Jogador ultimoJogador = !jogadores.isEmpty() ? jogadores.get(0) : null;
         //Partida ultimaPartida = !partidas.isEmpty() ? partidas.get(0) : null;
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -224,7 +229,7 @@ public class TelaDashboard extends javax.swing.JPanel {
             },
             {
                 "Jogador",
-                ultimoJogador != null ? ultimoJogador.getNome() : "Nenhum",
+                //ultimoJogador != null ? ultimoJogador.getNome() : "Nenhum",
                 "-", 
                 "-"
             },

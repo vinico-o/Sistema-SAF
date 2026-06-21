@@ -44,7 +44,7 @@ public class TelaCadastroDespesa extends javax.swing.JDialog {
 
         jLabel2.setText("Categoria");
 
-        jComboBox1Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Infraestrutura", "Produção", "Saúde e Fisioterapia", "Salários e Encargos", "Viagens e Lógisticas", "Outras", " " }));
+        jComboBox1Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Infraestrutura", "Produção", "Saúde e Fisioterapia", "Salários e Encargos", "Viagens e Logísticas", "Outras", " " }));
 
         jLabel3.setText("Valor");
 

@@ -33,9 +33,10 @@ public class HistoricoDeTransacoes {
         this.transacoes = transacoes;
     }
 
-    public ArrayList<Despesa> buscarDespesasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo) {
-        ArrayList<Despesa> d = new ArrayList<>();
-        d = null;
+    public ArrayList<TransacaoFinanceira> buscarDespesasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo) {
+        ArrayList<TransacaoFinanceira> d = new ArrayList<>();
+        ArrayList<TransacaoFinanceira> transacoes = TransacaoDAO.listDespesa();
+        
         
         for (int i = 0; i < transacoes.size(); i++){
             if (transacoes.get(i).getTipo().equals("Despesa"))
@@ -49,20 +50,19 @@ public class HistoricoDeTransacoes {
                             d.add((Despesa) transacoes.get(i));
                         }
                     }
-                    
-                    
                 }
             }
         }
-        
         return d;
     }
     
     
 
-    public ArrayList<Receita> buscarReceitasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList categorias, String tipo) {
-        ArrayList<Receita> r = new ArrayList<>();
-        r = null;
+    public ArrayList<TransacaoFinanceira> buscarReceitasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList categorias, String tipo) {
+        ArrayList<TransacaoFinanceira> r = new ArrayList<>();
+        ArrayList<TransacaoFinanceira> transacoes = TransacaoDAO.listReceita();
+        
+        
         
         for (int i = 0; i < transacoes.size(); i++){
             if (transacoes.get(i).getTipo().equals("Receita"))
@@ -86,18 +86,19 @@ public class HistoricoDeTransacoes {
     }
 
     public ArrayList<TransacaoFinanceira> buscarTransacaoRelatorio(Date periodoInicial, Date periodoFinal, String tipo) {
+
         ArrayList<TransacaoFinanceira> t = new ArrayList<>();
-        t = null;
+        transacoes = TransacaoDAO.listTransacoes();
         
-        for (int i = 0; i < transacoes.size(); i++){
-            if (transacoes.get(i).getTipo().equals(tipo))
-            {
-                if (transacoes.get(i).getData().before(periodoFinal) && transacoes.get(i).getData().after(periodoInicial))
-                {    
-                    t.add((Receita) transacoes.get(i));    
-                }
+        
+        for (int i = 0; i < transacoes.size(); i++) {
+
+            if (transacoes.get(i).getData().before(periodoFinal) && transacoes.get(i).getData().after(periodoInicial)) {
+                t.add(transacoes.get(i));
             }
+
         }
+        
         return t;
     }
 

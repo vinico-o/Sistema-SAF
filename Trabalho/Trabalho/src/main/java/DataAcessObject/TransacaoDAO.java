@@ -200,9 +200,41 @@ public class TransacaoDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
             return null;
         }
-        
     }
     
+    public static ArrayList<TransacaoFinanceira> listTransacoes(){
+           
+        String sql = "SELECT * FROM transacao WHERE idClube = ?";
+        try (Connection conexao = JDBC.ConnectionFactory.conectar(); 
+            PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            ArrayList<TransacaoFinanceira> receitas = new ArrayList<>();
+            
+            stmt.setInt(1, Sessao.getIdClubeAtual());
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) 
+                /// enquanto conseguir ir para a proxima linha -> arquiva as infos
+            {
+                TransacaoFinanceira obj = new TransacaoFinanceira();
+
+                obj.setIdTransacao(rs.getInt("id_transacao"));
+                obj.setValor(rs.getFloat("valor"));
+                obj.setCategoria(rs.getString("categoria"));
+                obj.setDescricao(rs.getString("descricao"));
+                obj.setData(new java.util.Date(rs.getLong("data")));
+                obj.setTipo(rs.getString("tipo"));
+
+
+                receitas.add(obj);
+            }
+            return receitas;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
+        }
+    }
     public static void updateDespesa(int id, Despesa despesa) {
         // String de conexão SQL
         String sql = "update transacao set valor = ?, categoria = ?, descricao = ?, data = ?, tipo = ? where id_transacao = ?";

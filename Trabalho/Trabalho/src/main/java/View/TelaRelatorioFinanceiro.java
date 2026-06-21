@@ -4,10 +4,15 @@
  */
 package View;
 
+import Charts.RelatorioLinhaTempoFinanceiro;
+import Charts.RelatorioPizzaDespesas;
+import Charts.RelatorioPizzaReceitas;
+import Controller.ControladorRelatorio;
+import Model.TransacaoFinanceira;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import javax.swing.JCheckBox;
-
 /**
  *
  * @author Cauan
@@ -28,6 +33,10 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
         listaDespesas = Arrays.asList(chkInfraestrutura, chkProducao, chkSaude, chkSalarios, chkViagens);
 
         jComboBox1Tipo.addActionListener(e -> gerenciarFiltrosEmTela());
+        
+        listaReceitas.forEach(chk -> chk.setEnabled(false));
+        listaDespesas.forEach(chk -> chk.setEnabled(false));
+        chkOutras.setEnabled(false);
     }
 
     public static void main(String[] args) {
@@ -59,6 +68,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        campoDataNascimento = new javax.swing.JFormattedTextField();
         jComboBox1Tipo = new javax.swing.JComboBox<>();
         chkBilheteria = new javax.swing.JCheckBox();
         chkPatrocinio = new javax.swing.JCheckBox();
@@ -71,7 +81,18 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
         chkSaude = new javax.swing.JCheckBox();
         chkSalarios = new javax.swing.JCheckBox();
         chkViagens = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        botaoGerarRelatorioFinanceiro = new javax.swing.JButton();
+        campoPeriodoFinal = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        Final = new javax.swing.JLabel();
+        campoPeriodoInicial1 = new javax.swing.JFormattedTextField();
+
+        campoDataNascimento.setBackground(new java.awt.Color(200, 200, 200));
+        try {
+            campoDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jComboBox1Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Geral", "Receita", "Despesa" }));
 
@@ -100,55 +121,94 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
 
         chkSalarios.setText("Salários e Encargos");
 
-        chkViagens.setText("Viagens e Lógisticas");
+        chkViagens.setText("Viagens e Logísticas");
         chkViagens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkViagensActionPerformed(evt);
             }
         });
 
-        jButton1.setText("jButton1");
+        botaoGerarRelatorioFinanceiro.setText("Gerar");
+        botaoGerarRelatorioFinanceiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGerarRelatorioFinanceiroActionPerformed(evt);
+            }
+        });
+
+        campoPeriodoFinal.setBackground(new java.awt.Color(200, 200, 200));
+        try {
+            campoPeriodoFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoPeriodoFinal.setText("24/06/2026");
+
+        jLabel1.setText("Início");
+
+        Final.setText("Final");
+
+        campoPeriodoInicial1.setBackground(new java.awt.Color(200, 200, 200));
+        try {
+            campoPeriodoInicial1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoPeriodoInicial1.setText("01/01/2001");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkProdutos)
-                    .addComponent(chkSocio)
-                    .addComponent(chkPatrocinio)
-                    .addComponent(chkPremiacoes)
-                    .addComponent(chkBilheteria))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkInfraestrutura)
-                    .addComponent(chkProducao)
-                    .addComponent(chkSaude)
-                    .addComponent(chkSalarios)
-                    .addComponent(chkViagens))
-                .addGap(90, 90, 90))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chkProdutos)
+                            .addComponent(chkSocio)
+                            .addComponent(chkPatrocinio)
+                            .addComponent(chkPremiacoes)
+                            .addComponent(chkBilheteria))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkInfraestrutura)
+                            .addComponent(chkProducao)
+                            .addComponent(chkSaude)
+                            .addComponent(chkSalarios)
+                            .addComponent(chkViagens))
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(chkOutras))))
+                                .addComponent(campoPeriodoInicial1)
+                                .addGap(106, 106, 106))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(156, 156, 156)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(24, 24, 24))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(campoPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(156, 156, 156))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(jButton1)))
+                        .addGap(142, 142, 142)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkOutras)
+                            .addComponent(botaoGerarRelatorioFinanceiro))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(chkInfraestrutura)
@@ -170,11 +230,19 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
                         .addComponent(chkSocio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chkPremiacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
+                .addGap(13, 13, 13)
                 .addComponent(chkOutras)
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Final))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoPeriodoInicial1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(botaoGerarRelatorioFinanceiro)
+                .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,19 +254,96 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkViagensActionPerformed
 
-    private void gerenciarFiltrosEmTela() {
-     
-    
-    String opcaoSelecionada = (String) jComboBox1Tipo.getSelectedItem();
+    private void botaoGerarRelatorioFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarRelatorioFinanceiroActionPerformed
+       
+        ControladorRelatorio controladorRelatorio = new ControladorRelatorio();
+        
+        java.util.Date periodoInicial = null;
+        java.util.Date periodoFinal = null;
+        try {
+             periodoInicial = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(campoPeriodoInicial1.getText().trim());
+             periodoFinal = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(campoPeriodoFinal.getText().trim());
+            } catch (java.text.ParseException e) {
+        }
+        
+        ArrayList<String> selecionados = new ArrayList<>();
+        
+        ArrayList<TransacaoFinanceira> transacao = null;
+        
+        switch (jComboBox1Tipo.getSelectedItem().toString())
+        {
+            case "Geral":
+                transacao = controladorRelatorio.exibirRelatorioFinanceiroGeral(periodoInicial, periodoFinal, "ambos");
+                
+                exibirRelatorioDeTransacoes(transacao);
+                break;
+            
+            case "Receita":
+                for (JCheckBox chk : listaReceitas) {
+                    if (chk.isSelected()) {
+                        selecionados.add(chk.getText()); 
+                    }
+                }
+                
+                if (chkOutras.isSelected()){
+                    selecionados.add(chkOutras.getText());
+                }
+                
+                transacao = controladorRelatorio.exibirRelatorioReceitas(periodoInicial, periodoFinal, selecionados, "Receita");
+                
+                exibirRelatorioDeReceita(transacao);
+                break;
+            
+            
+            case "Despesa":
+                
+                for (JCheckBox chk : listaDespesas) {
+                    if (chk.isSelected()) {
+                        selecionados.add(chk.getText()); 
+                    }
+                }
+                
+                if (chkOutras.isSelected()){
+                    selecionados.add(chkOutras.getText());
+                }
+                
+                transacao = controladorRelatorio.exibirRelatorioDespesas(periodoInicial, periodoFinal, selecionados, "Despesa");
+                
+                exibirRelatorioDeDespesa(transacao);
+                break;   
+        }
+    }//GEN-LAST:event_botaoGerarRelatorioFinanceiroActionPerformed
 
+    private void exibirRelatorioDeTransacoes(ArrayList<TransacaoFinanceira> transacoes) {
+        javax.swing.JFrame janelaPai = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        RelatorioLinhaTempoFinanceiro telaGrafico = new RelatorioLinhaTempoFinanceiro(janelaPai, transacoes);
+        telaGrafico.setVisible(true);
+    }
+    
+    private void exibirRelatorioDeReceita(ArrayList<TransacaoFinanceira> transacoes){
+        javax.swing.JFrame janelaPai = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        RelatorioPizzaReceitas telaGrafico = new RelatorioPizzaReceitas(janelaPai, transacoes);
+        telaGrafico.setVisible(true);
+    }
+    
+    private void exibirRelatorioDeDespesa(ArrayList<TransacaoFinanceira> transacoes){
+        javax.swing.JFrame janelaPai = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        RelatorioPizzaDespesas telaGrafico = new RelatorioPizzaDespesas(janelaPai, transacoes);
+        telaGrafico.setVisible(true);
+    }
+    
+    private void gerenciarFiltrosEmTela() {
+        
+    String opcaoSelecionada = (String) jComboBox1Tipo.getSelectedItem();
+    
     if ("Geral".equals(opcaoSelecionada)) {
-        // Opção Geral: Habilita absolutamente tudo
-        listaReceitas.forEach(chk -> chk.setEnabled(true));
-        listaDespesas.forEach(chk -> chk.setEnabled(true));
-        chkOutras.setEnabled(true);
+        
+        listaReceitas.forEach(chk -> chk.setEnabled(false));
+        listaDespesas.forEach(chk -> chk.setEnabled(false));
+        chkOutras.setEnabled(false);
     } 
     else if ("Receita".equals(opcaoSelecionada)) {
-        // Opção Receita: Liga receitas, desliga e limpa despesas
+        
         listaReceitas.forEach(chk -> chk.setEnabled(true));
         listaDespesas.forEach(chk -> {
             chk.setEnabled(false);
@@ -207,7 +352,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
         chkOutras.setEnabled(true);
     } 
     else if ("Despesa".equals(opcaoSelecionada)) {
-        // Opção Despesa: Liga despesas, desliga e limpa receitas
+        
         listaDespesas.forEach(chk -> chk.setEnabled(true));
         listaReceitas.forEach(chk -> {
             chk.setEnabled(false);
@@ -219,6 +364,11 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Final;
+    private javax.swing.JButton botaoGerarRelatorioFinanceiro;
+    private javax.swing.JFormattedTextField campoDataNascimento;
+    private javax.swing.JFormattedTextField campoPeriodoFinal;
+    private javax.swing.JFormattedTextField campoPeriodoInicial1;
     private javax.swing.JCheckBox chkBilheteria;
     private javax.swing.JCheckBox chkInfraestrutura;
     private javax.swing.JCheckBox chkOutras;
@@ -230,7 +380,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkSaude;
     private javax.swing.JCheckBox chkSocio;
     private javax.swing.JCheckBox chkViagens;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1Tipo;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,18 +26,21 @@ public class ControladorRelatorio {
         //exibirRelatorioDePartidas(partidas)
     }
     
-    public void exibirRelatorioDespesas(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo){
-        ArrayList<Despesa> despesas = controladorFinanceiro.buscarDespesasRelatorio(periodoInicial, periodoFinal, categorias, "Despesa");
-        //exibirRelatorioDeDespesa(despesas)
+    public ArrayList<TransacaoFinanceira> exibirRelatorioDespesas(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo){
+        ArrayList<TransacaoFinanceira> despesas = controladorFinanceiro.buscarDespesasRelatorio(periodoInicial, periodoFinal, categorias, "Despesa");
+        
+        return despesas;
     }
     
-    public void exibirRelatorioReceitas(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo){
-        ArrayList<Receita> receitas = controladorFinanceiro.buscarReceitasRelatorio(periodoInicial, periodoFinal, categorias, "Receita");
-        // exibirRelatorioDeReceita(receitas)
+    public ArrayList<TransacaoFinanceira> exibirRelatorioReceitas(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo){
+        ArrayList<TransacaoFinanceira> receitas = controladorFinanceiro.buscarReceitasRelatorio(periodoInicial, periodoFinal, categorias, "Receita");
+        
+        return receitas;
     }
     
-    public void exibirRelatorioFinanceiroGeral(Date periodoInicial, Date periodoFinal, String tipo){
+    public ArrayList<TransacaoFinanceira> exibirRelatorioFinanceiroGeral(Date periodoInicial, Date periodoFinal, String tipo){
         ArrayList<TransacaoFinanceira> transacoes = controladorFinanceiro.buscarTransacoes(periodoInicial, periodoFinal, "ambos");
-        // exibirRelatorioDeReceita(transacoes)
+        
+        return transacoes;
     }
 }
