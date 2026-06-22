@@ -4,6 +4,7 @@
  */
 package Model.Usuario;
 
+import Controller.ControladorAuditoria;
 import DataAcessObject.UsuarioDAO;
 import Model.Sessao;
 import java.util.ArrayList;
@@ -63,6 +64,9 @@ public class HistoricoDeUsuario {
                 Usuario usuario = new Usuario(nome_usuario, senha, nivel_usuario, Sessao.getUsuarioLogado().getIdClube());
                 DataAcessObject.UsuarioDAO.atualizarUsuario(usuario, id_usuario);
             }
+            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Usuário", "EDIÇÃO", id_usuario);
+            
         }
     }
 
@@ -112,5 +116,7 @@ public class HistoricoDeUsuario {
 
     public void excluirUsuario(int id_usuario) {
         UsuarioDAO.excluirUsuario(id_usuario);
+        ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+        controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Usuário", "EXCLUSÃO", id_usuario);
     }
 }

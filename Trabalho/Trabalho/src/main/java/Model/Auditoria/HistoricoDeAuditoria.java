@@ -4,6 +4,7 @@
  */
 package Model.Auditoria;
 
+import DataAcessObject.AuditoriaDAO;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,7 +15,6 @@ import java.util.Date;
 public class HistoricoDeAuditoria {
     
     ArrayList<Auditoria> auditorias = new ArrayList<>();
-    private int contador = 0;
     
     
     public ArrayList<Auditoria> getAuditorias() {
@@ -27,14 +27,15 @@ public class HistoricoDeAuditoria {
     
     public void registrarAuditoria(String nomeUsuario, String entidadeAfetada, String tipoDeLog, int idRegistro){
         
-        contador++;
+        Auditoria a = new Auditoria(0, tipoDeLog, nomeUsuario, idRegistro, entidadeAfetada);
         
-        Date d = new Date();
+        AuditoriaDAO.createAuditoria(a);
+    }
+    
+    public ArrayList<Auditoria> listarAuditorias(){
+        auditorias = AuditoriaDAO.listAuditoria();
         
-        Auditoria a = new Auditoria(contador, tipoDeLog, d, nomeUsuario, entidadeAfetada, idRegistro);
-        
-        
-        auditorias.add(a);
+        return auditorias;
     }
     
 }

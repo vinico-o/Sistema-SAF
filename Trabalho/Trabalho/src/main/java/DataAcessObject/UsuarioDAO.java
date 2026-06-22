@@ -196,4 +196,41 @@ public class UsuarioDAO {
         }
     }
     
+    public static void excluirTodosUsuariosDeClube(int idClube){
+        String sql = "delete from usuario where idClube = ?";
+        
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();   
+            PreparedStatement stmt = conexao.prepareStatement(sql))
+        {
+            stmt.setInt(1, idClube);
+
+            stmt.execute();
+            stmt.close();
+
+            
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e);
+        }
+    }
+    
+    public static int obterUltimoIdUsuario() {
+        String sql = "SELECT id_usuario FROM usuario ORDER BY id_usuario DESC LIMIT 1;";
+
+        try (Connection conexao = JDBC.ConnectionFactory.conectar(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "ERRO ao usar o banco: " + e.getMessage());
+        }
+
+        return -1; // se der erro -> retorna -1
+    }
+    
 }

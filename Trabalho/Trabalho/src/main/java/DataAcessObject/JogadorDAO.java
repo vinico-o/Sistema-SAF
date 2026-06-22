@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -150,6 +151,41 @@ public class JogadorDAO {
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(null, "Erro ao excluir jogador: " + e.getMessage());
         }
+    }
+
+    public static void excluirTodosJogadoresDeClube(int idClube) {
+        String sql = "delete from jogador where idClube = ?";
+
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, idClube);
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e);
+        }
+    }
+
+    public static int obterUltimoIdJogador() {
+        String sql = "SELECT id_jogador FROM jogador ORDER BY id_jogador DESC LIMIT 1;";
+
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "ERRO ao usar o banco: " + e.getMessage());
+        }
+
+        return -1; // se der erro -> retorna -1
     }
 
     public static void atualizarJogador(Jogador jogador) {

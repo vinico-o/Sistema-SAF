@@ -5,6 +5,7 @@
 package Model.Clube;
 
 import DataAcessObject.ClubeDAO;
+import Model.Sessao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -44,6 +45,7 @@ public class HistoricoDeClubes {
     }
     
     
+    // para cadastro
     public boolean validarUnicidadeDeClube(String nomeClube, int anoFundacao, String pais){
         this.clubes = ClubeDAO.listClube();
         
@@ -56,18 +58,36 @@ public class HistoricoDeClubes {
     return true;
     }
     
-    public void editarClube (int idClube, String nomeClube, int anoFundacao, String pais){
-        boolean retorno = validarUnicidadeDeClube(nomeClube, anoFundacao, pais);
+    // para edição
+    public boolean validarUnicidadeDeClube(int idClube, String nomeClube, int anoFundacao, String pais) {
+        this.clubes = ClubeDAO.listClube();
+
+        for (int i = 0; i < clubes.size(); i++) {
+
+            if (clubes.get(i).getIdClube() != idClube) {
+                if (clubes.get(i).getNome().equals(nomeClube)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    public boolean editarClube (int idClube, String nomeClube, int anoFundacao, String pais){
+        boolean retorno = validarUnicidadeDeClube(idClube, nomeClube, anoFundacao, pais);
         
         Clube c = new Clube(idClube, nomeClube, anoFundacao, pais, 0f);
         
         if (retorno == true){
             ClubeDAO.atualizarClube(idClube, c);
+            
+            return true;
         }
         else{
             exibirMensagemInvalido();
+            
+            return false;
         }
-        
     }
     
     public Clube buscarClube (int idClube){
@@ -82,8 +102,17 @@ public class HistoricoDeClubes {
         return null;
     }
     
-    public void apagarClube(int idClube){
-        ClubeDAO.ExcluirClube(idClube);
+    public boolean apagarClube(int idClube){
+        if (Sessao.getIdClubeAtual() != idClube){
+            ClubeDAO.ExcluirClube(idClube);
+            
+            return true;
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Proibido excluir clube que está sendo operado");
+            
+            return false;
+        }
     }
     
     public ArrayList<Clube> listarClubes(){

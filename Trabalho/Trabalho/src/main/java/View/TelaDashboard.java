@@ -157,8 +157,8 @@ public class TelaDashboard extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(253, 253, 253))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(400, 400, 400))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,14 +170,8 @@ public class TelaDashboard extends javax.swing.JPanel {
         
         ArrayList<TransacaoFinanceira> receitas = controladorFinanceiro.iniciarListagemDeReceitas();
         ArrayList<TransacaoFinanceira> despesas = controladorFinanceiro.iniciarListagemDeDespesas();
-        
-        // alterar quando Partida estiver implementado!
-        ArrayList<Jogador> jogadores = null;
-        //ArrayList<Jogador> jogadores = controladorJogador.iniciarListagemDeJogador();
-        
-        // alterar quando Partida estiver implementado!
-        ArrayList<Partida> partidas = null;
-        //ArrayList<Partida> partidas = controladorPartida.
+        ArrayList<Jogador> jogadores = controladorJogador.iniciarListagemDeJogador();
+        ArrayList<Partida> partidas = controladorPartida.iniciarListagemDePartidas();
         
         float valorTotalReceita = 0;
         float valorTotalDespesa = 0;
@@ -195,22 +189,26 @@ public class TelaDashboard extends javax.swing.JPanel {
         textSaldoAtual.setText(Float.toString(valorTotalReceita - valorTotalDespesa));
         
         // TROCAR AQUI
-        textJogadoresElenco.setText(Integer.toString(0));
+        if (jogadores == null){
+            textJogadoresElenco.setText(Integer.toString(0));
+        }else {
+            textJogadoresElenco.setText(Integer.toString(jogadores.size()));
+        }
         
-        // TROCAR AQUI
-        textPartidasJogadas.setText(Integer.toString(0));
+        if (partidas == null){
+            textPartidasJogadas.setText(Integer.toString(0));
+        }else {
+            textPartidasJogadas.setText(Integer.toString(partidas.size()));
+        }
+        
         
         
         receitas.sort(Comparator.comparing(TransacaoFinanceira::getData).reversed());
         despesas.sort(Comparator.comparing(TransacaoFinanceira::getData).reversed());
-        //jogadores.reversed();
-        //partidas.reversed();
-        
         
         TransacaoFinanceira ultimaReceita = !receitas.isEmpty() ? receitas.get(0) : null;
         TransacaoFinanceira ultimaDespesa = !despesas.isEmpty() ? despesas.get(0) : null;
-        //Jogador ultimoJogador = !jogadores.isEmpty() ? jogadores.get(0) : null;
-        //Partida ultimaPartida = !partidas.isEmpty() ? partidas.get(0) : null;
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
@@ -226,18 +224,6 @@ public class TelaDashboard extends javax.swing.JPanel {
                 ultimaDespesa != null ? ultimaDespesa.getDescricao() : "Nenhuma",
                 ultimaDespesa != null ? ultimaDespesa.getValor() : 0.0,
                 ultimaDespesa != null ? sdf.format(ultimaDespesa.getData()) : "-"
-            },
-            {
-                "Jogador",
-                //ultimoJogador != null ? ultimoJogador.getNome() : "Nenhum",
-                "-", 
-                "-"
-            },
-            {
-                "Partida",
-                //ultimaPartida != null ? ultimaPartida.getLocal(): "Nenhuma",
-                //ultimaPartida != null ? ultimaPartida.getPremiacao(): 0.0,
-                //ultimaPartida != null ? sdf.format(ultimaPartida.getData()) : "-"
             }
         };
         

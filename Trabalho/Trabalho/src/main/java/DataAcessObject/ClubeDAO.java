@@ -94,6 +94,10 @@ public class ClubeDAO {
             stmt.close();
 
             TransacaoDAO.excluirTodasTransacoesDeClube(id);
+            JogadorDAO.excluirTodosJogadoresDeClube(id);
+            PartidaDAO.excluirTodasPartidasDeClube(id);
+            UsuarioDAO.excluirTodosUsuariosDeClube(id);
+            AuditoriaDAO.excluirTodasAuditoriasDeClube(id);
             
             JOptionPane.showMessageDialog(null, "Clube excluído com SUCESSO");
             
@@ -155,6 +159,25 @@ public class ClubeDAO {
         }
     }
     
+    public static int obterUltimoIdClube() {
+        String sql = "SELECT id_clube FROM clube ORDER BY id_clube DESC LIMIT 1;";
+
+        try (Connection conexao = JDBC.ConnectionFactory.conectar(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "ERRO ao usar o banco: " + e.getMessage());
+        }
+
+        return -1; // se der erro -> retorna -1
+    }
+
 }
     
 

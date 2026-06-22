@@ -155,4 +155,31 @@ public class ConnectionFactory {
             e.printStackTrace();
         }
     }
+    
+    public static void iniciarTabelaAuditoria() {
+
+        String sql = "CREATE TABLE IF NOT EXISTS auditoria ("
+                + "id_auditoria INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "tipo_de_log TEXT NOT NULL, "
+                + "data TEXT NOT NULL, "
+                + "idRegistroAfetado INTEGER NOT NULL, "
+                + "entidadeAfetada TEXT NOT NULL, "
+                + "idClube INTEGER NOT NULL, "
+                + "idUsuario INTEGER NOT NULL, "
+                + "nomeUsuario TEXT NOT NULL, "
+                + "FOREIGN KEY (idClube) REFERENCES clube(id_clube), "
+                + "FOREIGN KEY (idUsuario) REFERENCES usuario(id_usuario) "
+                + ");";
+
+        try (Connection conn = conectar();
+                Statement stmt = conn.createStatement()) {
+
+            stmt.execute(sql);
+            System.out.println("Tabela 'auditoria' criada com sucesso!");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao criar tabela usuario!");
+            e.printStackTrace();
+        }
+    }
 }

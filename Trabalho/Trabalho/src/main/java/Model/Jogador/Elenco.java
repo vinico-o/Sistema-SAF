@@ -4,6 +4,8 @@
  */
 package Model.Jogador;
 
+import Controller.ControladorAuditoria;
+import DataAcessObject.JogadorDAO;
 import Model.Sessao;
 import java.util.ArrayList;
 import java.util.Date;
@@ -132,6 +134,9 @@ public class Elenco {
 
     public void apagarJogador(int idJogador) {
         DataAcessObject.JogadorDAO.apagarJogador(idJogador);
+        ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+        controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EXCLUSÃO",
+                idJogador);
     }
 
 }

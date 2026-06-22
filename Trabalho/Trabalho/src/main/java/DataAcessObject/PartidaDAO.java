@@ -11,6 +11,8 @@ import JDBC.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -269,6 +271,41 @@ public class PartidaDAO {
             javax.swing.JOptionPane.showMessageDialog(null, "Erro ao buscar partidas por filtro: " + e.getMessage());
             return new java.util.ArrayList<>();
         }
+    }
+
+    public static void excluirTodasPartidasDeClube(int idClube) {
+        String sql = "delete from partida where idClube = ?";
+
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, idClube);
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e);
+        }
+    }
+
+    public static int obterUltimoIdPartida() {
+        String sql = "SELECT id_partida FROM partida ORDER BY id_partida DESC LIMIT 1;";
+
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "ERRO ao usar o banco: " + e.getMessage());
+        }
+
+        return -1; // se der erro -> retorna -1
     }
 
     public static Partida buscarPartidaMaisRecente() {
