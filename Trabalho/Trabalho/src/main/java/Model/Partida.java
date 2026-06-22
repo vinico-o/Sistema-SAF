@@ -26,8 +26,8 @@ public class Partida {
     public Partida() {
     }
 
-    public Partida(int idPartida, Date data, String clubeAdversario, int golsMarcados, int golsSofridos, String competicao, float premiacao, int publico, float valorDoIngresso, String local) {
-        this.idPartida = idPartida;
+    public Partida(Date data, String clubeAdversario, int golsMarcados, int golsSofridos,
+            String competicao, float premiacao, int publico, float valorDoIngresso, String local) {
         this.data = data;
         this.clubeAdversario = clubeAdversario;
         this.golsMarcados = golsMarcados;
@@ -119,6 +119,13 @@ public class Partida {
     public void setLocal(String local) {
         this.local = local;
     }
-    
-    
+
+    public int getIdClube() {
+        return idClube;
+    }
+
+    public void setIdClube(int idClube) {
+        this.idClube = idClube;
+    }
+
 }

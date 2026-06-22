@@ -111,4 +111,33 @@ public class ConnectionFactory {
             e.printStackTrace();
         }
     }
+    
+    public static void iniciarTabelaPartida() {
+
+        String sql = "CREATE TABLE IF NOT EXISTS partida ("
+                + "id_partida INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "data TEXT NOT NULL, "
+                + "clube_adversario TEXT NOT NULL, "
+                + "gols_marcados INTEGER NOT NULL, "
+                + "gols_sofridos INTEGER NOT NULL, "
+                + "competicao TEXT NOT NULL, "
+                + "premiacao REAL NOT NULL, "
+                + "publico INTEGER NOT NULL, "
+                + "valor_do_ingresso REAL NOT NULL, "
+                + "local TEXT NOT NULL, "
+                + "idClube INTEGER, "
+                + "FOREIGN KEY (idClube) REFERENCES clube(id_clube)"
+                + ");";
+
+        try (Connection conn = conectar();
+                Statement stmt = conn.createStatement()) {
+
+            stmt.execute(sql);
+            System.out.println("Tabela 'partida' criada com sucesso!");
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao criar tabela partida!");
+            e.printStackTrace();
+        }
+    }
 }
