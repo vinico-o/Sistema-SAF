@@ -222,6 +222,11 @@ public class TelaUsuario extends javax.swing.JPanel {
                 String nome = tabelaUsuarios.getValueAt(linhaSelecionada, 1).toString();
                 Usuario usuario = DataAcessObject.UsuarioDAO.buscarUsuario(nome);
 
+                if (usuario == null) {
+                    JOptionPane.showMessageDialog(null, "Usuário não encontrado!");
+                    return;
+                }
+
                 java.awt.Frame framePai = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
 
                 TelaEditarUsuario telaEditarUsuario = new TelaEditarUsuario(framePai, true, usuario.getId_usuario(),
