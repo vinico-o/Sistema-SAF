@@ -19,13 +19,14 @@ public class TransacaoFinanceira {
     private Date data;
     private String tipo;
     private int idClube;
+    private Integer idPartida; // Usando Integer para aceitar null
+    private Integer idJogador; // Usando Integer para aceitar null
 
     public TransacaoFinanceira() {
     }
 
-    
-    
-    public TransacaoFinanceira(int idTransacao, float valor, String categoria, String descricao, Date data, String tipo) {
+    public TransacaoFinanceira(int idTransacao, float valor, String categoria, String descricao, Date data,
+            String tipo) {
         this.idTransacao = idTransacao;
         this.valor = valor;
         this.categoria = categoria;
@@ -82,14 +83,29 @@ public class TransacaoFinanceira {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+
     public void setIdClube(int idClube) {
         this.idClube = idClube;
     }
-    
+
     public int getIdClube() {
         return idClube;
     }
-    
-    
+
+    public Integer getIdPartida() {
+        return idPartida;
+    }
+
+    public void setIdPartida(Integer idPartida) {
+        this.idPartida = idPartida;
+    }
+
+    public Integer getIdJogador() {
+        return idJogador;
+    }
+
+    public void setIdJogador(Integer idJogador) {
+        this.idJogador = idJogador;
+    }
+
 }

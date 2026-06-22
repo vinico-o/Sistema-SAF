@@ -4,8 +4,10 @@
  */
 package View.Partida;
 
+import Controller.ControladorFinanceiro;
 import Controller.ControladorPartida;
 import JDBC.ConnectionFactory;
+import Model.Partida.Partida;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,7 +42,8 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         painelFundo = new javax.swing.JPanel();
@@ -95,7 +98,8 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
         jLabelCompeticao.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCompeticao.setText("Competição");
 
-        campoCompeticao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Brasileirão", "Libertadores", "Sul-Americana", "Copa do Brasil", "Estadual", "Amistoso" }));
+        campoCompeticao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Brasileirão", "Libertadores",
+                "Sul-Americana", "Copa do Brasil", "Estadual", "Amistoso" }));
 
         jLabelPremiacao.setForeground(new java.awt.Color(0, 0, 0));
         jLabelPremiacao.setText("Premiação (R$)");
@@ -124,7 +128,8 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
 
         campoData.setBackground(new java.awt.Color(200, 200, 200));
         try {
-            campoData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            campoData.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -139,98 +144,163 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
         javax.swing.GroupLayout painelFundoLayout = new javax.swing.GroupLayout(painelFundo);
         painelFundo.setLayout(painelFundoLayout);
         painelFundoLayout.setHorizontalGroup(
-            painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelFundoLayout.createSequentialGroup()
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelFundoLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelFundoLayout.createSequentialGroup()
-                                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(campoAdversario, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(jLabelGolsMarcados, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoCompeticao, 0, 160, Short.MAX_VALUE)
-                                    .addComponent(campoGolsMarcados, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(jLabelData, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(jLabelAdversario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelGolsSofridos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(campoGolsSofridos, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(jLabelCompeticao, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoData))
-                                .addGap(161, 161, 161)
-                                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(campoLocal, 0, 160, Short.MAX_VALUE)
-                                    .addComponent(jLabelLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelPublico, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoPublico, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(campoValorIngresso, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(jLabelValorIngresso)
-                                    .addComponent(campoPremiacao)))
-                            .addGroup(painelFundoLayout.createSequentialGroup()
-                                .addGap(182, 182, 182)
-                                .addComponent(jLabelTitulo))))
-                    .addGroup(painelFundoLayout.createSequentialGroup()
-                        .addGap(239, 239, 239)
-                        .addComponent(botaoCadastrar)))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+                painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelFundoLayout.createSequentialGroup()
+                                .addGroup(painelFundoLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(painelFundoLayout.createSequentialGroup()
+                                                .addGap(40, 40, 40)
+                                                .addGroup(painelFundoLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(painelFundoLayout.createSequentialGroup()
+                                                                .addGroup(painelFundoLayout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                                        false)
+                                                                        .addComponent(campoAdversario,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                160, Short.MAX_VALUE)
+                                                                        .addComponent(jLabelGolsMarcados,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                141,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(campoCompeticao, 0, 160,
+                                                                                Short.MAX_VALUE)
+                                                                        .addComponent(campoGolsMarcados,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                160, Short.MAX_VALUE)
+                                                                        .addComponent(jLabelData,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                160, Short.MAX_VALUE)
+                                                                        .addComponent(jLabelAdversario,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                        .addComponent(jLabelGolsSofridos,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                        .addComponent(campoGolsSofridos,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                160, Short.MAX_VALUE)
+                                                                        .addComponent(jLabelCompeticao,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                141,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(campoData))
+                                                                .addGap(161, 161, 161)
+                                                                .addGroup(painelFundoLayout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                                        false)
+                                                                        .addComponent(campoLocal, 0, 160,
+                                                                                Short.MAX_VALUE)
+                                                                        .addComponent(jLabelLocal,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                141,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabelPremiacao,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                141,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabelPublico,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                141,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(campoPublico,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                160, Short.MAX_VALUE)
+                                                                        .addComponent(campoValorIngresso,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                160, Short.MAX_VALUE)
+                                                                        .addComponent(jLabelValorIngresso)
+                                                                        .addComponent(campoPremiacao)))
+                                                        .addGroup(painelFundoLayout.createSequentialGroup()
+                                                                .addGap(182, 182, 182)
+                                                                .addComponent(jLabelTitulo))))
+                                        .addGroup(painelFundoLayout.createSequentialGroup()
+                                                .addGap(239, 239, 239)
+                                                .addComponent(botaoCadastrar)))
+                                .addContainerGap(53, Short.MAX_VALUE)));
         painelFundoLayout.setVerticalGroup(
-            painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelFundoLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabelTitulo)
-                .addGap(18, 18, 18)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelData)
-                    .addComponent(jLabelPremiacao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelAdversario)
-                    .addComponent(jLabelPublico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPublico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelGolsMarcados)
-                    .addComponent(jLabelValorIngresso))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoGolsMarcados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoValorIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelGolsSofridos)
-                    .addComponent(jLabelLocal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoGolsSofridos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelCompeticao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoCompeticao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
+                painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelFundoLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabelTitulo)
+                                .addGap(18, 18, 18)
+                                .addGroup(painelFundoLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelData)
+                                        .addComponent(jLabelPremiacao))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelFundoLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campoPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(
+                                        painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabelAdversario)
+                                                .addComponent(jLabelPublico))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(
+                                        painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(campoAdversario, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(campoPublico, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(5, 5, 5)
+                                .addGroup(painelFundoLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelGolsMarcados)
+                                        .addComponent(jLabelValorIngresso))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelFundoLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(campoGolsMarcados, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campoValorIngresso, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelFundoLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelGolsSofridos)
+                                        .addComponent(jLabelLocal))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelFundoLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(campoGolsSofridos, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campoLocal, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelCompeticao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoCompeticao, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(26, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(painelFundo, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(painelFundo, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,6 +313,7 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
         ControladorPartida controladorPartida = new ControladorPartida();
 
         ConnectionFactory.iniciarTabelaPartida();
+        ConnectionFactory.iniciarTabelaTransacao();
 
         java.util.Date data = null;
         try {
@@ -258,9 +329,24 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
         float valorDoIngresso = Float.parseFloat(campoValorIngresso.getText());
         String local = campoLocal.getSelectedItem().toString();
 
-        controladorPartida.cadastrarPartida(data, clubeAdversario, golsMarcados, golsSofridos, competicao,
+        int idPartida = controladorPartida.cadastrarPartida(data, clubeAdversario, golsMarcados, golsSofridos,
+                competicao,
                 premiacao, publico, valorDoIngresso, local);
-        
+
+        if (idPartida != -1) {
+            ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
+            float bilheteria = controladorFinanceiro.calcularBilheteria(publico, valorDoIngresso);
+
+            if (premiacao > 0) {
+                controladorFinanceiro.iniciarCadastroDeReceitas("Premiação", premiacao,
+                        "Premiação da partida contra " + clubeAdversario, "Receita", idPartida, null);
+            }
+            if (bilheteria > 0) {
+                controladorFinanceiro.iniciarCadastroDeReceitas("Bilheteria", bilheteria,
+                        "Bilheteria da partida contra " + clubeAdversario, "Receita", idPartida, null);
+            }
+        }
+
         dispose();
 
     }// GEN-LAST:event_botaoCadastrarActionPerformed

@@ -16,12 +16,12 @@ import java.util.ArrayList;
  * @author Vinícius Mardegan
  */
 public class JogadorDAO {
-
-    public static void createJogador(Jogador jogador) {
+    public static int createJogador(Jogador jogador) {
         String sql = "INSERT INTO jogador (nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato, valor, idClube) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+        int idJogador = -1;
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
-                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+                PreparedStatement stmt = conexao.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, jogador.getNome());
             stmt.setDate(2, new java.sql.Date(jogador.getData_de_nascimento().getTime()));
@@ -33,7 +33,13 @@ public class JogadorDAO {
             stmt.setFloat(8, jogador.getValor());
             stmt.setInt(9, Sessao.getIdClubeAtual());
 
-            stmt.execute();
+            stmt.executeUpdate();
+
+            java.sql.ResultSet rsKeys = stmt.getGeneratedKeys();
+            if (rsKeys.next()) {
+                idJogador = rsKeys.getInt(1);
+            }
+
             stmt.close();
             javax.swing.JOptionPane.showMessageDialog(null, "Jogador cadastrado!");
 
@@ -41,6 +47,7 @@ public class JogadorDAO {
             javax.swing.JOptionPane.showMessageDialog(null, "ERRO ao salvar no banco: " + e.getMessage());
         }
 
+        return idJogador;
     }
 
     public static boolean verificarCamisaEmUso(int numero_da_camisa, int idClube, int idIgnorar) {
@@ -128,6 +135,7 @@ public class JogadorDAO {
     }
 
     public static void apagarJogador(int idJogador) {
+        DataAcessObject.TransacaoDAO.desvincularTransacoesDeJogador(idJogador);
         String sql = "DELETE FROM jogador WHERE id_jogador = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -141,6 +149,28 @@ public class JogadorDAO {
 
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(null, "Erro ao excluir jogador: " + e.getMessage());
+        }
+    }
+
+    public static void atualizarJogador(Jogador jogador) {
+        String sql = "UPDATE jogador SET nome = ?, data_de_nascimento = ?, nacionalidade = ?, posicao = ?, numero_da_camisa = ?, salario = ?, tempo_de_contrato = ?, valor = ? WHERE id_jogador = ?";
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setString(1, jogador.getNome());
+            stmt.setDate(2, new java.sql.Date(jogador.getData_de_nascimento().getTime()));
+            stmt.setString(3, jogador.getNacionalidade());
+            stmt.setString(4, jogador.getPosicao());
+            stmt.setInt(5, jogador.getNumero_da_camisa());
+            stmt.setFloat(6, jogador.getSalario());
+            stmt.setInt(7, jogador.getTempo_de_contrato());
+            stmt.setFloat(8, jogador.getValor());
+            stmt.setInt(9, jogador.getIdJogador());
+
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Erro ao atualizar jogador: " + e.getMessage());
         }
     }
 }

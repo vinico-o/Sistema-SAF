@@ -46,6 +46,8 @@ public class Elenco {
                     jogadores.get(i).setTempo_de_contrato(tempo_de_contrato);
                     jogadores.get(i).setValor(valor);
 
+                    DataAcessObject.JogadorDAO.atualizarJogador(jogadores.get(i));
+
                     break;
                 }
             }
@@ -122,7 +124,7 @@ public class Elenco {
         return null;
     }
 
-    public void cadastrarJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao,
+    public int cadastrarJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao,
             int numero_da_camisa,
             float salario, int tempo_de_contrato, float valor) {
 
@@ -136,9 +138,10 @@ public class Elenco {
                     salario, tempo_de_contrato, valor);
 
             jogadores.add(j);
-            DataAcessObject.JogadorDAO.createJogador(j);
+            return DataAcessObject.JogadorDAO.createJogador(j);
         } else {
             exibirMensagemInvalido();
+            return -1;
         }
 
     }

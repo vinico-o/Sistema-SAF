@@ -33,20 +33,17 @@ public class HistoricoDeTransacoes {
         this.transacoes = transacoes;
     }
 
-    public ArrayList<TransacaoFinanceira> buscarDespesasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList<String> categorias, String tipo) {
+    public ArrayList<TransacaoFinanceira> buscarDespesasRelatorio(Date periodoInicial, Date periodoFinal,
+            ArrayList<String> categorias, String tipo) {
         ArrayList<TransacaoFinanceira> d = new ArrayList<>();
         ArrayList<TransacaoFinanceira> transacoes = TransacaoDAO.listDespesa();
-        
-        
-        for (int i = 0; i < transacoes.size(); i++){
-            if (transacoes.get(i).getTipo().equals("Despesa"))
-            {
-                if (transacoes.get(i).getData().before(periodoFinal) && transacoes.get(i).getData().after(periodoInicial))
-                {
-                    for (int j = 0; j < categorias.size(); j++)
-                    {
-                        if (transacoes.get(i).getCategoria().equals(categorias.get(j)))
-                        {
+
+        for (int i = 0; i < transacoes.size(); i++) {
+            if (transacoes.get(i).getTipo().equals("Despesa")) {
+                if (transacoes.get(i).getData().before(periodoFinal)
+                        && transacoes.get(i).getData().after(periodoInicial)) {
+                    for (int j = 0; j < categorias.size(); j++) {
+                        if (transacoes.get(i).getCategoria().equals(categorias.get(j))) {
                             d.add((Despesa) transacoes.get(i));
                         }
                     }
@@ -55,42 +52,35 @@ public class HistoricoDeTransacoes {
         }
         return d;
     }
-    
-    
 
-    public ArrayList<TransacaoFinanceira> buscarReceitasRelatorio(Date periodoInicial, Date periodoFinal, ArrayList categorias, String tipo) {
+    public ArrayList<TransacaoFinanceira> buscarReceitasRelatorio(Date periodoInicial, Date periodoFinal,
+            ArrayList categorias, String tipo) {
         ArrayList<TransacaoFinanceira> r = new ArrayList<>();
         ArrayList<TransacaoFinanceira> transacoes = TransacaoDAO.listReceita();
-        
-        
-        
-        for (int i = 0; i < transacoes.size(); i++){
-            if (transacoes.get(i).getTipo().equals("Receita"))
-            {
-                if (transacoes.get(i).getData().before(periodoFinal) && transacoes.get(i).getData().after(periodoInicial))
-                {
-                    for (int j = 0; j < categorias.size(); j++)
-                    {
-                        if (transacoes.get(i).getCategoria().equals(categorias.get(j)))
-                        {
+
+        for (int i = 0; i < transacoes.size(); i++) {
+            if (transacoes.get(i).getTipo().equals("Receita")) {
+                if (transacoes.get(i).getData().before(periodoFinal)
+                        && transacoes.get(i).getData().after(periodoInicial)) {
+                    for (int j = 0; j < categorias.size(); j++) {
+                        if (transacoes.get(i).getCategoria().equals(categorias.get(j))) {
                             r.add((Receita) transacoes.get(i));
                         }
                     }
-                    
-                    
+
                 }
             }
         }
-        
+
         return r;
     }
 
-    public ArrayList<TransacaoFinanceira> buscarTransacaoRelatorio(Date periodoInicial, Date periodoFinal, String tipo) {
+    public ArrayList<TransacaoFinanceira> buscarTransacaoRelatorio(Date periodoInicial, Date periodoFinal,
+            String tipo) {
 
         ArrayList<TransacaoFinanceira> t = new ArrayList<>();
         transacoes = TransacaoDAO.listTransacoes();
-        
-        
+
         for (int i = 0; i < transacoes.size(); i++) {
 
             if (transacoes.get(i).getData().before(periodoFinal) && transacoes.get(i).getData().after(periodoInicial)) {
@@ -98,157 +88,168 @@ public class HistoricoDeTransacoes {
             }
 
         }
-        
+
         return t;
     }
 
     public TransacaoFinanceira buscarDespesa(int idTransacaoFinanceira) {
         this.transacoes = TransacaoDAO.listDespesa();
-        
-        for (TransacaoFinanceira d: transacoes){
-            if (d.getIdTransacao() == idTransacaoFinanceira){
+
+        for (TransacaoFinanceira d : transacoes) {
+            if (d.getIdTransacao() == idTransacaoFinanceira) {
                 return d;
             }
         }
-        
+
         return null;
     }
 
     public ArrayList<TransacaoFinanceira> listarDespesas() {
         this.transacoes = TransacaoDAO.listDespesa();
-        
+
         return transacoes;
     }
 
     public Despesa cadastrarDespesa(String categoria, float valor, String descricao, String tipo) {
+        return cadastrarDespesa(categoria, valor, descricao, tipo, null, null);
+    }
+
+    public Despesa cadastrarDespesa(String categoria, float valor, String descricao, String tipo, Integer idPartida,
+            Integer idJogador) {
 
         Despesa d = new Despesa(0, valor, categoria, descricao, new Date(), tipo);
+        d.setIdPartida(idPartida);
+        d.setIdJogador(idJogador);
         transacoes.add(d);
 
         return d;
 
     }
-    
-    public void exibirMensagemInvalido(){
+
+    public void exibirMensagemInvalido() {
         JOptionPane.showMessageDialog(null, "Valor inválido");
     }
 
     public boolean validarInformacoes(float valor) {
-        
-        if (valor >= 0){
+
+        if (valor >= 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-        
+
     }
 
-    public float atualizarDespesa(int idTransacaoFinanceira, String categoria, float valor, String descricao, String tipo) {
+    public float atualizarDespesa(int idTransacaoFinanceira, String categoria, float valor, String descricao,
+            String tipo) {
 
         ArrayList<TransacaoFinanceira> receitas = TransacaoDAO.listDespesa();
-        
+
         float valorAnterior = 0;
-        
-        for (int i = 0; i < receitas.size(); i++)
-        {
-            if (receitas.get(i).getTipo().equals("Despesa") && receitas.get(i).getIdTransacao() == idTransacaoFinanceira)
-            {
+
+        for (int i = 0; i < receitas.size(); i++) {
+            if (receitas.get(i).getTipo().equals("Despesa")
+                    && receitas.get(i).getIdTransacao() == idTransacaoFinanceira) {
                 valorAnterior = receitas.get(i).getValor();
-                
+
                 break;
             }
         }
-        
+
         return valorAnterior;
     }
 
     public float excluirDespesa(int idTransacaoFinanceira) {
         ArrayList<TransacaoFinanceira> despesas = TransacaoDAO.listDespesa();
-        
+
         float valorApagado = 0;
-        
-        for (int i = 0; i < despesas.size(); i++)
-        {
-            if (despesas.get(i).getIdTransacao() == idTransacaoFinanceira && despesas.get(i).getTipo().equals("Despesa"))
-            {
+
+        for (int i = 0; i < despesas.size(); i++) {
+            if (despesas.get(i).getIdTransacao() == idTransacaoFinanceira
+                    && despesas.get(i).getTipo().equals("Despesa")) {
                 valorApagado = despesas.get(i).getValor();
-                
+
                 break;
             }
         }
-        
+
         TransacaoDAO.ExcluirDespesa(idTransacaoFinanceira);
-        
+
         return valorApagado;
     }
 
     public TransacaoFinanceira buscarReceita(int idTransacaoFinanceira) {
         this.transacoes = TransacaoDAO.listReceita();
-        
-        for (TransacaoFinanceira r: transacoes){
-            if (r.getIdTransacao() == idTransacaoFinanceira){
+
+        for (TransacaoFinanceira r : transacoes) {
+            if (r.getIdTransacao() == idTransacaoFinanceira) {
                 return r;
             }
         }
-        
+
         return null;
     }
 
     public Receita cadastrarReceita(String categoria, float valor, String descricao, String tipo) {
+        return cadastrarReceita(categoria, valor, descricao, tipo, null, null);
+    }
+
+    public Receita cadastrarReceita(String categoria, float valor, String descricao, String tipo, Integer idPartida,
+            Integer idJogador) {
 
         Receita r = new Receita(0, valor, categoria, descricao, new Date(), tipo);
+        r.setIdPartida(idPartida);
+        r.setIdJogador(idJogador);
         transacoes.add(r);
 
         return r;
 
     }
 
-    public float atualizarReceita(int idTransacaoFinanceira, String categoria, float valor, String descricao, String tipo) {
-        
+    public float atualizarReceita(int idTransacaoFinanceira, String categoria, float valor, String descricao,
+            String tipo) {
+
         ArrayList<TransacaoFinanceira> receitas = TransacaoDAO.listReceita();
-        
+
         float valorAnterior = 0;
-        
-        for (int i = 0; i < receitas.size(); i++)
-        {
-            if (receitas.get(i).getTipo().equals("Receita") && receitas.get(i).getIdTransacao() == idTransacaoFinanceira)
-            {
-            
+
+        for (int i = 0; i < receitas.size(); i++) {
+            if (receitas.get(i).getTipo().equals("Receita")
+                    && receitas.get(i).getIdTransacao() == idTransacaoFinanceira) {
+
                 valorAnterior = receitas.get(i).getValor();
-                
+
                 break;
             }
         }
-        
+
         return valorAnterior;
     }
 
     public float excluirReceita(int idTransacaoFinanceira) {
         ArrayList<TransacaoFinanceira> receitas = TransacaoDAO.listReceita();
-        
+
         float valorApagado = 0;
-        
-        for (int i = 0; i < receitas.size(); i++)
-        {
-            if (receitas.get(i).getIdTransacao() == idTransacaoFinanceira && receitas.get(i).getTipo().equals("Receita"))
-            {
+
+        for (int i = 0; i < receitas.size(); i++) {
+            if (receitas.get(i).getIdTransacao() == idTransacaoFinanceira
+                    && receitas.get(i).getTipo().equals("Receita")) {
                 valorApagado = receitas.get(i).getValor();
-                
+
                 receitas.remove(i);
-                
+
                 break;
             }
         }
-        
+
         TransacaoDAO.ExcluirReceita(idTransacaoFinanceira);
-        
+
         return valorApagado;
     }
-    
+
     public ArrayList<TransacaoFinanceira> listarReceitas() {
         this.transacoes = TransacaoDAO.listReceita();
-        
+
         return transacoes;
     }
 

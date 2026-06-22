@@ -39,20 +39,6 @@ public class HistoricoDePartidas {
             String local) {
         return DataAcessObject.PartidaDAO.buscarPartidasFiltro(competicao, periodoInicial, periodoFinal, local);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     public void atualizarDados(int idPartida, Date data, String clubeAdversario, int golsMarcados, int golsSofridos,
@@ -121,7 +107,7 @@ public class HistoricoDePartidas {
         return true;
     }
 
-    public void cadastrarPartida(Date data, String clubeAdversario, int golsMarcados,
+    public int cadastrarPartida(Date data, String clubeAdversario, int golsMarcados,
             int golsSofridos, String competicao, float premiacao, int publico, float valorDoIngresso, String local) {
 
         boolean isValido = validarInformacoes(data, clubeAdversario, golsMarcados, golsSofridos, competicao, premiacao,
@@ -135,8 +121,10 @@ public class HistoricoDePartidas {
             }
             partidas.add(partida);
 
-            DataAcessObject.PartidaDAO.createPartida(partida);
+            return DataAcessObject.PartidaDAO.createPartida(partida);
         }
+
+        return -1;
     }
 
     public void excluirPartida(int idPartida) {

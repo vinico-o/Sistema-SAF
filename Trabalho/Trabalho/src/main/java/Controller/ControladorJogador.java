@@ -39,16 +39,11 @@ public class ControladorJogador {
         return ret;
     }
 
-    public void iniciarCompraDeJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao,
+    public int iniciarCompraDeJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao,
             int numero_da_camisa, float salario, int tempo_de_contrato, float valor) {
 
-        elenco.cadastrarJogador(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario,
+        return elenco.cadastrarJogador(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario,
                 tempo_de_contrato, valor);
-
-        // controladorFinanceiro.iniciarCadastroDeDespesas();
-
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "INSERÇÃO",
-        // idJogador);
 
     }
 

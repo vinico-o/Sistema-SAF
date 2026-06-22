@@ -69,14 +69,29 @@ public class ConnectionFactory {
                 + "data TEXT NOT NULL, "
                 + "tipo TEXT NOT NULL, "
                 + "idClube INTEGER, "
-                + "FOREIGN KEY (idClube) REFERENCES clube(id_clube)"
+                + "idPartida INTEGER, "
+                + "idJogador INTEGER, "
+                + "FOREIGN KEY (idClube) REFERENCES clube(id_clube), "
+                + "FOREIGN KEY (idPartida) REFERENCES partida(id_partida), "
+                + "FOREIGN KEY (idJogador) REFERENCES jogador(id_jogador)"
                 + ");";
 
         try (Connection conn = conectar();
                 Statement stmt = conn.createStatement()) {
 
             stmt.execute(sql);
-            System.out.println("Tabela 'transacao' criada com sucesso!");
+
+            // Migração silenciosa para bancos existentes
+            try {
+                stmt.execute("ALTER TABLE transacao ADD COLUMN idPartida INTEGER");
+            } catch (SQLException ignore) {
+            }
+            try {
+                stmt.execute("ALTER TABLE transacao ADD COLUMN idJogador INTEGER");
+            } catch (SQLException ignore) {
+            }
+
+            System.out.println("Tabela 'transacao' criada/atualizada com sucesso!");
 
         } catch (SQLException e) {
             System.err.println("Erro ao criar tabela transacao!");
@@ -111,7 +126,7 @@ public class ConnectionFactory {
             e.printStackTrace();
         }
     }
-    
+
     public static void iniciarTabelaPartida() {
 
         String sql = "CREATE TABLE IF NOT EXISTS partida ("

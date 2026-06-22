@@ -18,12 +18,12 @@ import java.sql.Connection;
  */
 public class PartidaDAO {
 
-    public static void createPartida(Partida partida) {
-
+    public static int createPartida(Partida partida) {
         String sql = "INSERT INTO partida (data, clube_adversario, gols_marcados, gols_sofridos, competicao, premiacao, publico, valor_do_ingresso, local, idClube) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+        int idPartida = -1;
         try (Connection conn = ConnectionFactory.conectar();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setDate(1, new java.sql.Date(partida.getData().getTime()));
             stmt.setString(2, partida.getClubeAdversario());
@@ -36,7 +36,13 @@ public class PartidaDAO {
             stmt.setString(9, partida.getLocal());
             stmt.setInt(10, Sessao.getIdClubeAtual());
 
-            stmt.execute();
+            stmt.executeUpdate();
+
+            java.sql.ResultSet rsKeys = stmt.getGeneratedKeys();
+            if (rsKeys.next()) {
+                idPartida = rsKeys.getInt(1);
+            }
+
             System.out.println("Partida cadastrada com sucesso!");
 
         } catch (SQLException e) {
@@ -44,6 +50,7 @@ public class PartidaDAO {
             e.printStackTrace();
         }
 
+        return idPartida;
     }
 
     public static java.util.ArrayList<Partida> listarPartidas() {
@@ -100,6 +107,7 @@ public class PartidaDAO {
     }
 
     public static void apagarPartida(int idPartida) {
+        DataAcessObject.TransacaoDAO.excluirTransacoesPorPartida(idPartida);
         String sql = "DELETE FROM partida WHERE id_partida = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -260,6 +268,56 @@ public class PartidaDAO {
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(null, "Erro ao buscar partidas por filtro: " + e.getMessage());
             return new java.util.ArrayList<>();
+        }
+    }
+
+    public static Partida buscarPartidaMaisRecente() {
+        String sql = "SELECT * FROM partida ORDER BY id_partida DESC LIMIT 1;";
+
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            java.sql.ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Partida obj = new Partida();
+                obj.setIdPartida(rs.getInt("id_partida"));
+
+                try {
+                    String dataStr = rs.getString("data");
+                    if (dataStr != null) {
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                        obj.setData(sdf.parse(dataStr));
+                    }
+                } catch (Exception e) {
+                    try {
+                        long timestamp = rs.getLong("data");
+                        if (timestamp > 0) {
+                            obj.setData(new java.util.Date(timestamp));
+                        }
+                    } catch (Exception e2) {
+                    }
+                }
+
+                obj.setClubeAdversario(rs.getString("clube_adversario"));
+                obj.setGolsMarcados(rs.getInt("gols_marcados"));
+                obj.setGolsSofridos(rs.getInt("gols_sofridos"));
+                obj.setCompeticao(rs.getString("competicao"));
+                obj.setPremiacao(rs.getFloat("premiacao"));
+                obj.setPublico(rs.getInt("publico"));
+                obj.setValorDoIngresso(rs.getFloat("valor_do_ingresso"));
+                obj.setLocal(rs.getString("local"));
+                obj.setIdClube(rs.getInt("idClube"));
+
+                return obj;
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null,
+                    "Erro ao buscar partida mais recente: " + e.getMessage());
+            return null;
         }
     }
 }

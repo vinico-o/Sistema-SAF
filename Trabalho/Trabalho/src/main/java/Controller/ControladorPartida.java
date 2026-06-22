@@ -9,8 +9,6 @@ import Model.Partida.Partida;
 import java.util.ArrayList;
 import java.util.Date;
 
-import DataAcessObject.PartidaDAO;
-
 /**
  *
  * @author Cauan
@@ -36,10 +34,10 @@ public class ControladorPartida {
 
     }
 
-    public void cadastrarPartida(Date data, String clubeAdversario, int golsMarcados, int golsSofridos,
+    public int cadastrarPartida(Date data, String clubeAdversario, int golsMarcados, int golsSofridos,
             String competicao, float premiacao, int publico, float valorDoIngresso, String local) {
 
-        historicoDePartidas.cadastrarPartida(data, clubeAdversario, golsMarcados,
+        return historicoDePartidas.cadastrarPartida(data, clubeAdversario, golsMarcados,
                 golsSofridos, competicao,
                 premiacao, publico, valorDoIngresso, local);
 
