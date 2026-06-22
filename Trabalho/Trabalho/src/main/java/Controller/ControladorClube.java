@@ -7,8 +7,10 @@ package Controller;
 import java.util.ArrayList;
 
 import DataAcessObject.ClubeDAO;
+import Model.Auditoria.HistoricoDeAuditoria;
 import Model.Clube.Clube;
 import Model.Clube.HistoricoDeClubes;
+import Model.Sessao;
 
 /**
  *
@@ -28,6 +30,12 @@ public class ControladorClube {
             Clube clube = historicoDeClubes.cadastrarClube(nomeClube, anoDeFundacao, pais);
             ClubeDAO.createClube(clube);
             
+            
+            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "INSERÇÃO", ClubeDAO.obterUltimoIdClube());
+            
+            
             return true;
         } else {
             historicoDeClubes.exibirMensagemInvalido();
@@ -44,10 +52,14 @@ public class ControladorClube {
    
     public void iniciarEdicaoDeClube(int idClube, String nomeClube, int anoDeFundacao, String pais){
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
-        historicoDeClubes.editarClube(idClube, nomeClube, anoDeFundacao, pais);
+        boolean ret = historicoDeClubes.editarClube(idClube, nomeClube, anoDeFundacao, pais);
         
-        // implementar dps 
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "clube", "EDIÇÃO", idClube);
+        if (ret == true){
+            HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
+            
+            historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "EDIÇÃO", idClube);
+        }
+        
     }
     
     public Clube buscarClube (int idClube){
@@ -59,10 +71,13 @@ public class ControladorClube {
     public void iniciarExclusaoDeClube(int idClube){
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
         
-        historicoDeClubes.apagarClube(idClube);
+        boolean operacao = historicoDeClubes.apagarClube(idClube);
         
-        // implementar dps 
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "clube", "EXCLUSÃO", idClube);
+        if (operacao == true){
+            HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
+            
+            historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "EXCLUSÃO", idClube);
+        }
     }
     
     public void AlterarSaldoPorAtualizacaoDeDespesa(int idClube, float valorAnterior, float valorNovo){

@@ -58,6 +58,10 @@ public class ControladorUsuario {
             
             Usuario usuario = historicoDeUsuario.cadastrarUsuario(nome_usuario, senha, nivel_usuario);
             UsuarioDAO.createUsuario(usuario);
+            
+            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Usuário", "INSERÇÃO", DataAcessObject.UsuarioDAO.obterUltimoIdUsuario());
+            
             return true;
 
         } else {

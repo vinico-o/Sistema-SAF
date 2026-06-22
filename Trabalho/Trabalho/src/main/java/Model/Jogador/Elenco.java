@@ -4,6 +4,8 @@
  */
 package Model.Jogador;
 
+import Controller.ControladorAuditoria;
+import DataAcessObject.JogadorDAO;
 import Model.Sessao;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,6 +48,9 @@ public class Elenco {
                     jogadores.get(i).setTempo_de_contrato(tempo_de_contrato);
                     jogadores.get(i).setValor(valor);
 
+                    
+                    ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+                    controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EDIÇÃO", idJogador);
                     break;
                 }
             }
@@ -137,6 +142,9 @@ public class Elenco {
 
             jogadores.add(j);
             DataAcessObject.JogadorDAO.createJogador(j);
+            
+            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "INSERÇÃO", JogadorDAO.obterUltimoIdJogador());
         } else {
             exibirMensagemInvalido();
         }
@@ -145,6 +153,8 @@ public class Elenco {
 
     public void apagarJogador(int idJogador) {
         DataAcessObject.JogadorDAO.apagarJogador(idJogador);
+        ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+        controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EXCLUSÃO", idJogador);
     }
 
 }

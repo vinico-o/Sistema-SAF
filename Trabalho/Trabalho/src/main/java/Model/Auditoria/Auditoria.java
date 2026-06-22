@@ -13,22 +13,24 @@ import java.util.Date;
 public class Auditoria {
     private int idAuditoria;
     private String tipoDeLog;
-    private Date data;
-    private String usuario;
+    private String nomeUsuario;
+    private int idDoRegistroAfetado;
     private String entidadeAfetada;
-    private int idDoRegistro;
+    private Date data;
+
+
 
     public Auditoria() {
     }
 
-    public Auditoria(int idAuditoria, String tipoDeLog, Date data, String usuario, String entidadeAfetada, int idDoRegistro) {
+    public Auditoria(int idAuditoria, String tipoDeLog, String nomeUsuario, int idDoRegistroAfetado, String entidadeAfetada) {
         this.idAuditoria = idAuditoria;
         this.tipoDeLog = tipoDeLog;
-        this.data = data;
-        this.usuario = usuario;
+        this.nomeUsuario = nomeUsuario;
+        this.idDoRegistroAfetado = idDoRegistroAfetado;
         this.entidadeAfetada = entidadeAfetada;
-        this.idDoRegistro = idDoRegistro;
     }
+    
 
     public int getIdAuditoria() {
         return idAuditoria;
@@ -46,20 +48,20 @@ public class Auditoria {
         this.tipoDeLog = tipoDeLog;
     }
 
-    public Date getData() {
-        return data;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public int getIdDoRegistroAfetado() {
+        return idDoRegistroAfetado;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setIdDoRegistroAfetado(int idDoRegistroAfetado) {
+        this.idDoRegistroAfetado = idDoRegistroAfetado;
     }
 
     public String getEntidadeAfetada() {
@@ -70,13 +72,14 @@ public class Auditoria {
         this.entidadeAfetada = entidadeAfetada;
     }
 
-    public int getIdDoRegistro() {
-        return idDoRegistro;
+    public Date getData() {
+        return data;
     }
 
-    public void setIdDoRegistro(int idDoRegistro) {
-        this.idDoRegistro = idDoRegistro;
+    public void setData(Date data) {
+        this.data = data;
     }
+    
     
     
 }

@@ -5,7 +5,7 @@
 package View;
 
 import Charts.RelatorioLinhaTempoFinanceiro;
-import Charts.RelatorioPizzaDespesas;
+import Charts.RelatorioBarrasDespesas;
 import Charts.RelatorioPizzaReceitas;
 import Controller.ControladorRelatorio;
 import Model.TransacaoFinanceira.TransacaoFinanceira;
@@ -328,7 +328,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
     
     private void exibirRelatorioDeDespesa(ArrayList<TransacaoFinanceira> transacoes){
         javax.swing.JFrame janelaPai = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-        RelatorioPizzaDespesas telaGrafico = new RelatorioPizzaDespesas(janelaPai, transacoes);
+        RelatorioBarrasDespesas telaGrafico = new RelatorioBarrasDespesas(janelaPai, transacoes);
         telaGrafico.setVisible(true);
     }
     

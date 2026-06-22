@@ -27,9 +27,6 @@ public class ControladorJogador {
         elenco.atualizarJogador(idJogador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario,
                 tempo_de_contrato, valor);
 
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "EDIÇÃO",
-        // idJogador);
-
     }
 
     public Jogador iniciarBuscaDeJogador(String nome) {
@@ -47,8 +44,7 @@ public class ControladorJogador {
 
         // controladorFinanceiro.iniciarCadastroDeDespesas();
 
-        // historicoDeAuditoria.registrarAuditoria(nomeUsuario, "jogador", "INSERÇÃO",
-        // idJogador);
+        
 
     }
 

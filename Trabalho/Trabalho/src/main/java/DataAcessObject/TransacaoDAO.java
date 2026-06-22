@@ -302,4 +302,23 @@ public class TransacaoDAO {
         }
     }
     
+    public static int obterUltimoIdTransacao() {
+        String sql = "SELECT id_transacao FROM transacao ORDER BY id_transacao DESC LIMIT 1;";
+
+        try (Connection conexao = JDBC.ConnectionFactory.conectar(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "ERRO ao usar o banco: " + e.getMessage());
+        }
+
+        return -1; // se der erro -> retorna -1
+    }
+    
 }

@@ -4,6 +4,8 @@
  */
 package Model.Partida;
 
+import Controller.ControladorAuditoria;
+import Model.Sessao;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -67,6 +69,11 @@ public class HistoricoDePartidas {
             partida.setIdPartida(idPartida);
 
             DataAcessObject.PartidaDAO.atualizarPartida(partida);
+            
+            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Partida", "EDIÇÃO", idPartida);
+        
         }
     }
 
@@ -136,11 +143,19 @@ public class HistoricoDePartidas {
             partidas.add(partida);
 
             DataAcessObject.PartidaDAO.createPartida(partida);
+            
+            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Partida", "INSERÇÃO", DataAcessObject.PartidaDAO.obterUltimoIdPartida());
         }
     }
 
     public void excluirPartida(int idPartida) {
         DataAcessObject.PartidaDAO.apagarPartida(idPartida);
+        ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+
+        controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Partida", "EXCLUSÃO", idPartida);
+
     }
 
 }
