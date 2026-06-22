@@ -4,10 +4,9 @@
  */
 package Controller;
 
-import Model.Despesa;
-import Model.Partida;
-import Model.Receita;
-import Model.TransacaoFinanceira;
+import Model.TransacaoFinanceira.TransacaoFinanceira.*;
+import Model.Partida.Partida;
+import Model.TransacaoFinanceira.TransacaoFinanceira;
 import java.util.ArrayList;
 import java.util.Date;
 

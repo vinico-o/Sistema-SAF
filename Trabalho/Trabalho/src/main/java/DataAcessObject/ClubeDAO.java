@@ -4,7 +4,7 @@
  */
 package DataAcessObject;
 
-import Model.Clube;
+import Model.Clube.Clube;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

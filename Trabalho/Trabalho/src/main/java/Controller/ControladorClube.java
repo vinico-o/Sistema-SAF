@@ -7,8 +7,8 @@ package Controller;
 import java.util.ArrayList;
 
 import DataAcessObject.ClubeDAO;
-import Model.Clube;
-import Model.HistoricoDeClubes;
+import Model.Clube.Clube;
+import Model.Clube.HistoricoDeClubes;
 
 /**
  *

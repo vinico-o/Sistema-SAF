@@ -4,6 +4,8 @@
  */
 package Model;
 
+import Model.Usuario.Usuario;
+
 /**
  *
  * @author mardegan

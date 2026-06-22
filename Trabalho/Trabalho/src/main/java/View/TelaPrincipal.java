@@ -4,6 +4,8 @@
  */
 package View;
 
+import View.Usuario.TelaAutenticacaoUsuario;
+import View.Usuario.TelaCadastroADM;
 import DataAcessObject.UsuarioDAO;
 import JDBC.ConnectionFactory;
 
@@ -291,7 +293,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoDespesa1MouseEntered
 
     private void botaoDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDespesa1ActionPerformed
-        View.TelaDespesa telaDespesa = new View.TelaDespesa();
+        View.Despesa.TelaDespesa telaDespesa = new View.Despesa.TelaDespesa();
         mostrarTela(telaDespesa);
     }//GEN-LAST:event_botaoDespesa1ActionPerformed
 
@@ -305,7 +307,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoRelatorioActionPerformed
 
     private void botaoPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPartidaActionPerformed
-        View.TelaPartida telaPartida = new View.TelaPartida();
+        View.Partida.TelaPartida telaPartida = new View.Partida.TelaPartida();
         mostrarTela(telaPartida);
     }//GEN-LAST:event_botaoPartidaActionPerformed
 
@@ -315,7 +317,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     
     private void botaoJogadoresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoJogadoresActionPerformed
-        View.TelaJogador telaJogador = new View.TelaJogador();
+        View.Jogador.TelaJogador telaJogador = new View.Jogador.TelaJogador();
 
         mostrarTela(telaJogador);
     }// GEN-LAST:event_botaoJogadoresActionPerformed
@@ -329,7 +331,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// GEN-LAST:event_botaoClubesMouseEntered
 
     private void botaoClubesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoClubesActionPerformed
-        View.TelaClube telaClube = new View.TelaClube();
+        View.Clube.TelaClube telaClube = new View.Clube.TelaClube();
 
         mostrarTela(telaClube);
     }// GEN-LAST:event_botaoClubesActionPerformed
@@ -339,7 +341,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// GEN-LAST:event_botaoReceitasMouseEntered
 
     private void botaoReceitasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoReceitasActionPerformed
-        View.TelaReceita telaReceita = new View.TelaReceita();
+        View.Receita.TelaReceita telaReceita = new View.Receita.TelaReceita();
 
         mostrarTela(telaReceita);
     }// GEN-LAST:event_botaoReceitasActionPerformed

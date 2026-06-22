@@ -5,7 +5,7 @@
 package DataAcessObject;
 
 import Model.Sessao;
-import Model.Usuario;
+import Model.Usuario.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

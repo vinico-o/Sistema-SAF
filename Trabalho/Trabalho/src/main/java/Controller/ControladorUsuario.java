@@ -5,9 +5,9 @@
 package Controller;
 
 import DataAcessObject.UsuarioDAO;
-import Model.HistoricoDeUsuario;
+import Model.Usuario.HistoricoDeUsuario;
 import Model.Sessao;
-import Model.Usuario;
+import Model.Usuario.Usuario;
 import java.util.ArrayList;
 
 /**

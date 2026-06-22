@@ -8,7 +8,7 @@ import Charts.RelatorioLinhaTempoFinanceiro;
 import Charts.RelatorioPizzaDespesas;
 import Charts.RelatorioPizzaReceitas;
 import Controller.ControladorRelatorio;
-import Model.TransacaoFinanceira;
+import Model.TransacaoFinanceira.TransacaoFinanceira;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;

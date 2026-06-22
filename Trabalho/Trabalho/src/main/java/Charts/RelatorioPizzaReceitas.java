@@ -4,7 +4,7 @@
  */
 package Charts;
 
-import Model.TransacaoFinanceira;
+import Model.TransacaoFinanceira.TransacaoFinanceira;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;

@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Model.HistoricoDePartidas;
-import Model.Partida;
+import Model.Partida.HistoricoDePartidas;
+import Model.Partida.Partida;
 import java.util.ArrayList;
 import java.util.Date;
 

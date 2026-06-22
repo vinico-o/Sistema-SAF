@@ -5,10 +5,11 @@
 package DataAcessObject;
 
 
-import Model.Despesa;
-import Model.Receita;
+
 import Model.Sessao;
-import Model.TransacaoFinanceira;
+import Model.TransacaoFinanceira.Despesa;
+import Model.TransacaoFinanceira.Receita;
+import Model.TransacaoFinanceira.TransacaoFinanceira;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

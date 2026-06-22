@@ -6,7 +6,7 @@ package Charts;
 
 
 
-import Model.TransacaoFinanceira;
+import Model.TransacaoFinanceira.TransacaoFinanceira;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.time.LocalDate;

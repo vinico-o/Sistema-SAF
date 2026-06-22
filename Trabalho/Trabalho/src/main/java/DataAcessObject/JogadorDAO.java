@@ -4,7 +4,7 @@
  */
 package DataAcessObject;
 
-import Model.Jogador;
+import Model.Jogador.Jogador;
 import Model.Sessao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

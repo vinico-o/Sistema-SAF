@@ -5,7 +5,7 @@
  */
 package DataAcessObject;
 
-import Model.Partida;
+import Model.Partida.Partida;
 import Model.Sessao;
 import JDBC.ConnectionFactory;
 import java.sql.PreparedStatement;

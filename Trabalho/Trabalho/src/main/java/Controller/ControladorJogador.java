@@ -4,9 +4,9 @@
  */
 package Controller;
 
-import Model.Despesa;
-import Model.Elenco;
-import Model.Jogador;
+import Model.TransacaoFinanceira.*;
+import Model.Jogador.Elenco;
+import Model.Jogador.Jogador;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;

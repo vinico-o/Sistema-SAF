@@ -5,14 +5,11 @@
 package Controller;
 
 import DataAcessObject.TransacaoDAO;
-import Model.Despesa;
-import Model.HistoricoDeAuditoria;
-import Model.HistoricoDeClubes;
-import Model.HistoricoDeTransacoes;
+import Model.Auditoria.HistoricoDeAuditoria;
+import Model.Clube.HistoricoDeClubes;
 import Controller.ControladorClube;
-import Model.Receita;
 import Model.Sessao;
-import Model.TransacaoFinanceira;
+import Model.TransacaoFinanceira.*;
 import java.util.ArrayList;
 import java.util.Date;
 
