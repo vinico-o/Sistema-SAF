@@ -31,9 +31,10 @@ public class ControladorClube {
             ClubeDAO.createClube(clube);
             
             
-            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
-            
-            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "INSERÇÃO", ClubeDAO.obterUltimoIdClube());
+            if(Sessao.getUsuarioLogado() != null) {
+                ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+                controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "INSERÇÃO", ClubeDAO.obterUltimoIdClube());
+            }
             
             
             return true;

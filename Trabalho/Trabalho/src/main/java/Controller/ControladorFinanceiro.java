@@ -123,7 +123,7 @@ public class ControladorFinanceiro {
         controladorClube.recalcularSaldoPorExclusaoDeDespesa(idClube, valorApagado);
 
         historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Despesa", "EXCLUSÃO",
-        // idTransacaoFinanceira);
+                idTransacaoFinanceira);
 
     }
 
@@ -158,7 +158,7 @@ public class ControladorFinanceiro {
             controladorClube.AumentarSaldoPorReceita(Sessao.getIdClubeAtual(), valor);
 
             historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Receita", "INSERÇÃO",
-            // TransacaoDAO.obterUltimoIdTransacao());
+                    TransacaoDAO.obterUltimoIdTransacao());
 
             return true;
         } else {
@@ -201,7 +201,7 @@ public class ControladorFinanceiro {
         controladorClube.recalcularSaldoPorExclusaoDeReceita(idClube, valorApagado);
 
         historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Receita", "EXCLUSÃO",
-        // idTransacaoFinanceira);
+                idTransacaoFinanceira);
 
     }
 
