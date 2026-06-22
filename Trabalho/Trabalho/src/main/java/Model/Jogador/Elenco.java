@@ -32,28 +32,12 @@ public class Elenco {
                 salario,
                 tempo_de_contrato, valor);
 
-        if (ret == true) {
-            for (int i = 0; i < jogadores.size(); i++) {
+        Jogador jogador = new Jogador(idJogador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa,
+                salario,
+                tempo_de_contrato, valor);
 
-                if (jogadores.get(i).getIdJogador() == idJogador) {
+        DataAcessObject.JogadorDAO.atualizarJogador(jogador);
 
-                    jogadores.get(i).setNome(nome);
-                    jogadores.get(i).setData_de_nascimento(data_de_nascimento);
-                    jogadores.get(i).setNacionalidade(nacionalidade);
-                    jogadores.get(i).setPosicao(posicao);
-                    jogadores.get(i).setNumero_da_camisa(numero_da_camisa);
-                    jogadores.get(i).setSalario(salario);
-                    jogadores.get(i).setTempo_de_contrato(tempo_de_contrato);
-                    jogadores.get(i).setValor(valor);
-
-                    DataAcessObject.JogadorDAO.atualizarJogador(jogadores.get(i));
-
-                    break;
-                }
-            }
-        } else {
-            exibirMensagemInvalido();
-        }
     }
 
     public boolean validarInformacoes(int idJogador, String nome, java.util.Date data_nascimento, String nacionalidade,

@@ -72,6 +72,7 @@ public class TelaJogador extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -109,6 +110,7 @@ public class TelaJogador extends javax.swing.JPanel {
         botaoListar.addActionListener(this::botaoListarActionPerformed);
 
         botaoEditar.setText("Editar");
+        botaoEditar.addActionListener(this::botaoEditarActionPerformed);
 
         botaoBuscar.setText("Buscar");
 
@@ -167,6 +169,30 @@ public class TelaJogador extends javax.swing.JPanel {
                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoEditarActionPerformed
+
+        int linhaSelecionada = tabelaJogadores.getSelectedRow();
+
+        if (linhaSelecionada != -1) {
+            try {
+                int id = Integer.parseInt(tabelaJogadores.getValueAt(linhaSelecionada, 0).toString());
+                Jogador jogador = DataAcessObject.JogadorDAO.buscarJogadorPorId(id);
+
+                java.awt.Frame framePai = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
+                TelaEditarJogador telaEditarJogador = new TelaEditarJogador(framePai, true, jogador);
+
+                telaEditarJogador.setVisible(true);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha");
+        }
+
+    }// GEN-LAST:event_botaoEditarActionPerformed
+
     private void botaoVenderActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoVenderActionPerformed
         int linhaSelecionada = tabelaJogadores.getSelectedRow();
 
@@ -189,7 +215,6 @@ public class TelaJogador extends javax.swing.JPanel {
 
                 // Refresh the table to remove the sold player
                 ((javax.swing.table.DefaultTableModel) tabelaJogadores.getModel()).removeRow(linhaSelecionada);
-
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
