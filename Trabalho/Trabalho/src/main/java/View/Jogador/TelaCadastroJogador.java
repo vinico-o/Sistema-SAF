@@ -4,9 +4,11 @@
  */
 package View.Jogador;
 
+import Controller.ControladorAuditoria;
 import Controller.ControladorFinanceiro;
 import Controller.ControladorJogador;
 import Model.Partida.Partida;
+import Model.Sessao;
 import java.util.Date;
 
 /**
@@ -311,6 +313,10 @@ public class TelaCadastroJogador extends javax.swing.JDialog {
                 salario, tempo_de_contrato, valor);
 
         if (idJogador != -1) {
+            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "INSERÇÃO", idJogador);
+            
             ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
 
             if (valor > 0) {

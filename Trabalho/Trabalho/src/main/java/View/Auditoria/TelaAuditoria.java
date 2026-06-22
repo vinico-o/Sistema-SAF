@@ -7,6 +7,8 @@ package View.Auditoria;
 import Controller.ControladorAuditoria;
 import JDBC.ConnectionFactory;
 import Model.Auditoria.Auditoria;
+import View.Partida.TelaCadastrarPartida;
+import View.Partida.TelaEditarPartida;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -130,9 +132,32 @@ public class TelaAuditoria extends javax.swing.JPanel {
     }//GEN-LAST:event_botaoListarAuditoriasActionPerformed
 
     private void botaoBuscarAuditoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarAuditoriaActionPerformed
-        // TODO add your handling code here:
+        TelaBuscarAuditoria telaBuscarAuditoria = new TelaBuscarAuditoria(null, true, this);
+        telaBuscarAuditoria.setVisible(true);
     }//GEN-LAST:event_botaoBuscarAuditoriaActionPerformed
 
+    public void atualizarLista(ArrayList<Auditoria> auditorias){
+        DefaultTableModel modelo = (DefaultTableModel) tabelaAuditoria.getModel();
+
+        modelo.setNumRows(0);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (Auditoria a : auditorias) {
+
+            Object[] linha = {
+                a.getIdAuditoria(),
+                a.getTipoDeLog(),
+                a.getNomeUsuario(),
+                a.getEntidadeAfetada(),
+                a.getIdDoRegistroAfetado(),
+                sdf.format(a.getData())
+            };
+
+            modelo.addRow(linha);
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoBuscarAuditoria;

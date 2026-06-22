@@ -27,5 +27,11 @@ public class ControladorAuditoria {
         
         return historicoDeAuditoria.listarAuditorias();
     }
+
+    public ArrayList<Auditoria> buscarRegistros(String operacao, String nomeResp, String tabelaAfet) {
+        HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
+        
+        return historicoDeAuditoria.buscarRegistros(operacao, nomeResp, tabelaAfet);
+    }
     
 }
