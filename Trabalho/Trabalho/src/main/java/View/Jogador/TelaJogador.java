@@ -4,6 +4,7 @@
  */
 package View.Jogador;
 
+import Controller.ControladorAuditoria;
 import Controller.ControladorFinanceiro;
 import View.Usuario.TelaUsuario;
 import Controller.ControladorJogador;
@@ -11,6 +12,7 @@ import Controller.ControladorUsuario;
 import DataAcessObject.JogadorDAO;
 import JDBC.ConnectionFactory;
 import Model.Jogador.Jogador;
+import Model.Sessao;
 import Model.Usuario.Usuario;
 
 import java.util.ArrayList;
@@ -207,6 +209,10 @@ public class TelaJogador extends javax.swing.JPanel {
 
                 Jogador jogador = DataAcessObject.JogadorDAO.buscarJogadorPorId(id);
                 controladorJogador.iniciarVendaDeJogador(id);
+                
+                ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            
+                controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EXCLUSÃO", id);
 
                 ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
                 controladorFinanceiro.iniciarCadastroDeReceitas("Transferência", jogador.getValor(),

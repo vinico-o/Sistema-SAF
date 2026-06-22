@@ -39,6 +39,9 @@ public class Elenco {
                 tempo_de_contrato, valor);
 
         DataAcessObject.JogadorDAO.atualizarJogador(jogador);
+        ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+            
+        controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EDIÇÃO", idJogador);
 
     }
 

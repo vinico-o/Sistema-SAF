@@ -37,5 +37,20 @@ public class HistoricoDeAuditoria {
         
         return auditorias;
     }
+
+    public ArrayList<Auditoria> buscarRegistros(String operacao, String nomeResp, String tabelaAfet) {
+        ArrayList<Auditoria> regs = new ArrayList<>();
+        
+        auditorias = AuditoriaDAO.listAuditoria();
+        
+        for (Auditoria a: auditorias){
+            
+            if (a.getTipoDeLog().equals(operacao) && a.getNomeUsuario().equals(nomeResp) && a.getEntidadeAfetada().equals(tabelaAfet)){
+                regs.add(a);
+            }
+        }
+        
+        return regs;
+    }
     
 }
