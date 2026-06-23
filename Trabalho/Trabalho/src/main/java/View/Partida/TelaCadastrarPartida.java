@@ -4,10 +4,12 @@
  */
 package View.Partida;
 
+import Controller.ControladorAuditoria;
 import Controller.ControladorFinanceiro;
 import Controller.ControladorPartida;
 import JDBC.ConnectionFactory;
 import Model.Partida.Partida;
+import Model.Sessao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -337,6 +339,11 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
             ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
             float bilheteria = controladorFinanceiro.calcularBilheteria(publico, valorDoIngresso);
 
+            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Partida", "INSERÇÃO", idPartida);
+            
+            
             if (premiacao > 0) {
                 controladorFinanceiro.iniciarCadastroDeReceitas("Premiação", premiacao,
                         "Premiação da partida contra " + clubeAdversario, "Receita", idPartida, null);
