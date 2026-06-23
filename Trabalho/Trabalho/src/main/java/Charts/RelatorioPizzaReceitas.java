@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -28,25 +29,8 @@ public class RelatorioPizzaReceitas extends JDialog{
         
         super(pai, "Distribuição de Receitas por Categoria", true);
 
-        // dataset pizza
-        DefaultPieDataset dataset = new DefaultPieDataset();
-
-        // mapa auxiliar para somar os valores de categorias repetidas
-        Map<String, Double> totaisPorCategoria = new HashMap<>();
-
-        // agrupando e somando os valores por categoria
-        for (TransacaoFinanceira receita : listaReceitas) {
-            String categoria = receita.getCategoria();
-            double valor = receita.getValor();
-
-            //soma o valor se a categoria já existir, senão começa com 0 e soma
-            totaisPorCategoria.put(categoria, totaisPorCategoria.getOrDefault(categoria, 0.0) + valor);
-        }
-
-        // transfere os dados somados do napa para o dataset (aquele do gráfico)
-        for (Map.Entry<String, Double> registro : totaisPorCategoria.entrySet()) {
-            dataset.setValue(registro.getKey(), registro.getValue());
-        }
+        // Chama o método estático para criar o dataset
+        DefaultPieDataset dataset = criarDataset(listaReceitas);
 
         // criando o gráfico de pizza
         JFreeChart chart = ChartFactory.createPieChart(
@@ -72,6 +56,23 @@ public class RelatorioPizzaReceitas extends JDialog{
         pack();
         setSize(800, 600);
         setLocationRelativeTo(pai); 
+    }
+    
+    public static DefaultPieDataset criarDataset(List<TransacaoFinanceira> listaReceitas) {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        Map<String, Double> totaisPorCategoria = new HashMap<>();
+
+        for (TransacaoFinanceira receita : listaReceitas) {
+            String categoria = receita.getCategoria();
+            double valor = receita.getValor();
+            totaisPorCategoria.put(categoria, totaisPorCategoria.getOrDefault(categoria, 0.0) + valor);
+        }
+
+        for (Map.Entry<String, Double> registro : totaisPorCategoria.entrySet()) {
+            dataset.setValue(registro.getKey(), registro.getValue());
+        }
+
+        return dataset;
     }
     
 }

@@ -38,47 +38,7 @@ public class RelatorioGolsHistorico extends JDialog {
         // por Clube)
         List<Partida> partidas = PartidaDAO.listarPartidas();
 
-        // Garante a ordenação cronológica manualmente
-        partidas.sort((p1, p2) -> {
-            if (p1.getData() == null || p2.getData() == null)
-                return 0;
-            return p1.getData().compareTo(p2.getData());
-        });
-
-        XYSeries serieGolsMarcados = new XYSeries("Gols Marcados");
-        XYSeries serieGolsSofridos = new XYSeries("Gols Sofridos");
-
-        // Percorre manualmente cada partida
-        int numeroPartida = 0;
-        for (int i = 0; i < partidas.size(); i++) {
-            Partida p = partidas.get(i);
-
-            // Aplica filtro de data
-            if (dataInicio != null && p.getData() != null && p.getData().before(dataInicio)) {
-                continue;
-            }
-            if (dataFim != null && p.getData() != null && p.getData().after(dataFim)) {
-                continue;
-            }
-
-            // Aplica filtro de competição
-            if (!competicao.equals("Todas")) {
-                if (p.getCompeticao() == null || !p.getCompeticao().equals(competicao)) {
-                    continue;
-                }
-            }
-
-            numeroPartida++;
-            int marcados = p.getGolsMarcados();
-            int sofridos = p.getGolsSofridos();
-
-            serieGolsMarcados.add(numeroPartida, marcados);
-            serieGolsSofridos.add(numeroPartida, sofridos);
-        }
-
-        XYSeriesCollection dataset = new XYSeriesCollection();
-        dataset.addSeries(serieGolsMarcados);
-        dataset.addSeries(serieGolsSofridos);
+        XYSeriesCollection dataset = criarDataset(partidas, dataInicio, dataFim, competicao);
 
         JFreeChart chart = ChartFactory.createXYLineChart(
                 "Histórico de Gols por Partida",
@@ -100,6 +60,48 @@ public class RelatorioGolsHistorico extends JDialog {
         plot.setBackgroundPaint(Color.WHITE);
 
         return chart;
+    }
+
+    public static XYSeriesCollection criarDataset(List<Partida> partidas, java.util.Date dataInicio, java.util.Date dataFim, String competicao) {
+        partidas.sort((p1, p2) -> {
+            if (p1.getData() == null || p2.getData() == null)
+                return 0;
+            return p1.getData().compareTo(p2.getData());
+        });
+
+        XYSeries serieGolsMarcados = new XYSeries("Gols Marcados");
+        XYSeries serieGolsSofridos = new XYSeries("Gols Sofridos");
+
+        int numeroPartida = 0;
+        for (int i = 0; i < partidas.size(); i++) {
+            Partida p = partidas.get(i);
+
+            if (dataInicio != null && p.getData() != null && p.getData().before(dataInicio)) {
+                continue;
+            }
+            if (dataFim != null && p.getData() != null && p.getData().after(dataFim)) {
+                continue;
+            }
+
+            if (!competicao.equals("Todas")) {
+                if (p.getCompeticao() == null || !p.getCompeticao().equals(competicao)) {
+                    continue;
+                }
+            }
+
+            numeroPartida++;
+            int marcados = p.getGolsMarcados();
+            int sofridos = p.getGolsSofridos();
+
+            serieGolsMarcados.add(numeroPartida, marcados);
+            serieGolsSofridos.add(numeroPartida, sofridos);
+        }
+
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(serieGolsMarcados);
+        dataset.addSeries(serieGolsSofridos);
+
+        return dataset;
     }
 
 }

@@ -36,54 +36,7 @@ public class RelatorioLinhaTempoFinanceiro extends JDialog {
     public RelatorioLinhaTempoFinanceiro(JFrame pai, List<TransacaoFinanceira> listaDoPeriodo) {
         super(pai, "Relatório de Evolução Financeira", true);
 
-        
-        TimeSeries serieReceitas = new TimeSeries("Receitas");
-        TimeSeries serieDespesas = new TimeSeries("Despesas");
-        TimeSeries serieSaldo = new TimeSeries("Saldo Líquido");
-
-        // mapas para acumular e somar os valores se houver mais de uma transação no mesmo mês
-        Map<Month, Double> acumuloReceitas = new HashMap<>();
-        Map<Month, Double> acumuloDespesas = new HashMap<>();
-
-        // 2. Agrupando e somando os valores por mês/ano
-        for (TransacaoFinanceira item : listaDoPeriodo) {
-            Date data = item.getData();
-            LocalDate localDate = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            Month mesJFreeChart = new Month(localDate.getMonthValue(), localDate.getYear());
-
-            if ("Receita".equalsIgnoreCase(item.getTipo())) {
-                acumuloReceitas.put(mesJFreeChart, acumuloReceitas.getOrDefault(mesJFreeChart, 0.0) + item.getValor());
-            } else {
-                acumuloDespesas.put(mesJFreeChart, acumuloDespesas.getOrDefault(mesJFreeChart, 0.0) + item.getValor());
-            }
-        }
-
-        // unindo todos os meses movimentados para calcular o saldo e jogar para as series
-        Set<Month> todosOsMeses = new HashSet<>();
-        todosOsMeses.addAll(acumuloReceitas.keySet());
-        todosOsMeses.addAll(acumuloDespesas.keySet());
-
-        for (Month mes : todosOsMeses) {
-            double totalReceita = acumuloReceitas.getOrDefault(mes, 0.0);
-            double totalDespesa = acumuloDespesas.getOrDefault(mes, 0.0);
-            double saldoDoMes = totalReceita - totalDespesa;
-
-            if (totalReceita > 0) {
-                serieReceitas.add(mes, totalReceita);
-            }
-            if (totalDespesa > 0) {
-                serieDespesas.add(mes, totalDespesa);
-            }
-
-            // o saldo é add em todos os meses com movimento
-            serieSaldo.add(mes, saldoDoMes);
-        }
-
-        //  formando o dataset
-        TimeSeriesCollection dataset = new TimeSeriesCollection();
-        dataset.addSeries(serieReceitas); 
-        dataset.addSeries(serieDespesas); 
-        dataset.addSeries(serieSaldo);
+        TimeSeriesCollection dataset = criarDataset(listaDoPeriodo);
 
         // criando o gráfico
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
@@ -127,5 +80,52 @@ public class RelatorioLinhaTempoFinanceiro extends JDialog {
         pack();
         setSize(900, 500);
         setLocationRelativeTo(pai);
+    }
+    
+    public static TimeSeriesCollection criarDataset(List<TransacaoFinanceira> listaDoPeriodo) {
+        TimeSeries serieReceitas = new TimeSeries("Receitas");
+        TimeSeries serieDespesas = new TimeSeries("Despesas");
+        TimeSeries serieSaldo = new TimeSeries("Saldo Líquido");
+
+        Map<Month, Double> acumuloReceitas = new HashMap<>();
+        Map<Month, Double> acumuloDespesas = new HashMap<>();
+
+        for (TransacaoFinanceira item : listaDoPeriodo) {
+            Date data = item.getData();
+            LocalDate localDate = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            Month mesJFreeChart = new Month(localDate.getMonthValue(), localDate.getYear());
+
+            if ("Receita".equalsIgnoreCase(item.getTipo())) {
+                acumuloReceitas.put(mesJFreeChart, acumuloReceitas.getOrDefault(mesJFreeChart, 0.0) + item.getValor());
+            } else {
+                acumuloDespesas.put(mesJFreeChart, acumuloDespesas.getOrDefault(mesJFreeChart, 0.0) + item.getValor());
+            }
+        }
+
+        Set<Month> todosOsMeses = new HashSet<>();
+        todosOsMeses.addAll(acumuloReceitas.keySet());
+        todosOsMeses.addAll(acumuloDespesas.keySet());
+
+        for (Month mes : todosOsMeses) {
+            double totalReceita = acumuloReceitas.getOrDefault(mes, 0.0);
+            double totalDespesa = acumuloDespesas.getOrDefault(mes, 0.0);
+            double saldoDoMes = totalReceita - totalDespesa;
+
+            if (totalReceita > 0) {
+                serieReceitas.add(mes, totalReceita);
+            }
+            if (totalDespesa > 0) {
+                serieDespesas.add(mes, totalDespesa);
+            }
+
+            serieSaldo.add(mes, saldoDoMes);
+        }
+
+        TimeSeriesCollection dataset = new TimeSeriesCollection();
+        dataset.addSeries(serieReceitas); 
+        dataset.addSeries(serieDespesas); 
+        dataset.addSeries(serieSaldo);
+        
+        return dataset;
     }
 }

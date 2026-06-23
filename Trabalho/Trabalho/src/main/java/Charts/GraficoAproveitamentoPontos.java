@@ -34,7 +34,7 @@ public class GraficoAproveitamentoPontos extends JDialog {
         setVisible(true);
     }
 
-    private String extrairMes(java.util.Date data) {
+    private static String extrairMes(java.util.Date data) {
         if (data == null)
             return "Desconhecido";
 
@@ -79,72 +79,7 @@ public class GraficoAproveitamentoPontos extends JDialog {
         // pelo Clube atual)
         List<Partida> todasPartidas = PartidaDAO.listarPartidas();
 
-        // Arrays paralelos para guardar os meses e os contadores
-        List<String> mesesVistos = new ArrayList<>();
-        List<Integer> vitorias = new ArrayList<>();
-        List<Integer> empates = new ArrayList<>();
-        List<Integer> derrotas = new ArrayList<>();
-
-        // Percorre cada partida individualmente de forma manual
-        for (int i = 0; i < todasPartidas.size(); i++) {
-            Partida p = todasPartidas.get(i);
-
-            // Aplica filtro de data
-            if (dataInicio != null && p.getData() != null && p.getData().before(dataInicio)) {
-                continue;
-            }
-            if (dataFim != null && p.getData() != null && p.getData().after(dataFim)) {
-                continue;
-            }
-
-            // Aplica filtro de competição
-            if (!competicao.equals("Todas")) {
-                if (p.getCompeticao() == null || !p.getCompeticao().equals(competicao)) {
-                    continue;
-                }
-            }
-
-            String mes = extrairMes(p.getData());
-
-            // Descobre se o mês já foi encontrado antes
-            int indiceMes = -1;
-            for (int j = 0; j < mesesVistos.size(); j++) {
-                if (mesesVistos.get(j).equals(mes)) {
-                    indiceMes = j;
-                    break;
-                }
-            }
-
-            // Se o mês é novo, adiciona nas listas com contadores zerados
-            if (indiceMes == -1) {
-                mesesVistos.add(mes);
-                vitorias.add(0);
-                empates.add(0);
-                derrotas.add(0);
-                indiceMes = mesesVistos.size() - 1;
-            }
-
-            // Classifica o resultado da partida manualmente
-            if (p.getGolsMarcados() > p.getGolsSofridos()) {
-                int valorAtual = vitorias.get(indiceMes);
-                vitorias.set(indiceMes, valorAtual + 1);
-            } else if (p.getGolsMarcados() == p.getGolsSofridos()) {
-                int valorAtual = empates.get(indiceMes);
-                empates.set(indiceMes, valorAtual + 1);
-            } else {
-                int valorAtual = derrotas.get(indiceMes);
-                derrotas.set(indiceMes, valorAtual + 1);
-            }
-        }
-
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        for (int i = 0; i < mesesVistos.size(); i++) {
-            String mes = mesesVistos.get(i);
-            dataset.addValue(vitorias.get(i), "Vitórias", mes);
-            dataset.addValue(empates.get(i), "Empates", mes);
-            dataset.addValue(derrotas.get(i), "Derrotas", mes);
-        }
+        DefaultCategoryDataset dataset = criarDataset(todasPartidas, dataInicio, dataFim, competicao);
 
         JFreeChart chart = ChartFactory.createStackedBarChart(
                 "Aproveitamento de Pontos por Mês",
@@ -166,6 +101,70 @@ public class GraficoAproveitamentoPontos extends JDialog {
         renderer.setSeriesPaint(2, new Color(204, 0, 0)); // Vermelho
 
         return chart;
+    }
+
+    public static DefaultCategoryDataset criarDataset(List<Partida> todasPartidas, java.util.Date dataInicio, java.util.Date dataFim, String competicao) {
+        List<String> mesesVistos = new ArrayList<>();
+        List<Integer> vitorias = new ArrayList<>();
+        List<Integer> empates = new ArrayList<>();
+        List<Integer> derrotas = new ArrayList<>();
+
+        for (int i = 0; i < todasPartidas.size(); i++) {
+            Partida p = todasPartidas.get(i);
+
+            if (dataInicio != null && p.getData() != null && p.getData().before(dataInicio)) {
+                continue;
+            }
+            if (dataFim != null && p.getData() != null && p.getData().after(dataFim)) {
+                continue;
+            }
+
+            if (!competicao.equals("Todas")) {
+                if (p.getCompeticao() == null || !p.getCompeticao().equals(competicao)) {
+                    continue;
+                }
+            }
+
+            String mes = extrairMes(p.getData());
+
+            int indiceMes = -1;
+            for (int j = 0; j < mesesVistos.size(); j++) {
+                if (mesesVistos.get(j).equals(mes)) {
+                    indiceMes = j;
+                    break;
+                }
+            }
+
+            if (indiceMes == -1) {
+                mesesVistos.add(mes);
+                vitorias.add(0);
+                empates.add(0);
+                derrotas.add(0);
+                indiceMes = mesesVistos.size() - 1;
+            }
+
+            if (p.getGolsMarcados() > p.getGolsSofridos()) {
+                int valorAtual = vitorias.get(indiceMes);
+                vitorias.set(indiceMes, valorAtual + 1);
+            } else if (p.getGolsMarcados() == p.getGolsSofridos()) {
+                int valorAtual = empates.get(indiceMes);
+                empates.set(indiceMes, valorAtual + 1);
+            } else {
+                int valorAtual = derrotas.get(indiceMes);
+                derrotas.set(indiceMes, valorAtual + 1);
+            }
+        }
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (int i = 0; i < mesesVistos.size(); i++) {
+            String mes = mesesVistos.get(i);
+            dataset.addValue(vitorias.get(i), "Vitórias", mes);
+            dataset.addValue(empates.get(i), "Empates", mes);
+            dataset.addValue(derrotas.get(i), "Derrotas", mes);
+        }
+
+        return dataset;
     }
 
 }

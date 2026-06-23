@@ -26,24 +26,8 @@ public class RelatorioBarrasDespesas extends JDialog {
         
         super(pai, "Distribuição de Despesas por Categoria", true);
 
-        // dataset para gráfico de barras
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        // mapa para somar os valores de categorias repetidas
-        Map<String, Double> totaisPorCategoria = new HashMap<>();
-
-        // somando os valores por categoria
-        for (TransacaoFinanceira despesa : listaDespesas) {
-            String categoria = despesa.getCategoria();
-            double valor = despesa.getValor();
-
-            totaisPorCategoria.put(categoria, totaisPorCategoria.getOrDefault(categoria, 0.0) + valor);
-        }
-
-        // passa os valores somados (e o nome da categoria tbm) para o dataset
-        for (Map.Entry<String, Double> registro : totaisPorCategoria.entrySet()) {
-            dataset.setValue(registro.getValue(), "Despesas", registro.getKey());
-        }
+        // Chama o método estático para criar o dataset
+        DefaultCategoryDataset dataset = criarDataset(listaDespesas);
 
         // estilizando o gráfico de barras
         JFreeChart chart = ChartFactory.createBarChart(
@@ -74,5 +58,22 @@ public class RelatorioBarrasDespesas extends JDialog {
         pack();
         setSize(800, 600);
         setLocationRelativeTo(pai); 
+    }
+    
+    public static DefaultCategoryDataset criarDataset(List<TransacaoFinanceira> listaDespesas) {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        Map<String, Double> totaisPorCategoria = new HashMap<>();
+
+        for (TransacaoFinanceira despesa : listaDespesas) {
+            String categoria = despesa.getCategoria();
+            double valor = despesa.getValor();
+            totaisPorCategoria.put(categoria, totaisPorCategoria.getOrDefault(categoria, 0.0) + valor);
+        }
+
+        for (Map.Entry<String, Double> registro : totaisPorCategoria.entrySet()) {
+            dataset.setValue(registro.getValue(), "Despesas", registro.getKey());
+        }
+
+        return dataset;
     }
 }
