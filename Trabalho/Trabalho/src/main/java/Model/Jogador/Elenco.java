@@ -40,8 +40,9 @@ public class Elenco {
 
         DataAcessObject.JogadorDAO.atualizarJogador(jogador);
         ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
-            
-        controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EDIÇÃO", idJogador);
+
+        controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EDIÇÃO",
+                idJogador);
 
     }
 

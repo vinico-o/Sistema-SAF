@@ -18,23 +18,23 @@ public class RelatorioLinhaTempoFinanceiroTest {
     public void testCriarDataset() {
         // Arrange
         List<TransacaoFinanceira> transacoes = new ArrayList<>();
-        
+
         Calendar cal = Calendar.getInstance();
-        
+
         // Receita no Mês 1
         cal.set(2023, Calendar.JANUARY, 10);
         TransacaoFinanceira t1 = new TransacaoFinanceira();
         t1.setTipo("Receita");
         t1.setValor(10000.0f);
         t1.setData(cal.getTime());
-        
+
         // Despesa no Mês 1
         cal.set(2023, Calendar.JANUARY, 15);
         TransacaoFinanceira t2 = new TransacaoFinanceira();
         t2.setTipo("Despesa");
         t2.setValor(3000.0f);
         t2.setData(cal.getTime());
-        
+
         // Despesa no Mês 2
         cal.set(2023, Calendar.FEBRUARY, 5);
         TransacaoFinanceira t3 = new TransacaoFinanceira();
@@ -56,16 +56,24 @@ public class RelatorioLinhaTempoFinanceiroTest {
         Month fev2023 = new Month(2, 2023);
 
         // Verifica Receitas
-        assertEquals(10000.0, dataset.getSeries("Receitas").getValue(jan2023).doubleValue(), "Receita de Janeiro deve ser 10000");
-        // Receita em fevereiro não deve existir na série (pois não adiciona se for <= 0) - wait, o código não adiciona 0.0 na série, mas não vai falhar se pegarmos?
-        // Em JFreeChart, getSeries("Receitas").getValue(fev2023) throws exception se o item não existir, ou a gente pode testar o saldo.
-        
+        assertEquals(10000.0, dataset.getSeries("Receitas").getValue(jan2023).doubleValue(),
+                "Receita de Janeiro deve ser 10000");
+        // Receita em fevereiro não deve existir na série (pois não adiciona se for <=
+        // 0) - wait, o código não adiciona 0.0 na série, mas não vai falhar se
+        // pegarmos?
+        // Em JFreeChart, getSeries("Receitas").getValue(fev2023) throws exception se o
+        // item não existir, ou a gente pode testar o saldo.
+
         // Verifica Despesas
-        assertEquals(3000.0, dataset.getSeries("Despesas").getValue(jan2023).doubleValue(), "Despesa de Janeiro deve ser 3000");
-        assertEquals(2000.0, dataset.getSeries("Despesas").getValue(fev2023).doubleValue(), "Despesa de Fevereiro deve ser 2000");
+        assertEquals(3000.0, dataset.getSeries("Despesas").getValue(jan2023).doubleValue(),
+                "Despesa de Janeiro deve ser 3000");
+        assertEquals(2000.0, dataset.getSeries("Despesas").getValue(fev2023).doubleValue(),
+                "Despesa de Fevereiro deve ser 2000");
 
         // Verifica Saldo
-        assertEquals(7000.0, dataset.getSeries("Saldo Líquido").getValue(jan2023).doubleValue(), "Saldo de Janeiro deve ser 7000 (10k - 3k)");
-        assertEquals(-2000.0, dataset.getSeries("Saldo Líquido").getValue(fev2023).doubleValue(), "Saldo de Fevereiro deve ser -2000 (0 - 2k)");
+        assertEquals(7000.0, dataset.getSeries("Saldo Líquido").getValue(jan2023).doubleValue(),
+                "Saldo de Janeiro deve ser 7000 (10k - 3k)");
+        assertEquals(-2000.0, dataset.getSeries("Saldo Líquido").getValue(fev2023).doubleValue(),
+                "Saldo de Fevereiro deve ser -2000 (0 - 2k)");
     }
 }

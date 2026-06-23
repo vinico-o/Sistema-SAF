@@ -13,24 +13,24 @@ import Model.Usuario.Usuario;
 public class Sessao {
     private static Usuario usuarioLogado;
     private static int idClubeAtual;
-    
+
     public static void setUsuarioLogado(Usuario usuario) {
         usuarioLogado = usuario;
     }
-    
+
     public static void encerrarSessao(Usuario usuario) {
         usuarioLogado = null;
         idClubeAtual = 0;
     }
-    
+
     public static Usuario getUsuarioLogado() {
         return usuarioLogado;
     }
-    
+
     public static void setIdClubeAtual(int id) {
         idClubeAtual = id;
     }
-    
+
     public static int getIdClubeAtual() {
         return idClubeAtual;
     }

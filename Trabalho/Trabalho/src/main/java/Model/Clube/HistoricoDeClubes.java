@@ -21,7 +21,6 @@ public class HistoricoDeClubes {
         clubes = new ArrayList<>();
     }
 
-
     public ArrayList<Clube> getClubes() {
         return clubes;
     }
@@ -29,7 +28,7 @@ public class HistoricoDeClubes {
     public void setClubes(ArrayList<Clube> clubes) {
         this.clubes = clubes;
     }
-    
+
     public Clube cadastrarClube(String nomeClube, int anoFundacao, String pais) {
 
         Clube c = new Clube(0, nomeClube, anoFundacao, pais, 0f);
@@ -39,25 +38,24 @@ public class HistoricoDeClubes {
         return c;
 
     }
-    
-    public void exibirMensagemInvalido(){
+
+    public void exibirMensagemInvalido() {
         JOptionPane.showMessageDialog(null, "Clube já cadastrado!");
     }
-    
-    
+
     // para cadastro
-    public boolean validarUnicidadeDeClube(String nomeClube, int anoFundacao, String pais){
+    public boolean validarUnicidadeDeClube(String nomeClube, int anoFundacao, String pais) {
         this.clubes = ClubeDAO.listClube();
-        
-        for (int i = 0; i < clubes.size(); i++){
-            
-            if (clubes.get(i).getNome().equals(nomeClube)){
+
+        for (int i = 0; i < clubes.size(); i++) {
+
+            if (clubes.get(i).getNome().equals(nomeClube)) {
                 return false;
             }
         }
-    return true;
+        return true;
     }
-    
+
     // para edição
     public boolean validarUnicidadeDeClube(int idClube, String nomeClube, int anoFundacao, String pais) {
         this.clubes = ClubeDAO.listClube();
@@ -72,66 +70,64 @@ public class HistoricoDeClubes {
         }
         return true;
     }
-    
-    public boolean editarClube (int idClube, String nomeClube, int anoFundacao, String pais){
+
+    public boolean editarClube(int idClube, String nomeClube, int anoFundacao, String pais) {
         boolean retorno = validarUnicidadeDeClube(idClube, nomeClube, anoFundacao, pais);
-        
+
         Clube c = new Clube(idClube, nomeClube, anoFundacao, pais, 0f);
-        
-        if (retorno == true){
+
+        if (retorno == true) {
             ClubeDAO.atualizarClube(idClube, c);
-            
+
             return true;
-        }
-        else{
+        } else {
             exibirMensagemInvalido();
-            
+
             return false;
         }
     }
-    
-    public Clube buscarClube (int idClube){
+
+    public Clube buscarClube(int idClube) {
         this.clubes = ClubeDAO.listClube();
-        
-        for (int i = 0; i < clubes.size(); i++){
-            if (clubes.get(i).getIdClube() == idClube){
+
+        for (int i = 0; i < clubes.size(); i++) {
+            if (clubes.get(i).getIdClube() == idClube) {
                 return clubes.get(i);
             }
         }
-        
+
         return null;
     }
-    
-    public boolean apagarClube(int idClube){
-        if (Sessao.getIdClubeAtual() != idClube){
+
+    public boolean apagarClube(int idClube) {
+        if (Sessao.getIdClubeAtual() != idClube) {
             ClubeDAO.ExcluirClube(idClube);
-            
+
             return true;
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Proibido excluir clube que está sendo operado");
-            
+
             return false;
         }
     }
-    
-    public ArrayList<Clube> listarClubes(){
+
+    public ArrayList<Clube> listarClubes() {
         this.clubes = ClubeDAO.listClube();
-        
+
         return clubes;
     }
-    
+
     public void BuscarEDiminuirSaldoPorInsercaoDeDespesa(int idClube, float valor) {
         this.clubes = ClubeDAO.listClube();
-        
-        for (int i = 0; i < clubes.size(); i++){
-            
-            if (clubes.get(i).getIdClube() == idClube){
-             
+
+        for (int i = 0; i < clubes.size(); i++) {
+
+            if (clubes.get(i).getIdClube() == idClube) {
+
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() - valor);
-                
+
                 ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
-                
+
                 break;
             }
         }
@@ -139,14 +135,14 @@ public class HistoricoDeClubes {
 
     public void BuscarEAlterarSaldoPorAtualizacaoDeDespesa(int idClube, float valorAnterior, float valorNovo) {
         this.clubes = ClubeDAO.listClube();
-        
-        for (int i = 0; i < clubes.size(); i++){
-            
-            if (clubes.get(i).getIdClube() == idClube){
-             
+
+        for (int i = 0; i < clubes.size(); i++) {
+
+            if (clubes.get(i).getIdClube() == idClube) {
+
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() + valorAnterior);
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() - valorNovo);
-                
+
                 ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
@@ -155,13 +151,13 @@ public class HistoricoDeClubes {
 
     public void BuscarEAumentarSaldoPorExclusaoDeDespesa(int idClube, float valorApagado) {
         this.clubes = ClubeDAO.listClube();
-        
-        for (int i = 0; i < clubes.size(); i++){
-            
-            if (clubes.get(i).getIdClube() == idClube){
-             
+
+        for (int i = 0; i < clubes.size(); i++) {
+
+            if (clubes.get(i).getIdClube() == idClube) {
+
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() + valorApagado);
-                
+
                 ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
@@ -170,13 +166,13 @@ public class HistoricoDeClubes {
 
     public void BuscarEAumentarSaldoPorInsercaoDeReceita(int idClube, float valor) {
         this.clubes = ClubeDAO.listClube();
-        
-        for (int i = 0; i < clubes.size(); i++){
-            
-            if (clubes.get(i).getIdClube() == idClube){
-             
+
+        for (int i = 0; i < clubes.size(); i++) {
+
+            if (clubes.get(i).getIdClube() == idClube) {
+
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() + valor);
-                
+
                 ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
@@ -185,14 +181,14 @@ public class HistoricoDeClubes {
 
     public void BuscarEAlterarSaldoPorAtualizacaoDeReceita(int idClube, float valorAnterior, float valorNovo) {
         this.clubes = ClubeDAO.listClube();
-        
-        for (int i = 0; i < clubes.size(); i++){
-            
-            if (clubes.get(i).getIdClube() == idClube){
-             
+
+        for (int i = 0; i < clubes.size(); i++) {
+
+            if (clubes.get(i).getIdClube() == idClube) {
+
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() - valorAnterior);
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() + valorNovo);
-                
+
                 ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
@@ -201,21 +197,17 @@ public class HistoricoDeClubes {
 
     public void BuscarEDiminuirSaldoPorExclusaoDeReceita(int idClube, float valorApagado) {
         this.clubes = ClubeDAO.listClube();
-        
-        for (int i = 0; i < clubes.size(); i++){
-            
-            if (clubes.get(i).getIdClube() == idClube){
-             
+
+        for (int i = 0; i < clubes.size(); i++) {
+
+            if (clubes.get(i).getIdClube() == idClube) {
+
                 clubes.get(i).setSaldoAtual(clubes.get(i).getSaldoAtual() - valorApagado);
-                
+
                 ClubeDAO.atualizarSaldo(idClube, clubes.get(i).getSaldoAtual());
                 break;
             }
         }
     }
-    
-    
-    
-    
-    
+
 }

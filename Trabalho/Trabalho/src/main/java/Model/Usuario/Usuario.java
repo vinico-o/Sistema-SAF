@@ -17,7 +17,7 @@ public class Usuario {
 
     public Usuario() {
     }
-    
+
     public Usuario(String nome_usuario, String senha, int nivel_usuario, int idClube) {
         this.nome_usuario = nome_usuario;
         this.senha = senha;
@@ -56,13 +56,13 @@ public class Usuario {
     public void setNivel_usuario(int nivel_usuario) {
         this.nivel_usuario = nivel_usuario;
     }
-    
+
     public void setIdClube(int idClube) {
         this.idClube = idClube;
     }
-    
+
     public int getIdClube() {
         return idClube;
     }
-    
+
 }

@@ -17,81 +17,79 @@ import Model.Sessao;
  * @author Cauan
  */
 public class ControladorClube {
-    
-    //HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
-    
-    
-    public boolean iniciarCadastroDeClube(String nomeClube, int anoDeFundacao, String pais){
+
+    // HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
+
+    public boolean iniciarCadastroDeClube(String nomeClube, int anoDeFundacao, String pais) {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
-        
+
         boolean validacao = historicoDeClubes.validarUnicidadeDeClube(nomeClube, anoDeFundacao, pais);
-        
+
         if (!(validacao == false)) {
             Clube clube = historicoDeClubes.cadastrarClube(nomeClube, anoDeFundacao, pais);
             ClubeDAO.createClube(clube);
-            
-            
-            if(Sessao.getUsuarioLogado() != null) {
+
+            if (Sessao.getUsuarioLogado() != null) {
                 ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
-                controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "INSERÇÃO", ClubeDAO.obterUltimoIdClube());
+                controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube",
+                        "INSERÇÃO", ClubeDAO.obterUltimoIdClube());
             }
-            
-            
+
             return true;
         } else {
             historicoDeClubes.exibirMensagemInvalido();
             return false;
         }
     }
-    
-    public ArrayList<Clube> listarClubes(){
+
+    public ArrayList<Clube> listarClubes() {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
-        
+
         return historicoDeClubes.listarClubes();
     }
-    
-   
-    public void iniciarEdicaoDeClube(int idClube, String nomeClube, int anoDeFundacao, String pais){
+
+    public void iniciarEdicaoDeClube(int idClube, String nomeClube, int anoDeFundacao, String pais) {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
         boolean ret = historicoDeClubes.editarClube(idClube, nomeClube, anoDeFundacao, pais);
-        
-        if (ret == true){
+
+        if (ret == true) {
             HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
-            
-            historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "EDIÇÃO", idClube);
+
+            historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "EDIÇÃO",
+                    idClube);
         }
-        
+
     }
-    
-    public Clube buscarClube (int idClube){
+
+    public Clube buscarClube(int idClube) {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
         return historicoDeClubes.buscarClube(idClube);
     }
-    
-    
-    public void iniciarExclusaoDeClube(int idClube){
+
+    public void iniciarExclusaoDeClube(int idClube) {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
-        
+
         boolean operacao = historicoDeClubes.apagarClube(idClube);
-        
-        if (operacao == true){
+
+        if (operacao == true) {
             HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
-            
-            historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "EXCLUSÃO", idClube);
+
+            historicoDeAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Clube", "EXCLUSÃO",
+                    idClube);
         }
     }
-    
-    public void AlterarSaldoPorAtualizacaoDeDespesa(int idClube, float valorAnterior, float valorNovo){
+
+    public void AlterarSaldoPorAtualizacaoDeDespesa(int idClube, float valorAnterior, float valorNovo) {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
         historicoDeClubes.BuscarEAlterarSaldoPorAtualizacaoDeDespesa(idClube, valorAnterior, valorNovo);
     }
-    
-    public void recalcularSaldoPorExclusaoDeDespesa(int idClube, float valorApagado){
+
+    public void recalcularSaldoPorExclusaoDeDespesa(int idClube, float valorApagado) {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
         historicoDeClubes.BuscarEAumentarSaldoPorExclusaoDeDespesa(idClube, valorApagado);
     }
-    
-    public void AumentarSaldoPorReceita(int idClube, float valor){
+
+    public void AumentarSaldoPorReceita(int idClube, float valor) {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
         historicoDeClubes.BuscarEAumentarSaldoPorInsercaoDeReceita(idClube, valor);
     }
@@ -102,15 +100,13 @@ public class ControladorClube {
     }
 
     void recalcularSaldoPorExclusaoDeReceita(int idClubeAtual, float valorApagado) {
-       HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
-       historicoDeClubes.BuscarEDiminuirSaldoPorExclusaoDeReceita(idClubeAtual, valorApagado);
+        HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
+        historicoDeClubes.BuscarEDiminuirSaldoPorExclusaoDeReceita(idClubeAtual, valorApagado);
     }
 
     void AlterarSaldoPorAtualizacaoDeReceita(int idClube, float valorAnterior, float valor) {
         HistoricoDeClubes historicoDeClubes = new HistoricoDeClubes();
         historicoDeClubes.BuscarEAlterarSaldoPorAtualizacaoDeReceita(idClube, valorAnterior, valor);
     }
-    
 
-    
 }

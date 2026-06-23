@@ -14,24 +14,24 @@ import java.util.ArrayList;
  * @author Cauan
  */
 public class ControladorAuditoria {
-    
-    
-    public void registrarAuditoria(String nomeUsuario, String entidadeAfetada, String tipoDeLog, int idRegistroAfetado){
+
+    public void registrarAuditoria(String nomeUsuario, String entidadeAfetada, String tipoDeLog,
+            int idRegistroAfetado) {
         HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
-        
+
         historicoDeAuditoria.registrarAuditoria(nomeUsuario, entidadeAfetada, tipoDeLog, idRegistroAfetado);
     }
-    
-    public ArrayList<Auditoria> listarAuditorias(){
+
+    public ArrayList<Auditoria> listarAuditorias() {
         HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
-        
+
         return historicoDeAuditoria.listarAuditorias();
     }
 
     public ArrayList<Auditoria> buscarRegistros(String operacao, String nomeResp, String tabelaAfet) {
         HistoricoDeAuditoria historicoDeAuditoria = new HistoricoDeAuditoria();
-        
+
         return historicoDeAuditoria.buscarRegistros(operacao, nomeResp, tabelaAfet);
     }
-    
+
 }

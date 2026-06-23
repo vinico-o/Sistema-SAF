@@ -62,7 +62,8 @@ public class RelatorioGolsHistorico extends JDialog {
         return chart;
     }
 
-    public static XYSeriesCollection criarDataset(List<Partida> partidas, java.util.Date dataInicio, java.util.Date dataFim, String competicao) {
+    public static XYSeriesCollection criarDataset(List<Partida> partidas, java.util.Date dataInicio,
+            java.util.Date dataFim, String competicao) {
         partidas.sort((p1, p2) -> {
             if (p1.getData() == null || p2.getData() == null)
                 return 0;

@@ -155,7 +155,7 @@ public class ConnectionFactory {
             e.printStackTrace();
         }
     }
-    
+
     public static void iniciarTabelaAuditoria() {
 
         String sql = "CREATE TABLE IF NOT EXISTS auditoria ("

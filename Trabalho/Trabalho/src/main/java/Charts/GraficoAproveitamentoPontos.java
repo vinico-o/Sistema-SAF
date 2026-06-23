@@ -103,7 +103,8 @@ public class GraficoAproveitamentoPontos extends JDialog {
         return chart;
     }
 
-    public static DefaultCategoryDataset criarDataset(List<Partida> todasPartidas, java.util.Date dataInicio, java.util.Date dataFim, String competicao) {
+    public static DefaultCategoryDataset criarDataset(List<Partida> todasPartidas, java.util.Date dataInicio,
+            java.util.Date dataFim, String competicao) {
         List<String> mesesVistos = new ArrayList<>();
         List<Integer> vitorias = new ArrayList<>();
         List<Integer> empates = new ArrayList<>();

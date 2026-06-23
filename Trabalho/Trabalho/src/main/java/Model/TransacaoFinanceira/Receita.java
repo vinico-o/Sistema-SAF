@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Cauan
  */
-public class Receita extends TransacaoFinanceira{
+public class Receita extends TransacaoFinanceira {
 
     public Receita(int idTransacao, float valor, String categoria, String descricao, Date data, String tipo) {
         super(idTransacao, valor, categoria, descricao, data, tipo);
@@ -18,5 +18,5 @@ public class Receita extends TransacaoFinanceira{
 
     public Receita() {
     }
-    
+
 }

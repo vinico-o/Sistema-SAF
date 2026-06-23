@@ -52,12 +52,11 @@ public class UsuarioDAO {
     }
 
     public static boolean existeNomeUsuario(String nomeUsuario) {
-        String sql = "SELECT 1 FROM usuario WHERE nome_usuario = ? and idClube = ?";
+        String sql = "SELECT 1 FROM usuario WHERE nome_usuario = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, nomeUsuario);
-            stmt.setInt(2, Sessao.getIdClubeAtual());
             try (ResultSet rs = stmt.executeQuery()) {
                 return rs.next(); // Retorna true se achou
             }
@@ -120,12 +119,11 @@ public class UsuarioDAO {
     }
 
     public static Usuario buscarUsuario(String nome_usuario) {
-        String sql = "select * from usuario where nome_usuario = ? and (idClube = ? or idClube = 0)";
+        String sql = "select * from usuario where nome_usuario = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, nome_usuario);
-            stmt.setInt(2, Sessao.getIdClubeAtual());
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -135,6 +133,7 @@ public class UsuarioDAO {
                 obj.setNome_usuario(rs.getString("nome_usuario"));
                 obj.setNivel_usuario(rs.getInt("nivel_usuario"));
                 obj.setSenha(rs.getString("senha"));
+                obj.setIdClube(rs.getInt("idClube"));
 
                 return obj;
 

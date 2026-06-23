@@ -4,8 +4,6 @@
  */
 package Charts;
 
-
-
 import Model.TransacaoFinanceira.TransacaoFinanceira;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -27,6 +25,7 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.time.Month;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+
 /**
  *
  * @author Cauan
@@ -46,8 +45,7 @@ public class RelatorioLinhaTempoFinanceiro extends JDialog {
                 dataset,
                 true,
                 true,
-                false
-        );
+                false);
 
         XYPlot plot = (XYPlot) chart.getPlot();
         plot.setBackgroundPaint(Color.WHITE);
@@ -58,9 +56,9 @@ public class RelatorioLinhaTempoFinanceiro extends JDialog {
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 
         // definição das Cores
-        renderer.setSeriesPaint(0, new Color(0, 255, 0));  
-        renderer.setSeriesPaint(1, new Color(255, 0, 0));   
-        renderer.setSeriesPaint(2, new Color(0, 0, 255));  
+        renderer.setSeriesPaint(0, new Color(0, 255, 0));
+        renderer.setSeriesPaint(1, new Color(255, 0, 0));
+        renderer.setSeriesPaint(2, new Color(0, 0, 255));
 
         // exibir os pontos em todas as linhas
         renderer.setSeriesShapesVisible(0, true);
@@ -81,7 +79,7 @@ public class RelatorioLinhaTempoFinanceiro extends JDialog {
         setSize(900, 500);
         setLocationRelativeTo(pai);
     }
-    
+
     public static TimeSeriesCollection criarDataset(List<TransacaoFinanceira> listaDoPeriodo) {
         TimeSeries serieReceitas = new TimeSeries("Receitas");
         TimeSeries serieDespesas = new TimeSeries("Despesas");
@@ -122,10 +120,10 @@ public class RelatorioLinhaTempoFinanceiro extends JDialog {
         }
 
         TimeSeriesCollection dataset = new TimeSeriesCollection();
-        dataset.addSeries(serieReceitas); 
-        dataset.addSeries(serieDespesas); 
+        dataset.addSeries(serieReceitas);
+        dataset.addSeries(serieDespesas);
         dataset.addSeries(serieSaldo);
-        
+
         return dataset;
     }
 }

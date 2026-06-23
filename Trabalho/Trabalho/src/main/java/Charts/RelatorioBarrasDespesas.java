@@ -23,7 +23,7 @@ import java.util.Map;
 public class RelatorioBarrasDespesas extends JDialog {
 
     public RelatorioBarrasDespesas(JFrame pai, List<TransacaoFinanceira> listaDespesas) {
-        
+
         super(pai, "Distribuição de Despesas por Categoria", true);
 
         // Chama o método estático para criar o dataset
@@ -38,28 +38,26 @@ public class RelatorioBarrasDespesas extends JDialog {
                 PlotOrientation.HORIZONTAL,
                 false,
                 true,
-                false
-        );
+                false);
 
         // customizações
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         plot.setBackgroundPaint(Color.WHITE);
         plot.setDomainGridlinePaint(Color.LIGHT_GRAY);
         plot.setRangeGridlinePaint(Color.LIGHT_GRAY);
-        
+
         // + customizações
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setSeriesPaint(0, new Color(231, 76, 60)); 
+        renderer.setSeriesPaint(0, new Color(231, 76, 60));
         renderer.setItemMargin(0.1);
 
-        
         ChartPanel chartPanel = new ChartPanel(chart);
         setContentPane(chartPanel);
         pack();
         setSize(800, 600);
-        setLocationRelativeTo(pai); 
+        setLocationRelativeTo(pai);
     }
-    
+
     public static DefaultCategoryDataset criarDataset(List<TransacaoFinanceira> listaDespesas) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         Map<String, Double> totaisPorCategoria = new HashMap<>();

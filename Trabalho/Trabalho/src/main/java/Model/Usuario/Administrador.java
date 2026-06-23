@@ -8,7 +8,7 @@ package Model.Usuario;
  *
  * @author Vinícius Mardegan
  */
-public class Administrador extends Usuario{
+public class Administrador extends Usuario {
 
     public Administrador() {
     }
@@ -16,5 +16,5 @@ public class Administrador extends Usuario{
     public Administrador(String nome_usuario, String senha, int nivel_usuario, int idClube) {
         super(nome_usuario, senha, nivel_usuario, idClube);
     }
-    
+
 }

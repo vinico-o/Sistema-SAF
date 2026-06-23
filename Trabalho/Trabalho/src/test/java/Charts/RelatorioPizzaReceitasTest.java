@@ -16,19 +16,19 @@ public class RelatorioPizzaReceitasTest {
     public void testCriarDataset() {
         // Arrange
         List<TransacaoFinanceira> receitas = new ArrayList<>();
-        
+
         TransacaoFinanceira t1 = new TransacaoFinanceira();
         t1.setCategoria("Patrocínio");
         t1.setValor(5000.0f);
-        
+
         TransacaoFinanceira t2 = new TransacaoFinanceira();
         t2.setCategoria("Bilheteria");
         t2.setValor(2000.0f);
-        
+
         TransacaoFinanceira t3 = new TransacaoFinanceira();
         t3.setCategoria("Patrocínio");
         t3.setValor(3000.0f);
-        
+
         receitas.add(t1);
         receitas.add(t2);
         receitas.add(t3);
@@ -40,7 +40,7 @@ public class RelatorioPizzaReceitasTest {
         // A categoria "Patrocínio" aparece duas vezes (5000 + 3000 = 8000)
         // A categoria "Bilheteria" aparece uma vez (2000)
         assertEquals(2, dataset.getItemCount(), "Deve haver exatamente 2 categorias no dataset");
-        
+
         assertEquals(8000.0, dataset.getValue("Patrocínio").doubleValue(), "Soma de Patrocínio deve ser 8000");
         assertEquals(2000.0, dataset.getValue("Bilheteria").doubleValue(), "Soma de Bilheteria deve ser 2000");
     }

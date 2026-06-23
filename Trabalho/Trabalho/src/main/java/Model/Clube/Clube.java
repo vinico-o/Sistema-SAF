@@ -65,10 +65,9 @@ public class Clube {
     public void setSaldoAtual(float saldoAtual) {
         this.saldoAtual = saldoAtual;
     }
-    
+
     @Override
     public String toString() {
         return this.nome;
     }
 }
-

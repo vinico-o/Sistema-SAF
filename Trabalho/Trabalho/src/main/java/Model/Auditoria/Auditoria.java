@@ -18,19 +18,17 @@ public class Auditoria {
     private String entidadeAfetada;
     private Date data;
 
-
-
     public Auditoria() {
     }
 
-    public Auditoria(int idAuditoria, String tipoDeLog, String nomeUsuario, int idDoRegistroAfetado, String entidadeAfetada) {
+    public Auditoria(int idAuditoria, String tipoDeLog, String nomeUsuario, int idDoRegistroAfetado,
+            String entidadeAfetada) {
         this.idAuditoria = idAuditoria;
         this.tipoDeLog = tipoDeLog;
         this.nomeUsuario = nomeUsuario;
         this.idDoRegistroAfetado = idDoRegistroAfetado;
         this.entidadeAfetada = entidadeAfetada;
     }
-    
 
     public int getIdAuditoria() {
         return idAuditoria;
@@ -79,7 +77,5 @@ public class Auditoria {
     public void setData(Date data) {
         this.data = data;
     }
-    
-    
-    
+
 }
