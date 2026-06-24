@@ -149,11 +149,6 @@ public class HistoricoDePartidas {
             }
             partidas.add(partida);
 
-            ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
-
-            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Partida", "INSERÇÃO",
-                    DataAcessObject.PartidaDAO.obterUltimoIdPartida());
-
             return DataAcessObject.PartidaDAO.createPartida(partida);
         }
 

@@ -4,10 +4,12 @@
  */
 package View.Partida;
 
+import Controller.ControladorAuditoria;
 import Controller.ControladorFinanceiro;
 import Controller.ControladorPartida;
 import JDBC.ConnectionFactory;
 import Model.Partida.Partida;
+import Model.Sessao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -364,15 +366,30 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
                 try {
                         String clubeAdversario = campoAdversario.getText().trim();
                         int golsMarcados = -1;
-                        try { golsMarcados = Integer.parseInt(campoGolsMarcados.getText().trim()); } catch (Exception e) {}
+                        try {
+                                golsMarcados = Integer.parseInt(campoGolsMarcados.getText().trim());
+                        } catch (Exception e) {
+                        }
                         int golsSofridos = -1;
-                        try { golsSofridos = Integer.parseInt(campoGolsSofridos.getText().trim()); } catch (Exception e) {}
+                        try {
+                                golsSofridos = Integer.parseInt(campoGolsSofridos.getText().trim());
+                        } catch (Exception e) {
+                        }
                         float premiacao = -1;
-                        try { premiacao = Float.parseFloat(campoPremiacao.getText().trim()); } catch (Exception e) {}
+                        try {
+                                premiacao = Float.parseFloat(campoPremiacao.getText().trim());
+                        } catch (Exception e) {
+                        }
                         int publico = -1;
-                        try { publico = Integer.parseInt(campoPublico.getText().trim()); } catch (Exception e) {}
+                        try {
+                                publico = Integer.parseInt(campoPublico.getText().trim());
+                        } catch (Exception e) {
+                        }
                         float valorDoIngresso = -1;
-                        try { valorDoIngresso = Float.parseFloat(campoValorIngresso.getText().trim()); } catch (Exception e) {}
+                        try {
+                                valorDoIngresso = Float.parseFloat(campoValorIngresso.getText().trim());
+                        } catch (Exception e) {
+                        }
 
                         ControladorPartida controladorPartida = new ControladorPartida();
 
@@ -387,7 +404,8 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
                         String competicao = campoCompeticao.getSelectedItem().toString();
                         String local = campoLocal.getSelectedItem().toString();
 
-                        int idPartida = controladorPartida.cadastrarPartida(data, clubeAdversario, golsMarcados, golsSofridos,
+                        int idPartida = controladorPartida.cadastrarPartida(data, clubeAdversario, golsMarcados,
+                                        golsSofridos,
                                         competicao,
                                         premiacao, publico, valorDoIngresso, local);
 
@@ -395,21 +413,29 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
                                 ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
                                 float bilheteria = controladorFinanceiro.calcularBilheteria(publico, valorDoIngresso);
 
+                                ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+
+                                controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(),
+                                                "Partida", "INSERÇÃO", idPartida);
+
                                 if (premiacao > 0) {
                                         controladorFinanceiro.iniciarCadastroDeReceitas("Premiação", premiacao,
-                                                        "Premiação da partida contra " + clubeAdversario, "Receita", idPartida,
+                                                        "Premiação da partida contra " + clubeAdversario, "Receita",
+                                                        idPartida,
                                                         null);
                                 }
                                 if (bilheteria > 0) {
                                         controladorFinanceiro.iniciarCadastroDeReceitas("Bilheteria", bilheteria,
-                                                        "Bilheteria da partida contra " + clubeAdversario, "Receita", idPartida,
+                                                        "Bilheteria da partida contra " + clubeAdversario, "Receita",
+                                                        idPartida,
                                                         null);
                                 }
-                                
+
                                 dispose();
                         }
                 } catch (NumberFormatException ex) {
-                        javax.swing.JOptionPane.showMessageDialog(this, "Preencha os campos numéricos com valores válidos!");
+                        javax.swing.JOptionPane.showMessageDialog(this,
+                                        "Preencha os campos numéricos com valores válidos!");
                 } catch (Exception ex) {
                         javax.swing.JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage());
                 }
