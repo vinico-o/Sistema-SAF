@@ -134,6 +134,40 @@ public class JogadorDAO {
             return null;
         }
     }
+    
+    public static Jogador buscarJogadorPorNome(String nome) {
+        String sql = "SELECT * FROM jogador WHERE nome = ? AND idClube = ?";
+        try (Connection conexao = JDBC.ConnectionFactory.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setString(1, nome);
+            stmt.setInt(2, Sessao.getIdClubeAtual());
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Jogador obj = new Jogador();
+
+                obj.setIdJogador(rs.getInt("id_jogador"));
+                obj.setNome(rs.getString("nome"));
+                obj.setData_de_nascimento(new java.util.Date(rs.getLong("data_de_nascimento")));
+                obj.setNacionalidade(rs.getString("nacionalidade"));
+                obj.setPosicao(rs.getString("posicao"));
+                obj.setNumero_da_camisa(rs.getInt("numero_da_camisa"));
+                obj.setSalario(rs.getFloat("salario"));
+                obj.setTempo_de_contrato(rs.getInt("tempo_de_contrato"));
+                obj.setValor(rs.getFloat("valor"));
+
+                return obj;
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Erro ao buscar jogador: " + e.getMessage());
+            return null;
+        }
+    }
 
     public static void apagarJogador(int idJogador) {
         DataAcessObject.TransacaoDAO.desvincularTransacoesDeJogador(idJogador);

@@ -361,47 +361,58 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
         }// GEN-LAST:event_campoDataActionPerformed
 
         private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoCadastrarActionPerformed
-                ControladorPartida controladorPartida = new ControladorPartida();
-
-                ConnectionFactory.iniciarTabelaPartida();
-                ConnectionFactory.iniciarTabelaTransacao();
-
-                java.util.Date data = null;
                 try {
-                        data = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(campoData.getText().trim());
-                } catch (java.text.ParseException e) {
-                }
-                String clubeAdversario = campoAdversario.getText();
-                int golsMarcados = Integer.parseInt(campoGolsMarcados.getText());
-                int golsSofridos = Integer.parseInt(campoGolsSofridos.getText());
-                String competicao = campoCompeticao.getSelectedItem().toString();
-                float premiacao = Float.parseFloat(campoPremiacao.getText());
-                int publico = Integer.parseInt(campoPublico.getText());
-                float valorDoIngresso = Float.parseFloat(campoValorIngresso.getText());
-                String local = campoLocal.getSelectedItem().toString();
+                        String clubeAdversario = campoAdversario.getText().trim();
+                        int golsMarcados = -1;
+                        try { golsMarcados = Integer.parseInt(campoGolsMarcados.getText().trim()); } catch (Exception e) {}
+                        int golsSofridos = -1;
+                        try { golsSofridos = Integer.parseInt(campoGolsSofridos.getText().trim()); } catch (Exception e) {}
+                        float premiacao = -1;
+                        try { premiacao = Float.parseFloat(campoPremiacao.getText().trim()); } catch (Exception e) {}
+                        int publico = -1;
+                        try { publico = Integer.parseInt(campoPublico.getText().trim()); } catch (Exception e) {}
+                        float valorDoIngresso = -1;
+                        try { valorDoIngresso = Float.parseFloat(campoValorIngresso.getText().trim()); } catch (Exception e) {}
 
-                int idPartida = controladorPartida.cadastrarPartida(data, clubeAdversario, golsMarcados, golsSofridos,
-                                competicao,
-                                premiacao, publico, valorDoIngresso, local);
+                        ControladorPartida controladorPartida = new ControladorPartida();
 
-                if (idPartida != -1) {
-                        ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
-                        float bilheteria = controladorFinanceiro.calcularBilheteria(publico, valorDoIngresso);
+                        ConnectionFactory.iniciarTabelaPartida();
+                        ConnectionFactory.iniciarTabelaTransacao();
 
-                        if (premiacao > 0) {
-                                controladorFinanceiro.iniciarCadastroDeReceitas("Premiação", premiacao,
-                                                "Premiação da partida contra " + clubeAdversario, "Receita", idPartida,
-                                                null);
+                        java.util.Date data = null;
+                        try {
+                                data = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(campoData.getText().trim());
+                        } catch (java.text.ParseException e) {
                         }
-                        if (bilheteria > 0) {
-                                controladorFinanceiro.iniciarCadastroDeReceitas("Bilheteria", bilheteria,
-                                                "Bilheteria da partida contra " + clubeAdversario, "Receita", idPartida,
-                                                null);
+                        String competicao = campoCompeticao.getSelectedItem().toString();
+                        String local = campoLocal.getSelectedItem().toString();
+
+                        int idPartida = controladorPartida.cadastrarPartida(data, clubeAdversario, golsMarcados, golsSofridos,
+                                        competicao,
+                                        premiacao, publico, valorDoIngresso, local);
+
+                        if (idPartida != -1) {
+                                ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
+                                float bilheteria = controladorFinanceiro.calcularBilheteria(publico, valorDoIngresso);
+
+                                if (premiacao > 0) {
+                                        controladorFinanceiro.iniciarCadastroDeReceitas("Premiação", premiacao,
+                                                        "Premiação da partida contra " + clubeAdversario, "Receita", idPartida,
+                                                        null);
+                                }
+                                if (bilheteria > 0) {
+                                        controladorFinanceiro.iniciarCadastroDeReceitas("Bilheteria", bilheteria,
+                                                        "Bilheteria da partida contra " + clubeAdversario, "Receita", idPartida,
+                                                        null);
+                                }
+                                
+                                dispose();
                         }
+                } catch (NumberFormatException ex) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Preencha os campos numéricos com valores válidos!");
+                } catch (Exception ex) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage());
                 }
-
-                dispose();
-
         }// GEN-LAST:event_botaoCadastrarActionPerformed
 
         /**

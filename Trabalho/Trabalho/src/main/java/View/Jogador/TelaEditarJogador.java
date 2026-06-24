@@ -33,7 +33,10 @@ public class TelaEditarJogador extends javax.swing.JDialog {
                 this.campoId.setText(String.valueOf(jogador.getIdJogador()));
                 this.campoNome.setText(jogador.getNome());
                 this.campoNacionalidade.setText(jogador.getNacionalidade());
-                this.campoDataNascimento.setText(jogador.getData_de_nascimento().toString());
+                if (jogador.getData_de_nascimento() != null) {
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+                    this.campoDataNascimento.setText(sdf.format(jogador.getData_de_nascimento()));
+                }
                 this.campoPosicao.setSelectedItem(jogador.getPosicao());
                 this.campoNumeroCamisa.setText(String.valueOf(jogador.getNumero_da_camisa()));
                 this.campoTempoContrato.setText(String.valueOf(jogador.getTempo_de_contrato()));
@@ -370,7 +373,8 @@ public class TelaEditarJogador extends javax.swing.JDialog {
                 String nome = campoNome.getText().trim();
                 String nacionalidade = campoNacionalidade.getText().trim();
                 String posicao = campoPosicao.getSelectedItem().toString();
-                float valor = Float.parseFloat(campoValorMercado.getText().trim());
+                float valor = -1;
+                try { valor = Float.parseFloat(campoValorMercado.getText().trim()); } catch (Exception e) {}
 
                 // caso o formato estej errado a validacao fica por conta do controller
                 java.util.Date data_nascimento = null;
@@ -380,9 +384,12 @@ public class TelaEditarJogador extends javax.swing.JDialog {
                 } catch (java.text.ParseException e) {
                 }
 
-                int numero_da_camisa = Integer.parseInt(campoNumeroCamisa.getText().trim());
-                float salario = Float.parseFloat(campoSalario.getText().trim());
-                int tempo_de_contrato = Integer.parseInt(campoTempoContrato.getText().trim());
+                int numero_da_camisa = -1;
+                try { numero_da_camisa = Integer.parseInt(campoNumeroCamisa.getText().trim()); } catch (Exception e) {}
+                float salario = -1;
+                try { salario = Float.parseFloat(campoSalario.getText().trim()); } catch (Exception e) {}
+                int tempo_de_contrato = -1;
+                try { tempo_de_contrato = Integer.parseInt(campoTempoContrato.getText().trim()); } catch (Exception e) {}
 
                 ControladorJogador controladorJogador = new ControladorJogador();
                 controladorJogador.iniciarAlteracaoDeInformacoesDeJogador(id, nome, data_nascimento,

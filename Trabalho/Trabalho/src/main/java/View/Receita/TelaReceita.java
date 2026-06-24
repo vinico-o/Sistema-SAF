@@ -169,7 +169,7 @@ public class TelaReceita extends javax.swing.JPanel {
                     r.getIdTransacao(),
                     r.getDescricao(),
                     r.getCategoria(),
-                    r.getValor(),
+                    String.format(java.util.Locale.US, "%.2f", r.getValor()),
                     sdf.format(r.getData())
             };
 
@@ -228,7 +228,7 @@ public class TelaReceita extends javax.swing.JPanel {
                     r.getIdTransacao(),
                     r.getDescricao(),
                     r.getCategoria(),
-                    r.getValor(),
+                    String.format(java.util.Locale.US, "%.2f", r.getValor()),
                     sdf.format(r.getData())
             };
 
@@ -266,6 +266,7 @@ public class TelaReceita extends javax.swing.JPanel {
                     int idClube = Sessao.getIdClubeAtual();
 
                     controladorFinanceiro.iniciarExclusaoDeReceita(idTransacao, idClube);
+                    ((DefaultTableModel) tabelaReceitas.getModel()).removeRow(linhaSelecionada);
                 } else {
                     return;
                 }

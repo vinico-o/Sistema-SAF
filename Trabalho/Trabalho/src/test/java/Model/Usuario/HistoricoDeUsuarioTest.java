@@ -6,46 +6,38 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HistoricoDeUsuarioTest {
 
     @Test
-    void trueValidarSenhaCorreta() {
-        HistoricoDeUsuario historico = new HistoricoDeUsuario();
-        Usuario usuario = new Administrador("user1", "senha123", 0, 0);
-        assertTrue(historico.validarSenha(usuario, "senha123"));
+    void validarSenhaCorreta() {
+        HistoricoDeUsuario ht = new HistoricoDeUsuario();
+        Usuario usuario = new Administrador("admin", "12345", 1, 1);
+        assertTrue(ht.validarSenha(usuario, "12345"));
     }
 
     @Test
-    void falseValidarSenhaIncorreta() {
-        HistoricoDeUsuario historico = new HistoricoDeUsuario();
-        Usuario usuario = new Administrador("user1", "senha123", 0, 0);
-        assertFalse(historico.validarSenha(usuario, "senhaErrada"));
+    void validarSenhaIncorreta() {
+        HistoricoDeUsuario ht = new HistoricoDeUsuario();
+        Usuario usuario = new Administrador("admin", "12345", 1, 1);
+        assertFalse(ht.validarSenha(usuario, "54321"));
     }
 
     @Test
-    void trueValidarInformacoesValidas() {
-        HistoricoDeUsuario historico = new HistoricoDeUsuario();
-        assertTrue(historico.validarInformacoes("user1", "senha123"));
+    void validarInformacoesCorretas() {
+        HistoricoDeUsuario ht = new HistoricoDeUsuario();
+        assertTrue(ht.validarInformacoes("usuario1", "senha123"));
     }
 
     @Test
-    void falseValidarInformacoesNomeVazio() {
-        HistoricoDeUsuario historico = new HistoricoDeUsuario();
-        assertFalse(historico.validarInformacoes("", "senha123"));
+    void validarInformacoesVazias() {
+        HistoricoDeUsuario ht = new HistoricoDeUsuario();
+        assertFalse(ht.validarInformacoes("", ""));
+        assertFalse(ht.validarInformacoes("usuario", ""));
+        assertFalse(ht.validarInformacoes("", "senha"));
     }
 
     @Test
-    void falseValidarInformacoesSenhaVazia() {
-        HistoricoDeUsuario historico = new HistoricoDeUsuario();
-        assertFalse(historico.validarInformacoes("user1", ""));
-    }
-
-    @Test
-    void falseValidarInformacoesNomeNulo() {
-        HistoricoDeUsuario historico = new HistoricoDeUsuario();
-        assertFalse(historico.validarInformacoes(null, "senha123"));
-    }
-
-    @Test
-    void falseValidarInformacoesSenhaNula() {
-        HistoricoDeUsuario historico = new HistoricoDeUsuario();
-        assertFalse(historico.validarInformacoes("user1", null));
+    void validarInformacoesNulas() {
+        HistoricoDeUsuario ht = new HistoricoDeUsuario();
+        assertFalse(ht.validarInformacoes(null, null));
+        assertFalse(ht.validarInformacoes("usuario", null));
+        assertFalse(ht.validarInformacoes(null, "senha"));
     }
 }

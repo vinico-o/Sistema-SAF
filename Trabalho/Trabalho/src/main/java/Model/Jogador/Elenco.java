@@ -54,6 +54,11 @@ public class Elenco {
             return false;
         }
 
+        if (nome == null || nome.trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(null, "O nome do jogador é obrigatório.");
+            return false;
+        }
+
         if (data_nascimento == null) {
             javax.swing.JOptionPane.showMessageDialog(null, "A data de nascimento é obrigatória ou inválida.");
             return false;
@@ -103,15 +108,9 @@ public class Elenco {
     }
 
     public Jogador buscarJogador(String nome) {
-
-        for (int i = 0; i < jogadores.size(); i++) {
-
-            if (jogadores.get(i).getNome().equals(nome)) {
-                return jogadores.get(i);
-            }
-        }
-
-        return null;
+        
+        Jogador jogador = JogadorDAO.buscarJogadorPorNome(nome);
+        return jogador;
     }
 
     public int cadastrarJogador(String nome, Date data_de_nascimento, String nacionalidade, String posicao,

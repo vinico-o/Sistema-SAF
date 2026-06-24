@@ -190,7 +190,7 @@ public class TelaClube extends javax.swing.JPanel {
                     clube.getNome(),
                     clube.getAnoDeFundacao(),
                     clube.getPais(),
-                    clube.getSaldoAtual()
+                    String.format(java.util.Locale.US, "%.2f", clube.getSaldoAtual())
             };
 
             modelo.addRow(linha);
@@ -245,7 +245,7 @@ public class TelaClube extends javax.swing.JPanel {
                     c.getNome(),
                     c.getAnoDeFundacao(),
                     c.getPais(),
-                    c.getSaldoAtual()
+                    String.format(java.util.Locale.US, "%.2f", c.getSaldoAtual())
             };
 
             modelo.addRow(linha);
@@ -264,12 +264,21 @@ public class TelaClube extends javax.swing.JPanel {
 
                 int id = Integer.parseInt(tabelaClubes.getValueAt(linhaSelecionada, 0).toString());
 
-                ControladorClube controladorClube = new ControladorClube();
+                int resposta = JOptionPane.showConfirmDialog(
+                        null,
+                        "Deseja realmente excluir o clube?",
+                        "Confirmar Exclusão de Clube",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE);
 
-                ConnectionFactory.iniciarTabelaClube();
+                if (resposta == JOptionPane.YES_OPTION) {
+                    ControladorClube controladorClube = new ControladorClube();
 
-                controladorClube.iniciarExclusaoDeClube(id);
+                    ConnectionFactory.iniciarTabelaClube();
 
+                    controladorClube.iniciarExclusaoDeClube(id);
+                    ((DefaultTableModel) tabelaClubes.getModel()).removeRow(linhaSelecionada);
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }

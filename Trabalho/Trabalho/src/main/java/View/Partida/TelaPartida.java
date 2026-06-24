@@ -222,11 +222,16 @@ public class TelaPartida extends javax.swing.JPanel {
                         try {
                                 int id = Integer.parseInt(tabelaPartidas.getValueAt(linhaSelecionada, 0).toString());
 
+                                int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir a partida?", "Confirmar Exclusão", javax.swing.JOptionPane.YES_NO_OPTION);
+                                if (confirm != javax.swing.JOptionPane.YES_OPTION) {
+                                        return;
+                                }
+
                                 ControladorPartida controladorPartida = new ControladorPartida();
                                 controladorPartida.excluirPartida(id);
 
                                 javax.swing.JOptionPane.showMessageDialog(this, "Partida excluída com sucesso!");
-                                botaoListarActionPerformed(evt); // Atualiza a tabela após excluir
+                                ((DefaultTableModel) tabelaPartidas.getModel()).removeRow(linhaSelecionada);
                         } catch (Exception e) {
                                 javax.swing.JOptionPane.showMessageDialog(null, "Erro ao excluir: " + e.getMessage());
                         }

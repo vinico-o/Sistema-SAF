@@ -165,7 +165,7 @@ public class TelaDespesa extends javax.swing.JPanel {
                     d.getIdTransacao(),
                     d.getDescricao(),
                     d.getCategoria(),
-                    d.getValor(),
+                    String.format(java.util.Locale.US, "%.2f", d.getValor()),
                     sdf.format(d.getData())
             };
 
@@ -221,7 +221,7 @@ public class TelaDespesa extends javax.swing.JPanel {
                     r.getIdTransacao(),
                     r.getDescricao(),
                     r.getCategoria(),
-                    r.getValor(),
+                    String.format(java.util.Locale.US, "%.2f", r.getValor()),
                     sdf.format(r.getData())
             };
 
@@ -259,6 +259,7 @@ public class TelaDespesa extends javax.swing.JPanel {
                     int idClube = Sessao.getIdClubeAtual();
 
                     controladorFinanceiro.iniciarExclusaoDeDespesa(idTransacao, idClube);
+                    ((DefaultTableModel) tabelaDespesas.getModel()).removeRow(linhaSelecionada);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);

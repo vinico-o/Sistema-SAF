@@ -227,6 +227,11 @@ public class TelaUsuario extends javax.swing.JPanel {
                     return;
                 }
 
+                if (usuario.getId_usuario() != Model.Sessao.getUsuarioLogado().getId_usuario()) {
+                    JOptionPane.showMessageDialog(null, "Só é possível editar suas próprias informações.");
+                    return;
+                }
+
                 java.awt.Frame framePai = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
 
                 TelaEditarUsuario telaEditarUsuario = new TelaEditarUsuario(framePai, true, usuario.getId_usuario(),
@@ -252,11 +257,20 @@ public class TelaUsuario extends javax.swing.JPanel {
 
                 int id = Integer.parseInt(tabelaUsuarios.getValueAt(linhaSelecionada, 0).toString());
 
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir o usuário?", "Confirmar Exclusão", javax.swing.JOptionPane.YES_NO_OPTION);
+                if (confirm != javax.swing.JOptionPane.YES_OPTION) {
+                    return;
+                }
+
                 ControladorUsuario controladorUsuario = new ControladorUsuario();
 
                 ConnectionFactory.iniciarTabelaUsuario();
 
                 controladorUsuario.excluirUsuario(id);
+                
+                if (id != Model.Sessao.getUsuarioLogado().getId_usuario()) {
+                    ((javax.swing.table.DefaultTableModel) tabelaUsuarios.getModel()).removeRow(linhaSelecionada);
+                }
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);

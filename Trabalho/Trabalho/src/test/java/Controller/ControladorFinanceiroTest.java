@@ -6,20 +6,23 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ControladorFinanceiroTest {
 
     @Test
-    void calcularBilheteriaCorretamente() {
-        ControladorFinanceiro controlador = new ControladorFinanceiro();
-        assertEquals(5000.0f, controlador.calcularBilheteria(100, 50.0f));
+    void calcularBilheteriaCorreto() {
+        ControladorFinanceiro cf = new ControladorFinanceiro();
+        float resultado = cf.calcularBilheteria(100, 50.0f);
+        assertEquals(5000.0f, resultado, 0.001);
     }
 
     @Test
-    void calcularBilheteriaZeroPublico() {
-        ControladorFinanceiro controlador = new ControladorFinanceiro();
-        assertEquals(0.0f, controlador.calcularBilheteria(0, 50.0f));
+    void calcularBilheteriaPublicoZero() {
+        ControladorFinanceiro cf = new ControladorFinanceiro();
+        float resultado = cf.calcularBilheteria(0, 50.0f);
+        assertEquals(0.0f, resultado, 0.001);
     }
 
     @Test
-    void calcularBilheteriaZeroPreco() {
-        ControladorFinanceiro controlador = new ControladorFinanceiro();
-        assertEquals(0.0f, controlador.calcularBilheteria(100, 0.0f));
+    void calcularBilheteriaPrecoZero() {
+        ControladorFinanceiro cf = new ControladorFinanceiro();
+        float resultado = cf.calcularBilheteria(100, 0.0f);
+        assertEquals(0.0f, resultado, 0.001);
     }
 }

@@ -50,11 +50,31 @@ public class HistoricoDePartidas {
                 publico, valorDoIngresso, local);
 
         if (validacao) {
+            Controller.ControladorFinanceiro cf = new Controller.ControladorFinanceiro();
+            ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> transacoes = DataAcessObject.TransacaoDAO.buscarTransacoesPorPartida(idPartida);
+            for (Model.TransacaoFinanceira.TransacaoFinanceira t : transacoes) {
+                if ("Receita".equals(t.getTipo())) {
+                    cf.iniciarExclusaoDeReceita(t.getIdTransacao(), Sessao.getIdClubeAtual());
+                } else {
+                    cf.iniciarExclusaoDeDespesa(t.getIdTransacao(), Sessao.getIdClubeAtual());
+                }
+            }
+
             Partida partida = new Partida(data, clubeAdversario, golsMarcados, golsSofridos, competicao,
                     premiacao, publico, valorDoIngresso, local);
             partida.setIdPartida(idPartida);
 
             DataAcessObject.PartidaDAO.atualizarPartida(partida);
+
+            float bilheteria = cf.calcularBilheteria(publico, valorDoIngresso);
+            if (premiacao > 0) {
+                cf.iniciarCadastroDeReceitas("Premiação", premiacao,
+                        "Premiação da partida contra " + clubeAdversario, "Receita", idPartida, null);
+            }
+            if (bilheteria > 0) {
+                cf.iniciarCadastroDeReceitas("Bilheteria", bilheteria,
+                        "Bilheteria da partida contra " + clubeAdversario, "Receita", idPartida, null);
+            }
 
             ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
 
@@ -141,6 +161,16 @@ public class HistoricoDePartidas {
     }
 
     public void excluirPartida(int idPartida) {
+        Controller.ControladorFinanceiro cf = new Controller.ControladorFinanceiro();
+        ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> transacoes = DataAcessObject.TransacaoDAO.buscarTransacoesPorPartida(idPartida);
+        for (Model.TransacaoFinanceira.TransacaoFinanceira t : transacoes) {
+            if ("Receita".equals(t.getTipo())) {
+                cf.iniciarExclusaoDeReceita(t.getIdTransacao(), Sessao.getIdClubeAtual());
+            } else {
+                cf.iniciarExclusaoDeDespesa(t.getIdTransacao(), Sessao.getIdClubeAtual());
+            }
+        }
+
         DataAcessObject.PartidaDAO.apagarPartida(idPartida);
         ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
 
