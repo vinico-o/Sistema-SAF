@@ -27,7 +27,7 @@
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel4" max="32767" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" pref="57" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" pref="0" max="32767" attributes="0"/>
                   <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -81,14 +81,15 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1Categoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="8">
             <StringItem index="0" value="Bilheteria"/>
             <StringItem index="1" value="Patroc&#xed;nio"/>
             <StringItem index="2" value="Produtos"/>
             <StringItem index="3" value="Plano s&#xf3;cio-torcedor"/>
             <StringItem index="4" value="Premia&#xe7;&#xf5;es"/>
-            <StringItem index="5" value="Outras"/>
-            <StringItem index="6" value=" "/>
+            <StringItem index="5" value="Transfer&#xea;ncias"/>
+            <StringItem index="6" value="Outras"/>
+            <StringItem index="7" value=" "/>
           </StringArray>
         </Property>
       </Properties>

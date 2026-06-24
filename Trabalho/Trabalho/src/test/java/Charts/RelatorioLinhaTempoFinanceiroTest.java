@@ -58,11 +58,6 @@ public class RelatorioLinhaTempoFinanceiroTest {
         // Verifica Receitas
         assertEquals(10000.0, dataset.getSeries("Receitas").getValue(jan2023).doubleValue(),
                 "Receita de Janeiro deve ser 10000");
-        // Receita em fevereiro não deve existir na série (pois não adiciona se for <=
-        // 0) - wait, o código não adiciona 0.0 na série, mas não vai falhar se
-        // pegarmos?
-        // Em JFreeChart, getSeries("Receitas").getValue(fev2023) throws exception se o
-        // item não existir, ou a gente pode testar o saldo.
 
         // Verifica Despesas
         assertEquals(3000.0, dataset.getSeries("Despesas").getValue(jan2023).doubleValue(),

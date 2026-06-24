@@ -36,8 +36,9 @@
                           <Component id="chkProdutos" min="-2" max="-2" attributes="0"/>
                           <Component id="chkSocio" min="-2" max="-2" attributes="0"/>
                           <Component id="chkPatrocinio" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="chkPremiacoes" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="chkBilheteria" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkTransferenciasRec" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkPremiacoes" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -46,6 +47,7 @@
                           <Component id="chkSaude" min="-2" max="-2" attributes="0"/>
                           <Component id="chkSalarios" min="-2" max="-2" attributes="0"/>
                           <Component id="chkViagens" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkTransferenciasDesp" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
@@ -104,7 +106,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="chkSalarios" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="chkViagens" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="chkViagens" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkPremiacoes" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="chkBilheteria" min="-2" max="-2" attributes="0"/>
@@ -114,13 +119,16 @@
                       <Component id="chkProdutos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="chkSocio" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="chkPremiacoes" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="chkTransferenciasRec" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chkTransferenciasDesp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="chkOutras" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="158" max="32767" attributes="0"/>
+              <EmptySpace pref="128" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Final" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -251,6 +259,16 @@
           <Format format="##/##/####" subtype="-1" type="5"/>
         </Property>
         <Property name="text" type="java.lang.String" value="01/01/2001"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="chkTransferenciasRec">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Transfer&#xea;ncias"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="chkTransferenciasDesp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Transfer&#xea;ncias"/>
       </Properties>
     </Component>
   </SubComponents>

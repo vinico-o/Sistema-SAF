@@ -237,7 +237,7 @@ public class TelaJogador extends javax.swing.JPanel {
                         "EXCLUSÃO", id);
 
                 ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
-                controladorFinanceiro.iniciarCadastroDeReceitas("Transferência", jogador.getValor(),
+                controladorFinanceiro.iniciarCadastroDeReceitas("Transferências", jogador.getValor(),
                         "Venda de Jogador " + jogador.getNome() + ", " + jogador.getValor() + "R$", "Receita", null,
                         id);
 

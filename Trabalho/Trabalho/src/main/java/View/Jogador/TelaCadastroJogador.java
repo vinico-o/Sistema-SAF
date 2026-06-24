@@ -332,61 +332,77 @@ public class TelaCadastroJogador extends javax.swing.JDialog {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoConfirmarActionPerformed
-        try {
-            String nome = campoNome.getText().trim();
-            String nacionalidade = campoNacionalidade.getText().trim();
-            String posicao = campoPosicao.getSelectedItem().toString();
-            
-            float valor = -1;
-            try { valor = Float.parseFloat(campoValorMercado.getText().trim()); } catch (Exception e) {}
-            int numero_da_camisa = -1;
-            try { numero_da_camisa = Integer.parseInt(campoNumeroCamisa.getText().trim()); } catch (Exception e) {}
-            float salario = -1;
-            try { salario = Float.parseFloat(campoSalario.getText().trim()); } catch (Exception e) {}
-            int tempo_de_contrato = -1;
-            try { tempo_de_contrato = Integer.parseInt(campoTempoContrato.getText().trim()); } catch (Exception e) {}
+        private void botaoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoConfirmarActionPerformed
+                try {
+                        String nome = campoNome.getText().trim();
+                        String nacionalidade = campoNacionalidade.getText().trim();
+                        String posicao = campoPosicao.getSelectedItem().toString();
 
-            // caso o formato estej errado a validacao fica por conta do controller
-            java.util.Date data_nascimento = null;
-            try {
-                data_nascimento = new java.text.SimpleDateFormat("dd/MM/yyyy")
-                        .parse(campoDataNascimento.getText().trim());
-            } catch (java.text.ParseException e) {
-            }
+                        float valor = -1;
+                        try {
+                                valor = Float.parseFloat(campoValorMercado.getText().trim());
+                        } catch (Exception e) {
+                        }
+                        int numero_da_camisa = -1;
+                        try {
+                                numero_da_camisa = Integer.parseInt(campoNumeroCamisa.getText().trim());
+                        } catch (Exception e) {
+                        }
+                        float salario = -1;
+                        try {
+                                salario = Float.parseFloat(campoSalario.getText().trim());
+                        } catch (Exception e) {
+                        }
+                        int tempo_de_contrato = -1;
+                        try {
+                                tempo_de_contrato = Integer.parseInt(campoTempoContrato.getText().trim());
+                        } catch (Exception e) {
+                        }
 
-            ControladorJogador controladorJogador = new ControladorJogador();
-            int idJogador = controladorJogador.iniciarCompraDeJogador(nome, data_nascimento, nacionalidade, posicao,
-                    numero_da_camisa,
-                    salario, tempo_de_contrato, valor);
+                        // caso o formato estej errado a validacao fica por conta do controller
+                        java.util.Date data_nascimento = null;
+                        try {
+                                data_nascimento = new java.text.SimpleDateFormat("dd/MM/yyyy")
+                                                .parse(campoDataNascimento.getText().trim());
+                        } catch (java.text.ParseException e) {
+                        }
 
-            if (idJogador != -1) {
-                ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
+                        ControladorJogador controladorJogador = new ControladorJogador();
+                        int idJogador = controladorJogador.iniciarCompraDeJogador(nome, data_nascimento, nacionalidade,
+                                        posicao,
+                                        numero_da_camisa,
+                                        salario, tempo_de_contrato, valor);
 
-                controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador",
-                        "INSERÇÃO", idJogador);
+                        if (idJogador != -1) {
+                                ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
 
-                ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
+                                controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(),
+                                                "Jogador",
+                                                "INSERÇÃO", idJogador);
 
-                if (valor > 0) {
-                    controladorFinanceiro.iniciarCadastroDeDespesas("Transferência", valor,
-                            "Compra de Jogador " + nome + ", " + valor + "R$", "Despesa", null,
-                            idJogador);
+                                ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
+
+                                if (valor > 0) {
+                                        controladorFinanceiro.iniciarCadastroDeDespesas("Transferências", valor,
+                                                        "Compra de Jogador " + nome + ", " + valor + "R$", "Despesa",
+                                                        null,
+                                                        idJogador);
+                                }
+                                if (salario > 0) {
+                                        controladorFinanceiro.iniciarCadastroDeDespesas("Salários e Encargos", salario,
+                                                        "Salário do jogador " + nome, "Despesa", null, idJogador);
+                                }
+
+                                dispose();
+                        }
+
+                } catch (NumberFormatException ex) {
+                        javax.swing.JOptionPane.showMessageDialog(this,
+                                        "Preencha os campos numéricos com valores válidos!");
+                } catch (Exception ex) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage());
                 }
-                if (salario > 0) {
-                    controladorFinanceiro.iniciarCadastroDeDespesas("Salário", salario,
-                            "Salário do jogador " + nome, "Despesa", null, idJogador);
-                }
-                
-                dispose();
-            }
-
-        } catch (NumberFormatException ex) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Preencha os campos numéricos com valores válidos!");
-        } catch (Exception ex) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage());
-        }
-    }// GEN-LAST:event_botaoConfirmarActionPerformed
+        }// GEN-LAST:event_botaoConfirmarActionPerformed
 
         private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campoNomeActionPerformed
                 // TODO add your handling code here:

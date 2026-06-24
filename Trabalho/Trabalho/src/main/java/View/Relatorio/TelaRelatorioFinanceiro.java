@@ -30,8 +30,8 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
 
         initComponents();
 
-        listaReceitas = Arrays.asList(chkBilheteria, chkPatrocinio, chkProdutos, chkSocio, chkPremiacoes);
-        listaDespesas = Arrays.asList(chkInfraestrutura, chkProducao, chkSaude, chkSalarios, chkViagens);
+        listaReceitas = Arrays.asList(chkBilheteria, chkPatrocinio, chkProdutos, chkSocio, chkPremiacoes, chkTransferenciasRec);
+        listaDespesas = Arrays.asList(chkInfraestrutura, chkProducao, chkSaude, chkSalarios, chkViagens, chkTransferenciasDesp);
 
         jComboBox1Tipo.addActionListener(e -> gerenciarFiltrosEmTela());
 
@@ -67,7 +67,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         campoDataNascimento = new javax.swing.JFormattedTextField();
@@ -88,11 +88,12 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         Final = new javax.swing.JLabel();
         campoPeriodoInicial1 = new javax.swing.JFormattedTextField();
+        chkTransferenciasRec = new javax.swing.JCheckBox();
+        chkTransferenciasDesp = new javax.swing.JCheckBox();
 
         campoDataNascimento.setBackground(new java.awt.Color(200, 200, 200));
         try {
-            campoDataNascimento.setFormatterFactory(
-                    new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            campoDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -140,8 +141,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
 
         campoPeriodoFinal.setBackground(new java.awt.Color(200, 200, 200));
         try {
-            campoPeriodoFinal.setFormatterFactory(
-                    new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            campoPeriodoFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -153,123 +153,111 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
 
         campoPeriodoInicial1.setBackground(new java.awt.Color(200, 200, 200));
         try {
-            campoPeriodoInicial1.setFormatterFactory(
-                    new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            campoPeriodoInicial1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         campoPeriodoInicial1.setText("01/01/2001");
 
+        chkTransferenciasRec.setText("Transferências");
+
+        chkTransferenciasDesp.setText("Transferências");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(chkProdutos)
-                                                        .addComponent(chkSocio)
-                                                        .addComponent(chkPatrocinio)
-                                                        .addComponent(chkPremiacoes)
-                                                        .addComponent(chkBilheteria))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(chkInfraestrutura)
-                                                        .addComponent(chkProducao)
-                                                        .addComponent(chkSaude)
-                                                        .addComponent(chkSalarios)
-                                                        .addComponent(chkViagens))
-                                                .addGap(90, 90, 90))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                .createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(campoPeriodoInicial1)
-                                                                .addGap(106, 106, 106))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jLabel1,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 86,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(156, 156, 156)))
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(Final,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addGap(24, 24, 24))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(campoPeriodoFinal,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 86,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(156, 156, 156))))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(142, 142, 142)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(chkOutras)
-                                                        .addComponent(botaoGerarRelatorioFinanceiro))
-                                                .addContainerGap())))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(213, 213, 213)
-                                .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkProdutos)
+                            .addComponent(chkSocio)
+                            .addComponent(chkPatrocinio)
+                            .addComponent(chkBilheteria)
+                            .addComponent(chkTransferenciasRec)
+                            .addComponent(chkPremiacoes))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkInfraestrutura)
+                            .addComponent(chkProducao)
+                            .addComponent(chkSaude)
+                            .addComponent(chkSalarios)
+                            .addComponent(chkViagens)
+                            .addComponent(chkTransferenciasDesp))
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(campoPeriodoInicial1)
+                                .addGap(106, 106, 106))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(156, 156, 156)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Final, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(24, 24, 24))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(campoPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(156, 156, 156))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkOutras)
+                            .addComponent(botaoGerarRelatorioFinanceiro))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                .createSequentialGroup()
-                                                .addComponent(chkInfraestrutura)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(chkProducao)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(chkSaude)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(chkSalarios)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(chkViagens))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(chkBilheteria)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(chkPatrocinio)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(chkProdutos)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(chkSocio)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(chkPremiacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(13, 13, 13)
-                                .addComponent(chkOutras)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158,
-                                        Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel1)
-                                        .addComponent(Final))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(campoPeriodoInicial1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(40, 40, 40)
-                                .addComponent(botaoGerarRelatorioFinanceiro)
-                                .addGap(17, 17, 17)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jComboBox1Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(chkInfraestrutura)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkProducao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkSaude)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkSalarios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chkViagens)
+                            .addComponent(chkPremiacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chkBilheteria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkPatrocinio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkProdutos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkSocio)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkTransferenciasRec)
+                    .addComponent(chkTransferenciasDesp))
+                .addGap(16, 16, 16)
+                .addComponent(chkOutras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Final))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoPeriodoInicial1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(botaoGerarRelatorioFinanceiro)
+                .addGap(17, 17, 17))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void chkBilheteriaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_chkBilheteriaActionPerformed
@@ -402,6 +390,8 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkSalarios;
     private javax.swing.JCheckBox chkSaude;
     private javax.swing.JCheckBox chkSocio;
+    private javax.swing.JCheckBox chkTransferenciasDesp;
+    private javax.swing.JCheckBox chkTransferenciasRec;
     private javax.swing.JCheckBox chkViagens;
     private javax.swing.JComboBox<String> jComboBox1Tipo;
     private javax.swing.JLabel jLabel1;
