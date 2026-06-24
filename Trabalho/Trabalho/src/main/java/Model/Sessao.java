@@ -18,7 +18,7 @@ public class Sessao {
         usuarioLogado = usuario;
     }
 
-    public static void encerrarSessao(Usuario usuario) {
+    public static void encerrarSessao() {
         usuarioLogado = null;
         idClubeAtual = 0;
     }
