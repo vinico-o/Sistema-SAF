@@ -19,10 +19,10 @@ import Model.Partida.Partida;
 public class GraficoAproveitamentoPontos extends JDialog {
 
     public GraficoAproveitamentoPontos(JFrame pai, java.util.Date dataInicio, java.util.Date dataFim,
-            String competicao) {
+            String competicao, boolean isCasa, boolean isFora) {
         super(pai, "Aproveitamento de Pontos — Vitórias / Empates / Derrotas", true);
 
-        JFreeChart grafico = criarGrafico(dataInicio, dataFim, competicao);
+        JFreeChart grafico = criarGrafico(dataInicio, dataFim, competicao, isCasa, isFora);
 
         ChartPanel painel = new ChartPanel(grafico);
         painel.setPreferredSize(new Dimension(900, 500));
@@ -73,13 +73,14 @@ public class GraficoAproveitamentoPontos extends JDialog {
         }
     }
 
-    private JFreeChart criarGrafico(java.util.Date dataInicio, java.util.Date dataFim, String competicao) {
+    private JFreeChart criarGrafico(java.util.Date dataInicio, java.util.Date dataFim, String competicao,
+            boolean isCasa, boolean isFora) {
 
         // Utilizamos a função do sistema para buscar todas as partidas (já filtradas
         // pelo Clube atual)
         List<Partida> todasPartidas = PartidaDAO.listarPartidas();
 
-        DefaultCategoryDataset dataset = criarDataset(todasPartidas, dataInicio, dataFim, competicao);
+        DefaultCategoryDataset dataset = criarDataset(todasPartidas, dataInicio, dataFim, competicao, isCasa, isFora);
 
         JFreeChart chart = ChartFactory.createStackedBarChart(
                 "Aproveitamento de Pontos por Mês",
@@ -104,7 +105,7 @@ public class GraficoAproveitamentoPontos extends JDialog {
     }
 
     public static DefaultCategoryDataset criarDataset(List<Partida> todasPartidas, java.util.Date dataInicio,
-            java.util.Date dataFim, String competicao) {
+            java.util.Date dataFim, String competicao, boolean isCasa, boolean isFora) {
         List<String> mesesVistos = new ArrayList<>();
         List<Integer> vitorias = new ArrayList<>();
         List<Integer> empates = new ArrayList<>();
@@ -124,6 +125,15 @@ public class GraficoAproveitamentoPontos extends JDialog {
                 if (p.getCompeticao() == null || !p.getCompeticao().equals(competicao)) {
                     continue;
                 }
+            }
+
+            if (p.getLocal() != null) {
+                boolean matchCasa = p.getLocal().equalsIgnoreCase("Em casa");
+                boolean matchFora = p.getLocal().equalsIgnoreCase("Fora de casa");
+                if (matchCasa && !isCasa)
+                    continue;
+                if (matchFora && !isFora)
+                    continue;
             }
 
             String mes = extrairMes(p.getData());
