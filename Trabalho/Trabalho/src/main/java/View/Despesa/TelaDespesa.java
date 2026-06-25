@@ -24,6 +24,7 @@ public class TelaDespesa extends javax.swing.JPanel {
      */
     public TelaDespesa() {
         initComponents();
+        configurarAcessos();
     }
 
     /**
@@ -303,4 +304,18 @@ public class TelaDespesa extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaDespesas;
     // End of variables declaration//GEN-END:variables
+
+    private void configurarAcessos() {
+        if (Model.Sessao.getUsuarioLogado() == null) {
+            return;
+        }
+        int nivel = Model.Sessao.getUsuarioLogado().getNivel_usuario();
+        if (nivel == 2) { // Op
+            jButtonCadastrarDespesa.setEnabled(false);
+            jButton2ListarDespesas.setEnabled(false);
+            jButton3EditarDespesa.setEnabled(false);
+            jButton4BuscarDespesa.setEnabled(false);
+            jButton5ExcluirDespesa.setEnabled(false);
+        }
+    }
 }

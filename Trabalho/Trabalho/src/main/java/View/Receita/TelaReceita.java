@@ -26,6 +26,7 @@ public class TelaReceita extends javax.swing.JPanel {
      */
     public TelaReceita() {
         initComponents();
+        configurarAcessos();
     }
 
     /**
@@ -313,4 +314,18 @@ public class TelaReceita extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaReceitas;
     // End of variables declaration//GEN-END:variables
+
+    private void configurarAcessos() {
+        if (Model.Sessao.getUsuarioLogado() == null) {
+            return;
+        }
+        int nivel = Model.Sessao.getUsuarioLogado().getNivel_usuario();
+        if (nivel == 2) { // Op
+            jButtonCadastrarReceita.setEnabled(false);
+            jButton2ListarReceitas.setEnabled(false);
+            jButton3EditarReceita.setEnabled(false);
+            jButton4BuscarReceita.setEnabled(false);
+            jButton5ExcluirReceita.setEnabled(false);
+        }
+    }
 }

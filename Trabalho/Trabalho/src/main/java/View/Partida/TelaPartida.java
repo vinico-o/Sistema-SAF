@@ -22,6 +22,7 @@ public class TelaPartida extends javax.swing.JPanel {
         public TelaPartida() {
                 initComponents();
                 initCustomListeners();
+                configurarAcessos();
         }
 
         private void initCustomListeners() {
@@ -297,4 +298,19 @@ public class TelaPartida extends javax.swing.JPanel {
         private javax.swing.JScrollPane jScrollPane1;
         private javax.swing.JTable tabelaPartidas;
         // End of variables declaration//GEN-END:variables
+
+        private void configurarAcessos() {
+                if (Model.Sessao.getUsuarioLogado() == null) {
+                        return;
+                }
+                int nivel = Model.Sessao.getUsuarioLogado().getNivel_usuario();
+                if (nivel == 1) { // GF
+                        botaoBuscar.setEnabled(false);
+                        botaoCadastrar.setEnabled(false);
+                        botaoEditar.setEnabled(false);
+                        botaoExcluir.setEnabled(false);
+                        botaoListar.setEnabled(false);
+                        botaoVerDetalhes.setEnabled(false);
+                }
+        }
 }

@@ -22,6 +22,7 @@ public class TelaUsuario extends javax.swing.JPanel {
      */
     public TelaUsuario() {
         initComponents();
+        configurarAcessos();
     }
 
     /**
@@ -298,4 +299,15 @@ public class TelaUsuario extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaUsuarios;
     // End of variables declaration//GEN-END:variables
+
+    private void configurarAcessos() {
+        if (Model.Sessao.getUsuarioLogado() == null) {
+            return;
+        }
+        int nivel = Model.Sessao.getUsuarioLogado().getNivel_usuario();
+        if (nivel == 1 || nivel == 2) {
+            botaoCadastrar.setEnabled(false);
+            botaoExcluirUsuario.setEnabled(false);
+        }
+    }
 }

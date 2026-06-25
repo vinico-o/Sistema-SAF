@@ -22,6 +22,7 @@ public class TelaClube extends javax.swing.JPanel {
      */
     public TelaClube() {
         initComponents();
+        configurarAcessos();
     }
 
     public static void main(String[] args) {
@@ -297,4 +298,18 @@ public class TelaClube extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaClubes;
     // End of variables declaration//GEN-END:variables
+
+    private void configurarAcessos() {
+        if (Model.Sessao.getUsuarioLogado() == null) {
+            return;
+        }
+        int nivel = Model.Sessao.getUsuarioLogado().getNivel_usuario();
+        if (nivel == 1 || nivel == 2) { // GF or Op
+            jButtonCadastrarClube.setEnabled(false);
+            jButton2ListarClubes.setEnabled(false);
+            jButton3EditarClube.setEnabled(false);
+            jButton4.setEnabled(false); // Buscar
+            jButton5ExcluirClube.setEnabled(false);
+        }
+    }
 }

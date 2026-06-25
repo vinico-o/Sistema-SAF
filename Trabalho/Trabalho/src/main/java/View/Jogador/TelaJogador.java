@@ -30,6 +30,7 @@ public class TelaJogador extends javax.swing.JPanel {
      */
     public TelaJogador() {
         initComponents();
+        configurarAcessos();
     }
     
     public void atualizarTabela(Jogador jogador) {
@@ -332,4 +333,20 @@ public class TelaJogador extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaJogadores;
     // End of variables declaration//GEN-END:variables
+
+    private void configurarAcessos() {
+        if (Model.Sessao.getUsuarioLogado() == null) {
+            return;
+        }
+        int nivel = Model.Sessao.getUsuarioLogado().getNivel_usuario();
+        if (nivel == 2) {
+            botaoComprar.setEnabled(false);
+            botaoVender.setEnabled(false);
+            botaoVerDetalhes.setEnabled(false);
+            botaoListar.setEnabled(false);
+            botaoEditar.setEnabled(false);
+            botaoBuscar.setEnabled(false);
+            botaoEmprestimo.setEnabled(false);
+        }
+    }
 }
