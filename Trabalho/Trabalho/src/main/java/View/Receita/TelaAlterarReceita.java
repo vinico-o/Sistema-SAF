@@ -142,9 +142,18 @@ public class TelaAlterarReceita extends javax.swing.JDialog {
 
         ConnectionFactory.iniciarTabelaTransacao();
 
-        int idReceita = Integer.parseInt(idReceitaEditar.getText());
+        int idReceita = -1;
+        try {
+            idReceita = Integer.parseInt(idReceitaEditar.getText());
+        } catch (NumberFormatException e) {
+        }
         String categoria = (String) jComboBox1Categoria.getSelectedItem();
-        float valor = Float.parseFloat(valorEntradaReceita.getText());
+        
+        float valor = -1f;
+        try {
+            valor = Float.parseFloat(valorEntradaReceita.getText());
+        } catch (NumberFormatException e) {
+        }
         String descricao = descricaoEntradaReceita.getText();
 
         int idClube = Sessao.getIdClubeAtual();

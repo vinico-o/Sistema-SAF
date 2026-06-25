@@ -144,9 +144,18 @@ public class TelaAlterarDespesa extends javax.swing.JDialog {
 
         ConnectionFactory.iniciarTabelaTransacao();
 
-        int idDespesa = Integer.parseInt(idDespesaEditar.getText());
+        int idDespesa = -1;
+        try {
+            idDespesa = Integer.parseInt(idDespesaEditar.getText());
+        } catch (NumberFormatException e) {
+        }
         String categoria = (String) jComboBox1Categoria.getSelectedItem();
-        float valor = Float.parseFloat(valorEntradaDespesa.getText());
+        
+        float valor = -1f;
+        try {
+            valor = Float.parseFloat(valorEntradaDespesa.getText());
+        } catch (NumberFormatException e) {
+        }
         String descricao = descricaoEntradaDespesa.getText();
 
         int idClube = Sessao.getIdClubeAtual();

@@ -363,15 +363,45 @@ public class TelaEditarPartida extends javax.swing.JDialog {
         } catch (java.text.ParseException e) {
         }
         String clubeAdversario = campoAdversario.getText();
-        int golsMarcados = Integer.parseInt(campoGolsMarcados.getText());
-        int golsSofridos = Integer.parseInt(campoGolsSofridos.getText());
+        int golsMarcados = -1;
+        try {
+            golsMarcados = Integer.parseInt(campoGolsMarcados.getText());
+        } catch (NumberFormatException e) {
+        }
+        
+        int golsSofridos = -1;
+        try {
+            golsSofridos = Integer.parseInt(campoGolsSofridos.getText());
+        } catch (NumberFormatException e) {
+        }
+        
         String competicao = campoCompeticao.getSelectedItem().toString();
-        float premiacao = Float.parseFloat(campoPremiacao.getText());
-        int publico = Integer.parseInt(campoPublico.getText());
-        float valorDoIngresso = Float.parseFloat(campoValorIngresso.getText());
+        
+        float premiacao = -1f;
+        try {
+            premiacao = Float.parseFloat(campoPremiacao.getText());
+        } catch (NumberFormatException e) {
+        }
+        
+        int publico = -1;
+        try {
+            publico = Integer.parseInt(campoPublico.getText());
+        } catch (NumberFormatException e) {
+        }
+        
+        float valorDoIngresso = -1f;
+        try {
+            valorDoIngresso = Float.parseFloat(campoValorIngresso.getText());
+        } catch (NumberFormatException e) {
+        }
+        
         String local = campoLocal.getSelectedItem().toString();
 
-        int idPartida = Integer.parseInt(campoId.getText());
+        int idPartida = -1;
+        try {
+            idPartida = Integer.parseInt(campoId.getText());
+        } catch (NumberFormatException e) {
+        }
         controladorPartida.editarInformacoes(idPartida, data, clubeAdversario, golsMarcados, golsSofridos,
                 competicao,
                 premiacao, publico, valorDoIngresso, local);

@@ -210,7 +210,11 @@ public class TelaReceita extends javax.swing.JPanel {
 
     private void jButton4BuscarReceitaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4BuscarReceitaActionPerformed
         try {
-            int idReceita = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "ID da receita:"));
+            int idReceita = -1;
+            try {
+                idReceita = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "ID da receita:"));
+            } catch (NumberFormatException ex) {
+            }
 
             ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
 

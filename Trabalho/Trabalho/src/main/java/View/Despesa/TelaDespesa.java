@@ -205,7 +205,11 @@ public class TelaDespesa extends javax.swing.JPanel {
 
     private void jButton4BuscarDespesaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4BuscarDespesaActionPerformed
         try {
-            int idReceita = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "ID da despesa:"));
+            int idReceita = -1;
+            try {
+                idReceita = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this, "ID da despesa:"));
+            } catch (NumberFormatException ex) {
+            }
 
             ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
 

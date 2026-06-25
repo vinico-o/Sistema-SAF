@@ -212,7 +212,11 @@ public class TelaEditarUsuario extends javax.swing.JDialog {
         String nome_usuario = campoNomeUsuario.getText();
         String senha = new String(campoSenha.getPassword());
         int nivel_usuario = campoNivel.getSelectedIndex();
-        int id_usuario = Integer.parseInt(campoIdUsuario.getText());
+        int id_usuario = -1;
+        try {
+            id_usuario = Integer.parseInt(campoIdUsuario.getText());
+        } catch (NumberFormatException e) {
+        }
 
         controladorUsuario.editarInformacoes(nome_usuario, senha, nivel_usuario, id_usuario);
 

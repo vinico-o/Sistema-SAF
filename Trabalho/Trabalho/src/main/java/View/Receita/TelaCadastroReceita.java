@@ -114,7 +114,11 @@ public class TelaCadastroReceita extends javax.swing.JDialog {
         ConnectionFactory.iniciarTabelaTransacao();
 
         String categoria = (String) jComboBox1Categoria.getSelectedItem();
-        float valor = Float.parseFloat(valorEntradaReceita.getText());
+        float valor = -1f;
+        try {
+            valor = Float.parseFloat(valorEntradaReceita.getText());
+        } catch (NumberFormatException e) {
+        }
         String descricao = descricaoEntradaReceita.getText();
 
         controladorFinanceiro.iniciarCadastroDeReceitas(categoria, valor, descricao, "Receita");

@@ -113,7 +113,11 @@ public class TelaCadastroDespesa extends javax.swing.JDialog {
                 ConnectionFactory.iniciarTabelaTransacao();
 
                 String categoria = (String) jComboBox1Categoria.getSelectedItem();
-                float valor = Float.parseFloat(valorEntradaDespesa.getText());
+                float valor = -1f;
+        try {
+            valor = Float.parseFloat(valorEntradaDespesa.getText());
+        } catch (NumberFormatException e) {
+        }
                 String descricao = descricaoEntradaDespesa.getText();
 
                 controladorFinanceiro.iniciarCadastroDeDespesas(categoria, valor, descricao, "Despesa");
