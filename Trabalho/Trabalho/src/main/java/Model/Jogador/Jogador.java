@@ -21,6 +21,7 @@ public class Jogador {
     private float salario;
     private int tempo_de_contrato;
     private float valor;
+    private String statusEmprestimo;
     private int idClube;
 
     public Jogador() {
@@ -118,6 +119,14 @@ public class Jogador {
 
     public void setIdClube(int idClube) {
         this.idClube = idClube;
+    }
+
+    public String getStatusEmprestimo() {
+        return statusEmprestimo;
+    }
+
+    public void setStatusEmprestimo(String statusEmprestimo) {
+        this.statusEmprestimo = statusEmprestimo;
     }
 
 }

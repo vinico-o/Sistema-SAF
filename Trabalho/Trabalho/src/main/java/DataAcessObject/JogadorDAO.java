@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class JogadorDAO {
     public static int createJogador(Jogador jogador) {
-        String sql = "INSERT INTO jogador (nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato, valor, idClube) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO jogador (nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato, valor, statusEmprestimo, idClube) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         int idJogador = -1;
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
@@ -32,7 +32,8 @@ public class JogadorDAO {
             stmt.setFloat(6, jogador.getSalario());
             stmt.setInt(7, jogador.getTempo_de_contrato());
             stmt.setFloat(8, jogador.getValor());
-            stmt.setInt(9, Sessao.getIdClubeAtual());
+            stmt.setString(9, jogador.getStatusEmprestimo() != null ? jogador.getStatusEmprestimo() : "DEFINITIVO");
+            stmt.setInt(10, Sessao.getIdClubeAtual());
 
             stmt.executeUpdate();
 
@@ -91,6 +92,7 @@ public class JogadorDAO {
                 obj.setSalario(rs.getFloat("salario"));
                 obj.setTempo_de_contrato(rs.getInt("tempo_de_contrato"));
                 obj.setValor(rs.getFloat("valor"));
+                obj.setStatusEmprestimo(rs.getString("statusEmprestimo"));
 
                 jogadores.add(obj);
             }
@@ -123,6 +125,7 @@ public class JogadorDAO {
                 obj.setSalario(rs.getFloat("salario"));
                 obj.setTempo_de_contrato(rs.getInt("tempo_de_contrato"));
                 obj.setValor(rs.getFloat("valor"));
+                obj.setStatusEmprestimo(rs.getString("statusEmprestimo"));
 
                 return obj;
             } else {
@@ -157,6 +160,7 @@ public class JogadorDAO {
                 obj.setSalario(rs.getFloat("salario"));
                 obj.setTempo_de_contrato(rs.getInt("tempo_de_contrato"));
                 obj.setValor(rs.getFloat("valor"));
+                obj.setStatusEmprestimo(rs.getString("statusEmprestimo"));
 
                 return obj;
             } else {
@@ -223,7 +227,7 @@ public class JogadorDAO {
     }
 
     public static void atualizarJogador(Jogador jogador) {
-        String sql = "UPDATE jogador SET nome = ?, data_de_nascimento = ?, nacionalidade = ?, posicao = ?, numero_da_camisa = ?, salario = ?, tempo_de_contrato = ?, valor = ? WHERE id_jogador = ?";
+        String sql = "UPDATE jogador SET nome = ?, data_de_nascimento = ?, nacionalidade = ?, posicao = ?, numero_da_camisa = ?, salario = ?, tempo_de_contrato = ?, valor = ?, statusEmprestimo = ? WHERE id_jogador = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
@@ -235,7 +239,8 @@ public class JogadorDAO {
             stmt.setFloat(6, jogador.getSalario());
             stmt.setInt(7, jogador.getTempo_de_contrato());
             stmt.setFloat(8, jogador.getValor());
-            stmt.setInt(9, jogador.getIdJogador());
+            stmt.setString(9, jogador.getStatusEmprestimo());
+            stmt.setInt(10, jogador.getIdJogador());
 
             stmt.executeUpdate();
 

@@ -125,6 +125,7 @@ public class Elenco {
             contador++;
             Jogador j = new Jogador(contador, nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa,
                     salario, tempo_de_contrato, valor);
+            j.setStatusEmprestimo("DEFINITIVO");
 
             jogadores.add(j);
             return DataAcessObject.JogadorDAO.createJogador(j);
@@ -140,6 +141,38 @@ public class Elenco {
         ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
         controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EXCLUSÃO",
                 idJogador);
+    }
+
+    public int emprestarJogadorSaida(int idJogador, float valor) {
+        Jogador jogador = DataAcessObject.JogadorDAO.buscarJogadorPorId(idJogador);
+        if (jogador != null && !"EMPRESTADO_SAIDA".equals(jogador.getStatusEmprestimo())) {
+            jogador.setStatusEmprestimo("EMPRESTADO_SAIDA");
+            DataAcessObject.JogadorDAO.atualizarJogador(jogador);
+            
+            Controller.ControladorFinanceiro controladorFinanceiro = new Controller.ControladorFinanceiro();
+            controladorFinanceiro.iniciarCadastroDeReceitas("Transferências", valor, "Empréstimo (Saída) do jogador " + jogador.getNome(), "Receita", null, idJogador);
+            return 1;
+        }
+        return -1;
+    }
+
+    public int emprestarJogadorEntrada(String nome, Date data_de_nascimento, String nacionalidade, String posicao,
+            int numero_da_camisa, float salario, int tempo_de_contrato, float valor) {
+            
+        int idCadastrado = this.cadastrarJogador(nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato, valor);
+        
+        if (idCadastrado > 0) {
+            Jogador jogador = DataAcessObject.JogadorDAO.buscarJogadorPorId(idCadastrado);
+            if (jogador != null) {
+                jogador.setStatusEmprestimo("EMPRESTADO_ENTRADA");
+                DataAcessObject.JogadorDAO.atualizarJogador(jogador);
+                
+                Controller.ControladorFinanceiro controladorFinanceiro = new Controller.ControladorFinanceiro();
+                controladorFinanceiro.iniciarCadastroDeDespesas("Transferências", valor, "Empréstimo (Entrada) do jogador " + jogador.getNome(), "Despesa", null, idCadastrado);
+            }
+            return idCadastrado;
+        }
+        return -1;
     }
 
 }

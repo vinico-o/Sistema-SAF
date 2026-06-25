@@ -111,6 +111,7 @@ public class ConnectionFactory {
                 + "salario REAL NOT NULL, "
                 + "tempo_de_contrato INTEGER NOT NULL, "
                 + "valor REAL NOT NULL, "
+                + "statusEmprestimo TEXT, "
                 + "idClube INTEGER, "
                 + "FOREIGN KEY (idClube) REFERENCES clube(id_clube)"
                 + ");";
@@ -119,6 +120,12 @@ public class ConnectionFactory {
                 Statement stmt = conn.createStatement()) {
 
             stmt.execute(sql);
+            
+            try {
+                stmt.execute("ALTER TABLE jogador ADD COLUMN statusEmprestimo TEXT");
+            } catch (SQLException ignore) {
+            }
+            
             System.out.println("Tabela 'jogador' criada com sucesso!");
 
         } catch (SQLException e) {

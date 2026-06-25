@@ -43,7 +43,8 @@ public class TelaJogador extends javax.swing.JPanel {
                 jogador.getNome(),
                 jogador.getNumero_da_camisa(),
                 jogador.getPosicao(),
-                jogador.getValor()
+                jogador.getValor(),
+                jogador.getStatusEmprestimo()
         });
     }
 
@@ -102,6 +103,7 @@ public class TelaJogador extends javax.swing.JPanel {
         botaoListar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         botaoBuscar = new javax.swing.JButton();
+        botaoEmprestimo = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(200, 200, 200));
 
@@ -110,7 +112,7 @@ public class TelaJogador extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "Nome", "Número", "Posição", "Valor"
+                "id", "Nome", "Número", "Posição", "Valor", "Status"
             }
         ));
         jScrollPane1.setViewportView(tabelaJogadores);
@@ -133,6 +135,9 @@ public class TelaJogador extends javax.swing.JPanel {
         botaoBuscar.setText("Buscar");
         botaoBuscar.addActionListener(this::botaoBuscarActionPerformed);
 
+        botaoEmprestimo.setText("Empréstimo");
+        botaoEmprestimo.addActionListener(this::botaoEmprestimoActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -145,7 +150,9 @@ public class TelaJogador extends javax.swing.JPanel {
                 .addComponent(botaoVender)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoEmprestimo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addComponent(botaoBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoVerDetalhes)
@@ -163,7 +170,8 @@ public class TelaJogador extends javax.swing.JPanel {
                     .addComponent(botaoVerDetalhes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botaoListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -186,6 +194,13 @@ public class TelaJogador extends javax.swing.JPanel {
         TelaBuscarJogador telaBuscar = new TelaBuscarJogador(framePai, true, this);
         telaBuscar.setVisible(true);
     }//GEN-LAST:event_botaoBuscarActionPerformed
+
+    private void botaoEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEmprestimoActionPerformed
+        java.awt.Frame framePai = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
+        TelaEmprestimoJogador telaEmprestimoJogador = new TelaEmprestimoJogador(framePai, true);
+        telaEmprestimoJogador.setVisible(true);
+    }//GEN-LAST:event_botaoEmprestimoActionPerformed
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoEditarActionPerformed
 
@@ -297,7 +312,8 @@ public class TelaJogador extends javax.swing.JPanel {
                     jogador.getNome(),
                     jogador.getNumero_da_camisa(),
                     jogador.getPosicao(),
-                    String.format(java.util.Locale.US, "%.2f", jogador.getValor())
+                    String.format(java.util.Locale.US, "%.2f", jogador.getValor()),
+                    jogador.getStatusEmprestimo() != null ? jogador.getStatusEmprestimo() : "DEFINITIVO"
             };
 
             modelo.addRow(linha);
@@ -308,6 +324,7 @@ public class TelaJogador extends javax.swing.JPanel {
     private javax.swing.JButton botaoBuscar;
     private javax.swing.JButton botaoComprar;
     private javax.swing.JButton botaoEditar;
+    private javax.swing.JButton botaoEmprestimo;
     private javax.swing.JButton botaoListar;
     private javax.swing.JButton botaoVender;
     private javax.swing.JButton botaoVerDetalhes;
