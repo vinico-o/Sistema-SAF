@@ -33,6 +33,8 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
         listaReceitas = Arrays.asList(chkBilheteria, chkPatrocinio, chkProdutos, chkSocio, chkPremiacoes, chkTransferenciasRec);
         listaDespesas = Arrays.asList(chkInfraestrutura, chkProducao, chkSaude, chkSalarios, chkViagens, chkTransferenciasDesp);
 
+        customizarLayout();
+
         jComboBox1Tipo.addActionListener(e -> gerenciarFiltrosEmTela());
 
         listaReceitas.forEach(chk -> chk.setEnabled(false));
@@ -396,4 +398,88 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox1Tipo;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    private void customizarLayout() {
+        this.removeAll();
+        this.setLayout(new java.awt.BorderLayout());
+        this.setBackground(View.Theme.COLOR_BG_MAIN);
+        
+        javax.swing.JPanel container = new javax.swing.JPanel(new java.awt.GridBagLayout());
+        container.setBackground(View.Theme.COLOR_BG_MAIN);
+        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+        gbc.insets = new java.awt.Insets(8, 8, 8, 8);
+        gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gbc.anchor = java.awt.GridBagConstraints.WEST;
+
+        // Title
+        javax.swing.JLabel lblTitle = new javax.swing.JLabel("Relatório Financeiro");
+        lblTitle.setFont(View.Theme.FONT_TITLE);
+        lblTitle.setForeground(View.Theme.COLOR_TEXT_DARK);
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
+        gbc.insets = new java.awt.Insets(8, 8, 24, 8);
+        container.add(lblTitle, gbc);
+
+        // Reset insets
+        gbc.insets = new java.awt.Insets(8, 8, 8, 8);
+        gbc.gridwidth = 1;
+
+        // Tipo Relatorio
+        gbc.gridx = 0; gbc.gridy = 1;
+        container.add(jLabel1, gbc);
+        gbc.gridx = 1; gbc.gridy = 1;
+        View.Theme.styleComboBox(jComboBox1Tipo);
+        container.add(jComboBox1Tipo, gbc);
+
+        // Periodo Inicial
+        gbc.gridx = 0; gbc.gridy = 2;
+        javax.swing.JLabel lblInicio = new javax.swing.JLabel("Início:");
+        lblInicio.setFont(View.Theme.FONT_TEXT);
+        container.add(lblInicio, gbc);
+        gbc.gridx = 1; gbc.gridy = 2;
+        View.Theme.styleTextField(campoPeriodoInicial1);
+        container.add(campoPeriodoInicial1, gbc);
+
+        // Periodo Final
+        gbc.gridx = 0; gbc.gridy = 3;
+        Final.setFont(View.Theme.FONT_TEXT);
+        container.add(Final, gbc);
+        gbc.gridx = 1; gbc.gridy = 3;
+        View.Theme.styleTextField(campoPeriodoFinal);
+        container.add(campoPeriodoFinal, gbc);
+
+        // Checkboxes Wrapper
+        javax.swing.JPanel pnlChecks = new javax.swing.JPanel(new java.awt.GridLayout(0, 2, 8, 8));
+        pnlChecks.setBackground(View.Theme.COLOR_BG_MAIN);
+        
+        java.util.List<javax.swing.JCheckBox> allChecks = new java.util.ArrayList<>();
+        allChecks.addAll(listaReceitas);
+        allChecks.addAll(listaDespesas);
+        allChecks.add(chkOutras);
+        
+        for (javax.swing.JCheckBox chk : allChecks) {
+            chk.setFont(View.Theme.FONT_TEXT);
+            chk.setBackground(View.Theme.COLOR_BG_MAIN);
+            pnlChecks.add(chk);
+        }
+
+        gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2;
+        gbc.insets = new java.awt.Insets(16, 8, 16, 8);
+        container.add(pnlChecks, gbc);
+
+        // Button
+        gbc.gridx = 0; gbc.gridy = 5; gbc.gridwidth = 2;
+        gbc.insets = new java.awt.Insets(24, 8, 8, 8);
+        gbc.anchor = java.awt.GridBagConstraints.CENTER;
+        View.Theme.styleButtonSuccess(botaoGerarRelatorioFinanceiro);
+        container.add(botaoGerarRelatorioFinanceiro, gbc);
+
+        // Centering the form
+        javax.swing.JPanel wrapper = new javax.swing.JPanel(new java.awt.GridBagLayout());
+        wrapper.setBackground(View.Theme.COLOR_BG_MAIN);
+        wrapper.add(container);
+
+        this.add(wrapper, java.awt.BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();
+    }
 }

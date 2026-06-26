@@ -23,6 +23,7 @@ public class TelaUsuario extends javax.swing.JPanel {
     public TelaUsuario() {
         initComponents();
         configurarAcessos();
+        customizarLayout();
     }
 
     /**
@@ -299,6 +300,50 @@ public class TelaUsuario extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaUsuarios;
     // End of variables declaration//GEN-END:variables
+
+    private void customizarLayout() {
+        this.removeAll();
+        this.setLayout(new java.awt.BorderLayout(24, 24));
+        this.setBackground(View.Theme.COLOR_BG_MAIN);
+        this.setBorder(new javax.swing.border.EmptyBorder(32, 32, 32, 32));
+
+        // Header
+        javax.swing.JPanel header = new javax.swing.JPanel(new java.awt.BorderLayout());
+        header.setBackground(View.Theme.COLOR_BG_MAIN);
+        
+        jLabel1.setFont(View.Theme.FONT_TITLE);
+        jLabel1.setForeground(View.Theme.COLOR_TEXT_DARK);
+        header.add(jLabel1, java.awt.BorderLayout.WEST);
+
+        // Actions
+        javax.swing.JPanel actions = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 12, 0));
+        actions.setBackground(View.Theme.COLOR_BG_MAIN);
+        
+        View.Theme.styleButtonPrimary(botaoBuscarUsuario);
+        View.Theme.styleButtonSecondary(botaoListarUsuários);
+        View.Theme.styleButtonSecondary(botaoEditarUsuario);
+        View.Theme.styleButtonDanger(botaoExcluirUsuario);
+        View.Theme.styleButtonSuccess(botaoCadastrar);
+        
+        actions.add(botaoBuscarUsuario);
+        actions.add(botaoListarUsuários);
+        actions.add(botaoEditarUsuario);
+        actions.add(botaoExcluirUsuario);
+        actions.add(botaoCadastrar);
+
+        header.add(actions, java.awt.BorderLayout.EAST);
+
+        this.add(header, java.awt.BorderLayout.NORTH);
+
+        // Table
+        View.Theme.styleTable(tabelaUsuarios);
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(View.Theme.COLOR_PANEL_BORDER));
+        jScrollPane1.getViewport().setBackground(java.awt.Color.WHITE);
+        this.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        this.revalidate();
+        this.repaint();
+    }
 
     private void configurarAcessos() {
         if (Model.Sessao.getUsuarioLogado() == null) {

@@ -11,6 +11,7 @@ public class TelaRelatorioDesempenho extends javax.swing.JPanel {
 
     public TelaRelatorioDesempenho() {
         initComponents();
+        customizarLayout();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -220,4 +221,86 @@ public class TelaRelatorioDesempenho extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelInicio;
     private javax.swing.JLabel jLabelTipoRelatorio;
     // End of variables declaration//GEN-END:variables
+
+    private void customizarLayout() {
+        this.removeAll();
+        this.setLayout(new java.awt.BorderLayout());
+        this.setBackground(View.Theme.COLOR_BG_MAIN);
+        
+        javax.swing.JPanel container = new javax.swing.JPanel(new java.awt.GridBagLayout());
+        container.setBackground(View.Theme.COLOR_BG_MAIN);
+        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+        gbc.insets = new java.awt.Insets(8, 8, 8, 8);
+        gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gbc.anchor = java.awt.GridBagConstraints.WEST;
+
+        // Title
+        jLabel1.setFont(View.Theme.FONT_TITLE);
+        jLabel1.setForeground(View.Theme.COLOR_TEXT_DARK);
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
+        gbc.insets = new java.awt.Insets(8, 8, 24, 8);
+        container.add(jLabel1, gbc);
+
+        // Reset insets
+        gbc.insets = new java.awt.Insets(8, 8, 8, 8);
+        gbc.gridwidth = 1;
+
+        // Tipo Relatorio
+        gbc.gridx = 0; gbc.gridy = 1;
+        container.add(jLabelTipoRelatorio, gbc);
+        gbc.gridx = 1; gbc.gridy = 1;
+        View.Theme.styleComboBox(jComboBoxTipoRelatorio);
+        container.add(jComboBoxTipoRelatorio, gbc);
+
+        // Competicao
+        gbc.gridx = 0; gbc.gridy = 2;
+        container.add(jLabelCompeticao, gbc);
+        gbc.gridx = 1; gbc.gridy = 2;
+        View.Theme.styleComboBox(jComboBoxCompeticao);
+        container.add(jComboBoxCompeticao, gbc);
+
+        // Data Inicio
+        gbc.gridx = 0; gbc.gridy = 3;
+        container.add(jLabelInicio, gbc);
+        gbc.gridx = 1; gbc.gridy = 3;
+        View.Theme.styleTextField(campoPeriodoInicial);
+        container.add(campoPeriodoInicial, gbc);
+
+        // Data Fim
+        gbc.gridx = 0; gbc.gridy = 4;
+        container.add(jLabelFinal, gbc);
+        gbc.gridx = 1; gbc.gridy = 4;
+        View.Theme.styleTextField(campoPeriodoFinal);
+        container.add(campoPeriodoFinal, gbc);
+
+        // Checkboxes
+        javax.swing.JPanel pnlChecks = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        pnlChecks.setBackground(View.Theme.COLOR_BG_MAIN);
+        campoCasa.setFont(View.Theme.FONT_TEXT);
+        campoCasa.setBackground(View.Theme.COLOR_BG_MAIN);
+        campoFora.setFont(View.Theme.FONT_TEXT);
+        campoFora.setBackground(View.Theme.COLOR_BG_MAIN);
+        pnlChecks.add(campoCasa);
+        pnlChecks.add(javax.swing.Box.createHorizontalStrut(16));
+        pnlChecks.add(campoFora);
+        
+        gbc.gridx = 1; gbc.gridy = 5;
+        container.add(pnlChecks, gbc);
+
+        // Button
+        gbc.gridx = 0; gbc.gridy = 6; gbc.gridwidth = 2;
+        gbc.insets = new java.awt.Insets(24, 8, 8, 8);
+        gbc.anchor = java.awt.GridBagConstraints.CENTER;
+        View.Theme.styleButtonSuccess(botaoGerar);
+        container.add(botaoGerar, gbc);
+
+        // Centering the form
+        javax.swing.JPanel wrapper = new javax.swing.JPanel(new java.awt.GridBagLayout());
+        wrapper.setBackground(View.Theme.COLOR_BG_MAIN);
+        wrapper.add(container);
+
+        this.add(wrapper, java.awt.BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();
+    }
 }

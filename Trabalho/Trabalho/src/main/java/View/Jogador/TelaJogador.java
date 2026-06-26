@@ -31,6 +31,7 @@ public class TelaJogador extends javax.swing.JPanel {
     public TelaJogador() {
         initComponents();
         configurarAcessos();
+        customizarLayout();
     }
     
     public void atualizarTabela(Jogador jogador) {
@@ -333,6 +334,55 @@ public class TelaJogador extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaJogadores;
     // End of variables declaration//GEN-END:variables
+
+    private void customizarLayout() {
+        this.removeAll();
+        this.setLayout(new java.awt.BorderLayout(24, 24));
+        this.setBackground(View.Theme.COLOR_BG_MAIN);
+        this.setBorder(new javax.swing.border.EmptyBorder(32, 32, 32, 32));
+
+        // Header
+        javax.swing.JPanel header = new javax.swing.JPanel(new java.awt.BorderLayout());
+        header.setBackground(View.Theme.COLOR_BG_MAIN);
+        
+        javax.swing.JLabel lblTitle = new javax.swing.JLabel("Jogadores");
+        lblTitle.setFont(View.Theme.FONT_TITLE);
+        lblTitle.setForeground(View.Theme.COLOR_TEXT_DARK);
+        header.add(lblTitle, java.awt.BorderLayout.WEST);
+
+        // Actions
+        javax.swing.JPanel actions = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 12, 0));
+        actions.setBackground(View.Theme.COLOR_BG_MAIN);
+        
+        View.Theme.styleButtonPrimary(botaoBuscar);
+        View.Theme.styleButtonSecondary(botaoListar);
+        View.Theme.styleButtonSecondary(botaoVerDetalhes);
+        View.Theme.styleButtonSecondary(botaoEditar);
+        View.Theme.styleButtonPrimary(botaoEmprestimo);
+        View.Theme.styleButtonDanger(botaoVender);
+        View.Theme.styleButtonSuccess(botaoComprar);
+        
+        actions.add(botaoBuscar);
+        actions.add(botaoListar);
+        actions.add(botaoVerDetalhes);
+        actions.add(botaoEditar);
+        actions.add(botaoEmprestimo);
+        actions.add(botaoVender);
+        actions.add(botaoComprar);
+
+        header.add(actions, java.awt.BorderLayout.EAST);
+
+        this.add(header, java.awt.BorderLayout.NORTH);
+
+        // Table
+        View.Theme.styleTable(tabelaJogadores);
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(View.Theme.COLOR_PANEL_BORDER));
+        jScrollPane1.getViewport().setBackground(java.awt.Color.WHITE);
+        this.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        this.revalidate();
+        this.repaint();
+    }
 
     private void configurarAcessos() {
         if (Model.Sessao.getUsuarioLogado() == null) {
