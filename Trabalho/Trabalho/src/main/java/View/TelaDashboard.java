@@ -285,6 +285,7 @@ public class TelaDashboard extends javax.swing.JPanel {
                 JPanel cardsFinanceiros = new JPanel(new GridLayout(1, 3, 24, 0));
                 cardsFinanceiros.setBackground(Theme.COLOR_BG_MAIN);
                 cardsFinanceiros.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
+                cardsFinanceiros.setAlignmentX(LEFT_ALIGNMENT);
 
                 lblReceitasValor = new JLabel("R$ 0,00");
                 lblDespesasValor = new JLabel("R$ 0,00");
@@ -298,6 +299,7 @@ public class TelaDashboard extends javax.swing.JPanel {
                 JPanel cardsOperacionais = new JPanel(new GridLayout(1, 3, 24, 0));
                 cardsOperacionais.setBackground(Theme.COLOR_BG_MAIN);
                 cardsOperacionais.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
+                cardsOperacionais.setAlignmentX(LEFT_ALIGNMENT);
 
                 lblJogadoresValor = new JLabel("0");
                 lblPartidasValor = new JLabel("0");
@@ -317,8 +319,9 @@ public class TelaDashboard extends javax.swing.JPanel {
                 Theme.styleTable(jTableDashboard);
 
                 JScrollPane scrollPane = new JScrollPane(jTableDashboard);
-                scrollPane.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
-                scrollPane.setPreferredSize(new Dimension(0, 100));
+                scrollPane.getViewport().setBackground(java.awt.Color.WHITE);
+                scrollPane.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+                scrollPane.setPreferredSize(new Dimension(Short.MAX_VALUE, 400));
                 scrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(Theme.COLOR_PANEL_BORDER, 1));
                 scrollPane.setAlignmentX(LEFT_ALIGNMENT);
 

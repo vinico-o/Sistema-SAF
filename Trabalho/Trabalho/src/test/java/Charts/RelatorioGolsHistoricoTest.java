@@ -38,19 +38,24 @@ public class RelatorioGolsHistoricoTest {
         partidas.add(p1);
 
         // Act
-        XYSeriesCollection dataset = RelatorioGolsHistorico.criarDataset(partidas, null, null, "Todas");
+        XYSeriesCollection dataset = RelatorioGolsHistorico.criarDataset(partidas, null, null, "Todas", true, true);
 
         // Assert
         assertEquals(2, dataset.getSeriesCount(), "Deve conter 2 séries: Marcados e Sofridos");
-        
-        // As partidas devem ser ordenadas por data. Logo, p1 (Janeiro) é a partida 1, p2 (Fevereiro) é a partida 2.
-        
+
+        // As partidas devem ser ordenadas por data. Logo, p1 (Janeiro) é a partida 1,
+        // p2 (Fevereiro) é a partida 2.
+
         // Partida 1 (Janeiro)
-        assertEquals(3.0, dataset.getSeries("Gols Marcados").getY(0).doubleValue(), "A primeira partida deve ter 3 gols marcados");
-        assertEquals(0.0, dataset.getSeries("Gols Sofridos").getY(0).doubleValue(), "A primeira partida deve ter 0 gols sofridos");
-        
+        assertEquals(3.0, dataset.getSeries("Gols Marcados").getY(0).doubleValue(),
+                "A primeira partida deve ter 3 gols marcados");
+        assertEquals(0.0, dataset.getSeries("Gols Sofridos").getY(0).doubleValue(),
+                "A primeira partida deve ter 0 gols sofridos");
+
         // Partida 2 (Fevereiro)
-        assertEquals(1.0, dataset.getSeries("Gols Marcados").getY(1).doubleValue(), "A segunda partida deve ter 1 gol marcado");
-        assertEquals(2.0, dataset.getSeries("Gols Sofridos").getY(1).doubleValue(), "A segunda partida deve ter 2 gols sofridos");
+        assertEquals(1.0, dataset.getSeries("Gols Marcados").getY(1).doubleValue(),
+                "A segunda partida deve ter 1 gol marcado");
+        assertEquals(2.0, dataset.getSeries("Gols Sofridos").getY(1).doubleValue(),
+                "A segunda partida deve ter 2 gols sofridos");
     }
 }

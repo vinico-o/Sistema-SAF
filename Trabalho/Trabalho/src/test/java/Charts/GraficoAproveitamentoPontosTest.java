@@ -47,7 +47,7 @@ public class GraficoAproveitamentoPontosTest {
         partidas.add(p3);
 
         // Act - Testa com todas as competições
-        DefaultCategoryDataset dataset = GraficoAproveitamentoPontos.criarDataset(partidas, null, null, "Todas");
+        DefaultCategoryDataset dataset = GraficoAproveitamentoPontos.criarDataset(partidas, null, null, "Todas", true, true);
 
         // Assert
         assertEquals(1.0, dataset.getValue("Vitórias", "Janeiro").doubleValue(), "Deve ter 1 vitória em Janeiro");
@@ -59,7 +59,7 @@ public class GraficoAproveitamentoPontosTest {
         assertEquals(1.0, dataset.getValue("Derrotas", "Fevereiro").doubleValue(), "Deve ter 1 derrota em Fevereiro");
         
         // Testa filtragem por competição (Brasileirão)
-        DefaultCategoryDataset datasetFiltrado = GraficoAproveitamentoPontos.criarDataset(partidas, null, null, "Brasileirão");
+        DefaultCategoryDataset datasetFiltrado = GraficoAproveitamentoPontos.criarDataset(partidas, null, null, "Brasileirão", true, true);
         
         // Em fevereiro foi Copa do Brasil, então não deve existir Fevereiro no dataset filtrado
         assertEquals(1, datasetFiltrado.getColumnCount(), "Deve ter apenas o mês de Janeiro ao filtrar Brasileirão");

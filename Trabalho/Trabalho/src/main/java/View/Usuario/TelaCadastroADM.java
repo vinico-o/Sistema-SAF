@@ -19,6 +19,7 @@ public class TelaCadastroADM extends javax.swing.JPanel {
      */
     public TelaCadastroADM() {
         initComponents();
+        aplicarEstilosAdicionais();
     }
 
     public boolean cadastrarAdministrador() {
@@ -178,4 +179,72 @@ public class TelaCadastroADM extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelSenha;
     // End of variables declaration//GEN-END:variables
+
+    private void aplicarEstilosAdicionais() {
+        this.removeAll();
+        this.setLayout(new java.awt.GridBagLayout());
+        this.setBackground(View.Theme.COLOR_BG_MAIN);
+
+        // painel para o formulario
+        javax.swing.JPanel container = new javax.swing.JPanel(new java.awt.GridBagLayout());
+        container.setBackground(java.awt.Color.WHITE);
+        container.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+                javax.swing.BorderFactory.createLineBorder(View.Theme.COLOR_PANEL_BORDER, 1),
+                new javax.swing.border.EmptyBorder(40, 48, 40, 48)));
+
+        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+        gbc.insets = new java.awt.Insets(8, 0, 8, 0);
+        gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gbc.anchor = java.awt.GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+
+        // titulo
+        jLabel1.setFont(View.Theme.FONT_TITLE);
+        jLabel1.setForeground(View.Theme.COLOR_TEXT_DARK);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gbc.gridy = 0;
+        gbc.insets = new java.awt.Insets(0, 0, 32, 0);
+        container.add(jLabel1, gbc);
+
+        gbc.insets = new java.awt.Insets(4, 0, 4, 0);
+
+        // label usuario
+        jLabel2.setFont(View.Theme.FONT_TEXT);
+        jLabel2.setForeground(View.Theme.COLOR_TEXT_DARK);
+        gbc.gridy = 1;
+        container.add(jLabel2, gbc);
+
+        // campo usuario
+        View.Theme.styleTextField(campoNomeUsuario);
+        campoNomeUsuario.setPreferredSize(new java.awt.Dimension(300, 34));
+        gbc.gridy = 2;
+        gbc.insets = new java.awt.Insets(0, 0, 16, 0);
+        container.add(campoNomeUsuario, gbc);
+
+        // label de senha
+        labelSenha.setFont(View.Theme.FONT_TEXT);
+        labelSenha.setForeground(View.Theme.COLOR_TEXT_DARK);
+        gbc.gridy = 3;
+        gbc.insets = new java.awt.Insets(4, 0, 4, 0);
+        container.add(labelSenha, gbc);
+
+        // campo de senha
+        View.Theme.stylePasswordField(campoSenha);
+        campoSenha.setPreferredSize(new java.awt.Dimension(300, 34));
+        gbc.gridy = 4;
+        gbc.insets = new java.awt.Insets(0, 0, 32, 0);
+        container.add(campoSenha, gbc);
+
+        // botao de cadastro
+        View.Theme.styleButtonPrimary(jButton1);
+        jButton1.setPreferredSize(new java.awt.Dimension(300, 36));
+        gbc.gridy = 5;
+        gbc.insets = new java.awt.Insets(8, 0, 8, 0);
+        container.add(jButton1, gbc);
+
+        this.add(container, new java.awt.GridBagConstraints());
+
+        this.revalidate();
+        this.repaint();
+    }
 }
