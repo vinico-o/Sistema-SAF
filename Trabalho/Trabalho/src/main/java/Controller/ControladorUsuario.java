@@ -78,6 +78,7 @@ public class ControladorUsuario {
             return true;
 
         } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "Digite Informações Válidas! ");
             return false;
         }
     }

@@ -34,4 +34,20 @@ public class ElencoTest {
         assertFalse(elenco.validarInformacoes(-1, "Neymar", hoje, "Brasil", "Atacante", 0, 1000f, 12, 1000000f), "Deveria falhar com camisa 0");
         assertFalse(elenco.validarInformacoes(-1, "Neymar", hoje, "Brasil", "Atacante", 100, 1000f, 12, 1000000f), "Deveria falhar com camisa 100");
     }
+    
+    @Test
+    public void validarInformacoes_ValoresNegativos() {
+        Elenco elenco = new Elenco();
+        Date hoje = new Date();
+        assertFalse(elenco.validarInformacoes(-1, "Neymar", hoje, "Brasil", "Atacante", 67, -1000f, 12, 1000000f), "Deveria falhar com salário negativo");
+        assertFalse(elenco.validarInformacoes(-1, "Neymar", hoje, "Brasil", "Atacante", 67, 1000f, 12, -1000000f), "Deveria falhar com Valor de mercado negativo");
+        assertFalse(elenco.validarInformacoes(-1, "Neymar", hoje, "Brasil", "Atacante", 67, 1000f, -12, 1000000f), "Deveria falhar com tempo de contrato negativo");
+    }
+    
+    @Test
+    public void validarInformacoes_Correto() {
+        Elenco elenco = new Elenco();
+        Date hoje = new Date();
+        assertTrue(elenco.validarInformacoes(-1, "Neymar", hoje, "Brasil", "Atacante", 67, 1000f, 12, 1000000f), "Nao deveria falhar");
+    }
 }

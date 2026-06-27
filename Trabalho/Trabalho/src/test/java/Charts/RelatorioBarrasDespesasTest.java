@@ -13,7 +13,6 @@ public class RelatorioBarrasDespesasTest {
 
     @Test
     public void testCriarDataset() {
-        // Arrange
         List<TransacaoFinanceira> despesas = new ArrayList<>();
         
         TransacaoFinanceira t1 = new TransacaoFinanceira();
@@ -32,10 +31,8 @@ public class RelatorioBarrasDespesasTest {
         despesas.add(t2);
         despesas.add(t3);
 
-        // Act
         DefaultCategoryDataset dataset = RelatorioBarrasDespesas.criarDataset(despesas);
 
-        // Assert
         assertEquals(2, dataset.getColumnCount(), "Deve haver 2 categorias (colunas) no dataset");
         
         assertEquals(70000.0, dataset.getValue("Despesas", "Salários e Encargos").doubleValue(), "Soma de Salários deve ser 70000");

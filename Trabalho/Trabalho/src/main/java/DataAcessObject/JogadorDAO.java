@@ -137,7 +137,7 @@ public class JogadorDAO {
             return null;
         }
     }
-    
+
     public static Jogador buscarJogadorPorNome(String nome) {
         String sql = "SELECT * FROM jogador WHERE nome = ? AND idClube = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();

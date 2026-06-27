@@ -151,6 +151,9 @@ public class Elenco {
             
             Controller.ControladorFinanceiro controladorFinanceiro = new Controller.ControladorFinanceiro();
             controladorFinanceiro.iniciarCadastroDeReceitas("Transferências", valor, "Empréstimo (Saída) do jogador " + jogador.getNome(), "Receita", null, idJogador);
+            Controller.ControladorAuditoria controladorAuditoria = new Controller.ControladorAuditoria();
+            controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador", "EDIÇÃO", idJogador);
+            
             return 1;
         }
         return -1;

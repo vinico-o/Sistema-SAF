@@ -345,11 +345,12 @@ public class TransacaoDAO {
         return -1; // se der erro -> retorna -1
     }
 
-    public static java.util.ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> buscarTransacoesPorPartida(int idPartida) {
+    public static java.util.ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> buscarTransacoesPorPartida(
+            int idPartida) {
         java.util.ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> transacoes = new java.util.ArrayList<>();
         String sql = "SELECT * FROM transacao WHERE idPartida = ?";
         try (Connection conexao = JDBC.ConnectionFactory.conectar();
-             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setInt(1, idPartida);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -359,7 +360,7 @@ public class TransacaoDAO {
                             rs.getFloat("valor"),
                             rs.getString("categoria"),
                             rs.getString("descricao"),
-                            rs.getDate("data"),
+                            new java.util.Date(rs.getLong("data")),
                             rs.getString("tipo"));
                     r.setIdPartida(idPartida);
                     transacoes.add(r);
@@ -369,7 +370,7 @@ public class TransacaoDAO {
                             rs.getFloat("valor"),
                             rs.getString("categoria"),
                             rs.getString("descricao"),
-                            rs.getDate("data"),
+                            new java.util.Date(rs.getLong("data")),
                             rs.getString("tipo"));
                     d.setIdPartida(idPartida);
                     transacoes.add(d);

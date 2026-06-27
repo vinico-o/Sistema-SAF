@@ -14,11 +14,9 @@ public class RelatorioGolsHistoricoTest {
 
     @Test
     public void testCriarDataset() {
-        // Arrange
         List<Partida> partidas = new ArrayList<>();
         Calendar cal = Calendar.getInstance();
 
-        // Partida 1: Mês 1
         cal.set(2023, Calendar.JANUARY, 10);
         Partida p1 = new Partida();
         p1.setData(cal.getTime());
@@ -26,7 +24,6 @@ public class RelatorioGolsHistoricoTest {
         p1.setGolsMarcados(3);
         p1.setGolsSofridos(0);
 
-        // Partida 2: Mês 2
         cal.set(2023, Calendar.FEBRUARY, 15);
         Partida p2 = new Partida();
         p2.setData(cal.getTime());
@@ -37,14 +34,11 @@ public class RelatorioGolsHistoricoTest {
         partidas.add(p2); // Adiciona fora de ordem cronológica para testar a ordenação
         partidas.add(p1);
 
-        // Act
         XYSeriesCollection dataset = RelatorioGolsHistorico.criarDataset(partidas, null, null, "Todas", true, true);
 
-        // Assert
         assertEquals(2, dataset.getSeriesCount(), "Deve conter 2 séries: Marcados e Sofridos");
 
-        // As partidas devem ser ordenadas por data. Logo, p1 (Janeiro) é a partida 1,
-        // p2 (Fevereiro) é a partida 2.
+        //As partidas devem ficar ordenadasd
 
         // Partida 1 (Janeiro)
         assertEquals(3.0, dataset.getSeries("Gols Marcados").getY(0).doubleValue(),

@@ -14,7 +14,6 @@ public class RelatorioPizzaReceitasTest {
 
     @Test
     public void testCriarDataset() {
-        // Arrange
         List<TransacaoFinanceira> receitas = new ArrayList<>();
 
         TransacaoFinanceira t1 = new TransacaoFinanceira();
@@ -33,12 +32,8 @@ public class RelatorioPizzaReceitasTest {
         receitas.add(t2);
         receitas.add(t3);
 
-        // Act
         DefaultPieDataset dataset = RelatorioPizzaReceitas.criarDataset(receitas);
 
-        // Assert
-        // A categoria "Patrocínio" aparece duas vezes (5000 + 3000 = 8000)
-        // A categoria "Bilheteria" aparece uma vez (2000)
         assertEquals(2, dataset.getItemCount(), "Deve haver exatamente 2 categorias no dataset");
 
         assertEquals(8000.0, dataset.getValue("Patrocínio").doubleValue(), "Soma de Patrocínio deve ser 8000");

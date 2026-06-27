@@ -248,11 +248,6 @@ public class TelaJogador extends javax.swing.JPanel {
                 Jogador jogador = DataAcessObject.JogadorDAO.buscarJogadorPorId(id);
                 controladorJogador.iniciarVendaDeJogador(id);
 
-                ControladorAuditoria controladorAuditoria = new ControladorAuditoria();
-
-                controladorAuditoria.registrarAuditoria(Sessao.getUsuarioLogado().getNome_usuario(), "Jogador",
-                        "EXCLUSÃO", id);
-
                 ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
                 controladorFinanceiro.iniciarCadastroDeReceitas("Transferências", jogador.getValor(),
                         "Venda de Jogador " + jogador.getNome() + ", " + jogador.getValor() + "R$", "Receita", null,

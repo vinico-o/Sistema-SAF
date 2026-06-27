@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ControladorFinanceiroTest {
-
+    
+    // 0.001 indica a margem de erro
     @Test
     void calcularBilheteriaCorreto() {
         ControladorFinanceiro cf = new ControladorFinanceiro();

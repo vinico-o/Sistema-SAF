@@ -37,6 +37,9 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
                 nivel_usuario = campoNivelUsuario.getSelectedIndex();
 
                 boolean operacaoConcluida = controladorUsuario.cadastrarUsuario(nome_usuario, senha, nivel_usuario);
+                if (operacaoConcluida) {
+                    
+                }
         }
 
         @SuppressWarnings("unchecked")

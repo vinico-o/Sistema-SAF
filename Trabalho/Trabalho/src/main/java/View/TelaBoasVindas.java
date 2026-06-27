@@ -14,7 +14,7 @@ public class TelaBoasVindas extends JPanel {
         setBackground(Theme.COLOR_BG_MAIN);
         setBorder(new EmptyBorder(40, 40, 40, 40));
 
-        // ===== HEADER =====
+        // header
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         headerPanel.setBackground(Theme.COLOR_BG_MAIN);
@@ -36,12 +36,12 @@ public class TelaBoasVindas extends JPanel {
 
         add(headerPanel, BorderLayout.NORTH);
 
-        // ===== CENTRO: Cards de instrução =====
+        // cards de instrucoes
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBackground(Theme.COLOR_BG_MAIN);
 
-        // --- Linha 1: 3 cards ---
+        // primeiso cards
         JPanel linha1 = new JPanel(new GridLayout(1, 3, 24, 0));
         linha1.setBackground(Theme.COLOR_BG_MAIN);
         linha1.setMaximumSize(new Dimension(Integer.MAX_VALUE, 160));
@@ -62,7 +62,7 @@ public class TelaBoasVindas extends JPanel {
                 Theme.COLOR_WARNING
         ));
 
-        // --- Linha 2: 3 cards ---
+        // cards d ebaixo
         JPanel linha2 = new JPanel(new GridLayout(1, 3, 24, 0));
         linha2.setBackground(Theme.COLOR_BG_MAIN);
         linha2.setMaximumSize(new Dimension(Integer.MAX_VALUE, 160));
@@ -88,7 +88,6 @@ public class TelaBoasVindas extends JPanel {
         centerPanel.add(Box.createVerticalStrut(24));
         centerPanel.add(linha2);
 
-        // Envolver para não esticar verticalmente
         JPanel centerWrapper = new JPanel(new BorderLayout());
         centerWrapper.setBackground(Theme.COLOR_BG_MAIN);
         centerWrapper.add(centerPanel, BorderLayout.NORTH);
@@ -96,9 +95,7 @@ public class TelaBoasVindas extends JPanel {
         add(centerWrapper, BorderLayout.CENTER);
     }
 
-    /**
-     * Cria um card de instrução com título colorido e descrição.
-     */
+    
     private JPanel createInstructionCard(String title, String description, Color accentColor) {
         JPanel card = new JPanel(new BorderLayout(0, 12));
         card.setBackground(Color.WHITE);
@@ -107,7 +104,7 @@ public class TelaBoasVindas extends JPanel {
                 new EmptyBorder(20, 20, 20, 20)
         ));
 
-        // Barra colorida no topo
+        //barra colorida no topo
         JPanel barraColorida = new JPanel();
         barraColorida.setBackground(accentColor);
         barraColorida.setPreferredSize(new Dimension(0, 4));
