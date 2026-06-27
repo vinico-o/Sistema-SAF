@@ -21,6 +21,7 @@ public class TelaAlterarDespesa extends javax.swing.JDialog {
             float valor) {
         super(parent, modal);
         initComponents();
+        setTitle("Alterar Despesa");
         setLocationRelativeTo(null);
         idDespesaEditar.setText(Integer.toString(idDespesa));
 

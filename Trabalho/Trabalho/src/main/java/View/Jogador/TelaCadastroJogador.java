@@ -26,6 +26,7 @@ public class TelaCadastroJogador extends javax.swing.JDialog {
         public TelaCadastroJogador(java.awt.Frame parent, boolean modal) {
                 super(parent, modal);
                 initComponents();
+        setTitle("Cadastro de Jogador");
         }
 
         /**

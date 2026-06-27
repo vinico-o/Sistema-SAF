@@ -22,6 +22,7 @@ public class TelaAlterarReceita extends javax.swing.JDialog {
             float valor) {
         super(parent, modal);
         initComponents();
+        setTitle("Alterar Receita");
         setLocationRelativeTo(null);
         idReceitaEditar.setText(Integer.toString(idReceita));
 

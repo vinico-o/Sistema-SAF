@@ -37,7 +37,12 @@ INSERT INTO jogador (nome, data_de_nascimento, nacionalidade, posicao, numero_da
 INSERT INTO jogador (nome, data_de_nascimento, nacionalidade, posicao, numero_da_camisa, salario, tempo_de_contrato, valor, statusEmprestimo, idClube) VALUES 
 ('Rafael Cabral', strftime('%s', '1990-05-20') * 1000, 'Brasileira', 'Goleiro', 101, 200000.0, 24, 1500000.0, 'DEFINITIVO', 2),
 ('Matheus Pereira', strftime('%s', '1996-05-05') * 1000, 'Brasileira', 'Meia', 110, 500000.0, 36, 10000000.0, 'DEFINITIVO', 2),
-('Arthur Gomes', strftime('%s', '1998-07-03') * 1000, 'Brasileira', 'Atacante', 111, 250000.0, 48, 5000000.0, 'DEFINITIVO', 2);
+('Arthur Gomes', strftime('%s', '1998-07-03') * 1000, 'Brasileira', 'Atacante', 111, 250000.0, 48, 5000000.0, 'DEFINITIVO', 2),
+('Lucas Silva', strftime('%s', '1993-02-16') * 1000, 'Brasileira', 'Volante', 116, 200000.0, 24, 2500000.0, 'DEFINITIVO', 2),
+('William', strftime('%s', '1995-04-03') * 1000, 'Brasileira', 'Lateral Direito', 112, 180000.0, 36, 2000000.0, 'DEFINITIVO', 2),
+('Marlon', strftime('%s', '1997-05-20') * 1000, 'Brasileira', 'Lateral Esquerdo', 103, 220000.0, 36, 3000000.0, 'DEFINITIVO', 2),
+('Juan Dinenno', strftime('%s', '1994-08-28') * 1000, 'Argentina', 'Atacante', 109, 350000.0, 24, 6000000.0, 'DEFINITIVO', 2),
+('Wesley', strftime('%s', '1999-03-30') * 1000, 'Brasileira', 'Atacante', 117, 150000.0, 48, 4000000.0, 'DEFINITIVO', 2);
 
 -- Partidas Botafogo (formato yyyy-MM-dd esperado pelo SimpleDateFormat do PartidaDAO)
 INSERT INTO partida (data, clube_adversario, gols_marcados, gols_sofridos, competicao, premiacao, publico, valor_do_ingresso, local, idClube) VALUES 
@@ -50,27 +55,38 @@ INSERT INTO partida (data, clube_adversario, gols_marcados, gols_sofridos, compe
 -- Partidas Cruzeiro
 INSERT INTO partida (data, clube_adversario, gols_marcados, gols_sofridos, competicao, premiacao, publico, valor_do_ingresso, local, idClube) VALUES 
 ('2024-01-15', 'Atlético-MG', 1, 0, 'Campeonato Mineiro', 60000.0, 50000, 60.0, 'Mineirão', 2),
-('2024-01-22', 'América-MG', 2, 2, 'Campeonato Mineiro', 0.0, 25000, 50.0, 'Mineirão', 2);
+('2024-01-22', 'América-MG', 2, 2, 'Campeonato Mineiro', 0.0, 25000, 50.0, 'Mineirão', 2),
+('2024-02-03', 'Tombense', 3, 0, 'Campeonato Mineiro', 20000.0, 18000, 40.0, 'Independência', 2),
+('2024-02-14', 'Patrocinense', 1, 1, 'Campeonato Mineiro', 0.0, 12000, 40.0, 'Mineirão', 2),
+('2024-02-28', 'Grêmio', 0, 1, 'Copa do Brasil', 0.0, 45000, 70.0, 'Mineirão', 2);
 
 -- Transacoes Botafogo (data em epoch milissegundos)
 INSERT INTO transacao (valor, categoria, descricao, data, tipo, idClube, idPartida, idJogador) VALUES 
 (2100000.0, 'Bilheteria', 'Bilheteria jogo contra o Vasco', strftime('%s', '2024-01-16') * 1000, 'Receita', 1, 1, NULL),
 (1500000.0, 'Patrocínio', 'Cota mensal', strftime('%s', '2024-01-01') * 1000, 'Receita', 1, NULL, NULL),
 (3800000.0, 'Bilheteria', 'Bilheteria jogo contra o Palmeiras', strftime('%s', '2024-02-06') * 1000, 'Receita', 1, 3, NULL),
-(500000.0, 'Premiação', 'Avanço na Copa do Brasil', strftime('%s', '2024-02-26') * 1000, 'Receita', 1, 5, NULL),
+(500000.0, 'Premiações', 'Avanço na Copa do Brasil', strftime('%s', '2024-02-26') * 1000, 'Receita', 1, 5, NULL),
 (1000000.0, 'Patrocínio', 'Cota mensal material esportivo', strftime('%s', '2024-02-10') * 1000, 'Receita', 1, NULL, NULL);
 
 INSERT INTO transacao (valor, categoria, descricao, data, tipo, idClube, idPartida, idJogador) VALUES 
-(3330000.0, 'Salários', 'Folha salarial de Janeiro', strftime('%s', '2024-02-05') * 1000, 'Despesa', 1, NULL, NULL),
-(500000.0, 'Manutenção', 'Manutenção do gramado Nilton Santos', strftime('%s', '2024-01-10') * 1000, 'Despesa', 1, NULL, NULL),
-(120000.0, 'Logística', 'Viagem para jogar no Maracanã e despesas gerais', strftime('%s', '2024-01-25') * 1000, 'Despesa', 1, 2, NULL),
-(150000.0, 'Logística', 'Despesas com hotel e alimentação', strftime('%s', '2024-02-13') * 1000, 'Despesa', 1, 4, NULL),
-(250000.0, 'Outros', 'Impostos e encargos de Janeiro', strftime('%s', '2024-02-20') * 1000, 'Despesa', 1, NULL, NULL);
+(3330000.0, 'Salários e Encargos', 'Folha salarial de Janeiro', strftime('%s', '2024-02-05') * 1000, 'Despesa', 1, NULL, NULL),
+(500000.0, 'Infraestrutura', 'Manutenção do gramado Nilton Santos', strftime('%s', '2024-01-10') * 1000, 'Despesa', 1, NULL, NULL),
+(120000.0, 'Viagens e Logísticas', 'Viagem para jogar no Maracanã e despesas gerais', strftime('%s', '2024-01-25') * 1000, 'Despesa', 1, 2, NULL),
+(150000.0, 'Viagens e Logísticas', 'Despesas com hotel e alimentação', strftime('%s', '2024-02-13') * 1000, 'Despesa', 1, 4, NULL),
+(250000.0, 'Outras', 'Impostos e encargos de Janeiro', strftime('%s', '2024-02-20') * 1000, 'Despesa', 1, NULL, NULL);
 
 -- Transacoes Cruzeiro
 INSERT INTO transacao (valor, categoria, descricao, data, tipo, idClube, idPartida, idJogador) VALUES 
 (3000000.0, 'Bilheteria', 'Jogo contra o Galo', strftime('%s', '2024-01-16') * 1000, 'Receita', 2, 6, NULL),
-(2000000.0, 'Patrocínio', 'Patrocínio Master', strftime('%s', '2024-01-01') * 1000, 'Receita', 2, NULL, NULL);
+(2000000.0, 'Patrocínio', 'Patrocínio Master', strftime('%s', '2024-01-01') * 1000, 'Receita', 2, NULL, NULL),
+(1250000.0, 'Bilheteria', 'Jogo contra o América-MG', strftime('%s', '2024-01-23') * 1000, 'Receita', 2, 7, NULL),
+(720000.0, 'Bilheteria', 'Jogo contra o Tombense', strftime('%s', '2024-02-04') * 1000, 'Receita', 2, 8, NULL),
+(20000.0, 'Premiações', 'Vitória no Campeonato Mineiro', strftime('%s', '2024-02-05') * 1000, 'Receita', 2, 8, NULL),
+(480000.0, 'Bilheteria', 'Jogo contra o Patrocinense', strftime('%s', '2024-02-15') * 1000, 'Receita', 2, 9, NULL),
+(3150000.0, 'Bilheteria', 'Jogo contra o Grêmio', strftime('%s', '2024-02-29') * 1000, 'Receita', 2, 10, NULL);
 
 INSERT INTO transacao (valor, categoria, descricao, data, tipo, idClube, idPartida, idJogador) VALUES 
-(1500000.0, 'Salários', 'Folha salarial', strftime('%s', '2024-02-05') * 1000, 'Despesa', 2, NULL, NULL);
+(1500000.0, 'Salários e Encargos', 'Folha salarial', strftime('%s', '2024-02-05') * 1000, 'Despesa', 2, NULL, NULL),
+(300000.0, 'Infraestrutura', 'Manutenção Toca da Raposa II', strftime('%s', '2024-01-20') * 1000, 'Despesa', 2, NULL, NULL),
+(80000.0, 'Viagens e Logísticas', 'Viagem e concentração', strftime('%s', '2024-02-02') * 1000, 'Despesa', 2, 8, NULL),
+(200000.0, 'Outras', 'Marketing e promoções', strftime('%s', '2024-02-15') * 1000, 'Despesa', 2, NULL, NULL);

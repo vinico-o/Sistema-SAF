@@ -23,6 +23,7 @@ public class TelaEditarUsuario extends javax.swing.JDialog {
     public TelaEditarUsuario(Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Editar Usuário");
         setLocationRelativeTo(null);
     }
 

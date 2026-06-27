@@ -26,6 +26,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        setTitle("Sistema SAF");
         configurarAcessos();
         customizarLayout();
     }
@@ -617,9 +618,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         javax.swing.JLabel lblRole = new javax.swing.JLabel("");
         if (Model.Sessao.getUsuarioLogado() != null) {
             int nivel = Model.Sessao.getUsuarioLogado().getNivel_usuario();
-            if(nivel == 0) lblRole.setText("Administrador");
-            else if(nivel == 1) lblRole.setText("Gestor Financeiro");
-            else if(nivel == 2) lblRole.setText("Operador");
+            String nome = Model.Sessao.getUsuarioLogado().getNome_usuario();
+            if(nivel == 0) {
+                lblRole.setText(nome + " | " + "Administrador");
+            }
+            else if(nivel == 1) {
+                lblRole.setText(nome + " | " + "Gestor Financeiro");
+            }
+            else if(nivel == 2) {
+                lblRole.setText(nome + " | " + "Operador");
+            }
         }
         
         lblRole.setFont(View.Theme.FONT_SUBTITLE);

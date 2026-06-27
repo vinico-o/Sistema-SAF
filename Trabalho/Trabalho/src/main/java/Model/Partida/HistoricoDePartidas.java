@@ -51,7 +51,8 @@ public class HistoricoDePartidas {
 
         if (validacao) {
             Controller.ControladorFinanceiro cf = new Controller.ControladorFinanceiro();
-            ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> transacoes = DataAcessObject.TransacaoDAO.buscarTransacoesPorPartida(idPartida);
+            ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> transacoes = DataAcessObject.TransacaoDAO
+                    .buscarTransacoesPorPartida(idPartida);
             for (Model.TransacaoFinanceira.TransacaoFinanceira t : transacoes) {
                 if ("Receita".equals(t.getTipo())) {
                     cf.iniciarExclusaoDeReceita(t.getIdTransacao(), Sessao.getIdClubeAtual());
@@ -68,7 +69,7 @@ public class HistoricoDePartidas {
 
             float bilheteria = cf.calcularBilheteria(publico, valorDoIngresso);
             if (premiacao > 0) {
-                cf.iniciarCadastroDeReceitas("Premiação", premiacao,
+                cf.iniciarCadastroDeReceitas("Premiações", premiacao,
                         "Premiação da partida contra " + clubeAdversario, "Receita", idPartida, null);
             }
             if (bilheteria > 0) {
@@ -157,7 +158,8 @@ public class HistoricoDePartidas {
 
     public void excluirPartida(int idPartida) {
         Controller.ControladorFinanceiro cf = new Controller.ControladorFinanceiro();
-        ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> transacoes = DataAcessObject.TransacaoDAO.buscarTransacoesPorPartida(idPartida);
+        ArrayList<Model.TransacaoFinanceira.TransacaoFinanceira> transacoes = DataAcessObject.TransacaoDAO
+                .buscarTransacoesPorPartida(idPartida);
         for (Model.TransacaoFinanceira.TransacaoFinanceira t : transacoes) {
             if ("Receita".equals(t.getTipo())) {
                 cf.iniciarExclusaoDeReceita(t.getIdTransacao(), Sessao.getIdClubeAtual());

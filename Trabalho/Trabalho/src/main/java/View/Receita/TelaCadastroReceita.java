@@ -19,6 +19,7 @@ public class TelaCadastroReceita extends javax.swing.JDialog {
     public TelaCadastroReceita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Cadastro de Receita");
         setLocationRelativeTo(null);
 
     }

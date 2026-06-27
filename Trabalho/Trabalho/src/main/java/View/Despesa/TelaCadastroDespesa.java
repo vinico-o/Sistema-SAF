@@ -19,6 +19,7 @@ public class TelaCadastroDespesa extends javax.swing.JDialog {
         public TelaCadastroDespesa(java.awt.Frame parent, boolean modal) {
                 super(parent, modal);
                 initComponents();
+        setTitle("Cadastro de Despesa");
                 setLocationRelativeTo(null);
         }
 

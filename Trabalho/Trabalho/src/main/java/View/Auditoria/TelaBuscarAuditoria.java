@@ -22,6 +22,7 @@ public class TelaBuscarAuditoria extends javax.swing.JDialog {
     public TelaBuscarAuditoria(java.awt.Frame parent, boolean modal, TelaAuditoria telaAuditoria) {
         super(parent, modal);
         initComponents();
+        setTitle("Buscar Auditoria");
         this.telaAuditoria = telaAuditoria;
     }
 

@@ -24,6 +24,7 @@ public class TelaBuscarJogador extends javax.swing.JDialog {
     public TelaBuscarJogador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Buscar Jogador");
     }
     
     public TelaBuscarJogador(java.awt.Frame parent, boolean modal, TelaJogador telaJogador) {

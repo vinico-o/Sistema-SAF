@@ -14,11 +14,11 @@ public class GraficoAproveitamentoPontosTest {
 
     @Test
     public void testCriarDataset() {
-        // Arrange
+        
         List<Partida> partidas = new ArrayList<>();
         Calendar cal = Calendar.getInstance();
 
-        // Partida 1: Vitória em Janeiro
+        // partida 1 dev ser vitoria em janeriro
         cal.set(2023, Calendar.JANUARY, 10);
         Partida p1 = new Partida();
         p1.setData(cal.getTime());
@@ -26,7 +26,7 @@ public class GraficoAproveitamentoPontosTest {
         p1.setGolsMarcados(2);
         p1.setGolsSofridos(1);
 
-        // Partida 2: Empate em Janeiro
+        // partida 2 deve ser empate em janeriro
         cal.set(2023, Calendar.JANUARY, 15);
         Partida p2 = new Partida();
         p2.setData(cal.getTime());

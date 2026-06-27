@@ -19,6 +19,7 @@ public class TelaAlterarClube extends javax.swing.JDialog {
     public TelaAlterarClube(java.awt.Frame parent, boolean modal, int idClube, String nome, int ano, String pais) {
         super(parent, modal);
         initComponents();
+        setTitle("Alterar Clube");
         setLocationRelativeTo(null);
         idClubeEditar.setText(Integer.toString(idClube));
         nomeClubeEntrada.setText(nome);

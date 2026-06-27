@@ -23,6 +23,7 @@ public class TelaEscolherClube extends javax.swing.JDialog {
     public TelaEscolherClube(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Escolher Clube");
         campoClube.removeAllItems();
         ArrayList<Clube> clubes = DataAcessObject.ClubeDAO.listClube();
         for (Clube c : clubes) {

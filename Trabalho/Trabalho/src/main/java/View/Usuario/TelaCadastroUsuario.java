@@ -21,6 +21,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         public TelaCadastroUsuario(java.awt.Frame parent, boolean modal) {
                 super(parent, modal); // Envia o frame pai e o bloqueio de tela para o JDialog
                 initComponents();
+        setTitle("Cadastro de Usuário");
                 this.pack(); // Ajusta o tamanho da janela aos componentes
                 this.setLocationRelativeTo(parent); // Centraliza em cima da TelaPrincipal
         }

@@ -25,6 +25,7 @@ public class TelaEditarJogador extends javax.swing.JDialog {
         public TelaEditarJogador(java.awt.Frame parent, boolean modal) {
                 super(parent, modal);
                 initComponents();
+        setTitle("Editar Jogador");
         }
 
         public TelaEditarJogador(java.awt.Frame parent, boolean modal, Jogador jogador) {

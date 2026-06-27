@@ -26,6 +26,7 @@ public class TelaBuscarUsuario extends javax.swing.JDialog {
     public TelaBuscarUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Buscar Usuário");
     }
 
     public TelaBuscarUsuario(java.awt.Frame parent, boolean modal, TelaUsuario telaUsuario) {

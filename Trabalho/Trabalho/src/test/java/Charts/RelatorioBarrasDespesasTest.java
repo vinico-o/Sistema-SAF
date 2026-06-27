@@ -17,15 +17,15 @@ public class RelatorioBarrasDespesasTest {
         List<TransacaoFinanceira> despesas = new ArrayList<>();
         
         TransacaoFinanceira t1 = new TransacaoFinanceira();
-        t1.setCategoria("Salários");
+        t1.setCategoria("Salários e Encargos");
         t1.setValor(50000.0f);
         
         TransacaoFinanceira t2 = new TransacaoFinanceira();
-        t2.setCategoria("Manutenção");
+        t2.setCategoria("Infraestrutura");
         t2.setValor(15000.0f);
         
         TransacaoFinanceira t3 = new TransacaoFinanceira();
-        t3.setCategoria("Salários");
+        t3.setCategoria("Salários e Encargos");
         t3.setValor(20000.0f);
         
         despesas.add(t1);
@@ -38,7 +38,7 @@ public class RelatorioBarrasDespesasTest {
         // Assert
         assertEquals(2, dataset.getColumnCount(), "Deve haver 2 categorias (colunas) no dataset");
         
-        assertEquals(70000.0, dataset.getValue("Despesas", "Salários").doubleValue(), "Soma de Salários deve ser 70000");
-        assertEquals(15000.0, dataset.getValue("Despesas", "Manutenção").doubleValue(), "Soma de Manutenção deve ser 15000");
+        assertEquals(70000.0, dataset.getValue("Despesas", "Salários e Encargos").doubleValue(), "Soma de Salários deve ser 70000");
+        assertEquals(15000.0, dataset.getValue("Despesas", "Infraestrutura").doubleValue(), "Soma de Manutenção deve ser 15000");
     }
 }

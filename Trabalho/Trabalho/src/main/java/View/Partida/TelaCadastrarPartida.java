@@ -419,7 +419,7 @@ public class TelaCadastrarPartida extends javax.swing.JDialog {
                                                 "Partida", "INSERÇÃO", idPartida);
 
                                 if (premiacao > 0) {
-                                        controladorFinanceiro.iniciarCadastroDeReceitas("Premiação", premiacao,
+                                        controladorFinanceiro.iniciarCadastroDeReceitas("Premiações", premiacao,
                                                         "Premiação da partida contra " + clubeAdversario, "Receita",
                                                         idPartida,
                                                         null);
