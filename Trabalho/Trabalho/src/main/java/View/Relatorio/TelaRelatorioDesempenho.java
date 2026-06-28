@@ -259,10 +259,10 @@ public class TelaRelatorioDesempenho extends javax.swing.JPanel {
         private void customizarLayout() {
                 this.removeAll();
                 this.setLayout(new java.awt.BorderLayout());
-                this.setBackground(View.Theme.COLOR_BG_MAIN);
+                this.setBackground(View.Theme.BACKGROUND);
 
                 javax.swing.JPanel container = new javax.swing.JPanel(new java.awt.GridBagLayout());
-                container.setBackground(View.Theme.COLOR_BG_MAIN);
+                container.setBackground(View.Theme.BACKGROUND);
                 java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
                 gbc.insets = new java.awt.Insets(8, 8, 8, 8);
                 gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -270,7 +270,7 @@ public class TelaRelatorioDesempenho extends javax.swing.JPanel {
 
                 // Title
                 jLabel1.setFont(View.Theme.FONT_TITLE);
-                jLabel1.setForeground(View.Theme.COLOR_TEXT_DARK);
+                jLabel1.setForeground(View.Theme.CINZA_ESCURO);
                 gbc.gridx = 0;
                 gbc.gridy = 0;
                 gbc.gridwidth = 2;
@@ -320,11 +320,11 @@ public class TelaRelatorioDesempenho extends javax.swing.JPanel {
                 // Checkboxes
                 javax.swing.JPanel pnlChecks = new javax.swing.JPanel(
                                 new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
-                pnlChecks.setBackground(View.Theme.COLOR_BG_MAIN);
+                pnlChecks.setBackground(View.Theme.BACKGROUND);
                 campoCasa.setFont(View.Theme.FONT_TEXT);
-                campoCasa.setBackground(View.Theme.COLOR_BG_MAIN);
+                campoCasa.setBackground(View.Theme.BACKGROUND);
                 campoFora.setFont(View.Theme.FONT_TEXT);
-                campoFora.setBackground(View.Theme.COLOR_BG_MAIN);
+                campoFora.setBackground(View.Theme.BACKGROUND);
                 pnlChecks.add(campoCasa);
                 pnlChecks.add(javax.swing.Box.createHorizontalStrut(16));
                 pnlChecks.add(campoFora);
@@ -344,7 +344,7 @@ public class TelaRelatorioDesempenho extends javax.swing.JPanel {
 
                 // Centering the form
                 javax.swing.JPanel wrapper = new javax.swing.JPanel(new java.awt.GridBagLayout());
-                wrapper.setBackground(View.Theme.COLOR_BG_MAIN);
+                wrapper.setBackground(View.Theme.BACKGROUND);
                 wrapper.add(container);
 
                 this.add(wrapper, java.awt.BorderLayout.CENTER);

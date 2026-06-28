@@ -171,13 +171,13 @@ public class TelaAutenticacaoUsuario extends javax.swing.JPanel {
     private void aplicarEstilosAdicionais() {
         this.removeAll();
         this.setLayout(new java.awt.GridBagLayout());
-        this.setBackground(View.Theme.COLOR_BG_MAIN);
+        this.setBackground(View.Theme.BACKGROUND);
 
         // painel para o formulario
         javax.swing.JPanel container = new javax.swing.JPanel(new java.awt.GridBagLayout());
         container.setBackground(java.awt.Color.WHITE);
         container.setBorder(javax.swing.BorderFactory.createCompoundBorder(
-                javax.swing.BorderFactory.createLineBorder(View.Theme.COLOR_PANEL_BORDER, 1),
+                javax.swing.BorderFactory.createLineBorder(View.Theme.CINZA_CLARO_PAINEL, 1),
                 new javax.swing.border.EmptyBorder(40, 48, 40, 48)));
 
         java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
@@ -188,7 +188,7 @@ public class TelaAutenticacaoUsuario extends javax.swing.JPanel {
 
         // titulo
         jLabel1.setFont(View.Theme.FONT_TITLE);
-        jLabel1.setForeground(View.Theme.COLOR_TEXT_DARK);
+        jLabel1.setForeground(View.Theme.CINZA_ESCURO);
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gbc.gridy = 0;
         gbc.insets = new java.awt.Insets(0, 0, 32, 0);
@@ -198,7 +198,7 @@ public class TelaAutenticacaoUsuario extends javax.swing.JPanel {
 
         // label usuario
         jLabel2.setFont(View.Theme.FONT_TEXT);
-        jLabel2.setForeground(View.Theme.COLOR_TEXT_DARK);
+        jLabel2.setForeground(View.Theme.CINZA_ESCURO);
         gbc.gridy = 1;
         container.add(jLabel2, gbc);
 
@@ -211,7 +211,7 @@ public class TelaAutenticacaoUsuario extends javax.swing.JPanel {
 
         // label de senha
         jLabel3.setFont(View.Theme.FONT_TEXT);
-        jLabel3.setForeground(View.Theme.COLOR_TEXT_DARK);
+        jLabel3.setForeground(View.Theme.CINZA_ESCURO);
         gbc.gridy = 3;
         gbc.insets = new java.awt.Insets(4, 0, 4, 0);
         container.add(jLabel3, gbc);

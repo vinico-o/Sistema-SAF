@@ -431,10 +431,10 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
     private void customizarLayout() {
         this.removeAll();
         this.setLayout(new java.awt.BorderLayout());
-        this.setBackground(View.Theme.COLOR_BG_MAIN);
+        this.setBackground(View.Theme.BACKGROUND);
 
         javax.swing.JPanel container = new javax.swing.JPanel(new java.awt.GridBagLayout());
-        container.setBackground(View.Theme.COLOR_BG_MAIN);
+        container.setBackground(View.Theme.BACKGROUND);
         java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
         gbc.insets = new java.awt.Insets(8, 8, 8, 8);
         gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -443,7 +443,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
         // Title
         javax.swing.JLabel lblTitle = new javax.swing.JLabel("Relatório Financeiro");
         lblTitle.setFont(View.Theme.FONT_TITLE);
-        lblTitle.setForeground(View.Theme.COLOR_TEXT_DARK);
+        lblTitle.setForeground(View.Theme.CINZA_ESCURO);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
@@ -486,7 +486,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
 
         // Checkboxes Wrapper
         javax.swing.JPanel pnlChecks = new javax.swing.JPanel(new java.awt.GridLayout(0, 2, 8, 8));
-        pnlChecks.setBackground(View.Theme.COLOR_BG_MAIN);
+        pnlChecks.setBackground(View.Theme.BACKGROUND);
 
         java.util.List<javax.swing.JCheckBox> allChecks = new java.util.ArrayList<>();
         allChecks.addAll(listaReceitas);
@@ -495,7 +495,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
 
         for (javax.swing.JCheckBox chk : allChecks) {
             chk.setFont(View.Theme.FONT_TEXT);
-            chk.setBackground(View.Theme.COLOR_BG_MAIN);
+            chk.setBackground(View.Theme.BACKGROUND);
             pnlChecks.add(chk);
         }
 
@@ -516,7 +516,7 @@ public class TelaRelatorioFinanceiro extends javax.swing.JPanel {
 
         // Centering the form
         javax.swing.JPanel wrapper = new javax.swing.JPanel(new java.awt.GridBagLayout());
-        wrapper.setBackground(View.Theme.COLOR_BG_MAIN);
+        wrapper.setBackground(View.Theme.BACKGROUND);
         wrapper.add(container);
 
         this.add(wrapper, java.awt.BorderLayout.CENTER);

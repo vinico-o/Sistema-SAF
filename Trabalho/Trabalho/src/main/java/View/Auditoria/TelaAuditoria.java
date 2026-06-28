@@ -170,21 +170,21 @@ public class TelaAuditoria extends javax.swing.JPanel {
     private void customizarLayout() {
         this.removeAll();
         this.setLayout(new java.awt.BorderLayout(24, 24));
-        this.setBackground(View.Theme.COLOR_BG_MAIN);
+        this.setBackground(View.Theme.BACKGROUND);
         this.setBorder(new javax.swing.border.EmptyBorder(32, 32, 32, 32));
 
         // Header
         javax.swing.JPanel header = new javax.swing.JPanel(new java.awt.BorderLayout());
-        header.setBackground(View.Theme.COLOR_BG_MAIN);
+        header.setBackground(View.Theme.BACKGROUND);
         
         javax.swing.JLabel lblTitle = new javax.swing.JLabel("Auditoria");
         lblTitle.setFont(View.Theme.FONT_TITLE);
-        lblTitle.setForeground(View.Theme.COLOR_TEXT_DARK);
+        lblTitle.setForeground(View.Theme.CINZA_ESCURO);
         header.add(lblTitle, java.awt.BorderLayout.WEST);
 
         // Actions
         javax.swing.JPanel actions = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 12, 0));
-        actions.setBackground(View.Theme.COLOR_BG_MAIN);
+        actions.setBackground(View.Theme.BACKGROUND);
         
         View.Theme.styleButtonPrimary(botaoBuscarAuditoria);
         View.Theme.styleButtonSecondary(botaoListarAuditorias);
@@ -198,7 +198,7 @@ public class TelaAuditoria extends javax.swing.JPanel {
 
         // Table
         View.Theme.styleTable(tabelaAuditoria);
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(View.Theme.COLOR_PANEL_BORDER));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(View.Theme.CINZA_CLARO_PAINEL));
         jScrollPane1.getViewport().setBackground(java.awt.Color.WHITE);
         this.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 

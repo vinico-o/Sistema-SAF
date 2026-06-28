@@ -254,21 +254,21 @@ public class TelaDashboard extends javax.swing.JPanel {
         private void customizarLayout() {
                 removeAll();
                 setLayout(new BorderLayout(24, 24));
-                setBackground(Theme.COLOR_BG_MAIN);
+                setBackground(Theme.BACKGROUND);
                 setBorder(new EmptyBorder(40, 40, 40, 40));
 
                 // ===== HEADER =====
                 JPanel headerPanel = new JPanel();
                 headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
-                headerPanel.setBackground(Theme.COLOR_BG_MAIN);
+                headerPanel.setBackground(Theme.BACKGROUND);
 
                 JLabel lblTitulo = new JLabel("Dashboard");
                 lblTitulo.setFont(Theme.FONT_TITLE);
-                lblTitulo.setForeground(Theme.COLOR_TEXT_DARK);
+                lblTitulo.setForeground(Theme.CINZA_ESCURO);
 
                 JLabel lblSubtitulo = new JLabel("Resumo financeiro e operacional do clube");
                 lblSubtitulo.setFont(Theme.FONT_SUBTITLE);
-                lblSubtitulo.setForeground(Theme.COLOR_TEXT_MUTED);
+                lblSubtitulo.setForeground(Theme.CINZA_CLARO);
 
                 headerPanel.add(lblTitulo);
                 headerPanel.add(Box.createVerticalStrut(8));
@@ -279,11 +279,11 @@ public class TelaDashboard extends javax.swing.JPanel {
                 // ===== CENTRO: Cards + Tabela =====
                 JPanel centerPanel = new JPanel();
                 centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-                centerPanel.setBackground(Theme.COLOR_BG_MAIN);
+                centerPanel.setBackground(Theme.BACKGROUND);
 
                 // --- Linha 1: Receitas, Despesas, Saldo ---
                 JPanel cardsFinanceiros = new JPanel(new GridLayout(1, 3, 24, 0));
-                cardsFinanceiros.setBackground(Theme.COLOR_BG_MAIN);
+                cardsFinanceiros.setBackground(Theme.BACKGROUND);
                 cardsFinanceiros.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
                 cardsFinanceiros.setAlignmentX(LEFT_ALIGNMENT);
 
@@ -291,29 +291,29 @@ public class TelaDashboard extends javax.swing.JPanel {
                 lblDespesasValor = new JLabel("R$ 0,00");
                 lblSaldoValor = new JLabel("R$ 0,00");
 
-                cardsFinanceiros.add(createCard("Receitas Totais", lblReceitasValor, Theme.COLOR_SUCCESS));
-                cardsFinanceiros.add(createCard("Despesas Totais", lblDespesasValor, Theme.COLOR_DANGER));
-                cardsFinanceiros.add(createCard("Saldo Atual", lblSaldoValor, Theme.COLOR_PRIMARY));
+                cardsFinanceiros.add(createCard("Receitas Totais", lblReceitasValor, Theme.VERDE));
+                cardsFinanceiros.add(createCard("Despesas Totais", lblDespesasValor, Theme.VERMELHO));
+                cardsFinanceiros.add(createCard("Saldo Atual", lblSaldoValor, Theme.COR_PRINCIPAL));
 
                 // --- Linha 2: Jogadores, Partidas ---
                 JPanel cardsOperacionais = new JPanel(new GridLayout(1, 3, 24, 0));
-                cardsOperacionais.setBackground(Theme.COLOR_BG_MAIN);
+                cardsOperacionais.setBackground(Theme.BACKGROUND);
                 cardsOperacionais.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
                 cardsOperacionais.setAlignmentX(LEFT_ALIGNMENT);
 
                 lblJogadoresValor = new JLabel("0");
                 lblPartidasValor = new JLabel("0");
 
-                cardsOperacionais.add(createCard("Jogadores no Elenco", lblJogadoresValor, Theme.COLOR_WARNING));
-                cardsOperacionais.add(createCard("Partidas Jogadas", lblPartidasValor, Theme.COLOR_SECONDARY));
+                cardsOperacionais.add(createCard("Jogadores no Elenco", lblJogadoresValor, Theme.LARANJA));
+                cardsOperacionais.add(createCard("Partidas Jogadas", lblPartidasValor, Theme.CINZA));
                 JPanel espacoVazio = new JPanel();
-                espacoVazio.setBackground(Theme.COLOR_BG_MAIN);
+                espacoVazio.setBackground(Theme.BACKGROUND);
                 cardsOperacionais.add(espacoVazio);
 
                 // --- Tabela de lançamentos recentes ---
                 JLabel lblLancamentos = new JLabel("Lançamentos Recentes");
                 lblLancamentos.setFont(new Font(Theme.FONT_FAMILY, Font.BOLD, 16));
-                lblLancamentos.setForeground(Theme.COLOR_TEXT_DARK);
+                lblLancamentos.setForeground(Theme.CINZA_ESCURO);
                 lblLancamentos.setAlignmentX(LEFT_ALIGNMENT);
 
                 Theme.styleTable(jTableDashboard);
@@ -322,7 +322,7 @@ public class TelaDashboard extends javax.swing.JPanel {
                 scrollPane.getViewport().setBackground(java.awt.Color.WHITE);
                 scrollPane.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
                 scrollPane.setPreferredSize(new Dimension(Short.MAX_VALUE, 400));
-                scrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(Theme.COLOR_PANEL_BORDER, 1));
+                scrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(Theme.CINZA_CLARO_PAINEL, 1));
                 scrollPane.setAlignmentX(LEFT_ALIGNMENT);
 
                 // Montagem do centro
@@ -344,12 +344,12 @@ public class TelaDashboard extends javax.swing.JPanel {
                 JPanel card = new JPanel(new BorderLayout());
                 card.setBackground(Color.WHITE);
                 card.setBorder(javax.swing.BorderFactory.createCompoundBorder(
-                                javax.swing.BorderFactory.createLineBorder(Theme.COLOR_PANEL_BORDER, 1),
+                                javax.swing.BorderFactory.createLineBorder(Theme.CINZA_CLARO_PAINEL, 1),
                                 new EmptyBorder(24, 24, 24, 24)));
 
                 JLabel lblTitle = new JLabel(title);
                 lblTitle.setFont(Theme.FONT_SUBTITLE);
-                lblTitle.setForeground(Theme.COLOR_TEXT_MUTED);
+                lblTitle.setForeground(Theme.CINZA_CLARO);
 
                 lblValue.setFont(new Font(Theme.FONT_FAMILY, Font.BOLD, 28));
                 lblValue.setForeground(color);
@@ -388,7 +388,7 @@ public class TelaDashboard extends javax.swing.JPanel {
 
                 float saldo = valorTotalReceita - valorTotalDespesa;
                 lblSaldoValor.setText(String.format("R$ %.2f", saldo));
-                lblSaldoValor.setForeground(saldo >= 0 ? Theme.COLOR_SUCCESS : Theme.COLOR_DANGER);
+                lblSaldoValor.setForeground(saldo >= 0 ? Theme.VERDE : Theme.VERMELHO);
 
                 // TROCAR AQUI
                 if (jogadores == null) {

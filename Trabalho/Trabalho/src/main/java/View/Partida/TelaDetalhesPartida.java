@@ -183,19 +183,6 @@ public class TelaDetalhesPartida extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            TelaDetalhesPartida dialog = new TelaDetalhesPartida(new javax.swing.JFrame(), true);
-            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosing(java.awt.event.WindowEvent e) {
-                    System.exit(0);
-                }
-            });
-            dialog.setVisible(true);
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoClubeAdversario;
     private javax.swing.JTextField campoCompeticao;

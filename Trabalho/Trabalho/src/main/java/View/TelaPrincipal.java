@@ -21,7 +21,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botaoAtivo = null;
     private javax.swing.JButton[] menus;
 
-    /**
+    /**ad
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
@@ -48,13 +48,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void marcarBotaoAtivo(javax.swing.JButton btn) {
         // Desmarca o botão anterior
         if (botaoAtivo != null) {
-            botaoAtivo.setBackground(View.Theme.COLOR_BG_SIDEBAR);
-            botaoAtivo.setForeground(View.Theme.COLOR_SIDEBAR_TEXT_MUTED);
+            botaoAtivo.setBackground(View.Theme.SIDEBAR);
+            botaoAtivo.setForeground(View.Theme.CINZA_CLARO_CLARO);
         }
         // Marca o novo botão
         botaoAtivo = btn;
-        botaoAtivo.setBackground(View.Theme.COLOR_BG_SIDEBAR_HOVER);
-        botaoAtivo.setForeground(View.Theme.COLOR_TEXT_WHITE);
+        botaoAtivo.setBackground(View.Theme.SIDEBAR_HOVER);
+        botaoAtivo.setForeground(View.Theme.BRANCO);
     }
 
     /**
@@ -605,14 +605,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // --- WEST: Sidebar ---
         javax.swing.JPanel sidebar = new javax.swing.JPanel();
         sidebar.setLayout(new javax.swing.BoxLayout(sidebar, javax.swing.BoxLayout.Y_AXIS));
-        sidebar.setBackground(View.Theme.COLOR_BG_SIDEBAR);
+        sidebar.setBackground(View.Theme.SIDEBAR);
         sidebar.setPreferredSize(new java.awt.Dimension(220, 0));
         sidebar.setBorder(new javax.swing.border.EmptyBorder(24, 12, 24, 12));
         
         // Logo / Titulo
         javax.swing.JLabel lblLogo = new javax.swing.JLabel("Sistema SAF");
         lblLogo.setFont(View.Theme.FONT_TITLE);
-        lblLogo.setForeground(View.Theme.COLOR_TEXT_WHITE);
+        lblLogo.setForeground(View.Theme.BRANCO);
         lblLogo.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
         
         javax.swing.JLabel lblRole = new javax.swing.JLabel("");
@@ -631,7 +631,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
         lblRole.setFont(View.Theme.FONT_SUBTITLE);
-        lblRole.setForeground(View.Theme.COLOR_SIDEBAR_TEXT_MUTED);
+        lblRole.setForeground(View.Theme.CINZA_CLARO_CLARO);
         lblRole.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
         
         sidebar.add(lblLogo);
@@ -648,8 +648,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         for (javax.swing.JButton btn : menus) {
             btn.setMaximumSize(new java.awt.Dimension(200, 36));
             btn.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
-            btn.setBackground(View.Theme.COLOR_BG_SIDEBAR);
-            btn.setForeground(View.Theme.COLOR_SIDEBAR_TEXT_MUTED);
+            btn.setBackground(View.Theme.SIDEBAR);
+            btn.setForeground(View.Theme.CINZA_CLARO_CLARO);
             btn.setFont(View.Theme.FONT_MENU);
             btn.setBorderPainted(false);
             btn.setFocusPainted(false);
@@ -663,15 +663,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 @Override
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     if (btn != botaoAtivo && btn.isEnabled()) {
-                        btn.setBackground(View.Theme.COLOR_BG_SIDEBAR_HOVER);
-                        btn.setForeground(View.Theme.COLOR_TEXT_WHITE);
+                        btn.setBackground(View.Theme.SIDEBAR_HOVER);
+                        btn.setForeground(View.Theme.BRANCO);
                     }
                 }
                 @Override
                 public void mouseExited(java.awt.event.MouseEvent evt) {
                     if (btn != botaoAtivo && btn.isEnabled()) {
-                        btn.setBackground(View.Theme.COLOR_BG_SIDEBAR);
-                        btn.setForeground(View.Theme.COLOR_SIDEBAR_TEXT_MUTED);
+                        btn.setBackground(View.Theme.SIDEBAR);
+                        btn.setForeground(View.Theme.CINZA_CLARO_CLARO);
                     }
                 }
             });
@@ -689,12 +689,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         sidebar.add(botaoSair);
         
         // --- CENTER: Conteúdo principal ---
-        painelConteudo.setBackground(View.Theme.COLOR_BG_MAIN);
+        painelConteudo.setBackground(View.Theme.BACKGROUND);
         
         getContentPane().add(sidebar, java.awt.BorderLayout.WEST);
         getContentPane().add(painelConteudo, java.awt.BorderLayout.CENTER);
         
-        getContentPane().setBackground(View.Theme.COLOR_BG_MAIN);
+        getContentPane().setBackground(View.Theme.BACKGROUND);
         
         // Carrega tela de boas vindas inicial
         mostrarTela(new TelaBoasVindas());
